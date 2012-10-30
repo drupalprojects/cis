@@ -143,7 +143,6 @@ dependencies[] = better_exposed_filters
 dependencies[] = views
 dependencies[] = views_bulk_operations
 dependencies[] = views_data_export
-dependencies[] = views_field_calc
 dependencies[] = views_fluid_grid
 dependencies[] = views_slideshow
 dependencies[] = views_ui

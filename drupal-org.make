@@ -209,10 +209,6 @@ projects[views_fluid_grid][subdir] = "contrib"
 projects[views_slideshow][version] = "3.0"
 projects[views_slideshow][subdir] = "contrib"
 
-; projects[views_field_calc][version] = "" ; TODO add version
-; projects[views_field_calc][subdir] = "custom"
-
-
 ; Themes
 ; chamfer
 projects[chamfer][type] = "theme"
@@ -268,3 +264,7 @@ projects[field_collection][patch][] = "http://drupal.org/files/field_collection-
 projects[google_chart_tools][patch][] = "http://drupal.org/files/google_chart_tools-piechartcounts.patch"
 
 projects[google_chart_tools][patch][] = "http://drupal.org/files/google_chart_tools-responsive-1810232-4.patch"
+
+projects[nodeaccess_userreference][patch][] = "http://drupal.org/files/nodeaccess_userreference-install-profile-3.patch"
+
+projects[nodeaccess_nodereference][patch][] = "http://drupal.org/files/nodeaccess_nodereference-install-profile.patch"
