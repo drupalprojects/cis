@@ -1,0 +1,8 @@
+name = CIS Workflow
+description = Rules and workflow logistics
+core = 7.x
+package = Features
+dependencies[] = entity
+dependencies[] = rules
+features[features_api][] = api:1
+features[rules_config][] = rules_course_has_changed

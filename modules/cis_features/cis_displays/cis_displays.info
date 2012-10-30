@@ -1,0 +1,15 @@
+name = CIS displays
+description = Views, data selections and charts associated with CIS
+core = 7.x
+package = Features
+php = 5.2.4
+ctools[] = views:views_default:3.0
+features[features_api][] = api:1
+views_view[] = cis_course_charts
+views_view[] = cis_program_charts
+views_view[] = college_charts
+views_view[] = college_data
+views_view[] = course_slider
+views_view[] = courses_overview
+views_view[] = per_academic_unit_charts
+views_view[] = user_type_lists

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the CIS Design feature.
+ */
+
+include_once 'cis_design.features.inc';

@@ -1,0 +1,33 @@
+<?php
+/**
+ * Implements hook_init().
+ */
+function cis_helper_init() {
+	drupal_add_css(drupal_get_path('module', 'cis_helper') .'/cis_helper.css');
+}
+
+/**
+ * Implements hook_draw_chart_alter().
+ */
+function cis_helper_draw_chart_alter(&$settings) {
+	//dpm($settings['chart']);
+	$dept_charts = array('college-data-page-1', 'college-charts-page-6');
+	foreach ($dept_charts as $view_name) {
+		if (isset($settings['chart'][$view_name])) {
+			foreach ($settings['chart'][$view_name]['header'] as $record) {
+				$data = db_select('field_data_field_abbreviation', 'fdfa')
+				->fields('fdfa', array('entity_id'))
+				->condition('field_abbreviation_value', substr($record, 0, strpos($record, ' (')))
+				->execute()
+				->fetchObject();
+				if (isset($data->entity_id)) {
+					$dept = node_load($data->entity_id);
+					if (isset($dept->field_color['und'][0]['jquery_colorpicker'])) {
+						$colors[] = $dept->field_color['und'][0]['jquery_colorpicker'];
+					}
+				}
+			}
+			$settings['chart'][$view_name]['options']['colors'] = $colors;
+		}
+	}
+}
