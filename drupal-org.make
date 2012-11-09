@@ -29,9 +29,6 @@ projects[schema][subdir] = "contrib"
 projects[date][version] = "2.6"
 projects[date][subdir] = "contrib"
 
-projects[coder][version] = "1.1"
-projects[coder][subdir] = "contrib"
-
 projects[devel][version] = "1.3"
 projects[devel][subdir] = "contrib"
 
@@ -41,17 +38,8 @@ projects[profiler_builder][subdir] = "contrib"
 projects[chamfer_defaults][version] = "1.0-beta2"
 projects[chamfer_defaults][subdir] = "contrib"
 
-projects[feeds][version] = "2.0-alpha7"
-projects[feeds][subdir] = "contrib"
-
-projects[feeds_node_helper][version] = "1.2"
-projects[feeds_node_helper][subdir] = "contrib"
-
-projects[feeds_tamper][version] = "1.0-beta4"
-projects[feeds_tamper][subdir] = "contrib"
-
-projects[feeds_xpathparser][version] = "1.0-beta3"
-projects[feeds_xpathparser][subdir] = "contrib"
+projects[features][version] = "1.0"
+projects[features][subdir] = "contrib"
 
 projects[email][version] = "1.2"
 projects[email][subdir] = "contrib"
@@ -61,6 +49,9 @@ projects[entityreference][subdir] = "contrib"
 
 projects[entityreference_prepopulate][version] = "1.1"
 projects[entityreference_prepopulate][subdir] = "contrib"
+
+projects[field_collection][version] = "1.x-dev"
+projects[field_collection][subdir] = "contrib"
 
 projects[field_group][version] = "1.1"
 projects[field_group][subdir] = "contrib"
@@ -104,23 +95,14 @@ projects[colorbox][subdir] = "contrib"
 projects[diff][version] = "2.0"
 projects[diff][subdir] = "contrib"
 
-projects[entity][version] = "1.0-rc3"
+projects[entity][version] = "1.x-dev"
 projects[entity][subdir] = "contrib"
 
-projects[features][version] = "1.0"
-projects[features][subdir] = "contrib"
-
-projects[field_collection][version] = "1.x-dev"
-projects[field_collection][subdir] = "contrib"
-
-projects[field_collection_table][version] = "1.0-beta1"
+projects[field_collection_table][version] = "1.x-dev"
 projects[field_collection_table][subdir] = "contrib"
 
 projects[file_formatters][version] = "1.0"
 projects[file_formatters][subdir] = "contrib"
-
-projects[job_scheduler][version] = "2.0-alpha3"
-projects[job_scheduler][subdir] = "contrib"
 
 projects[jquery_colorpicker][version] = "1.0-rc1"
 projects[jquery_colorpicker][subdir] = "contrib"
@@ -128,7 +110,7 @@ projects[jquery_colorpicker][subdir] = "contrib"
 projects[libraries][version] = "2.0"
 projects[libraries][subdir] = "contrib"
 
-projects[masquerade][version] = "1.0-rc4"
+projects[masquerade][version] = "1.0-rc5"
 projects[masquerade][subdir] = "contrib"
 
 projects[module_filter][version] = "1.7"
@@ -158,14 +140,14 @@ projects[token][subdir] = "contrib"
 projects[transliteration][version] = "3.1"
 projects[transliteration][subdir] = "contrib"
 
+projects[boost][version] = "1.0-beta2"
+projects[boost][subdir] = "contrib"
+
 projects[entitycache][version] = "1.1"
 projects[entitycache][subdir] = "contrib"
 
 projects[regions][version] = "1.4"
 projects[regions][subdir] = "contrib"
-
-projects[rules][version] = "2.2"
-projects[rules][subdir] = "contrib"
 
 projects[textbook][version] = "1.0-rc1"
 projects[textbook][subdir] = "contrib"
@@ -178,9 +160,6 @@ projects[omega_tools][subdir] = "contrib"
 
 projects[tinynav][version] = "1.1"
 projects[tinynav][subdir] = "contrib"
-
-projects[addanother][version] = "2.1"
-projects[addanother][subdir] = "contrib"
 
 projects[ckeditor_link][version] = "2.2"
 projects[ckeditor_link][subdir] = "contrib"

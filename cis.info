@@ -46,7 +46,6 @@ dependencies[] = update
 dependencies[] = user
 ; Data
 dependencies[] = data
-dependencies[] = data_entity
 dependencies[] = data_node
 dependencies[] = data_search
 dependencies[] = data_ui
@@ -56,13 +55,6 @@ dependencies[] = schema
 dependencies[] = date
 dependencies[] = date_api
 dependencies[] = date_views
-; Feeds
-dependencies[] = feeds
-dependencies[] = feeds_node_helper
-dependencies[] = feeds_tamper
-dependencies[] = feeds_tamper_ui
-dependencies[] = feeds_ui
-dependencies[] = feeds_xpathparser
 ; Fields
 dependencies[] = email
 dependencies[] = entityreference
@@ -101,7 +93,6 @@ dependencies[] = entity_token
 dependencies[] = field_collection_table
 dependencies[] = file_formatters
 dependencies[] = isbn2node
-dependencies[] = job_scheduler
 dependencies[] = jquery_colorpicker
 dependencies[] = libraries
 dependencies[] = masquerade
@@ -120,21 +111,18 @@ dependencies[] = entitycache
 dependencies[] = regions
 dependencies[] = regions_admin_example
 dependencies[] = regions_admin_left
-; Rules
-dependencies[] = rules
-dependencies[] = rules_admin
 ; Textbook
 dependencies[] = textbook
 dependencies[] = textbook_editor
 ; Theme Tools
 dependencies[] = delta
 dependencies[] = delta_blocks
+dependencies[] = delta_color
 dependencies[] = delta_ui
 dependencies[] = omega_tools
 ; User Interface
 dependencies[] = tinynav
 ; User interface
-dependencies[] = addanother
 dependencies[] = ckeditor_link
 dependencies[] = imce_wysiwyg
 dependencies[] = wysiwyg
@@ -143,6 +131,7 @@ dependencies[] = better_exposed_filters
 dependencies[] = views
 dependencies[] = views_bulk_operations
 dependencies[] = views_data_export
+dependencies[] = views_field_calc
 dependencies[] = views_fluid_grid
 dependencies[] = views_slideshow
 dependencies[] = views_ui
