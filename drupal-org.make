@@ -68,7 +68,7 @@ projects[phone][subdir] = "contrib"
 projects[flexslider][version] = "1.0-rc3"
 projects[flexslider][subdir] = "contrib"
 
-projects[video_filter][version] = "3.0"
+projects[video_filter][version] = "3.1"
 projects[video_filter][subdir] = "contrib"
 
 projects[jammer][version] = "1.2"
