@@ -247,3 +247,5 @@ projects[google_chart_tools][patch][] = "http://drupal.org/files/google_chart_to
 projects[nodeaccess_userreference][patch][] = "http://drupal.org/files/nodeaccess_userreference-install-profile-3.patch"
 
 projects[nodeaccess_nodereference][patch][] = "http://drupal.org/files/nodeaccess_nodereference-install-profile.patch"
+
+projects[ISBN2node][patch][] = "http://drupal.org/files/isbn2node-whitespace-1248604-3.patch"
