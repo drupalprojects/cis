@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Code for the CIS Types feature.
+ * Code for the CIS types feature.
  */
 
 include_once 'cis_types.features.inc';

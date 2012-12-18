@@ -54,7 +54,21 @@ function cis_types_field_default_fields() {
           'module' => 'file',
           'settings' => array(),
           'type' => 'file_default',
-          'weight' => '9',
+          'weight' => '0',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_default',
+          'weight' => '3',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_default',
+          'weight' => '2',
         ),
       ),
       'entity_type' => 'field_collection_item',
@@ -76,67 +90,7 @@ function cis_types_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '4',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_offerings-field_ratio'.
-  $fields['field_collection_item-field_offerings-field_ratio'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ratio',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'number',
-      'settings' => array(),
-      'translatable' => '0',
-      'type' => 'number_integer',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_offerings',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Student to Teacher ratio, always expressed as the number of students per teacher.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
-          ),
-          'type' => 'number_integer',
-          'weight' => 19,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ratio',
-      'label' => 'Ratio',
-      'required' => 0,
-      'settings' => array(
-        'custom_add_another' => '',
-        'max' => '',
-        'min' => '1',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'number',
-        'settings' => array(),
-        'type' => 'number',
-        'weight' => '4',
+        'weight' => '3',
       ),
     ),
   );
@@ -183,11 +137,11 @@ function cis_types_field_default_fields() {
           ),
           'field_access_string' => array(
             'und' => array(
-              'add_more' => 'Add another item',
               0 => array(
                 'value' => '',
                 '_weight' => '0',
               ),
+              'add_more' => 'Add another item',
             ),
           ),
           'field_seats_filled' => array(
@@ -314,10 +268,33 @@ function cis_types_field_default_fields() {
             'delete' => 'Delete',
             'description' => TRUE,
             'edit' => 'Edit',
-            'view_mode' => 'full',
           ),
-          'type' => 'field_collection_view',
-          'weight' => 16,
+          'type' => 'field_collection_list',
+          'weight' => '1',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'field_collection',
+          'settings' => array(
+            'add' => 'Add',
+            'delete' => 'Delete',
+            'description' => TRUE,
+            'edit' => 'Edit',
+          ),
+          'type' => 'field_collection_list',
+          'weight' => '2',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'field_collection',
+          'settings' => array(
+            'add' => 'Add',
+            'delete' => 'Delete',
+            'description' => TRUE,
+            'edit' => 'Edit',
+          ),
+          'type' => 'field_collection_list',
+          'weight' => '3',
         ),
       ),
       'entity_type' => 'field_collection_item',
@@ -333,7 +310,7 @@ function cis_types_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_hidden',
-        'weight' => '5',
+        'weight' => '3',
       ),
     ),
   );
@@ -379,13 +356,27 @@ function cis_types_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 18,
+          'weight' => '2',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '1',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_semester',
       'label' => 'Semester',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'custom_add_another' => '',
         'user_register_form' => FALSE,
@@ -421,18 +412,12 @@ function cis_types_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          200304 => '2003-04',
-          200405 => '2004-05',
-          200506 => '2005-06',
-          200607 => '2006-07',
-          200708 => '2007-08',
-          200809 => '2008-09',
-          200910 => '2009-10',
-          201011 => '2010-11',
-          201112 => '2011-12',
           201213 => '2012-13',
           201314 => '2013-14',
           201415 => '2014-15',
+          201516 => '2015-16',
+          201617 => '2016-17',
+          201718 => '2017-18',
         ),
         'allowed_values_function' => '',
       ),
@@ -450,13 +435,27 @@ function cis_types_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 20,
+          'weight' => '3',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '0',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '0',
         ),
       ),
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_year',
       'label' => 'Year',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -513,7 +512,7 @@ function cis_types_field_default_fields() {
           'label' => 'inline',
           'module' => 'date',
           'settings' => array(
-            'format_type' => 'long',
+            'format_type' => 'date_only',
             'fromto' => 'both',
             'multiple_from' => '',
             'multiple_number' => '',
@@ -522,13 +521,38 @@ function cis_types_field_default_fields() {
           'type' => 'date_default',
           'weight' => '10',
         ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'date_only',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+          ),
+          'type' => 'date_default',
+          'weight' => '9',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'date_only',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+          ),
+          'type' => 'date_default',
+          'weight' => '7',
+        ),
       ),
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_access_dates',
       'label' => 'Access duration',
       'required' => 0,
       'settings' => array(
-        'custom_add_another' => '',
         'default_value' => 'blank',
         'default_value2' => 'blank',
         'default_value_code' => '',
@@ -540,14 +564,14 @@ function cis_types_field_default_fields() {
         'module' => 'date',
         'settings' => array(
           'increment' => '15',
-          'input_format' => 'M j Y - g:i:sa',
+          'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
-          'label_position' => 'none',
+          'label_position' => 'within',
           'text_parts' => array(),
-          'year_range' => '-0:+1',
+          'year_range' => '2012:2018',
         ),
         'type' => 'date_select',
-        'weight' => '25',
+        'weight' => '9',
       ),
     ),
   );
@@ -597,13 +621,26 @@ function cis_types_field_default_fields() {
           'type' => 'text_default',
           'weight' => '7',
         ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '7',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '4',
+        ),
       ),
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_access_string',
       'label' => 'Access string',
       'required' => 0,
       'settings' => array(
-        'custom_add_another' => '',
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
@@ -614,88 +651,7 @@ function cis_types_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '24',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_sections-field_access_url'.
-  $fields['field_collection_item-field_sections-field_access_url'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_access_url',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'link',
-      'settings' => array(
-        'attributes' => array(
-          'class' => '',
-          'rel' => '',
-          'target' => 'default',
-        ),
-        'display' => array(
-          'url_cutoff' => 80,
-        ),
-        'enable_tokens' => 1,
-        'title' => 'optional',
-        'title_maxlength' => 128,
-        'title_value' => '',
-        'url' => 0,
-      ),
-      'translatable' => '0',
-      'type' => 'link_field',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_sections',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'If this course has an online location, copy the web address here.',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'link_default',
-          'weight' => '8',
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_access_url',
-      'label' => 'Access URL',
-      'required' => 0,
-      'settings' => array(
-        'attributes' => array(
-          'class' => '',
-          'configurable_title' => 0,
-          'rel' => '',
-          'target' => 'default',
-          'title' => '',
-        ),
-        'custom_add_another' => '',
-        'display' => array(
-          'url_cutoff' => '80',
-        ),
-        'enable_tokens' => 0,
-        'title' => 'none',
-        'title_maxlength' => '128',
-        'title_value' => '',
-        'url' => 0,
-        'user_register_form' => FALSE,
-        'validate_url' => 0,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'link',
-        'settings' => array(),
-        'type' => 'link_field',
-        'weight' => '23',
+        'weight' => '11',
       ),
     ),
   );
@@ -763,13 +719,27 @@ function cis_types_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '1',
+          'weight' => '0',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_key',
+          'weight' => '0',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '5',
         ),
       ),
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_campus',
       'label' => 'Campus',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'custom_add_another' => '',
         'user_register_form' => FALSE,
@@ -784,182 +754,108 @@ function cis_types_field_default_fields() {
     ),
   );
 
-  // Exported field: 'field_collection_item-field_sections-field_cc_filled'.
-  $fields['field_collection_item-field_sections-field_cc_filled'] = array(
+  // Exported field: 'field_collection_item-field_sections-field_course_start'.
+  $fields['field_collection_item-field_sections-field_course_start'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_cc_filled',
+      'field_name' => 'field_course_start',
       'field_permissions' => array(
         'type' => '0',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
       'locked' => '0',
-      'module' => 'number',
-      'settings' => array(),
+      'module' => 'date',
+      'settings' => array(
+        'cache_count' => '4',
+        'cache_enabled' => 0,
+        'granularity' => array(
+          'day' => 'day',
+          'hour' => 0,
+          'minute' => 0,
+          'month' => 'month',
+          'second' => 0,
+          'year' => 'year',
+        ),
+        'timezone_db' => '',
+        'todate' => '',
+        'tz_handling' => 'none',
+      ),
       'translatable' => '0',
-      'type' => 'number_integer',
+      'type' => 'datetime',
     ),
     'field_instance' => array(
       'bundle' => 'field_sections',
-      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'inline',
-          'module' => 'number',
+          'label' => 'above',
+          'module' => 'date',
           'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
           ),
-          'type' => 'number_integer',
-          'weight' => '17',
+          'type' => 'date_default',
+          'weight' => 15,
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+          ),
+          'type' => 'date_default',
+          'weight' => '10',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+          ),
+          'type' => 'date_default',
+          'weight' => '10',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_cc_filled',
-      'label' => 'CC filled',
+      'field_name' => 'field_course_start',
+      'label' => 'Course Start',
       'required' => 0,
       'settings' => array(
-        'custom_add_another' => '',
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
+        'default_value' => 'blank',
+        'default_value2' => 'same',
+        'default_value_code' => '',
+        'default_value_code2' => '',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 0,
-        'module' => 'number',
-        'settings' => array(),
-        'type' => 'number',
-        'weight' => '20',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_sections-field_ecoop_filled'.
-  $fields['field_collection_item-field_sections-field_ecoop_filled'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ecoop_filled',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'number',
-      'settings' => array(),
-      'translatable' => '0',
-      'type' => 'number_integer',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_sections',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
-          ),
-          'type' => 'number_integer',
-          'weight' => '18',
+        'active' => 1,
+        'module' => 'date',
+        'settings' => array(
+          'increment' => '15',
+          'input_format' => 'm/d/Y - H:i:s',
+          'input_format_custom' => '',
+          'label_position' => 'within',
+          'text_parts' => array(),
+          'year_range' => '2012:2018',
         ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ecoop_filled',
-      'label' => 'Ecoop Filled',
-      'required' => 0,
-      'settings' => array(
-        'custom_add_another' => '',
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'number',
-        'settings' => array(),
-        'type' => 'number',
-        'weight' => '27',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_sections-field_ecoop_number_of_seats'.
-  $fields['field_collection_item-field_sections-field_ecoop_number_of_seats'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ecoop_number_of_seats',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'number',
-      'settings' => array(),
-      'translatable' => '0',
-      'type' => 'number_integer',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_sections',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Number of seats offered through the e-learning cooperative (only use this if this was offered there as well)',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
-          ),
-          'type' => 'number_integer',
-          'weight' => '19',
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ecoop_number_of_seats',
-      'label' => 'ecoop Number of seats',
-      'required' => 0,
-      'settings' => array(
-        'custom_add_another' => '',
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'number',
-        'settings' => array(),
-        'type' => 'number',
-        'weight' => '7',
+        'type' => 'date_select',
+        'weight' => '10',
       ),
     ),
   );
@@ -1024,7 +920,25 @@ function cis_types_field_default_fields() {
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => '0',
+          'weight' => '3',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => 1,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '2',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '6',
         ),
       ),
       'entity_type' => 'field_collection_item',
@@ -1078,7 +992,7 @@ function cis_types_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '3',
+        'weight' => '2',
       ),
     ),
   );
@@ -1143,7 +1057,25 @@ function cis_types_field_default_fields() {
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
+          'weight' => '6',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => 1,
+          ),
+          'type' => 'entityreference_label',
           'weight' => '5',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '3',
         ),
       ),
       'entity_type' => 'field_collection_item',
@@ -1164,73 +1096,7 @@ function cis_types_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '5',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_sections-field_method_of_access'.
-  $fields['field_collection_item-field_sections-field_method_of_access'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_method_of_access',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          'open' => 'Open Course',
-          'authenticated' => 'Login required',
-          'lms' => 'LMS access required',
-          'code' => 'Activation code required',
-        ),
-        'allowed_values_function' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'list_text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_sections',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Open Course - Publicly accessible, no access restrictions.
-Login required - Requires a university account to login
-LMS access required - Requires a university login and authorization from LMS
-Activation code required - Requires a university login, and authorization from LMS and a special code to unlock access',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '9',
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_method_of_access',
-      'label' => 'Method of access',
-      'required' => 0,
-      'settings' => array(
-        'custom_add_another' => '',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '22',
+        'weight' => '3',
       ),
     ),
   );
@@ -1276,7 +1142,21 @@ Activation code required - Requires a university login, and authorization from L
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '4',
+          'weight' => '2',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '6',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'field_collection_item',
@@ -1292,127 +1172,109 @@ Activation code required - Requires a university login, and authorization from L
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '4',
+        'weight' => '3',
       ),
     ),
   );
 
-  // Exported field: 'field_collection_item-field_sections-field_seats_filled'.
-  $fields['field_collection_item-field_sections-field_seats_filled'] = array(
+  // Exported field: 'field_collection_item-field_sections-field_resources'.
+  $fields['field_collection_item-field_sections-field_resources'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_seats_filled',
+      'field_name' => 'field_resources',
       'field_permissions' => array(
         'type' => '0',
       ),
-      'foreign keys' => array(),
-      'indexes' => array(),
+      'foreign keys' => array(
+        'node' => array(
+          'columns' => array(
+            'target_id' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
       'locked' => '0',
-      'module' => 'number',
-      'settings' => array(),
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'views',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 1,
+            ),
+          ),
+          'view' => array(
+            'args' => array(),
+            'display_name' => 'entityreference_1',
+            'view_name' => 'cis_resources',
+          ),
+        ),
+        'target_type' => 'node',
+      ),
       'translatable' => '0',
-      'type' => 'number_integer',
+      'type' => 'entityreference',
     ),
     'field_instance' => array(
       'bundle' => 'field_sections',
       'default_value' => NULL,
+      'default_value_function' => '',
       'deleted' => '0',
-      'description' => 'Number of seats that were filled.  This is to be (optionally) completed only after this section has run and is finalized.',
+      'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'inline',
-          'module' => 'number',
+          'label' => 'above',
+          'module' => 'entityreference',
           'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
+            'link' => FALSE,
           ),
-          'type' => 'number_integer',
-          'weight' => '13',
+          'type' => 'entityreference_label',
+          'weight' => 13,
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '11',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '11',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_seats_filled',
-      'label' => 'Seats filled',
+      'field_name' => 'field_resources',
+      'label' => 'Resources',
       'required' => 0,
       'settings' => array(
-        'custom_add_another' => '',
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'number',
-        'settings' => array(),
-        'type' => 'number',
-        'weight' => '6',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_sections-field_seats_offered'.
-  $fields['field_collection_item-field_sections-field_seats_offered'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_seats_offered',
-      'field_permissions' => array(
-        'type' => '2',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'number',
-      'settings' => array(),
-      'translatable' => '0',
-      'type' => 'number_integer',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_sections',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'The number of seats made available for this section of the course.',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
+        'behaviors' => array(
+          'prepopulate' => array(
+            'status' => 0,
           ),
-          'type' => 'number_integer',
-          'weight' => '14',
         ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_seats_offered',
-      'label' => 'Number of Seats',
-      'required' => 1,
-      'settings' => array(
-        'custom_add_another' => '',
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 0,
-        'module' => 'number',
+        'active' => 1,
+        'module' => 'options',
         'settings' => array(),
-        'type' => 'number',
-        'weight' => '3',
+        'type' => 'options_select',
+        'weight' => '5',
       ),
     ),
   );
@@ -1460,7 +1322,21 @@ Activation code required - Requires a university login, and authorization from L
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 20,
+          'weight' => '1',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
         ),
       ),
       'entity_type' => 'field_collection_item',
@@ -1484,14 +1360,14 @@ Activation code required - Requires a university login, and authorization from L
     ),
   );
 
-  // Exported field: 'field_collection_item-field_sections-field_studio_space'.
-  $fields['field_collection_item-field_sections-field_studio_space'] = array(
+  // Exported field: 'field_collection_item-field_sections-field_services_in_use'.
+  $fields['field_collection_item-field_sections-field_services_in_use'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_studio_space',
+      'field_name' => 'field_services_in_use',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -1504,49 +1380,53 @@ Activation code required - Requires a university login, and authorization from L
       'locked' => '0',
       'module' => 'list',
       'settings' => array(
-        'allowed_values' => array(
-          0 => '',
-          1 => '',
-        ),
+        'allowed_values' => array(),
         'allowed_values_function' => '',
       ),
       'translatable' => '0',
-      'type' => 'list_boolean',
+      'type' => 'list_text',
     ),
     'field_instance' => array(
       'bundle' => 'field_sections',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Should this section be available to the Open Studio',
+      'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'inline',
+          'label' => 'above',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '11',
+          'weight' => 14,
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '8',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '9',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_studio_space',
-      'label' => 'Link to Studio space?',
+      'field_name' => 'field_services_in_use',
+      'label' => 'Services in use',
       'required' => 0,
       'settings' => array(
-        'custom_add_another' => '',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '26',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '4',
       ),
     ),
   );
@@ -1595,7 +1475,21 @@ Activation code required - Requires a university login, and authorization from L
           'module' => 'file',
           'settings' => array(),
           'type' => 'file_default',
-          'weight' => '3',
+          'weight' => '5',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_default',
+          'weight' => '4',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_default',
+          'weight' => '8',
         ),
       ),
       'entity_type' => 'field_collection_item',
@@ -1603,11 +1497,10 @@ Activation code required - Requires a university login, and authorization from L
       'label' => 'Syllabus',
       'required' => 0,
       'settings' => array(
-        'custom_add_another' => '',
         'description_field' => 0,
-        'file_directory' => '',
+        'file_directory' => 'syllabi',
         'file_extensions' => 'pdf',
-        'max_filesize' => '',
+        'max_filesize' => '10MB',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -1617,7 +1510,7 @@ Activation code required - Requires a university login, and authorization from L
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '6',
+        'weight' => '4',
       ),
     ),
   );
@@ -1681,6 +1574,24 @@ Activation code required - Requires a university login, and authorization from L
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
+          'weight' => '4',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => 1,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '3',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
           'weight' => '2',
         ),
       ),
@@ -1702,127 +1613,7 @@ Activation code required - Requires a university login, and authorization from L
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '4',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_sections-field_up_filled'.
-  $fields['field_collection_item-field_sections-field_up_filled'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_up_filled',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'number',
-      'settings' => array(),
-      'translatable' => '0',
-      'type' => 'number_integer',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_sections',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
-          ),
-          'type' => 'number_integer',
-          'weight' => '16',
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_up_filled',
-      'label' => 'UP filled',
-      'required' => 0,
-      'settings' => array(
-        'custom_add_another' => '',
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'number',
-        'settings' => array(),
-        'type' => 'number',
-        'weight' => '19',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_sections-field_wd_filled'.
-  $fields['field_collection_item-field_sections-field_wd_filled'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_wd_filled',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'number',
-      'settings' => array(),
-      'translatable' => '0',
-      'type' => 'number_integer',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_sections',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
-          ),
-          'type' => 'number_integer',
-          'weight' => '15',
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_wd_filled',
-      'label' => 'WD filled',
-      'required' => 0,
-      'settings' => array(
-        'custom_add_another' => '',
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'number',
-        'settings' => array(),
-        'type' => 'number',
-        'weight' => '18',
+        'weight' => '3',
       ),
     ),
   );
@@ -2174,6 +1965,7 @@ Activation code required - Requires a university login, and authorization from L
             'course' => 0,
             'isbn2node_book' => 0,
             'program' => 0,
+            'service' => 0,
           ),
           'priority' => '0',
           'referenced' => array(
@@ -2273,7 +2065,7 @@ Activation code required - Requires a university login, and authorization from L
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '5',
+        'weight' => '7',
       ),
     ),
   );
@@ -2400,7 +2192,7 @@ Activation code required - Requires a university login, and authorization from L
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '2',
+        'weight' => '4',
       ),
     ),
   );
@@ -2470,7 +2262,7 @@ Activation code required - Requires a university login, and authorization from L
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '1',
+        'weight' => '3',
       ),
     ),
   );
@@ -2518,7 +2310,7 @@ Activation code required - Requires a university login, and authorization from L
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '20',
+          'weight' => '14',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2546,7 +2338,7 @@ Activation code required - Requires a university login, and authorization from L
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '27',
+        'weight' => '16',
       ),
     ),
   );
@@ -2594,7 +2386,7 @@ Activation code required - Requires a university login, and authorization from L
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '19',
+          'weight' => '13',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2622,7 +2414,7 @@ Activation code required - Requires a university login, and authorization from L
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '26',
+        'weight' => '15',
       ),
     ),
   );
@@ -2667,7 +2459,7 @@ Activation code required - Requires a university login, and authorization from L
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '24',
+          'weight' => '17',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2692,7 +2484,7 @@ Activation code required - Requires a university login, and authorization from L
           'rows' => '3',
         ),
         'type' => 'text_textarea',
-        'weight' => '25',
+        'weight' => '14',
       ),
     ),
   );
@@ -2740,7 +2532,7 @@ Activation code required - Requires a university login, and authorization from L
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '22',
+          'weight' => '16',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2768,7 +2560,7 @@ Activation code required - Requires a university login, and authorization from L
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '29',
+        'weight' => '18',
       ),
     ),
   );
@@ -2816,7 +2608,7 @@ Activation code required - Requires a university login, and authorization from L
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '21',
+          'weight' => '15',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2844,7 +2636,7 @@ Activation code required - Requires a university login, and authorization from L
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '28',
+        'weight' => '17',
       ),
     ),
   );
@@ -2905,7 +2697,7 @@ Activation code required - Requires a university login, and authorization from L
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '25',
+          'weight' => '18',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2965,7 +2757,146 @@ Activation code required - Requires a university login, and authorization from L
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '3',
+        'weight' => '5',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-course-field_machine_name'.
+  $fields['node-course-field_machine_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_machine_name',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '16',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'course',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The address for the course: example Title - Art 010, machine art010',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '5',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_machine_name',
+      'label' => 'Machine name',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-course-field_method_of_access'.
+  $fields['node-course-field_method_of_access'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_method_of_access',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'open' => 'Open Course',
+          'authenticated' => 'Login required',
+          'lms' => 'LMS access required',
+          'code' => 'Activation code required',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'course',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 20,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_method_of_access',
+      'label' => 'Method of access',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '20',
       ),
     ),
   );
@@ -3151,7 +3082,7 @@ Activation code required - Requires a university login, and authorization from L
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '4',
+        'weight' => '6',
       ),
     ),
   );
@@ -3196,7 +3127,7 @@ Activation code required - Requires a university login, and authorization from L
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '6',
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3224,7 +3155,7 @@ Activation code required - Requires a university login, and authorization from L
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '6',
+        'weight' => '4',
       ),
     ),
   );
@@ -3269,7 +3200,7 @@ Activation code required - Requires a university login, and authorization from L
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '5',
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3297,7 +3228,7 @@ Activation code required - Requires a university login, and authorization from L
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '5',
+        'weight' => '3',
       ),
     ),
   );
@@ -3341,7 +3272,7 @@ Activation code required - Requires a university login, and authorization from L
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '4',
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3374,7 +3305,207 @@ Activation code required - Requires a university login, and authorization from L
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '7',
+        'weight' => '6',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-course-field_services'.
+  $fields['node-course-field_services'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_services',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(
+        'node' => array(
+          'columns' => array(
+            'target_id' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 1,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'property' => 'title',
+            'type' => 'property',
+          ),
+          'target_bundles' => array(
+            'service' => 'service',
+          ),
+        ),
+        'target_type' => 'node',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'course',
+      'default_value' => NULL,
+      'default_value_function' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 19,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_services',
+      'label' => 'Services',
+      'required' => 0,
+      'settings' => array(
+        'behaviors' => array(
+          'prepopulate' => array(
+            'status' => 0,
+          ),
+        ),
+        'nodeaccess_nodereference' => array(
+          'all' => array(
+            'view' => 0,
+          ),
+          'all_published' => '0',
+          'author' => array(
+            'delete' => 0,
+            'update' => 0,
+            'view' => 0,
+          ),
+          'author_published' => '0',
+          'priority' => '0',
+          'referenced' => array(
+            'delete' => array(
+              'delete' => 0,
+              'update' => 0,
+              'view' => 0,
+            ),
+            'published' => '0',
+            'update' => array(
+              'delete' => 0,
+              'update' => 0,
+              'view' => 0,
+            ),
+            'view' => array(
+              'delete' => 0,
+              'update' => 0,
+              'view' => 0,
+            ),
+          ),
+          'unused' => '0',
+        ),
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '21',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-course-field_special_classifications'.
+  $fields['node-course-field_special_classifications'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_special_classifications',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'GWS' => 'Writing / Speaking',
+          'GQ' => 'Quantification',
+          'GHA' => 'Health and Physical Activity',
+          'GN' => 'Natural Sciences',
+          'GA' => 'Arts',
+          'GH' => 'Humanities',
+          'GS' => 'Social and Behavioral Sciences',
+          'S' => 'First-Year Engagement Program',
+          'US' => 'United States Cultures',
+          'IL' => 'International Cultures',
+          'W' => 'Writing Across the Curriculum',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'course',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '4',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_special_classifications',
+      'label' => 'Special Classifications',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '8',
       ),
     ),
   );
@@ -3450,7 +3581,7 @@ Activation code required - Requires a university login, and authorization from L
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '10',
+        'weight' => '5',
       ),
     ),
   );
@@ -3520,7 +3651,7 @@ Activation code required - Requires a university login, and authorization from L
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '9',
+        'weight' => '4',
       ),
     ),
   );
@@ -3565,7 +3696,7 @@ Activation code required - Requires a university login, and authorization from L
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '8',
+          'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3603,648 +3734,7 @@ Activation code required - Requires a university login, and authorization from L
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '4',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-isbn2node_book-isbn2node_author'.
-  $fields['node-isbn2node_book-isbn2node_author'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'isbn2node_author',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => 255,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'isbn2node_book',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '2',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'isbn2node_author',
-      'label' => 'Author',
-      'required' => FALSE,
-      'settings' => array(
-        'text_processing' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'text',
-        'settings' => array(
-          'size' => 60,
-        ),
-        'type' => 'text_textfield',
-        'weight' => -1,
-      ),
-    ),
-  );
-
-  // Exported field: 'node-isbn2node_book-isbn2node_cover'.
-  $fields['node-isbn2node_book-isbn2node_cover'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'isbn2node_cover',
-      'foreign keys' => array(
-        'fid' => array(
-          'columns' => array(
-            'fid' => 'fid',
-          ),
-          'table' => 'file_managed',
-        ),
-      ),
-      'indexes' => array(
-        'fid' => array(
-          0 => 'fid',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'image',
-      'settings' => array(
-        'default_image' => 0,
-        'uri_scheme' => 'public',
-      ),
-      'translatable' => '0',
-      'type' => 'image',
-    ),
-    'field_instance' => array(
-      'bundle' => 'isbn2node_book',
-      'cardinality' => 1,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'module' => 'colorbox',
-          'settings' => array(
-            'colorbox_caption' => 'auto',
-            'colorbox_caption_custom' => '',
-            'colorbox_gallery' => 'post',
-            'colorbox_gallery_custom' => '',
-            'colorbox_image_style' => 'big',
-            'colorbox_node_style' => 'thumbnail',
-          ),
-          'type' => 'colorbox',
-          'weight' => '-1',
-        ),
-        'teaser' => array(
-          'label' => 'hidden',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => 'content',
-            'image_style' => 'thumbnail',
-          ),
-          'type' => 'image',
-          'weight' => -1,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'isbn2node_cover',
-      'label' => 'Cover image',
-      'required' => FALSE,
-      'settings' => array(
-        'alt_field' => 1,
-        'default_image' => 0,
-        'file_directory' => 'image',
-        'file_extensions' => 'png gif jpg jpeg',
-        'max_filesize' => '',
-        'max_resolution' => '',
-        'min_resolution' => '',
-        'title_field' => 1,
-        'user_register_form' => FALSE,
-      ),
-      'type' => 'article_image',
-      'widget' => array(
-        'module' => 'image',
-        'settings' => array(
-          'preview_image_style' => 'thumbnail',
-          'progress_indicator' => 'throbber',
-        ),
-        'type' => 'image_image',
-        'weight' => -3,
-      ),
-    ),
-  );
-
-  // Exported field: 'node-isbn2node_book-isbn2node_edition'.
-  $fields['node-isbn2node_book-isbn2node_edition'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'isbn2node_edition',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => 255,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'isbn2node_book',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '4',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'isbn2node_edition',
-      'label' => 'Edition',
-      'required' => FALSE,
-      'settings' => array(
-        'text_processing' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'text',
-        'settings' => array(
-          'size' => 60,
-        ),
-        'type' => 'text_textfield',
-        'weight' => 1,
-      ),
-    ),
-  );
-
-  // Exported field: 'node-isbn2node_book-isbn2node_isbn'.
-  $fields['node-isbn2node_book-isbn2node_isbn'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'isbn2node_isbn',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => 15,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'isbn2node_book',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '1',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'isbn2node_isbn',
-      'label' => 'ISBN',
-      'required' => FALSE,
-      'settings' => array(
-        'text_processing' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'text',
-        'settings' => array(
-          'size' => 60,
-        ),
-        'type' => 'text_textfield',
-        'weight' => -2,
-      ),
-    ),
-  );
-
-  // Exported field: 'node-isbn2node_book-isbn2node_physical_description'.
-  $fields['node-isbn2node_book-isbn2node_physical_description'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'isbn2node_physical_description',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => 255,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'isbn2node_book',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '5',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'isbn2node_physical_description',
-      'label' => 'Physical description',
-      'required' => FALSE,
-      'settings' => array(
-        'text_processing' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'text',
-        'settings' => array(
-          'size' => 60,
-        ),
-        'type' => 'text_textfield',
-        'weight' => 2,
-      ),
-    ),
-  );
-
-  // Exported field: 'node-isbn2node_book-isbn2node_publisher'.
-  $fields['node-isbn2node_book-isbn2node_publisher'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'isbn2node_publisher',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => 255,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'isbn2node_book',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '3',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'isbn2node_publisher',
-      'label' => 'Publisher',
-      'required' => FALSE,
-      'settings' => array(
-        'text_processing' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'text',
-        'settings' => array(
-          'size' => 60,
-        ),
-        'type' => 'text_textfield',
-        'weight' => 0,
-      ),
-    ),
-  );
-
-  // Exported field: 'node-isbn2node_book-isbn2node_subtitle'.
-  $fields['node-isbn2node_book-isbn2node_subtitle'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'isbn2node_subtitle',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => 255,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'isbn2node_book',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'isbn2node_subtitle',
-      'label' => 'Subtitle',
-      'required' => FALSE,
-      'settings' => array(
-        'text_processing' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'text',
-        'settings' => array(
-          'size' => 60,
-        ),
-        'type' => 'text_textfield',
-        'weight' => -4,
-      ),
-    ),
-  );
-
-  // Exported field: 'node-isbn2node_book-isbn2node_year'.
-  $fields['node-isbn2node_book-isbn2node_year'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'isbn2node_year',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => 255,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'isbn2node_book',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '6',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'isbn2node_year',
-      'label' => 'Publishing date',
-      'required' => FALSE,
-      'settings' => array(
-        'text_processing' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'text',
-        'settings' => array(
-          'size' => 60,
-        ),
-        'type' => 'text_textfield',
-        'weight' => 3,
-      ),
-    ),
-  );
-
-  // Exported field: 'node-page-body'.
-  $fields['node-page-body'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(
-        0 => 'node',
-      ),
-      'field_name' => 'body',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(),
-      'translatable' => '0',
-      'type' => 'text_with_summary',
-    ),
-    'field_instance' => array(
-      'bundle' => 'page',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'hidden',
-          'module' => 'text',
-          'settings' => array(
-            'trim_length' => 600,
-          ),
-          'type' => 'text_summary_or_trimmed',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'body',
-      'label' => 'Body',
-      'required' => FALSE,
-      'settings' => array(
-        'display_summary' => TRUE,
-        'text_processing' => 1,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'text',
-        'settings' => array(
-          'rows' => 20,
-          'summary_rows' => 5,
-        ),
-        'type' => 'text_textarea_with_summary',
-        'weight' => -4,
+        'weight' => '2',
       ),
     ),
   );
@@ -4396,16 +3886,18 @@ Activation code required - Requires a university login, and authorization from L
     ),
   );
 
-  // Exported field: 'user-user-field_additional_notes'.
-  $fields['user-user-field_additional_notes'] = array(
+  // Exported field: 'node-resource-body'.
+  $fields['node-resource-body'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_additional_notes',
+      'entity_types' => array(
+        0 => 'node',
+      ),
+      'field_name' => 'body',
       'field_permissions' => array(
-        'type' => '2',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -4424,102 +3916,60 @@ Activation code required - Requires a university login, and authorization from L
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
-      'type' => 'text_long',
+      'type' => 'text_with_summary',
     ),
     'field_instance' => array(
-      'bundle' => 'user',
+      'bundle' => 'resource',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Additional relevant information',
+      'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '3',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => 600,
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => 0,
         ),
       ),
-      'entity_type' => 'user',
-      'field_name' => 'field_additional_notes',
-      'label' => 'Additional Notes',
-      'required' => 0,
+      'entity_type' => 'node',
+      'field_name' => 'body',
+      'label' => 'Body',
+      'required' => FALSE,
       'settings' => array(
-        'text_processing' => '1',
-        'user_register_form' => 0,
+        'display_summary' => TRUE,
+        'text_processing' => 1,
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => '5',
+          'rows' => 20,
+          'summary_rows' => 5,
         ),
-        'type' => 'text_textarea',
-        'weight' => '9',
+        'type' => 'text_textarea_with_summary',
+        'weight' => '3',
       ),
     ),
   );
 
-  // Exported field: 'user-user-field_email'.
-  $fields['user-user-field_email'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_email',
-      'field_permissions' => array(
-        'type' => '2',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'email',
-      'settings' => array(),
-      'translatable' => '0',
-      'type' => 'email',
-    ),
-    'field_instance' => array(
-      'bundle' => 'user',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Prefered email address that may differ from their PSU provided one',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'email',
-          'settings' => array(),
-          'type' => 'email_default',
-          'weight' => '1',
-        ),
-      ),
-      'entity_type' => 'user',
-      'field_name' => 'field_email',
-      'label' => 'Email',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => 0,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'email',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'email_textfield',
-        'weight' => '6',
-      ),
-    ),
-  );
-
-  // Exported field: 'user-user-field_first_name'.
-  $fields['user-user-field_first_name'] = array(
+  // Exported field: 'node-resource-field_machine_name'.
+  $fields['node-resource-field_machine_name'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_first_name',
+      'field_name' => 'field_machine_name',
       'field_permissions' => array(
         'type' => '2',
       ),
@@ -4539,38 +3989,347 @@ Activation code required - Requires a university login, and authorization from L
       'locked' => '0',
       'module' => 'text',
       'settings' => array(
-        'max_length' => '60',
+        'max_length' => '16',
       ),
       'translatable' => '0',
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'user',
+      'bundle' => 'resource',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '4',
+          'type' => 'hidden',
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
-      'entity_type' => 'user',
-      'field_name' => 'field_first_name',
-      'label' => 'First name',
-      'required' => 0,
+      'entity_type' => 'node',
+      'field_name' => 'field_machine_name',
+      'label' => 'Machine name',
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
-        'user_register_form' => 0,
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'text',
         'settings' => array(
           'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-resource-field_type'.
+  $fields['node-resource-field_type'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_type',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'global' => 'Global',
+          'system' => 'System',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'resource',
+      'default_value' => array(
+        0 => array(
+          'value' => 'global',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'What is this resource for?  Most of the time you\'ll want to choose global so it is the default.
+System is internally delegated by different services
+Global will be available to all resources to reference',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_type',
+      'label' => 'Resource type',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-service-body'.
+  $fields['node-service-body'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(
+        0 => 'node',
+      ),
+      'field_name' => 'body',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'text_with_summary',
+    ),
+    'field_instance' => array(
+      'bundle' => 'service',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => 600,
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'body',
+      'label' => 'Body',
+      'required' => FALSE,
+      'settings' => array(
+        'display_summary' => TRUE,
+        'text_processing' => 1,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'rows' => 20,
+          'summary_rows' => 5,
+        ),
+        'type' => 'text_textarea_with_summary',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-service-field_location'.
+  $fields['node-service-field_location'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_location',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'link',
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => '',
+          'target' => 'default',
+        ),
+        'display' => array(
+          'url_cutoff' => 80,
+        ),
+        'enable_tokens' => 1,
+        'title' => 'optional',
+        'title_maxlength' => 128,
+        'title_value' => '',
+        'url' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'link_field',
+    ),
+    'field_instance' => array(
+      'bundle' => 'service',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Web address associated with this service',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'link_default',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_location',
+      'label' => 'Location',
+      'required' => 0,
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'configurable_title' => 0,
+          'rel' => '',
+          'target' => 'default',
+          'title' => '',
+        ),
+        'display' => array(
+          'url_cutoff' => '80',
+        ),
+        'enable_tokens' => 0,
+        'title' => 'none',
+        'title_maxlength' => '128',
+        'title_value' => '',
+        'url' => 0,
+        'user_register_form' => FALSE,
+        'validate_url' => 1,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_field',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-service-field_machine_name'.
+  $fields['node-service-field_machine_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_machine_name',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '16',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'service',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'machine name of this service. This is used as part of automation',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_machine_name',
+      'label' => 'Machine name',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '16',
         ),
         'type' => 'text_textfield',
         'weight' => '3',
@@ -4578,146 +4337,14 @@ Activation code required - Requires a university login, and authorization from L
     ),
   );
 
-  // Exported field: 'user-user-field_instant_messenger'.
-  $fields['user-user-field_instant_messenger'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_instant_messenger',
-      'field_permissions' => array(
-        'type' => '2',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '60',
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'user',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Instant messenger accounts as another possible method of contact',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '2',
-        ),
-      ),
-      'entity_type' => 'user',
-      'field_name' => 'field_instant_messenger',
-      'label' => 'Instant Messenger',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => 0,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '8',
-      ),
-    ),
-  );
-
-  // Exported field: 'user-user-field_last_name'.
-  $fields['user-user-field_last_name'] = array(
+  // Exported field: 'node-service-field_private_key'.
+  $fields['node-service-field_private_key'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_last_name',
-      'field_permissions' => array(
-        'type' => '2',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '60',
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'user',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '5',
-        ),
-      ),
-      'entity_type' => 'user',
-      'field_name' => 'field_last_name',
-      'label' => 'Last name',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => 0,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '4',
-      ),
-    ),
-  );
-
-  // Exported field: 'user-user-field_ldap_campus'.
-  $fields['user-user-field_ldap_campus'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ldap_campus',
+      'field_name' => 'field_private_key',
       'field_permissions' => array(
         'type' => '2',
       ),
@@ -4743,26 +4370,31 @@ Activation code required - Requires a university login, and authorization from L
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'user',
+      'bundle' => 'service',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '6',
+          'type' => 'hidden',
+          'weight' => '3',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
-      'entity_type' => 'user',
-      'field_name' => 'field_ldap_campus',
-      'label' => 'Campus',
-      'required' => 0,
+      'entity_type' => 'node',
+      'field_name' => 'field_private_key',
+      'label' => 'Private Key',
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
-        'user_register_form' => 0,
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
@@ -4776,14 +4408,139 @@ Activation code required - Requires a university login, and authorization from L
     ),
   );
 
-  // Exported field: 'user-user-field_ldap_department'.
-  $fields['user-user-field_ldap_department'] = array(
+  // Exported field: 'node-service_instance-field_course'.
+  $fields['node-service_instance-field_course'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ldap_department',
+      'field_name' => 'field_course',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'node' => array(
+          'columns' => array(
+            'target_id' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 1,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'property' => 'title',
+            'type' => 'property',
+          ),
+          'target_bundles' => array(
+            'course' => 'course',
+          ),
+        ),
+        'target_type' => 'node',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'service_instance',
+      'default_value' => NULL,
+      'default_value_function' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_course',
+      'label' => 'Course',
+      'required' => 1,
+      'settings' => array(
+        'behaviors' => array(
+          'prepopulate' => array(
+            'status' => 0,
+          ),
+        ),
+        'nodeaccess_nodereference' => array(
+          'all' => array(
+            'view' => 0,
+          ),
+          'all_published' => '0',
+          'author' => array(
+            'delete' => 0,
+            'update' => 0,
+            'view' => 0,
+          ),
+          'author_published' => '0',
+          'priority' => '0',
+          'referenced' => array(
+            'delete' => array(
+              'delete' => 0,
+              'update' => 0,
+              'view' => 0,
+            ),
+            'published' => '0',
+            'update' => array(
+              'delete' => 0,
+              'update' => 0,
+              'view' => 0,
+            ),
+            'view' => array(
+              'delete' => 0,
+              'update' => 0,
+              'view' => 0,
+            ),
+          ),
+          'unused' => '0',
+        ),
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-service_instance-field_cron_key'.
+  $fields['node-service_instance-field_cron_key'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cron_key',
       'field_permissions' => array(
         'type' => '2',
       ),
@@ -4803,32 +4560,37 @@ Activation code required - Requires a university login, and authorization from L
       'locked' => '0',
       'module' => 'text',
       'settings' => array(
-        'max_length' => '255',
+        'max_length' => '100',
       ),
       'translatable' => '0',
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'user',
+      'bundle' => 'service_instance',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'text',
+          'label' => 'hidden',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 7,
+          'type' => 'hidden',
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
-      'entity_type' => 'user',
-      'field_name' => 'field_ldap_department',
-      'label' => 'Department',
+      'entity_type' => 'node',
+      'field_name' => 'field_cron_key',
+      'label' => 'Cron key',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
-        'user_register_form' => 0,
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
@@ -4837,64 +4599,132 @@ Activation code required - Requires a university login, and authorization from L
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '3',
       ),
     ),
   );
 
-  // Exported field: 'user-user-field_phone_number'.
-  $fields['user-user-field_phone_number'] = array(
+  // Exported field: 'node-service_instance-field_services'.
+  $fields['node-service_instance-field_services'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_phone_number',
+      'field_name' => 'field_services',
       'field_permissions' => array(
         'type' => '2',
       ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'phone',
-      'settings' => array(
-        'country' => 'ca',
-      ),
-      'translatable' => '0',
-      'type' => 'phone',
-    ),
-    'field_instance' => array(
-      'bundle' => 'user',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Phone numbers in case we need to get in touch with them',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'phone',
-          'settings' => array(),
-          'type' => 'phone',
-          'weight' => '0',
+      'foreign keys' => array(
+        'node' => array(
+          'columns' => array(
+            'target_id' => 'nid',
+          ),
+          'table' => 'node',
         ),
       ),
-      'entity_type' => 'user',
-      'field_name' => 'field_phone_number',
-      'label' => 'Phone number',
-      'required' => 0,
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'entityreference',
       'settings' => array(
-        'ca_phone_parentheses' => 1,
-        'ca_phone_separator' => '-',
-        'phone_country_code' => 0,
-        'phone_default_country_code' => '1',
-        'phone_int_max_length' => 15,
-        'user_register_form' => 0,
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 1,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'property' => 'title',
+            'type' => 'property',
+          ),
+          'target_bundles' => array(
+            'service' => 'service',
+          ),
+        ),
+        'target_type' => 'node',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'service_instance',
+      'default_value' => NULL,
+      'default_value_function' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_services',
+      'label' => 'Service',
+      'required' => 1,
+      'settings' => array(
+        'behaviors' => array(
+          'prepopulate' => array(
+            'status' => 0,
+          ),
+        ),
+        'nodeaccess_nodereference' => array(
+          'all' => array(
+            'view' => 0,
+          ),
+          'all_published' => '0',
+          'author' => array(
+            'delete' => 0,
+            'update' => 0,
+            'view' => 0,
+          ),
+          'author_published' => '0',
+          'priority' => '0',
+          'referenced' => array(
+            'delete' => array(
+              'delete' => 0,
+              'update' => 0,
+              'view' => 0,
+            ),
+            'published' => '0',
+            'update' => array(
+              'delete' => 0,
+              'update' => 0,
+              'view' => 0,
+            ),
+            'view' => array(
+              'delete' => 0,
+              'update' => 0,
+              'view' => 0,
+            ),
+          ),
+          'unused' => '0',
+        ),
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 0,
-        'module' => 'phone',
+        'active' => 1,
+        'module' => 'options',
         'settings' => array(),
-        'type' => 'phone_textfield',
-        'weight' => '7',
+        'type' => 'options_select',
+        'weight' => '1',
       ),
     ),
   );
@@ -4904,92 +4734,71 @@ Activation code required - Requires a university login, and authorization from L
   t('A PDF taken of some sample lesson materials for communicating to prospective students.');
   t('Abbreviation');
   t('Academic home');
-  t('Access URL');
   t('Access duration');
   t('Access string');
   t('Add offerings of this course to activate them for the semester and lead record of their occurance.');
-  t('Additional Notes');
-  t('Additional relevant information');
   t('Any users that you\'d like to be able to coordinate semester setup and get data about this Academic Unit.');
-  t('Author');
   t('Body');
-  t('CC filled');
   t('Campus');
   t('Color');
   t('Coordinators');
+  t('Course');
   t('Course Archive');
+  t('Course Start');
   t('Course title');
-  t('Cover image');
+  t('Cron key');
   t('Delivery Guide');
-  t('Department');
   t('Description');
   t('Design doc');
   t('Documents');
-  t('Ecoop Filled');
-  t('Edition');
-  t('Email');
-  t('First name');
   t('Generic, sample syllabus for communication to prospective students');
   t('How is this section going to be presented to students.');
-  t('ISBN');
   t('If there is remote authentication (like an LMS) enter those binding credentials here.');
-  t('If this course has an online location, copy the web address here.');
-  t('Instant Messenger');
-  t('Instant messenger accounts as another possible method of contact');
   t('Instructional Designer');
   t('Instructions');
   t('Instructor of record');
-  t('Last name');
-  t('Link to Studio space?');
   t('Link to the course in the university bulletin');
+  t('Location');
+  t('Machine name');
   t('Materials');
   t('Method of access');
   t('Method of offering');
-  t('Number of Seats');
-  t('Number of seats offered through the e-learning cooperative (only use this if this was offered there as well)');
-  t('Number of seats that were filled.  This is to be (optionally) completed only after this section has run and is finalized.');
   t('Offerings');
-  t('Open Course - Publicly accessible, no access restrictions.
-Login required - Requires a university account to login
-LMS access required - Requires a university login and authorization from LMS
-Activation code required - Requires a university login, and authorization from LMS and a special code to unlock access');
   t('Other documents');
-  t('Phone number');
-  t('Phone numbers in case we need to get in touch with them');
-  t('Physical description');
-  t('Prefered email address that may differ from their PSU provided one');
+  t('Private Key');
   t('Program classification');
   t('Promotional screenshots for course');
-  t('Publisher');
-  t('Publishing date');
-  t('Ratio');
+  t('Resource type');
+  t('Resources');
   t('Sample Lesson');
   t('Sample Syllabus');
-  t('Seats filled');
   t('Section number');
   t('Section number in data systems');
   t('Sections');
   t('Semester');
+  t('Service');
+  t('Services');
+  t('Services in use');
   t('Setup guide');
-  t('Should this section be available to the Open Studio');
-  t('Student to Teacher ratio, always expressed as the number of students per teacher.');
-  t('Subtitle');
+  t('Special Classifications');
   t('Syllabus');
   t('TAs that have been allocated to this section');
   t('Teaching assistants');
+  t('The address for the course: example Title - Art 010, machine art010');
   t('The campus that this section is being offered through.');
   t('The dates that this section will have access to the material listed in the Access section');
   t('The instructional design assigned to manage this course');
-  t('The number of seats made available for this section of the course.');
   t('The semester this offering is for');
   t('This field will contain the archive of the course offering once it has finished running.');
-  t('UP filled');
   t('Unit Head');
   t('University Bulletin');
-  t('WD filled');
+  t('Web address associated with this service');
+  t('What is this resource for?  Most of the time you\'ll want to choose global so it is the default.
+System is internally delegated by different services
+Global will be available to all resources to reference');
   t('Who is listed as the instructor of record and in charge of the course.');
   t('Year');
-  t('ecoop Number of seats');
+  t('machine name of this service. This is used as part of automation');
 
   return $fields;
 }

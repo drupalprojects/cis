@@ -138,11 +138,8 @@ dependencies[] = views_ui
 ; Features
 dependencies[] = features
 dependencies[] = chamfer_defaults
-dependencies[] = cis_design
 dependencies[] = cis_displays
-dependencies[] = cis_roles_perms
 dependencies[] = cis_types
-dependencies[] = cis_workflow
 
 ; ----------
 ; Variables
