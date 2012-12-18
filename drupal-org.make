@@ -14,7 +14,7 @@ projects[ctools][subdir] = "contrib"
 projects[google_chart_tools][version] = "1.x-dev"
 projects[google_chart_tools][subdir] = "contrib"
 
-projects[context][version] = "3.0-beta4"
+projects[context][version] = "3.0-beta5"
 projects[context][subdir] = "contrib"
 
 projects[context_condition_theme][version] = "1.0"
@@ -44,7 +44,7 @@ projects[features][subdir] = "contrib"
 projects[email][version] = "1.2"
 projects[email][subdir] = "contrib"
 
-projects[entityreference][version] = "1.0-rc5"
+projects[entityreference][version] = "1.0"
 projects[entityreference][subdir] = "contrib"
 
 projects[entityreference_prepopulate][version] = "1.1"
@@ -68,16 +68,19 @@ projects[phone][subdir] = "contrib"
 projects[flexslider][version] = "1.0-rc3"
 projects[flexslider][subdir] = "contrib"
 
+projects[typogrify][version] = "1.0-rc5"
+projects[typogrify][subdir] = "contrib"
+
 projects[video_filter][version] = "3.1"
 projects[video_filter][subdir] = "contrib"
 
 projects[jammer][version] = "1.2"
 projects[jammer][subdir] = "contrib"
 
-projects[ldap][version] = "1.0-beta12"
-projects[ldap][subdir] = "contrib"
+projects[lti_tool_provider][version] = "1.x-dev"
+projects[lti_tool_provider][subdir] = "contrib"
 
-projects[imce][version] = "1.5"
+projects[imce][version] = "1.6"
 projects[imce][subdir] = "contrib"
 
 projects[nodeformcols][version] = "1.x-dev"
@@ -86,13 +89,13 @@ projects[nodeformcols][subdir] = "contrib"
 projects[ISBN2node][version] = "1.3"
 projects[ISBN2node][subdir] = "contrib"
 
+projects[auto_nodetitle][version] = "1.0"
+projects[auto_nodetitle][subdir] = "contrib"
+
 projects[boxes][version] = "1.0"
 projects[boxes][subdir] = "contrib"
 
-projects[colorbox][version] = "1.4"
-projects[colorbox][subdir] = "contrib"
-
-projects[diff][version] = "2.0"
+projects[diff][version] = "3.2"
 projects[diff][subdir] = "contrib"
 
 projects[entity][version] = "1.x-dev"
@@ -131,6 +134,9 @@ projects[options_element][subdir] = "contrib"
 projects[pathauto][version] = "1.2"
 projects[pathauto][subdir] = "contrib"
 
+projects[restws][version] = "2.0-alpha3"
+projects[restws][subdir] = "contrib"
+
 projects[strongarm][version] = "2.0"
 projects[strongarm][subdir] = "contrib"
 
@@ -140,16 +146,16 @@ projects[token][subdir] = "contrib"
 projects[transliteration][version] = "3.1"
 projects[transliteration][subdir] = "contrib"
 
+projects[unique_field][version] = "1.0-rc1"
+projects[unique_field][subdir] = "contrib"
+
 projects[boost][version] = "1.0-beta2"
 projects[boost][subdir] = "contrib"
 
 projects[entitycache][version] = "1.1"
 projects[entitycache][subdir] = "contrib"
 
-projects[regions][version] = "1.4"
-projects[regions][subdir] = "contrib"
-
-projects[textbook][version] = "1.0-rc1"
+projects[textbook][version] = "1.0-rc2"
 projects[textbook][subdir] = "contrib"
 
 projects[delta][version] = "3.0-beta11"
@@ -157,6 +163,9 @@ projects[delta][subdir] = "contrib"
 
 projects[omega_tools][version] = "3.0-rc4"
 projects[omega_tools][subdir] = "contrib"
+
+projects[uuid][version] = "1.x-dev"
+projects[uuid][subdir] = "contrib"
 
 projects[tinynav][version] = "1.1"
 projects[tinynav][subdir] = "contrib"
@@ -176,7 +185,7 @@ projects[better_exposed_filters][subdir] = "contrib"
 projects[views][version] = "3.5"
 projects[views][subdir] = "contrib"
 
-projects[views_bulk_operations][version] = "3.0"
+projects[views_bulk_operations][version] = "3.1"
 projects[views_bulk_operations][subdir] = "contrib"
 
 projects[views_data_export][version] = "3.0-beta6"
@@ -188,11 +197,18 @@ projects[views_fluid_grid][subdir] = "contrib"
 projects[views_slideshow][version] = "3.0"
 projects[views_slideshow][subdir] = "contrib"
 
+projects[activation_code][version] = "1.x-dev"
+projects[activation_code][subdir] = "contrib"
+
 ; Themes
 ; chamfer
 projects[chamfer][type] = "theme"
-projects[chamfer][version] = "1.0-rc1"
+projects[chamfer][version] = "1.x-dev"
 projects[chamfer][subdir] = "contrib"
+; rubik
+projects[rubik][type] = "theme"
+projects[rubik][version] = "4.0-beta8"
+projects[rubik][subdir] = "contrib"
 ; omega
 projects[omega][type] = "theme"
 projects[omega][version] = "3.1"
@@ -201,10 +217,6 @@ projects[omega][subdir] = "contrib"
 projects[cube][type] = "theme"
 projects[cube][version] = "1.3"
 projects[cube][subdir] = "contrib"
-; rubik
-projects[rubik][type] = "theme"
-projects[rubik][version] = "4.0-beta8"
-projects[rubik][subdir] = "contrib"
 ; tao
 projects[tao][type] = "theme"
 projects[tao][version] = "3.0-beta4"

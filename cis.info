@@ -11,6 +11,7 @@ dependencies[] = admin_menu
 dependencies[] = admin_menu_toolbar
 ; CIS
 dependencies[] = cis_helper
+dependencies[] = cis_lti
 ; Chaos tool suite
 dependencies[] = ctools
 ; Charting
@@ -24,6 +25,7 @@ dependencies[] = context_ui
 dependencies[] = block
 dependencies[] = color
 dependencies[] = contextual
+dependencies[] = dashboard
 dependencies[] = dblog
 dependencies[] = field
 dependencies[] = field_sql_storage
@@ -70,23 +72,20 @@ dependencies[] = flexslider_fields
 dependencies[] = flexslider_views
 dependencies[] = flexslider_views_slideshow
 ; Input filters
+dependencies[] = typogrify
 dependencies[] = video_filter
 ; Jammer
 dependencies[] = jammer
-; Lightweight Directory Access Protocol
-dependencies[] = ldap_authentication
-dependencies[] = ldap_help
-dependencies[] = ldap_profile
-dependencies[] = ldap_query
-dependencies[] = ldap_servers
-dependencies[] = ldap_views
+; Learning Tools Interoperability
+dependencies[] = lti_tool_provider
 ; Media
 dependencies[] = imce
 ; Node form columns
 dependencies[] = nodeformcols
 ; Other
+dependencies[] = activation_code
+dependencies[] = auto_nodetitle
 dependencies[] = boxes
-dependencies[] = colorbox
 dependencies[] = diff
 dependencies[] = entity
 dependencies[] = entity_token
@@ -102,15 +101,14 @@ dependencies[] = nodeaccess_nodereference
 dependencies[] = nodeaccess_userreference
 dependencies[] = options_element
 dependencies[] = pathauto
+dependencies[] = restws
+dependencies[] = restws_basic_auth
 dependencies[] = strongarm
 dependencies[] = token
 dependencies[] = transliteration
+dependencies[] = unique_field
 ; Performance and scalability
 dependencies[] = entitycache
-; Regions
-dependencies[] = regions
-dependencies[] = regions_admin_example
-dependencies[] = regions_admin_left
 ; Textbook
 dependencies[] = textbook
 dependencies[] = textbook_editor
@@ -120,6 +118,8 @@ dependencies[] = delta_blocks
 dependencies[] = delta_color
 dependencies[] = delta_ui
 dependencies[] = omega_tools
+; UUID
+dependencies[] = uuid
 ; User Interface
 dependencies[] = tinynav
 ; User interface
@@ -713,35 +713,6 @@ variables[pathauto_user_pattern] = 'users/[user:name]'
 variables[path_alias_whitelist][node] = true
 variables[path_alias_whitelist][user] = true
 variables[previous_encryption] = '10'
-variables[rules_debug] = '1'
-variables[rules_debug_region_chamfer] = 'footer_first'
-variables[rules_debug_region_rubik] = 'help'
-variables[rules_empty_sets][data_historical_course_data_insert] = 0
-variables[rules_empty_sets][data_historical_course_data_update] = 1
-variables[rules_empty_sets][data_historical_course_data_presave] = 2
-variables[rules_empty_sets][data_historical_course_data_delete] = 3
-variables[rules_empty_sets][field_collection_item_insert] = 4
-variables[rules_empty_sets][field_collection_item_update] = 5
-variables[rules_empty_sets][field_collection_item_presave] = 6
-variables[rules_empty_sets][field_collection_item_delete] = 7
-variables[rules_empty_sets][field_collection_item_view] = 8
-variables[rules_empty_sets][feeds_import_course_import] = 9
-variables[rules_empty_sets][node_insert] = 10
-variables[rules_empty_sets][node_presave] = 11
-variables[rules_empty_sets][node_view] = 12
-variables[rules_empty_sets][node_delete] = 13
-variables[rules_empty_sets][init] = 14
-variables[rules_empty_sets][cron] = 15
-variables[rules_empty_sets][watchdog] = 16
-variables[rules_empty_sets][user_insert] = 17
-variables[rules_empty_sets][user_update] = 18
-variables[rules_empty_sets][user_presave] = 19
-variables[rules_empty_sets][user_view] = 20
-variables[rules_empty_sets][user_delete] = 21
-variables[rules_empty_sets][user_login] = 22
-variables[rules_empty_sets][user_logout] = 23
-variables[rules_log_errors] = '2'
-variables[rules_path_cleaning_callback] = 'rules_path_default_cleaning_method'
 variables[save_continue_course] = 'Save and add fields'
 variables[save_continue_department] = 'Save and add fields'
 variables[save_continue_program] = 'Save and add fields'
