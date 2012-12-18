@@ -1,0 +1,36 @@
+<?php
+/**
+ * Implements hook_lti_tool_provider_launch_alter().
+ */
+function cis_lti_lti_tool_provider_launch_alter(&$launch_info, $account) {
+	// incoming account is an instructor
+	if (in_array('Instructor', array_values($account->roles))) {
+	  dpm($launch_info);
+		dpm($account);
+		// TODO: convert access bind ID into address call to prepopulate form
+		drupal_goto('cis-quick-setup/' . $launch_info['context_title']);
+	}
+	//TODO direct all other roles to the course they are looking for
+	if (in_array('Student', array_values($account->roles))) {
+		// look at section requested
+		$query = new EntityFieldQuery;
+    $result = $query
+      ->entityCondition('entity_type', 'field_collection_item')
+      ->entityCondition('bundle', 'field_sections')
+      ->fieldCondition('field_access_string', 'value', $launch_info['context_id'], '=')
+      ->addMetaData('account', user_load(1)) // Run the query as user 1.
+      ->execute();
+    $items = array_keys($result['field_collection_item']);
+		foreach ($items as $item_id) {
+			$course = _cis_helper_derive_parent($item_id);
+			// verify that LTI course ID matches something in our system
+			if ($course->field_machine_name['und'][0]['value'] == $launch_info['context_title']) {
+				// need a way of doing a launch asking for a service
+				//TODO pass the LTI request along to its final location
+				
+			}
+		}
+		// match it to the course requested and their section
+		//drupal_goto();
+	}
+}

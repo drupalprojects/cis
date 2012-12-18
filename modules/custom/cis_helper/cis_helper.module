@@ -1,33 +1,561 @@
 <?php
+define('CIS_HELPER_JOB_PATH', '/var/wwwjobs');
+define('CIS_HELPER_DEFAULT_AUTHENTICATION', 'lms');
+
 /**
  * Implements hook_init().
  */
 function cis_helper_init() {
-	drupal_add_css(drupal_get_path('module', 'cis_helper') .'/cis_helper.css');
+  drupal_add_css(drupal_get_path('module', 'cis_helper') .'/css/cis_helper.css');
+  if (arg(0) == 'cis-quick-setup') {
+    drupal_add_js(drupal_get_path('module', 'cis_helper') .'/js/cis_helper.js');
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function cis_helper_menu() {
+  $items = array();
+  $path = drupal_get_path('module', 'cis_helper');
+  // admin settings for CIS
+  $items['admin/config/system/cis'] = array(
+    'title' => 'CIS',
+    'description' => 'Course Information System configuration',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('cis_helper_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'cis_helper.admin.inc',
+    'file path' => $path,
+  );
+  // quick setup form
+  $items['cis-quick-setup'] = array(
+    'title' => 'Section Setup',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('cis_helper_quick_setup_page'),
+    'access arguments' => array('access cis setup form'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Callback for quick setup page
+ */
+function cis_helper_quick_setup_page() {
+  global $user;
+  // establish defaults from URL potentially
+  $form = array();
+  $defaults = array();
+  // pull defaults for the arguments from URL
+  for ($i=0; $i < 5; $i++) {
+    $defaults[$i] = check_plain(arg($i+1));
+    // arg returns blanks instead of NULL
+    if (empty($defaults[$i])) {
+      $defaults[$i] = NULL;
+    }
+  }
+  // allow for new courses to be created from here
+  $options = array('new' => t('New'));
+  // build list of node entities from structured EFQ
+  $options += _cis_helper_assemble_entity_list('node', 'course', 'nid', 'title');
+  // see if default exists currently in the CIS
+  if (!array_key_exists($course, $options) || empty($defaults[0])) {
+    $defaults[0] = 'new';
+  }
+  // select the course desired
+  $form['course'] = array(
+    '#required' => '1',
+    '#multiple' => '0',
+    '#key_type_toggled' => '1',
+    '#description' => t('The course that this is associated to'),
+    '#type' => 'select',
+    '#options' => $options,
+    '#default_value' => $defaults[0],
+    '#multiple_toggle' => '1',
+    '#title' => t('Course'),
+  );
+  // container for settings related to a new course
+  $form['new_course'] = array(
+    '#description' => t('Settings that only apply to new courses'),
+    '#collapsed' => '0',
+    '#type' => 'fieldset',
+    '#collapsible' => '1',
+    '#title' => t('New Course settings'),
+  );
+	// new course name
+  $form['new_course']['new_name'] = array(
+    '#required' => '0',
+    '#description' => t('Name of the new course to create.'),
+    '#type' => 'textfield',
+    '#title' => t('Course name'),
+  );
+  // list of services
+  $form['new_course']['services'] = array(
+    '#multiple' => '0',
+    '#required' => '1',
+    '#key_type_toggled' => '1',
+    '#description' => t('The service to deploy for this course'),
+    '#type' => 'select',
+    '#options' => _cis_helper_assemble_entity_list('node', 'service', 'field_machine_name', 'title'),
+    '#multiple_toggle' => '1',
+    '#default_value' => $defaults[1],
+    '#title' => t('Service'),
+  );
+  // access level
+  $form['new_course']['access'] = array(
+    '#required' => '1',
+    '#description' => t('How restrictive would you like access to be?'),
+    '#multiple' => '0',
+    '#key_type_toggled' => '1',
+    '#default_value' => CIS_HELPER_DEFAULT_AUTHENTICATION,
+    '#type' => 'select',
+    '#options' => array(
+      'open' => t('Open course - public accessible'),
+      'lms' => t('Limit access to my students'),
+    ),
+    '#multiple_toggle' => '1',
+    '#title' => t('Method of access'),
+  );
+  // offering container
+  $form['offering'] = array(
+    '#description' => t('The point in time that this course is being offered'),
+    '#collapsed' => '0',
+    '#type' => 'fieldset',
+    '#collapsible' => '1',
+    '#title' => t('Offering'),
+  );
+  // list of available semesters for this offering
+  $form['offering']['semester'] = array(
+    '#required' => '1',
+    '#multiple' => '0',
+    '#key_type_toggled' => '1',
+    '#type' => 'select',
+    '#options' => array(
+      'fa' => t('Fall'),
+      'sp' => t('Spring'),
+      'su' => t('Summer'),
+    ),
+    '#multiple_toggle' => '1',
+    '#default_value' => $defaults[2],
+    '#title' => t('Semester'),
+  );
+  // academic year of this offering
+  $form['offering']['year'] = array(
+    '#required' => '1',
+    '#multiple' => '0',
+    '#key_type_toggled' => '1',
+    '#type' => 'select',
+    '#options' => array(
+      '201213' => t('2012-13'),
+      '201314' => t('2013-14'),
+      '201415' => t('2014-15'),
+    ),
+    '#multiple_toggle' => '1',
+    '#default_value' => $defaults[3],
+    '#title' => t('Year'),
+  );
+  // section container
+  $form['section'] = array(
+    '#description' => t('Details related to creation of a section'),
+    '#collapsed' => '0',
+    '#type' => 'fieldset',
+    '#collapsible' => '1',
+    '#title' => t('Section'),
+  );
+  // access strings / primary key for binding access across services
+  $form['section']['access_string'] = array(
+    '#required' => '0',
+    '#description' => t('The access string to bind to, this is the primary key for this course section.'),
+    '#type' => 'textfield',
+    '#title' => t('Access string'),
+    '#default_value' => $defaults[4],
+  );
+  // instructor of record
+  $form['section']['instructor'] = array(
+    '#required' => '1',
+    '#description' => t('Instructor of record for the course'),
+    '#type' => 'textfield',
+    '#default_value' => $user->name,
+    '#title' => t('Instructor of Record'),
+  );
+  // the syllabus to use for the section to be created
+  $form['section']['syllabus'] = array(
+    '#required' => '0',
+    '#description' => t('Syllabus for the course'),
+    '#type' => 'managed_file',
+    '#size' => '30',
+    '#title' => t('Syllabus'),
+		'#upload_location' => 'public://syllabi/',
+		'#upload_validators' => array(
+		  'file_validate_extensions' => array(
+			  0 => 'pdf',
+			),
+			'file_validate_size' => array(
+			  0 => 10485760,
+			),
+		),
+  );
+  $form['actions']['#type'] = 'actions';
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Create course'),
+  );
+  return $form;
+}
+
+/**
+ * Implements hook_submit().
+ */
+function cis_helper_quick_setup_page_submit($form, $form_state) {
+  dpm($form_state['values']);
+  // load account and values for later
+  $account = user_load_by_name($form_state['values']['instructor']);
+  $offering = NULL;
+  $semester = $form_state['values']['semester'];
+  $year = $form_state['values']['year'];
+  //TODO handle services, might need a content type for this relationship
+  // first step is to create the course if it exists
+  if ($form_state['values']['course'] == 'new') {
+    $title = check_plain($form_state['values']['new_name']);
+    // make course, then we need to generate the ids
+    $course = new stdClass();
+    $course->type = 'course';
+    $course->status = 1;
+    $course->revision = 1;
+    $course->language = LANGUAGE_NONE;
+    // created by the system so root user
+    $course->uid = 1;
+    $course->title = $title;
+    // generate machine name
+    $course->field_machine_name[LANGUAGE_NONE][0]['value'] = preg_replace('/[^a-z0-9_]+/', '_', drupal_strtolower($title));
+    // method of access
+    $course->field_method_of_access[LANGUAGE_NONE][0]['value'] = $form_state['values']['access'];
+    node_save($course);
+  }
+  else {
+    $course = entity_load_single('node', $form_state['values']['course']);
+  }
+
+  // make sure that this course doesn't already have an offering for this semester/year
+  if (isset($course->field_offerings)) {
+    foreach ($course->field_offerings[LANGUAGE_NONE] as $offering_ref) {
+      $offering_refs[] = $offering_ref['value'];
+    }
+    $query = new EntityFieldQuery;
+    $result = $query
+      // select all field collections
+      ->entityCondition('entity_type', 'field_collection_item')
+      // that are offerings
+      ->entityCondition('bundle', 'field_offerings')
+      // that have an internal id associated to the current course
+      ->propertyCondition('item_id', $offering_refs, 'IN')
+      // and semester of the one submitted
+      ->fieldCondition('field_semester', 'value', $semester, '=')
+      // and year of the one submitted
+      ->fieldCondition('field_year', 'value', $year, '=')
+      // load as user 1 to ignore access issues for current user
+      ->addMetaData('account', user_load(1))
+      ->execute();
+    // if we had results, set the offering
+    if (isset($result['field_collection_item'])) {
+      $item = array_keys($result['field_collection_item']);
+      $offerings = entity_load('field_collection_item', $item);
+      $offering = array_pop($offerings);
+    }
+  }
+  // create an offering if we didn't select one above
+  if (is_null($offering)) {
+    // now work on the offering
+    $offering = entity_create('field_collection_item', array('field_name' => 'field_offerings'));
+    // associate this offering to the course
+    $offering->setHostEntity('node', $course);
+    // set semester
+    $offering->field_semester[LANGUAGE_NONE][0]['value'] = $semester;
+    // set year
+    $offering->field_year[LANGUAGE_NONE][0]['value'] = $year;
+  }
+  // now work on the section
+  $section = entity_create('field_collection_item', array('field_name' => 'field_sections'));
+  // associate this section to the offering
+  $section->setHostEntity('field_collection_item', $offering);
+  // set the access string
+  $section->field_access_string[LANGUAGE_NONE][0]['value'] = $form_state['values']['access_string'];
+  // set the entity reference field (user)
+  $section->field_instructor_of_record[LANGUAGE_NONE][0]['target_id'] = $account->uid;
+  // special handling for the syllabus since its a file
+	// Load the file via file.fid.
+  $file = file_load($form_state['values']['syllabus']);
+	// Change status to permanent.
+  $file->status = FILE_STATUS_PERMANENT;
+  // Save.
+  file_save($file);
+	// silly typecast of file object to array for field happiness
+	$file_ary = (array)$file;
+	$file_ary['display'] = 1;
+	// save section
+	$section->field_syllabus[LANGUAGE_NONE][0] = $file_ary;
+  $section->save();
+	// assoicate file to the collection item
+	//file_usage_add($file, 'file', 'field_collection_item', $section->item_id);
+	// associate the file object directly to the field
+	// Record that the module (in this example, user module) is using the file.
+	//TODO verify that previous operation does associate correctly 
+  
+	drupal_set_message(t('Settings saved'));
+}
+
+/**
+ * Implements hook_permission()
+ */
+function cis_helper_permission() {
+    return array(
+    'access cis setup form' =>  array(
+      'title' => t('Access CIS Quick setup form'),
+    ),
+  );
 }
 
 /**
  * Implements hook_draw_chart_alter().
  */
 function cis_helper_draw_chart_alter(&$settings) {
-	//dpm($settings['chart']);
-	$dept_charts = array('college-data-page-1', 'college-charts-page-6');
-	foreach ($dept_charts as $view_name) {
-		if (isset($settings['chart'][$view_name])) {
-			foreach ($settings['chart'][$view_name]['header'] as $record) {
-				$data = db_select('field_data_field_abbreviation', 'fdfa')
-				->fields('fdfa', array('entity_id'))
-				->condition('field_abbreviation_value', substr($record, 0, strpos($record, ' (')))
-				->execute()
-				->fetchObject();
-				if (isset($data->entity_id)) {
-					$dept = node_load($data->entity_id);
-					if (isset($dept->field_color['und'][0]['jquery_colorpicker'])) {
-						$colors[] = $dept->field_color['und'][0]['jquery_colorpicker'];
-					}
-				}
-			}
-			$settings['chart'][$view_name]['options']['colors'] = $colors;
-		}
-	}
+  $dept_charts = array('historical-college-data-page-4', 'historical-college-data-page-6');
+  foreach ($dept_charts as $view_name) {
+    if (isset($settings['chart'][$view_name])) {
+      foreach ($settings['chart'][$view_name]['header'] as $record) {
+        $data = db_select('field_data_field_abbreviation', 'fdfa')
+        ->fields('fdfa', array('entity_id'))
+        ->condition('field_abbreviation_value', substr($record, 0, strpos($record, ' (')))
+        ->execute()
+        ->fetchObject();
+        if (isset($data->entity_id)) {
+          $dept = node_load($data->entity_id);
+          if (isset($dept->field_color[LANGUAGE_NONE][0]['jquery_colorpicker'])) {
+            $colors[] = $dept->field_color[LANGUAGE_NONE][0]['jquery_colorpicker'];
+          }
+        }
+      }
+      $settings['chart'][$view_name]['options']['colors'] = $colors;
+    }
+  }
+}
+
+/**
+* Implements hook_form_alter().
+*/
+function cis_helper_form_alter(&$form, $form_state, $form_id) {
+  // prepopulating the available services based on what's available
+  if ($form_id == 'field_collection_item_form' && arg(1) == 'field-sections') {
+    // check if this is a new section or edit form for existing one
+    if (is_null($form_state['build_info']['args'][0]->item_id)) {
+      $course = _cis_helper_derive_parent(arg(4), 'offering');
+    }
+    else {
+      // load the course related to this section
+      $course = _cis_helper_derive_parent($form_state['build_info']['args'][0]->item_id, 'section');
+    }
+    // build an array of related services based on title
+    $serv_ids = array();
+    if (!empty($course->field_services)) {
+      foreach ($course->field_services[LANGUAGE_NONE] as $entity_ref) {
+        $serv_ids[] = $entity_ref['target_id'];
+      }
+    }
+    // load all services found
+    $services = entity_load('node', $serv_ids);
+    $options = array();
+    // convert services into options selection list
+    foreach ($services as $service) {
+      $options[$service->field_machine_name[LANGUAGE_NONE][0]['value']] = $service->title;
+    }
+    $form['field_services_in_use'][LANGUAGE_NONE]['#options'] = $options;
+    // set default values if they were set previously
+    if (isset($form_state['build_info']['args'][0]->field_services_in_use[LANGUAGE_NONE])) {
+      $default = array();
+      foreach ($form_state['build_info']['args'][0]->field_services_in_use[LANGUAGE_NONE] as $val) {
+        $default[] = $val['value'];
+      }
+      $form['field_services_in_use'][LANGUAGE_NONE]['#default_value'] = $default;
+    }
+  }
+  // allow for select style output for fields in data table
+  if ($form_id == 'views_exposed_form' && strpos($form['#id'], 'historical-college-data-')) {
+    $form['location'] = array(
+      '#type' => 'select',
+      '#options' => cis_helper_get_data_values('location'),
+    );
+    $form['semester'] = array(
+      '#type' => 'select',
+      '#options' => cis_helper_get_data_values('semester'),
+    );
+    $form['year'] = array(
+      '#type' => 'select',
+      '#options' => cis_helper_get_data_values('year'),
+    );
+    $form['course'] = array(
+      '#type' => 'select',
+      '#options' => cis_helper_get_data_values('course'),
+    );
+  }
+}
+/**
+ * Implements hook_entity_insert().
+ */
+function cis_helper_entity_insert($entity, $type) {
+  // run the same operation as an update
+  cis_helper_entity_update($entity, $type);
+}
+/**
+ * Implements hook_entity_update().
+ */
+function cis_helper_entity_update($entity, $type) {
+  // check to see if a course is being updated
+  if ($type == 'node' && $entity->type == 'course' && arg(0) != 'field-collection') {
+    global $user;
+    // only run if we have services to process and this isn't a service account
+    if (!empty($entity->field_services[LANGUAGE_NONE]) && !in_array('SERVICE ACCOUNT', $user->roles)) {
+      // load all service nodes based on target
+      $nids = array();
+      // we know these are entity reference nodes
+      foreach ($entity->field_services[LANGUAGE_NONE] as $ref) {
+        $nids[] = $ref['target_id'];
+      }
+      // load all nodes found for services
+      $serv_nodes = node_load_multiple($nids);
+      // get current college machine name
+      $college = variable_get('cis_college_name', '');
+      // build options based on those selected in the security setting
+      $options = variable_get('cis_build_' . $entity->field_method_of_access[LANGUAGE_NONE][0]['value'], '');
+      foreach ($serv_nodes as $serv_node) {
+        // attempt a structured request for the service
+        $req = drupal_http_request($serv_node->field_location[LANGUAGE_NONE][0]['url'] . '/' . $entity->field_machine_name[LANGUAGE_NONE][0]['value']);
+        // 404 means it doesn't exist, we'll get a different code for other issues
+        if (in_array($req->code, array('404', '403'))) {
+          $service = $serv_node->field_machine_name[LANGUAGE_NONE][0]['value'];
+          _cis_helper_add_service_instance($entity, $service, $college, $user, $options);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Helper to pull list of possible values.
+ */
+function cis_helper_get_data_values($column) {
+  // pull from historical course data table
+  $result = db_select('historical_course_data', 'hcd')
+  ->fields('hcd', array($column))
+  ->orderBy($column)
+  ->distinct()
+  ->execute();
+  // build default null option for empty text
+  $options = array('' => '');
+  // biuld array
+  foreach ($result as $item) {
+    $options[$item->{$column}] = $item->{$column};
+  }
+  return $options;
+}
+
+/**
+ * Helper function to trigger cron based service creation
+ */
+function _cis_helper_add_service_instance($node, $service, $college, $account, $options = NULL) {
+	// allow for other projects to modify values prior to building the service job
+	drupal_alter('cis_service_instance_options', $node, $service, $college, $account, $options);
+  // build space name based on the requested title
+  $space_name = str_replace(' ', '', strtolower($node->title));
+  // create a file based on service name
+  $filename = $space_name . '.' . $service;
+  // set title to name of course
+  $site_title = $node->title;
+  // formulate the pattern of the file to what the job wants
+  $content = $space_name . "\n";
+  $content .= $college . "\n";
+  $content .= $site_title  . "\n";
+  $content .= $node->field_course_title[LANGUAGE_NONE][0]['value'] . "\n";
+  $content .= $account->mail . "\n";
+  // allow for optional enabling of other projects
+  if (!empty($options)) {
+    $content .= $options;
+  }
+  // write the structured file to a lower directory
+  $handle = fopen(variable_get('cis_job_path', CIS_HELPER_JOB_PATH) . '/' . $filename, 'x+');
+  fwrite($handle, $content);
+  fclose($handle);
+  drupal_set_message(t('The @service will be asked to create @space momentarily. You will be emailed when the job is complete.', array('@service' => $service, '@space' => $space_name)), 'status');
+  watchdog('cis_service', 'Service ' . $service . ' was told to be built for ' . $space_name);
+}
+
+/**
+ * Helper function to return a section / offering's associated course
+ * input is a field_collection_item id of a section and type to search for
+ */
+function _cis_helper_derive_parent($item_id, $field_collection_type = 'section', $find = 'course') {
+  // additional level of searching for a section that matches
+  if ($field_collection_type == 'section') {
+    $query = new EntityFieldQuery;
+    $result = $query
+      ->entityCondition('entity_type', 'field_collection_item')
+      ->entityCondition('bundle', 'field_offerings')
+      ->fieldCondition('field_sections', 'value', $item_id, '=')
+      ->addMetaData('account', user_load(1)) // Run the query as user 1.
+      ->execute();
+    $item = array_keys($result['field_collection_item']);
+  }
+  else {
+    // entity load expects an array
+    $item = array($item_id);
+  }
+  // load the offering
+  $offerings = entity_load('field_collection_item', $item);
+  $offering = array_pop($offerings);
+  // allow for stopping here if we wanted offering
+  if ($find == 'offering') {
+    return $offering;
+  }
+  // pull the node associated to this offering
+  $query = new EntityFieldQuery;
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'course')
+    ->fieldCondition('field_offerings', 'value', $offering->item_id, '=')
+    ->addMetaData('account', user_load(1)) // Run the query as user 1.
+    ->execute();
+  // load node of the course and return it
+  return node_load(array_pop(array_keys($result['node'])));
+}
+
+/**
+ * Helper function to generate options list of entities based on type
+ */
+function _cis_helper_assemble_entity_list($entity_type, $bundle, $id_field, $title_field) {
+  // pull items based on bundle
+  $options = array();
+  // assemble all entities requested
+  $query = new EntityFieldQuery;
+  $result = $query
+    ->entityCondition('entity_type', $entity_type)
+    ->entityCondition('bundle', $bundle)
+    ->propertyOrderBy($title_field)
+    ->execute();
+  // convert to load only keys of items found
+  $etids = array_keys($result[$entity_type]);
+  // load all the entities in the array
+  $elist = entity_load($entity_type, $etids);
+  // load entities and build array of id -> title
+  foreach ($elist as $entity) {
+    // allow for field value as key
+    if (strpos($id_field, 'field_') !== FALSE) {
+      $key = $entity->{$id_field}[LANGUAGE_NONE][0]['value'];
+    }
+    else {
+      $key = $entity->{$id_field};
+    }
+    $options[$key] = $entity->{$title_field};
+  }
+  return $options;
 }

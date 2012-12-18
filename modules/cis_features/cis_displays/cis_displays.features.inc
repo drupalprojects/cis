@@ -1,4 +1,12 @@
 <?php
+/**
+ * @file
+ * cis_displays.features.inc
+ */
 
-// This file is deprecated and can be removed.
-// Please remove include_once('cis_displays.features.inc') in cis_displays.module as well.
+/**
+ * Implements hook_views_api().
+ */
+function cis_displays_views_api() {
+  return array("version" => "3.0");
+}
