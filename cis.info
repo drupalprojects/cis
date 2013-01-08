@@ -3,9 +3,6 @@ name = "CIS"
 description = "Online Course Information System"
 exclusive = "1"
 core = "7.x"
-; ----------
-; Dependencies
-; ----------
 ; Administration
 dependencies[] = admin_menu
 dependencies[] = admin_menu_toolbar
@@ -63,6 +60,7 @@ dependencies[] = entityreference
 dependencies[] = entityreference_prepopulate
 dependencies[] = field_collection
 dependencies[] = field_group
+dependencies[] = field_hidden
 dependencies[] = field_permissions
 dependencies[] = link
 dependencies[] = phone

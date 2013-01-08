@@ -3,34 +3,115 @@
  * Implements hook_lti_tool_provider_launch_alter().
  */
 function cis_lti_lti_tool_provider_launch_alter(&$launch_info, $account) {
-	// incoming account is an instructor
-	if (in_array('Instructor', array_values($account->roles))) {
-	  dpm($launch_info);
-		dpm($account);
-		// TODO: convert access bind ID into address call to prepopulate form
-		drupal_goto('cis-quick-setup/' . $launch_info['context_title']);
-	}
-	//TODO direct all other roles to the course they are looking for
-	if (in_array('Student', array_values($account->roles))) {
-		// look at section requested
-		$query = new EntityFieldQuery;
+  // incoming account is an instructor
+  if (in_array('Instructor', array_values($account->roles))) {
+    // convert LTI launch values into json encoded string
+    $options = array(
+      'query' => array(
+        'lti_launch' => drupal_json_encode($launch_info),
+      ),
+    );
+    // pass the launch over to the quick setup form
+    drupal_goto('cis-quick-setup', $options);
+  }
+  //TODO direct all other roles to the course they are looking for
+  if (in_array('Instructor', array_values($account->roles))) {
+    // look at section requested
+    $query = new EntityFieldQuery;
     $result = $query
       ->entityCondition('entity_type', 'field_collection_item')
       ->entityCondition('bundle', 'field_sections')
+			->propertyCondition('archived', 0, '=')
       ->fieldCondition('field_access_string', 'value', $launch_info['context_id'], '=')
       ->addMetaData('account', user_load(1)) // Run the query as user 1.
       ->execute();
     $items = array_keys($result['field_collection_item']);
-		foreach ($items as $item_id) {
+		// should only be 1 result but just for convention
+    foreach ($items as $item_id) {
+			// return the instances available to this section
 			$course = _cis_helper_derive_parent($item_id);
-			// verify that LTI course ID matches something in our system
-			if ($course->field_machine_name['und'][0]['value'] == $launch_info['context_title']) {
-				// need a way of doing a launch asking for a service
-				//TODO pass the LTI request along to its final location
-				
+      $service_instances = _cis_helper_derive_service_instances($item_id, $course);
+			// run through each instance found
+			foreach ($service_instances as $instance) {
+				$service = node_load($instance->field_services[LANGUAGE_NONE][0]['target_id']);
+				// handle each service instance's data differently
+				switch ($service->field_machine_name[LANGUAGE_NONE][0]['value']) {
+					case 'course':
+						$location = $service->field_location[LANGUAGE_NONE][0]['url'];
+						$location .= '/' . $course->field_machine_name[LANGUAGE_NONE][0]['value'];
+						//drupal_http_request();
+						drupal_goto($location);
+					break;
+					default:
+					  // TODO: eventually will need to handle calls to other services
+					break;
+				}
 			}
-		}
-		// match it to the course requested and their section
-		//drupal_goto();
-	}
+			// in this case we found nothing, so do nothing.
+    }
+    // match it to the course requested and their section
+    //drupal_goto();
+  }
 }
+
+/**
+ * Send single grade via http post.
+ *
+ * @param string $params
+ *   An array containing the POST data, eg, lti_message_type etc.
+ * @param string $key
+ *   The consumer key.
+ * @param string $url
+ *   URL of the LTI service.
+ *
+ * @return string
+ *   HTTP response.
+ */
+ /*
+function cis_lti_service_post($params, $key, $url) {
+  $ext_response = NULL;
+  if (!empty($url)) {
+    // Check for query parameters which need to be included in the signature.
+    $query_params = array();
+    $query_string = parse_url($url, PHP_URL_QUERY);
+    if (!is_null($query_string)) {
+      $query_items = explode('&', $query_string);
+      foreach ($query_items as $item) {
+        if (strpos($item, '=') !== FALSE) {
+          list($name, $value) = explode('=', $item);
+          $query_params[$name] = $value;
+        }
+        else {
+          $query_params[$name] = '';
+        }
+      }
+    }
+    $params = $params + $query_params;
+    // Add standard parameters.
+    $params['oauth_consumer_key'] = $key;
+    $params['lti_version'] = 'LTI-1p0';
+    $oauth_consumer_key = $key;
+    $store = new LTIToolProviderOAuthDataStore();
+    $consumer = $store->lookup_consumer($oauth_consumer_key);
+    $token = '';
+    $hmac_method = new OAuthSignatureMethod_HMAC_SHA1();
+    $request = OAuthRequest::from_consumer_and_token($consumer, $token, 'POST', $url, $params);
+    $request->sign_request($hmac_method, $consumer, $token);
+    $params = $request->get_parameters();
+
+    // Remove parameters being passed on the query string.
+    foreach (array_keys($query_params) as $name) {
+      unset($params[$name]);
+    }
+    // Connect to tool consumer.
+    // http_build_query($params).
+    $options = array(
+      'data' => http_build_query($params),
+      'method' => 'POST',
+      'max_redirects' => 5,
+      'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+    );
+    $ext_response = drupal_http_request($url, $options);
+  }
+  return $ext_response;
+}*/

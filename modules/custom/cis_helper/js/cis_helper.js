@@ -9,7 +9,7 @@
 			else {
 				$('#edit-new-course').removeClass('hide_form_field');
 			}
-		});	
+		});
 		$('#edit-course').change();
 	});
 })(jQuery);

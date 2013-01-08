@@ -1,6 +1,11 @@
 <?php
+/**
+ * @file
+ * Workflow and functionality glue based on the structure of the CIS.
+ */
 define('CIS_HELPER_JOB_PATH', '/var/wwwjobs');
-define('CIS_HELPER_DEFAULT_AUTHENTICATION', 'lms');
+define('CIS_HELPER_DEFAULT_AUTHENTICATION', 'open');
+define('CIS_HELPER_DEFAULT_CONTENT_OUTLINE', 'minimal.xml');
 
 /**
  * Implements hook_init().
@@ -36,274 +41,10 @@ function cis_helper_menu() {
     'page arguments' => array('cis_helper_quick_setup_page'),
     'access arguments' => array('access cis setup form'),
     'type' => MENU_NORMAL_ITEM,
+		'file' => 'cis_helper.pages.inc',
+    'file path' => $path,
   );
   return $items;
-}
-
-/**
- * Callback for quick setup page
- */
-function cis_helper_quick_setup_page() {
-  global $user;
-  // establish defaults from URL potentially
-  $form = array();
-  $defaults = array();
-  // pull defaults for the arguments from URL
-  for ($i=0; $i < 5; $i++) {
-    $defaults[$i] = check_plain(arg($i+1));
-    // arg returns blanks instead of NULL
-    if (empty($defaults[$i])) {
-      $defaults[$i] = NULL;
-    }
-  }
-  // allow for new courses to be created from here
-  $options = array('new' => t('New'));
-  // build list of node entities from structured EFQ
-  $options += _cis_helper_assemble_entity_list('node', 'course', 'nid', 'title');
-  // see if default exists currently in the CIS
-  if (!array_key_exists($course, $options) || empty($defaults[0])) {
-    $defaults[0] = 'new';
-  }
-  // select the course desired
-  $form['course'] = array(
-    '#required' => '1',
-    '#multiple' => '0',
-    '#key_type_toggled' => '1',
-    '#description' => t('The course that this is associated to'),
-    '#type' => 'select',
-    '#options' => $options,
-    '#default_value' => $defaults[0],
-    '#multiple_toggle' => '1',
-    '#title' => t('Course'),
-  );
-  // container for settings related to a new course
-  $form['new_course'] = array(
-    '#description' => t('Settings that only apply to new courses'),
-    '#collapsed' => '0',
-    '#type' => 'fieldset',
-    '#collapsible' => '1',
-    '#title' => t('New Course settings'),
-  );
-	// new course name
-  $form['new_course']['new_name'] = array(
-    '#required' => '0',
-    '#description' => t('Name of the new course to create.'),
-    '#type' => 'textfield',
-    '#title' => t('Course name'),
-  );
-  // list of services
-  $form['new_course']['services'] = array(
-    '#multiple' => '0',
-    '#required' => '1',
-    '#key_type_toggled' => '1',
-    '#description' => t('The service to deploy for this course'),
-    '#type' => 'select',
-    '#options' => _cis_helper_assemble_entity_list('node', 'service', 'field_machine_name', 'title'),
-    '#multiple_toggle' => '1',
-    '#default_value' => $defaults[1],
-    '#title' => t('Service'),
-  );
-  // access level
-  $form['new_course']['access'] = array(
-    '#required' => '1',
-    '#description' => t('How restrictive would you like access to be?'),
-    '#multiple' => '0',
-    '#key_type_toggled' => '1',
-    '#default_value' => CIS_HELPER_DEFAULT_AUTHENTICATION,
-    '#type' => 'select',
-    '#options' => array(
-      'open' => t('Open course - public accessible'),
-      'lms' => t('Limit access to my students'),
-    ),
-    '#multiple_toggle' => '1',
-    '#title' => t('Method of access'),
-  );
-  // offering container
-  $form['offering'] = array(
-    '#description' => t('The point in time that this course is being offered'),
-    '#collapsed' => '0',
-    '#type' => 'fieldset',
-    '#collapsible' => '1',
-    '#title' => t('Offering'),
-  );
-  // list of available semesters for this offering
-  $form['offering']['semester'] = array(
-    '#required' => '1',
-    '#multiple' => '0',
-    '#key_type_toggled' => '1',
-    '#type' => 'select',
-    '#options' => array(
-      'fa' => t('Fall'),
-      'sp' => t('Spring'),
-      'su' => t('Summer'),
-    ),
-    '#multiple_toggle' => '1',
-    '#default_value' => $defaults[2],
-    '#title' => t('Semester'),
-  );
-  // academic year of this offering
-  $form['offering']['year'] = array(
-    '#required' => '1',
-    '#multiple' => '0',
-    '#key_type_toggled' => '1',
-    '#type' => 'select',
-    '#options' => array(
-      '201213' => t('2012-13'),
-      '201314' => t('2013-14'),
-      '201415' => t('2014-15'),
-    ),
-    '#multiple_toggle' => '1',
-    '#default_value' => $defaults[3],
-    '#title' => t('Year'),
-  );
-  // section container
-  $form['section'] = array(
-    '#description' => t('Details related to creation of a section'),
-    '#collapsed' => '0',
-    '#type' => 'fieldset',
-    '#collapsible' => '1',
-    '#title' => t('Section'),
-  );
-  // access strings / primary key for binding access across services
-  $form['section']['access_string'] = array(
-    '#required' => '0',
-    '#description' => t('The access string to bind to, this is the primary key for this course section.'),
-    '#type' => 'textfield',
-    '#title' => t('Access string'),
-    '#default_value' => $defaults[4],
-  );
-  // instructor of record
-  $form['section']['instructor'] = array(
-    '#required' => '1',
-    '#description' => t('Instructor of record for the course'),
-    '#type' => 'textfield',
-    '#default_value' => $user->name,
-    '#title' => t('Instructor of Record'),
-  );
-  // the syllabus to use for the section to be created
-  $form['section']['syllabus'] = array(
-    '#required' => '0',
-    '#description' => t('Syllabus for the course'),
-    '#type' => 'managed_file',
-    '#size' => '30',
-    '#title' => t('Syllabus'),
-		'#upload_location' => 'public://syllabi/',
-		'#upload_validators' => array(
-		  'file_validate_extensions' => array(
-			  0 => 'pdf',
-			),
-			'file_validate_size' => array(
-			  0 => 10485760,
-			),
-		),
-  );
-  $form['actions']['#type'] = 'actions';
-  $form['actions']['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Create course'),
-  );
-  return $form;
-}
-
-/**
- * Implements hook_submit().
- */
-function cis_helper_quick_setup_page_submit($form, $form_state) {
-  dpm($form_state['values']);
-  // load account and values for later
-  $account = user_load_by_name($form_state['values']['instructor']);
-  $offering = NULL;
-  $semester = $form_state['values']['semester'];
-  $year = $form_state['values']['year'];
-  //TODO handle services, might need a content type for this relationship
-  // first step is to create the course if it exists
-  if ($form_state['values']['course'] == 'new') {
-    $title = check_plain($form_state['values']['new_name']);
-    // make course, then we need to generate the ids
-    $course = new stdClass();
-    $course->type = 'course';
-    $course->status = 1;
-    $course->revision = 1;
-    $course->language = LANGUAGE_NONE;
-    // created by the system so root user
-    $course->uid = 1;
-    $course->title = $title;
-    // generate machine name
-    $course->field_machine_name[LANGUAGE_NONE][0]['value'] = preg_replace('/[^a-z0-9_]+/', '_', drupal_strtolower($title));
-    // method of access
-    $course->field_method_of_access[LANGUAGE_NONE][0]['value'] = $form_state['values']['access'];
-    node_save($course);
-  }
-  else {
-    $course = entity_load_single('node', $form_state['values']['course']);
-  }
-
-  // make sure that this course doesn't already have an offering for this semester/year
-  if (isset($course->field_offerings)) {
-    foreach ($course->field_offerings[LANGUAGE_NONE] as $offering_ref) {
-      $offering_refs[] = $offering_ref['value'];
-    }
-    $query = new EntityFieldQuery;
-    $result = $query
-      // select all field collections
-      ->entityCondition('entity_type', 'field_collection_item')
-      // that are offerings
-      ->entityCondition('bundle', 'field_offerings')
-      // that have an internal id associated to the current course
-      ->propertyCondition('item_id', $offering_refs, 'IN')
-      // and semester of the one submitted
-      ->fieldCondition('field_semester', 'value', $semester, '=')
-      // and year of the one submitted
-      ->fieldCondition('field_year', 'value', $year, '=')
-      // load as user 1 to ignore access issues for current user
-      ->addMetaData('account', user_load(1))
-      ->execute();
-    // if we had results, set the offering
-    if (isset($result['field_collection_item'])) {
-      $item = array_keys($result['field_collection_item']);
-      $offerings = entity_load('field_collection_item', $item);
-      $offering = array_pop($offerings);
-    }
-  }
-  // create an offering if we didn't select one above
-  if (is_null($offering)) {
-    // now work on the offering
-    $offering = entity_create('field_collection_item', array('field_name' => 'field_offerings'));
-    // associate this offering to the course
-    $offering->setHostEntity('node', $course);
-    // set semester
-    $offering->field_semester[LANGUAGE_NONE][0]['value'] = $semester;
-    // set year
-    $offering->field_year[LANGUAGE_NONE][0]['value'] = $year;
-  }
-  // now work on the section
-  $section = entity_create('field_collection_item', array('field_name' => 'field_sections'));
-  // associate this section to the offering
-  $section->setHostEntity('field_collection_item', $offering);
-  // set the access string
-  $section->field_access_string[LANGUAGE_NONE][0]['value'] = $form_state['values']['access_string'];
-  // set the entity reference field (user)
-  $section->field_instructor_of_record[LANGUAGE_NONE][0]['target_id'] = $account->uid;
-  // special handling for the syllabus since its a file
-	// Load the file via file.fid.
-  $file = file_load($form_state['values']['syllabus']);
-	// Change status to permanent.
-  $file->status = FILE_STATUS_PERMANENT;
-  // Save.
-  file_save($file);
-	// silly typecast of file object to array for field happiness
-	$file_ary = (array)$file;
-	$file_ary['display'] = 1;
-	// save section
-	$section->field_syllabus[LANGUAGE_NONE][0] = $file_ary;
-  $section->save();
-	// assoicate file to the collection item
-	//file_usage_add($file, 'file', 'field_collection_item', $section->item_id);
-	// associate the file object directly to the field
-	// Record that the module (in this example, user module) is using the file.
-	//TODO verify that previous operation does associate correctly 
-  
-	drupal_set_message(t('Settings saved'));
 }
 
 /**
@@ -343,44 +84,42 @@ function cis_helper_draw_chart_alter(&$settings) {
 }
 
 /**
-* Implements hook_form_alter().
-*/
+ * Implements hook_form_alter().
+ */
 function cis_helper_form_alter(&$form, $form_state, $form_id) {
-  // prepopulating the available services based on what's available
-  if ($form_id == 'field_collection_item_form' && arg(1) == 'field-sections') {
-    // check if this is a new section or edit form for existing one
-    if (is_null($form_state['build_info']['args'][0]->item_id)) {
-      $course = _cis_helper_derive_parent(arg(4), 'offering');
-    }
-    else {
-      // load the course related to this section
-      $course = _cis_helper_derive_parent($form_state['build_info']['args'][0]->item_id, 'section');
-    }
-    // build an array of related services based on title
-    $serv_ids = array();
-    if (!empty($course->field_services)) {
-      foreach ($course->field_services[LANGUAGE_NONE] as $entity_ref) {
-        $serv_ids[] = $entity_ref['target_id'];
-      }
-    }
-    // load all services found
-    $services = entity_load('node', $serv_ids);
-    $options = array();
-    // convert services into options selection list
-    foreach ($services as $service) {
-      $options[$service->field_machine_name[LANGUAGE_NONE][0]['value']] = $service->title;
-    }
-    $form['field_services_in_use'][LANGUAGE_NONE]['#options'] = $options;
-    // set default values if they were set previously
-    if (isset($form_state['build_info']['args'][0]->field_services_in_use[LANGUAGE_NONE])) {
-      $default = array();
-      foreach ($form_state['build_info']['args'][0]->field_services_in_use[LANGUAGE_NONE] as $val) {
-        $default[] = $val['value'];
-      }
-      $form['field_services_in_use'][LANGUAGE_NONE]['#default_value'] = $default;
-    }
-  }
-  // allow for select style output for fields in data table
+	// alterations for the section field collection
+	if ($form_id == 'field_collection_item_form' && $form['#entity']->field_name == 'field_sections') {
+		// return all service instances this section will have access to
+		$service_instances = _cis_helper_derive_service_instances($form['#entity']->item_id);
+		// load each service related to the instances found
+		foreach ($service_instances as $instance) {
+			$service = node_load($instance->field_services[LANGUAGE_NONE][0]['target_id']);
+			// handle each service instance's data differently
+			switch ($service->field_machine_name[LANGUAGE_NONE][0]['value']) {
+				case 'course':
+					// for course this is a json containing the different outlines as uuid => title
+					$options = drupal_json_decode($instance->field_service_data[LANGUAGE_NONE][0]['value']);
+				  // allow for the inclusion of other instructional models
+					drupal_alter('cis_instructional_outlines', $options);
+					// create a visible version of the hidden field
+					$form['_field_instructional_outline'] = array(
+						'#type' => 'select',
+						'#options' => $options,
+						'#required' => TRUE,
+						'#title' => t('Instructional outline'),
+						'#description' => t('Which outline would you like this section to use'),
+						'#default_value' => $form['field_instructional_outline'][LANGUAGE_NONE][0]['value']['#default_value'],
+						'#weight' => 1,
+					);
+					// add this to the setup fieldset
+					$form['#group_children']['_field_instructional_outline'] = 'group_setup';
+					// load associated js to set the value of the hidden field
+					drupal_add_js(drupal_get_path('module', 'cis_helper') . '/js/instructional_outline.js');
+				break;
+			}
+		}
+	}
+	// allow for select style output for fields in data table
   if ($form_id == 'views_exposed_form' && strpos($form['#id'], 'historical-college-data-')) {
     $form['location'] = array(
       '#type' => 'select',
@@ -404,41 +143,24 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
  * Implements hook_entity_insert().
  */
 function cis_helper_entity_insert($entity, $type) {
-  // run the same operation as an update
-  cis_helper_entity_update($entity, $type);
-}
-/**
- * Implements hook_entity_update().
- */
-function cis_helper_entity_update($entity, $type) {
-  // check to see if a course is being updated
-  if ($type == 'node' && $entity->type == 'course' && arg(0) != 'field-collection') {
+  // check to see if a service_instance is being inserted
+  if ($type == 'node' && $entity->type == 'service_instance') {
+		// set the entity reference field to course		
     global $user;
+		// generally a bad idea to pass around the user global
+		$account = $user;
     // only run if we have services to process and this isn't a service account
-    if (!empty($entity->field_services[LANGUAGE_NONE]) && !in_array('SERVICE ACCOUNT', $user->roles)) {
-      // load all service nodes based on target
-      $nids = array();
-      // we know these are entity reference nodes
-      foreach ($entity->field_services[LANGUAGE_NONE] as $ref) {
-        $nids[] = $ref['target_id'];
-      }
-      // load all nodes found for services
-      $serv_nodes = node_load_multiple($nids);
+    if (!empty($entity->field_services[LANGUAGE_NONE])) {
+      // load service node
+      $serv_node = node_load($entity->field_services[LANGUAGE_NONE][0]['target_id']);
+			// load the course node
+			$course_node = node_load($entity->field_course[LANGUAGE_NONE][0]['target_id']);
       // get current college machine name
       $college = variable_get('cis_college_name', '');
-      // build options based on those selected in the security setting
-      $options = variable_get('cis_build_' . $entity->field_method_of_access[LANGUAGE_NONE][0]['value'], '');
-      foreach ($serv_nodes as $serv_node) {
-        // attempt a structured request for the service
-        $req = drupal_http_request($serv_node->field_location[LANGUAGE_NONE][0]['url'] . '/' . $entity->field_machine_name[LANGUAGE_NONE][0]['value']);
-        // 404 means it doesn't exist, we'll get a different code for other issues
-        if (in_array($req->code, array('404', '403'))) {
-          $service = $serv_node->field_machine_name[LANGUAGE_NONE][0]['value'];
-          _cis_helper_add_service_instance($entity, $service, $college, $user, $options);
-        }
-      }
+      // service name from machine name
+      _cis_helper_add_service_instance($course_node, $serv_node, $entity, $college, $account);
     }
-  }
+  }	
 }
 
 /**
@@ -463,31 +185,59 @@ function cis_helper_get_data_values($column) {
 /**
  * Helper function to trigger cron based service creation
  */
-function _cis_helper_add_service_instance($node, $service, $college, $account, $options = NULL) {
-	// allow for other projects to modify values prior to building the service job
-	drupal_alter('cis_service_instance_options', $node, $service, $college, $account, $options);
+function _cis_helper_add_service_instance($course, $service, $service_instance, $college, $account) {
+	$options = array();
+	// load optional cis_helper defined values
+	$extra_options = variable_get('cis_build_' . $course->field_method_of_access[LANGUAGE_NONE][0]['value'], '');
+	if (!empty($extra_options)) {
+		$extra_options = explode(',', $extra_options);
+		// only allow for enabling options from system variable
+		$options['en'] = $extra_options;
+	}
+	// vset the uuid from the service_instance entity into the remote site
+	$options['vset'][] = 'cis_service_instance_uuid ' . $service_instance->uuid;
+	// allow for advanced drush alterations via code
+	drupal_alter('cis_service_instance_options', $options);
   // build space name based on the requested title
-  $space_name = str_replace(' ', '', strtolower($node->title));
+  $space_name = $course->field_machine_name[LANGUAGE_NONE][0]['value'];
   // create a file based on service name
-  $filename = $space_name . '.' . $service;
+  $filename = $space_name . '.' . $service->field_machine_name[LANGUAGE_NONE][0]['value'];
   // set title to name of course
-  $site_title = $node->title;
+  $site_title = $course->title;
   // formulate the pattern of the file to what the job wants
+	// site symlink to build
   $content = $space_name . "\n";
+	// college requesting for dbo / db name
   $content .= $college . "\n";
+	// title to set for the site name value
   $content .= $site_title  . "\n";
-  $content .= $node->field_course_title[LANGUAGE_NONE][0]['value'] . "\n";
+	// slogan value for the course
+  $content .= $course->field_course_title[LANGUAGE_NONE][0]['value'] . "\n";
+	// email / user requesting account
   $content .= $account->mail . "\n";
-  // allow for optional enabling of other projects
-  if (!empty($options)) {
-    $content .= $options;
-  }
+  // process potential drush operation lists
+	foreach ($options as $op => $commands) {
+		// write each command to the file for this operation
+		foreach ($commands as $command) {
+		  $content .= 'drush ' . $op . ' ' . $command . "\n";
+		}
+	}
+	// set the default outline to use during creation
+	$default_outline = getcwd() . '/' . drupal_get_path('module', 'cis_helper') . '/instructional_models/' . CIS_HELPER_DEFAULT_CONTENT_OUTLINE;
+	// allow for on creation population of material
+	//$content .= 'drush feeds-import --verbose feeds_node_helper_book_import --file=' . $default_outline . "\n";
+	// write drush commands to flush all caches
+	$content .= 'drush cc all' . "\n";
+	// run the cron as a final clean up mechanism
+	$content .= 'drush cron' . "\n";
   // write the structured file to a lower directory
   $handle = fopen(variable_get('cis_job_path', CIS_HELPER_JOB_PATH) . '/' . $filename, 'x+');
   fwrite($handle, $content);
   fclose($handle);
-  drupal_set_message(t('The @service will be asked to create @space momentarily. You will be emailed when the job is complete.', array('@service' => $service, '@space' => $space_name)), 'status');
-  watchdog('cis_service', 'Service ' . $service . ' was told to be built for ' . $space_name);
+	// tell user about the service
+  drupal_set_message(t('The "@service" service will be asked to create @space momentarily. You will be emailed when the job is complete.', array('@service' => $service->title, '@space' => $space_name)), 'status');
+  // log service creation
+	watchdog('cis_service', 'Service ' . $service->title . ' was told to be built for ' . $space_name);
 }
 
 /**
@@ -499,10 +249,14 @@ function _cis_helper_derive_parent($item_id, $field_collection_type = 'section',
   if ($field_collection_type == 'section') {
     $query = new EntityFieldQuery;
     $result = $query
+		  // pull all field collections
       ->entityCondition('entity_type', 'field_collection_item')
+			// that are offerings
       ->entityCondition('bundle', 'field_offerings')
+			// where the section is the one asked for
       ->fieldCondition('field_sections', 'value', $item_id, '=')
-      ->addMetaData('account', user_load(1)) // Run the query as user 1.
+			// run the query as user 1
+      ->addMetaData('account', user_load(1))
       ->execute();
     $item = array_keys($result['field_collection_item']);
   }
@@ -520,10 +274,14 @@ function _cis_helper_derive_parent($item_id, $field_collection_type = 'section',
   // pull the node associated to this offering
   $query = new EntityFieldQuery;
   $result = $query
+	  // pull all nodes
     ->entityCondition('entity_type', 'node')
+		// that are courses
     ->entityCondition('bundle', 'course')
+		// where the offering matches the one found
     ->fieldCondition('field_offerings', 'value', $offering->item_id, '=')
-    ->addMetaData('account', user_load(1)) // Run the query as user 1.
+    // run the query as user 1
+		->addMetaData('account', user_load(1))
     ->execute();
   // load node of the course and return it
   return node_load(array_pop(array_keys($result['node'])));
@@ -558,4 +316,63 @@ function _cis_helper_assemble_entity_list($entity_type, $bundle, $id_field, $tit
     $options[$key] = $entity->{$title_field};
   }
   return $options;
+}
+
+/**
+ * Implements hook_cis_instructional_outlines_alter().
+ */
+function cis_helper_cis_instructional_outlines_alter(&$outlines) {
+  // lazy scan the included instructional models
+	$directory = opendir(drupal_get_path('module', 'cis_helper') . '/instructional_models');
+	// get each item
+	$files = array();
+	while($file_name = readdir($directory)) {
+		if ($file_name != '.' && $file_name != '..') {
+			// add the template to the list
+		  $files[$file_name] = t('Template: @name', array('@name' => ucwords(str_replace('-', ' ', str_replace('.xml', '', $file_name)))));
+		}
+	}
+	// close directory
+	closedir($directory);
+	// merge the located file outlines in with those present in the site
+	$outlines = array_merge($outlines, $files);
+}
+/**
+ * Derive service instances from an entity id.
+ */
+function _cis_helper_derive_service_instances($item_id, $course = NULL, $type = 'section') {
+	// load course correctly
+	if (is_null($course)) {
+		switch ($type) {
+			case 'section':
+			case 'offering':
+				// find related course
+				$course = _cis_helper_derive_parent($item_id, $type);
+			break;
+			case 'course':
+				$course = node_load($item_id);
+			break;
+			// unsupported operation
+			default:
+			  return FALSE;
+			break;
+		}
+	}
+	// query to return all service instances for this course
+	$query = new EntityFieldQuery;
+	$result = $query
+		// pull all nodes
+		->entityCondition('entity_type', 'node')
+		// that are service instances
+		->entityCondition('bundle', 'service_instance')
+		// where the course equals the current one
+		->fieldCondition('field_course', 'target_id', $course->nid, '=')
+		// run the query as user 1
+		->addMetaData('account', user_load(1))
+		->execute();
+	// load the instances
+	if (isset($result['node'])) {
+	  return entity_load('node', array_keys($result['node']));
+	}
+	return FALSE;
 }

@@ -21,7 +21,7 @@ function cis_types_field_group_info() {
   $field_group->parent_name = 'group_setup';
   $field_group->data = array(
     'label' => 'Access',
-    'weight' => '5',
+    'weight' => '16',
     'children' => array(
       0 => 'field_access_dates',
       1 => 'field_access_string',
@@ -129,6 +129,33 @@ function cis_types_field_group_info() {
     ),
   );
   $export['group_details|node|course|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_files|field_collection_item|field_sections|full';
+  $field_group->group_name = 'group_files';
+  $field_group->entity_type = 'field_collection_item';
+  $field_group->bundle = 'field_sections';
+  $field_group->mode = 'full';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Files',
+    'weight' => '5',
+    'children' => array(
+      0 => 'field_welcome_letter',
+      1 => 'field_materials_letter',
+    ),
+    'format_type' => 'accordion',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+      ),
+    ),
+  );
+  $export['group_files|field_collection_item|field_sections|full'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -374,10 +401,10 @@ function cis_types_field_group_info() {
     'label' => 'Setup',
     'weight' => '0',
     'children' => array(
-      0 => 'field_campus',
-      1 => 'field_method_of_offering',
-      2 => 'field_section_number',
-      3 => 'field_services_in_use',
+      0 => 'field_method_of_offering',
+      1 => 'field_section_number',
+      2 => 'field_campus',
+      3 => 'field_instructional_outline',
       4 => 'group_access',
     ),
     'format_type' => 'tab',
@@ -408,6 +435,9 @@ function cis_types_field_group_info() {
       0 => 'field_materials',
       1 => 'field_syllabus',
       2 => 'field_resources',
+      3 => 'field_welcome_letter',
+      4 => 'field_materials_letter',
+      5 => 'field_contact_info',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -477,6 +507,30 @@ function cis_types_field_group_info() {
     ),
   );
   $export['group_teachers|field_collection_item|field_sections|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_wholething|field_collection_item|field_sections|full';
+  $field_group->group_name = 'group_wholething';
+  $field_group->entity_type = 'field_collection_item';
+  $field_group->bundle = 'field_sections';
+  $field_group->mode = 'full';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Whole thing',
+    'weight' => '0',
+    'children' => array(),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+      ),
+    ),
+  );
+  $export['group_wholething|field_collection_item|field_sections|full'] = $field_group;
 
   return $export;
 }

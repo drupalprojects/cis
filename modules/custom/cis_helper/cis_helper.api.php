@@ -1,13 +1,30 @@
 <?php
 /**
  * Implements hook_cis_service_instance_options_alter().
- * This allows for the altering of options (module calls)
- * just prior to creation of the service based on a course.
  *
- * This way you can define modules that should be activated
- * that are specific to the institution you are implementing it in.
+ * This allows for the altering of options (drush calls)
+ * just prior to creation of the service based on a course.
  */
-function hook_cis_service_instance_options_alter(&$node, &$service, &$college, &$account, &$options) {
-	// add our internal options routine to all services
-  $options .= ' lms_authentication';
+function hook_cis_service_instance_options_alter(&$options) {
+	// run drush dis pathauto as part of the install routine
+	$options['dis'][] = 'pathauto';
+	// run drush en devel as part of setup
+	$options['en'][] = 'devel';
+}
+
+/**
+ * Implements hook_cis_instructional_outlines_alter().
+ *
+ * This allows for the altering of listed instructional outlines
+ * Use this to add your own instructional outlines for selection 
+ * during section setup.
+ * This simply adds the options for selecting it, you'll still need
+ * a hook_entity_insert / update handler to correctly handle this.
+ * A common use-case for this is overriding traditional remote 
+ * reference and setup of an outline to allow for creation of a new 
+ * one based on a pre-packaged XML outline of content.
+ */
+function hook_cis_instructional_outlines(&$outlines) {
+	// allow for module based, paced instruction
+	$outlines['module-based'] = t('Module based');
 }

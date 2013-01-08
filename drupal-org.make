@@ -29,6 +29,9 @@ projects[schema][subdir] = "contrib"
 projects[date][version] = "2.6"
 projects[date][subdir] = "contrib"
 
+projects[field_hidden][version] = "1.3"
+projects[field_hidden][subdir] = "contrib"
+
 projects[devel][version] = "1.3"
 projects[devel][subdir] = "contrib"
 
@@ -249,8 +252,6 @@ libraries[profiler][download][url] = "http://ftp.drupal.org/files/projects/profi
 
 
 ; Patches
-
-projects[field_collection][patch][] = "http://drupal.org/files/field_collection-feeds_integration_0.patch"
 
 projects[google_chart_tools][patch][] = "http://drupal.org/files/google_chart_tools-piechartcounts.patch"
 
