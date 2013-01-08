@@ -84,54 +84,52 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 1;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_result'] = 1;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
     'action::node_assign_owner_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::views_bulk_operations_delete_item' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::system_message_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::views_bulk_operations_script_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_make_sticky_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_make_unsticky_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::views_bulk_operations_modify_action' => array(
       'selected' => 1,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
@@ -143,6 +141,7 @@ function cis_displays_views_default_views() {
           'course::field_instructional_designer' => 'course::field_instructional_designer',
         ),
       ),
+      'postpone_processing' => 0,
     ),
     'action::views_bulk_operations_argument_selector_action' => array(
       'selected' => 0,
@@ -155,66 +154,66 @@ function cis_displays_views_default_views() {
     ),
     'action::node_promote_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_publish_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::system_goto_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_unpromote_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_save_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::system_send_email_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_unpublish_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_unpublish_by_keyword_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::pathauto_node_update_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
   );
   /* Field: Content: Title */
@@ -446,6 +445,19 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['arguments']['field_instructor_of_record_target_id']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_instructor_of_record_target_id']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_instructor_of_record_target_id']['summary_options']['items_per_page'] = '25';
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Courses';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['path'] = 'cis';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'CIS';
+  $handler->display->display_options['menu']['description'] = 'CIS list of courses';
+  $handler->display->display_options['menu']['weight'] = '10';
+  $handler->display->display_options['menu']['name'] = 'management';
+  $handler->display->display_options['menu']['context'] = 0;
   $export['cis_my_courses'] = $view;
 
   $view = new view();
@@ -462,6 +474,7 @@ function cis_displays_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'create resource content';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -517,6 +530,72 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'entityreference_fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'CIS Resources';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'field_machine_name' => 'field_machine_name',
+    'field_type' => 'field_type',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_machine_name' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_type' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Name';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Machine name */
+  $handler->display->display_options['fields']['field_machine_name']['id'] = 'field_machine_name';
+  $handler->display->display_options['fields']['field_machine_name']['table'] = 'field_data_field_machine_name';
+  $handler->display->display_options['fields']['field_machine_name']['field'] = 'field_machine_name';
+  $handler->display->display_options['fields']['field_machine_name']['element_label_colon'] = FALSE;
+  /* Field: Content: Resource type */
+  $handler->display->display_options['fields']['field_type']['id'] = 'field_type';
+  $handler->display->display_options['fields']['field_type']['table'] = 'field_data_field_type';
+  $handler->display->display_options['fields']['field_type']['field'] = 'field_type';
+  $handler->display->display_options['fields']['field_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['path'] = 'cis/resources';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Resources';
+  $handler->display->display_options['menu']['description'] = 'List of all resources in the system';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'management';
+  $handler->display->display_options['menu']['context'] = 0;
   $export['cis_resources'] = $view;
 
   $view = new view();
@@ -967,7 +1046,7 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '15';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
@@ -1472,7 +1551,7 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['fields']['limit']['table'] = 'historical_course_data';
   $handler->display->display_options['fields']['limit']['field'] = 'limit';
   $handler->display->display_options['fields']['limit']['label'] = 'limit';
-  $handler->display->display_options['path'] = 'historical_college_data';
+  $handler->display->display_options['path'] = 'cis/historical_college_data';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'College data';
   $handler->display->display_options['menu']['weight'] = '10';
@@ -1529,7 +1608,7 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['sorts']['year']['id'] = 'year';
   $handler->display->display_options['sorts']['year']['table'] = 'historical_course_data';
   $handler->display->display_options['sorts']['year']['field'] = 'year';
-  $handler->display->display_options['path'] = 'historical_college_data/year';
+  $handler->display->display_options['path'] = 'cis/historical_college_data/year';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Year';
   $handler->display->display_options['menu']['weight'] = '-1';
@@ -1586,7 +1665,7 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['sorts']['location']['id'] = 'location';
   $handler->display->display_options['sorts']['location']['table'] = 'historical_course_data';
   $handler->display->display_options['sorts']['location']['field'] = 'location';
-  $handler->display->display_options['path'] = 'historical_college_data/campus';
+  $handler->display->display_options['path'] = 'cis/historical_college_data/campus';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Campus';
   $handler->display->display_options['menu']['weight'] = '0';
@@ -1660,7 +1739,7 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['sorts']['field_academic_home_target_id']['table'] = 'field_data_field_academic_home';
   $handler->display->display_options['sorts']['field_academic_home_target_id']['field'] = 'field_academic_home_target_id';
   $handler->display->display_options['sorts']['field_academic_home_target_id']['relationship'] = 'nid';
-  $handler->display->display_options['path'] = 'historical_college_data/unit';
+  $handler->display->display_options['path'] = 'cis/historical_college_data/unit';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Unit';
   $handler->display->display_options['menu']['weight'] = '1';
@@ -1740,7 +1819,7 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['sorts']['field_academic_home_target_id']['table'] = 'field_data_field_academic_home';
   $handler->display->display_options['sorts']['field_academic_home_target_id']['field'] = 'field_academic_home_target_id';
   $handler->display->display_options['sorts']['field_academic_home_target_id']['relationship'] = 'nid';
-  $handler->display->display_options['path'] = 'historical_college_data/unit/enrollments';
+  $handler->display->display_options['path'] = 'cis/historical_college_data/unit/enrollments';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Enrollments';
   $handler->display->display_options['menu']['weight'] = '1';
@@ -1813,7 +1892,7 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['sorts']['field_program_classification_target_id']['table'] = 'field_data_field_program_classification';
   $handler->display->display_options['sorts']['field_program_classification_target_id']['field'] = 'field_program_classification_target_id';
   $handler->display->display_options['sorts']['field_program_classification_target_id']['relationship'] = 'nid';
-  $handler->display->display_options['path'] = 'historical_college_data/program';
+  $handler->display->display_options['path'] = 'cis/historical_college_data/program';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Program';
   $handler->display->display_options['menu']['weight'] = '1';
@@ -1878,7 +1957,7 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['sorts']['field_program_classification_target_id']['table'] = 'field_data_field_program_classification';
   $handler->display->display_options['sorts']['field_program_classification_target_id']['field'] = 'field_program_classification_target_id';
   $handler->display->display_options['sorts']['field_program_classification_target_id']['relationship'] = 'nid';
-  $handler->display->display_options['path'] = 'historical_college_data/program/enrollments';
+  $handler->display->display_options['path'] = 'cis/historical_college_data/program/enrollments';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Enrollments';
   $handler->display->display_options['menu']['weight'] = '2';
@@ -2217,7 +2296,7 @@ function cis_displays_views_default_views() {
     'add' => 'Add',
     'description' => 0,
     'view_mode' => 'full',
-    'empty' => 0,
+    'empty' => 1,
   );
   $handler->display->display_options['fields']['field_sections']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_sections']['multi_type'] = 'ol';
