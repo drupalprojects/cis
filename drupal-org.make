@@ -5,6 +5,7 @@ api = "2"
 ; projects[drupal][version] = "7.x"
 
 ; Modules
+; Modules
 projects[admin_menu][version] = "3.0-rc3"
 projects[admin_menu][subdir] = "contrib"
 
@@ -14,13 +15,13 @@ projects[ctools][subdir] = "contrib"
 projects[google_chart_tools][version] = "1.x-dev"
 projects[google_chart_tools][subdir] = "contrib"
 
-projects[context][version] = "3.0-beta5"
+projects[context][version] = "3.0-beta6"
 projects[context][subdir] = "contrib"
 
 projects[context_condition_theme][version] = "1.0"
 projects[context_condition_theme][subdir] = "contrib"
 
-projects[data][version] = "1.x-dev"
+projects[data][version] = "1.0-alpha4"
 projects[data][subdir] = "contrib"
 
 projects[schema][version] = "1.0-beta4"
@@ -28,9 +29,6 @@ projects[schema][subdir] = "contrib"
 
 projects[date][version] = "2.6"
 projects[date][subdir] = "contrib"
-
-projects[field_hidden][version] = "1.3"
-projects[field_hidden][subdir] = "contrib"
 
 projects[devel][version] = "1.3"
 projects[devel][subdir] = "contrib"
@@ -53,11 +51,14 @@ projects[entityreference][subdir] = "contrib"
 projects[entityreference_prepopulate][version] = "1.1"
 projects[entityreference_prepopulate][subdir] = "contrib"
 
-projects[field_collection][version] = "1.x-dev"
+projects[field_collection][version] = "1.0-beta5"
 projects[field_collection][subdir] = "contrib"
 
 projects[field_group][version] = "1.1"
 projects[field_group][subdir] = "contrib"
+
+projects[field_hidden][version] = "1.3"
+projects[field_hidden][subdir] = "contrib"
 
 projects[field_permissions][version] = "1.0-beta2"
 projects[field_permissions][subdir] = "contrib"
@@ -77,7 +78,7 @@ projects[typogrify][subdir] = "contrib"
 projects[video_filter][version] = "3.1"
 projects[video_filter][subdir] = "contrib"
 
-projects[jammer][version] = "1.2"
+projects[jammer][version] = "1.3"
 projects[jammer][subdir] = "contrib"
 
 projects[lti_tool_provider][version] = "1.x-dev"
@@ -101,7 +102,7 @@ projects[boxes][subdir] = "contrib"
 projects[diff][version] = "3.2"
 projects[diff][subdir] = "contrib"
 
-projects[entity][version] = "1.x-dev"
+projects[entity][version] = "1.0"
 projects[entity][subdir] = "contrib"
 
 projects[field_collection_table][version] = "1.x-dev"
