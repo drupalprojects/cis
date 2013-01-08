@@ -194,10 +194,16 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
 		// only allow for enabling options from system variable
 		$options['en'] = $extra_options;
 	}
+	// only enable activation codes on the course based service
+	if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == 'course' && $course->field_method_of_access[LANGUAGE_NONE][0]['value'] == 'code') {
+	  $options['en'][] = 'cis_service_activation_codes';
+	}
+	// service connection is required to talk back to this site
+	$options['en'][] = 'cis_service_connection';
 	// vset the uuid from the service_instance entity into the remote site
 	$options['vset'][] = 'cis_service_instance_uuid ' . $service_instance->uuid;
 	// allow for advanced drush alterations via code
-	drupal_alter('cis_service_instance_options', $options);
+	drupal_alter('cis_service_instance_options', $options, $course, $service);
   // build space name based on the requested title
   $space_name = $course->field_machine_name[LANGUAGE_NONE][0]['value'];
   // create a file based on service name
@@ -215,6 +221,8 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   $content .= $course->field_course_title[LANGUAGE_NONE][0]['value'] . "\n";
 	// email / user requesting account
   $content .= $account->mail . "\n";
+	// add distribution to create
+	$content .= $service->field_distribution[LANGUAGE_NONE][0]['value'] . "\n";
   // process potential drush operation lists
 	foreach ($options as $op => $commands) {
 		// write each command to the file for this operation
@@ -222,10 +230,14 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
 		  $content .= 'drush ' . $op . ' ' . $command . "\n";
 		}
 	}
-	// set the default outline to use during creation
-	$default_outline = getcwd() . '/' . drupal_get_path('module', 'cis_helper') . '/instructional_models/' . CIS_HELPER_DEFAULT_CONTENT_OUTLINE;
-	// allow for on creation population of material
-	//$content .= 'drush feeds-import --verbose feeds_node_helper_book_import --file=' . $default_outline . "\n";
+	// only apply default content import for course based service
+	if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == 'course') {
+		// set the default outline to use during creation
+		$default_outline = getcwd() . '/' . drupal_get_path('module', 'cis_helper') . '/instructional_models/' . CIS_HELPER_DEFAULT_CONTENT_OUTLINE;
+		// allow for on creation population of material
+		//TODO: comment in once script handles it correctly
+		//$content .= 'drush feeds-import --verbose feeds_node_helper_book_import --file=' . $default_outline . "\n";
+	}
 	// write drush commands to flush all caches
 	$content .= 'drush cc all' . "\n";
 	// run the cron as a final clean up mechanism
