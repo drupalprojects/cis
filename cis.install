@@ -96,11 +96,8 @@ function cis_install() {
   // revert features to ensure they are all installed
   $features = array(
     'chamfer_defaults',
-    'cis_design',
     'cis_displays',
-    'cis_roles_perms',
     'cis_types',
-    'cis_workflow'
   );
   features_revert($features);
   // From shortcut.install, add shortcuts to the default set on install

@@ -129,7 +129,7 @@ dependencies[] = better_exposed_filters
 dependencies[] = views
 dependencies[] = views_bulk_operations
 dependencies[] = views_data_export
-;dependencies[] = views_field_calc
+dependencies[] = views_field_calc
 dependencies[] = views_fluid_grid
 dependencies[] = views_slideshow
 dependencies[] = views_ui
@@ -1674,4 +1674,3 @@ variables[views_ui_show_listing_filters] = '1'
 variables[views_ui_show_master_display] = '1'
 variables[views_ui_show_sql_query_where] = 'above'
 variables[watchdog_detail] = '1'
-
