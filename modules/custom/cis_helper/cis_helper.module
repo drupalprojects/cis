@@ -5,14 +5,15 @@
  */
 define('CIS_HELPER_JOB_PATH', '/var/wwwjobs');
 define('CIS_HELPER_DEFAULT_AUTHENTICATION', 'open');
-define('CIS_HELPER_DEFAULT_CONTENT_OUTLINE', 'minimal.xml');
+define('CIS_HELPER_DEFAULT_CONTENT_OUTLINE', 'lesson-based.xml');
 
 /**
  * Implements hook_init().
  */
 function cis_helper_init() {
   drupal_add_css(drupal_get_path('module', 'cis_helper') .'/css/cis_helper.css');
-  if (arg(0) == 'cis-quick-setup') {
+  // special js for hiding / displaying groups of form fields
+	if (arg(0) == 'cis-quick-setup') {
     drupal_add_js(drupal_get_path('module', 'cis_helper') .'/js/cis_helper.js');
   }
 }
@@ -99,8 +100,6 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
 				case 'course':
 					// for course this is a json containing the different outlines as uuid => title
 					$options = drupal_json_decode($instance->field_service_data[LANGUAGE_NONE][0]['value']);
-				  // allow for the inclusion of other instructional models
-					drupal_alter('cis_instructional_outlines', $options);
 					// create a visible version of the hidden field
 					$form['_field_instructional_outline'] = array(
 						'#type' => 'select',
@@ -149,7 +148,7 @@ function cis_helper_entity_insert($entity, $type) {
     global $user;
 		// generally a bad idea to pass around the user global
 		$account = $user;
-    // only run if we have services to process and this isn't a service account
+    // only run if we have services to process
     if (!empty($entity->field_services[LANGUAGE_NONE])) {
       // load service node
       $serv_node = node_load($entity->field_services[LANGUAGE_NONE][0]['target_id']);
@@ -159,6 +158,50 @@ function cis_helper_entity_insert($entity, $type) {
       $college = variable_get('cis_college_name', '');
       // service name from machine name
       _cis_helper_add_service_instance($course_node, $serv_node, $entity, $college, $account);
+    }
+  }	
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function cis_helper_entity_update($entity, $type) {
+  // check to see if a service_instance is being inserted
+  if ($type == 'node' && $entity->type == 'service_instance') {
+    if (!empty($entity->field_course[LANGUAGE_NONE])) {
+			// see if there's an entity field query to match this uuid
+			// this will only be triggered by remote service account PUT operations
+			$query = new EntityFieldQuery;
+			$result = $query
+				// pull all field collections
+				->entityCondition('entity_type', 'field_collection_item')
+				// that are offerings
+				->entityCondition('bundle', 'field_sections')
+				// where the section is the one asked for
+				->fieldCondition('field_instructional_outline', 'value', $entity->uuid, '=')
+				// run the query as user 1
+				->addMetaData('account', user_load(1))
+				->execute();
+			// only run this setup portion if we have 1 item
+			if (isset($result['field_collection_item']) && count($result['field_collection_item']) == 1) {
+			  $item = array_keys($result['field_collection_item']);
+				// load the section
+				$sections = entity_load('field_collection_item', $item);
+				$section = array_pop($sections);
+				// service data
+				$data = drupal_json_decode($entity->field_service_data[LANGUAGE_NONE][0]['value']);
+				// ensure we have an array
+				if (is_array($data)) {
+					// keys are uuids in this case
+					$uuids = array_keys($data);
+					// we only want 1 though only 1 should ever exist
+					$uuid = array_pop($uuids);
+				}
+				// set section's instructional outline to the service entity's only item (if it has one)
+				$section->field_instructional_outline[LANGUAGE_NONE][0]['value'] = $uuid;
+				// save the section
+				$section->save();
+			}
     }
   }	
 }
@@ -200,6 +243,9 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
 	}
 	// service connection is required to talk back to this site
 	$options['en'][] = 'cis_service_connection';
+	$options['fr'][] = 'cis_service_lti';
+	// ux has the block position settings
+	$options['en'][] = 'cis_service_connection_ux';
 	// vset the uuid from the service_instance entity into the remote site
 	$options['vset'][] = 'cis_service_instance_uuid ' . $service_instance->uuid;
 	// allow for advanced drush alterations via code
@@ -224,19 +270,28 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
 	// add distribution to create
 	$content .= $service->field_distribution[LANGUAGE_NONE][0]['value'] . "\n";
   // process potential drush operation lists
+	$fr = '';
 	foreach ($options as $op => $commands) {
 		// write each command to the file for this operation
+		$tmp = '';
 		foreach ($commands as $command) {
-		  $content .= 'drush ' . $op . ' ' . $command . "\n";
+		  $tmp .= 'drush ' . $op . ' ' . $command . "\n";
+		}
+		// hold off on fr to after all other operations
+		if ($op != 'fr') {
+			$content .= $tmp;
+		}
+		else {
+			$fr = $tmp;
 		}
 	}
+	// push feature revert requests off til the end
+	// this way they actually revert instead of vset / en disrupting them
+	$content .= $fr;
 	// only apply default content import for course based service
 	if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == 'course') {
-		// set the default outline to use during creation
-		$default_outline = getcwd() . '/' . drupal_get_path('module', 'cis_helper') . '/instructional_models/' . CIS_HELPER_DEFAULT_CONTENT_OUTLINE;
 		// allow for on creation population of material
-		//TODO: comment in once script handles it correctly
-		//$content .= 'drush feeds-import --verbose feeds_node_helper_book_import --file=' . $default_outline . "\n";
+		$content .= 'drush feeds-import --verbose feeds_node_helper_book_import --file=' . $service_instance->field_service_data[LANGUAGE_NONE][0]['value'] . "\n";
 	}
 	// write drush commands to flush all caches
 	$content .= 'drush cc all' . "\n";
@@ -331,17 +386,28 @@ function _cis_helper_assemble_entity_list($entity_type, $bundle, $id_field, $tit
 }
 
 /**
+ * Returns all instructional outlines that are xml packages
+ */
+function _cis_helper_get_instructional_outlines() {
+	$options = array();
+	// allow for the inclusion of other instructional models
+	drupal_alter('cis_instructional_outlines', $options);
+	return $options;
+}
+
+/**
  * Implements hook_cis_instructional_outlines_alter().
  */
 function cis_helper_cis_instructional_outlines_alter(&$outlines) {
   // lazy scan the included instructional models
 	$directory = opendir(drupal_get_path('module', 'cis_helper') . '/instructional_models');
+	$full_path = drupal_get_path('module', 'cis_helper') . '/instructional_models/';
 	// get each item
 	$files = array();
 	while($file_name = readdir($directory)) {
-		if ($file_name != '.' && $file_name != '..') {
+		if (strpos($file_name, '.xml')) {
 			// add the template to the list
-		  $files[$file_name] = t('Template: @name', array('@name' => ucwords(str_replace('-', ' ', str_replace('.xml', '', $file_name)))));
+		  $files[$full_path . $file_name] = t('@name Instructional Outline', array('@name' => ucwords(str_replace('-', ' ', str_replace('.xml', '', $file_name)))));
 		}
 	}
 	// close directory

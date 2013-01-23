@@ -226,7 +226,34 @@ function cis_types_field_default_fields() {
             ),
           ),
           'entity' => entity_import('field_collection_item', '{
-            "default_value" : null,
+            "item_id" : null,
+            "revision_id" : null,
+            "field_name" : "field_sections",
+            "default_revision" : true,
+            "archived" : false,
+            "field_instructor_of_record" : { "und" : [] },
+            "field_campus" : { "und" : [] },
+            "field_access_string" : { "und" : [] },
+            "field_seats_filled" : { "und" : [] },
+            "field_seats_offered" : { "und" : [] },
+            "field_teaching_assistants" : { "und" : [] },
+            "field_syllabus" : { "und" : [] },
+            "field_method_of_offering" : { "und" : [] },
+            "field_access_url" : { "und" : [] },
+            "field_materials" : { "und" : [] },
+            "field_method_of_access" : { "und" : [] },
+            "field_studio_space" : { "und" : [ { "value" : 0 } ] },
+            "field_access_dates" : { "und" : [
+                {
+                  "show_todate" : "1",
+                  "value" : "2012-10-03 00:00:00",
+                  "value2" : "2013-01-31 00:00:00",
+                  "timezone" : "America\\/New_York",
+                  "offset" : -14400,
+                  "offset2" : -18000
+                }
+              ]
+            }
           }'),
         ),
       ),

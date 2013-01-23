@@ -65,6 +65,14 @@ function cis_helper_quick_setup_page() {
     '#multiple_toggle' => '1',
     '#title' => t('Method of access'),
   );
+	$form['instructional_outline'] = array(
+	  '#type' => 'select',
+		'#options' => _cis_helper_get_instructional_outlines(),
+		'#required' => TRUE,
+		'#title' => t('Instructional outline'),
+		'#description' => t('This helps in creating a default instructional flow for the course, this just helps provide a starting point.'),
+	  '#default_value' => drupal_get_path('module', 'cis_helper') . '/instructional_models/' . CIS_HELPER_DEFAULT_CONTENT_OUTLINE,
+	);
   // list of services
   $form['service'] = array(
     '#multiple' => '0',
@@ -215,6 +223,7 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
   $offering = NULL;
   $semester = $form_state['values']['semester'];
   $year = $form_state['values']['year'];
+	$instructional_outline = $form_state['values']['instructional_outline'];
   $service = $form_state['values']['service'];
   // first step is to create the course if it exists
   if ($form_state['values']['course'] == 'new') {
@@ -343,7 +352,15 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
     $instance->field_services[LANGUAGE_NONE][0]['target_id'] = $service;
     // set the entity reference field to course
     $instance->field_course[LANGUAGE_NONE][0]['target_id'] = $course->nid;
+		// repurpose the general data field
+		$instance->field_service_data[LANGUAGE_NONE][0]['value'] = getcwd() . '/' . $instructional_outline;
     // this will create the service because of the hook_entity_insert used here
     node_save($instance);
+		// instance UUID will be sent to the new course
+		// this is the only case when instruction_outline needs to be populated manually
+		// this value will be targetted and converted during a service account PUT operation
+		$section->field_instructional_outline[LANGUAGE_NONE][0]['value'] = $instance->uuid;
+		// save section
+		$section->save();
   }
 }

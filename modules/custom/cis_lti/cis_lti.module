@@ -3,8 +3,55 @@
  * Implements hook_lti_tool_provider_launch_alter().
  */
 function cis_lti_lti_tool_provider_launch_alter(&$launch_info, $account) {
-  // incoming account is an instructor
-  if (in_array('Instructor', array_values($account->roles))) {
+  // look at section requested
+  $query = new EntityFieldQuery;
+  $result = $query
+    ->entityCondition('entity_type', 'field_collection_item')
+    ->entityCondition('bundle', 'field_sections')
+    ->propertyCondition('archived', 0, '=')
+    ->fieldCondition('field_access_string', 'value', $launch_info['context_id'], '=')
+    ->addMetaData('account', user_load(1)) // Run the query as user 1.
+    ->execute();
+  // if no items were returned this is a new course / nonexistant course  
+  if (isset($result['field_collection_item'])) {
+    $items = array_keys($result['field_collection_item']);
+    // only want 1 item, should only be 1
+    $item_id = array_pop($items);
+    // return the instances available to this section
+    $course = _cis_helper_derive_parent($item_id);
+    $service_instances = _cis_helper_derive_service_instances($item_id, $course);
+    // run through each instance found
+    foreach ($service_instances as $instance) {
+      // load of the service node in question
+      $service = node_load($instance->field_services[LANGUAGE_NONE][0]['target_id']);
+      // account for different types of services
+      switch ($service->field_machine_name[LANGUAGE_NONE][0]['value']) {
+        // TODO course needs to be requested from the context somehow
+        // right now we only account for course
+        case 'course':
+          // start to build the location for the launch
+          $location = $service->field_location[LANGUAGE_NONE][0]['url'];
+          // append the machine name of the course
+          $location .= '/' . $course->field_machine_name[LANGUAGE_NONE][0]['value'];
+          // site's base url must be set for resigning
+          global $base_url;
+          // grab object from the current site's address
+          if ($consumer = _cis_lti_consumer_from_address($base_url)) {
+            // perform lti launch against another service
+            if ($resp = cis_lti_service_post($launch_info, $consumer->lti_tool_provider_consumer_key, $location . '/lti')) {
+              // send user to the final destination now that account has been seeded
+              drupal_goto($location);
+            }
+          }
+        break;
+      }
+    }
+    // in this case we found nothing, so do nothing and present message
+    drupal_set_message(t('Course space not available, please contact your instructor'), 'warning');
+  }
+  else {
+    // present form prepopulated for Instructor role
+    if (in_array('Instructor', array_values($account->roles))) {
     // convert LTI launch values into json encoded string
     $options = array(
       'query' => array(
@@ -14,48 +61,11 @@ function cis_lti_lti_tool_provider_launch_alter(&$launch_info, $account) {
     // pass the launch over to the quick setup form
     drupal_goto('cis-quick-setup', $options);
   }
-  //TODO direct all other roles to the course they are looking for
-  if (in_array('Instructor', array_values($account->roles))) {
-    // look at section requested
-    $query = new EntityFieldQuery;
-    $result = $query
-      ->entityCondition('entity_type', 'field_collection_item')
-      ->entityCondition('bundle', 'field_sections')
-			->propertyCondition('archived', 0, '=')
-      ->fieldCondition('field_access_string', 'value', $launch_info['context_id'], '=')
-      ->addMetaData('account', user_load(1)) // Run the query as user 1.
-      ->execute();
-    $items = array_keys($result['field_collection_item']);
-		// should only be 1 result but just for convention
-    foreach ($items as $item_id) {
-			// return the instances available to this section
-			$course = _cis_helper_derive_parent($item_id);
-      $service_instances = _cis_helper_derive_service_instances($item_id, $course);
-			// run through each instance found
-			foreach ($service_instances as $instance) {
-				$service = node_load($instance->field_services[LANGUAGE_NONE][0]['target_id']);
-				// handle each service instance's data differently
-				switch ($service->field_machine_name[LANGUAGE_NONE][0]['value']) {
-					case 'course':
-						$location = $service->field_location[LANGUAGE_NONE][0]['url'];
-						$location .= '/' . $course->field_machine_name[LANGUAGE_NONE][0]['value'];
-						//drupal_http_request();
-						drupal_goto($location);
-					break;
-					default:
-					  // TODO: eventually will need to handle calls to other services
-					break;
-				}
-			}
-			// in this case we found nothing, so do nothing.
-    }
-    // match it to the course requested and their section
-    //drupal_goto();
   }
 }
 
 /**
- * Send single grade via http post.
+ * Resign an LTI request and silently launch it against a service.
  *
  * @param string $params
  *   An array containing the POST data, eg, lti_message_type etc.
@@ -67,29 +77,10 @@ function cis_lti_lti_tool_provider_launch_alter(&$launch_info, $account) {
  * @return string
  *   HTTP response.
  */
- /*
 function cis_lti_service_post($params, $key, $url) {
-  $ext_response = NULL;
+  $ext_response = FALSE;
   if (!empty($url)) {
-    // Check for query parameters which need to be included in the signature.
-    $query_params = array();
-    $query_string = parse_url($url, PHP_URL_QUERY);
-    if (!is_null($query_string)) {
-      $query_items = explode('&', $query_string);
-      foreach ($query_items as $item) {
-        if (strpos($item, '=') !== FALSE) {
-          list($name, $value) = explode('=', $item);
-          $query_params[$name] = $value;
-        }
-        else {
-          $query_params[$name] = '';
-        }
-      }
-    }
-    $params = $params + $query_params;
-    // Add standard parameters.
     $params['oauth_consumer_key'] = $key;
-    $params['lti_version'] = 'LTI-1p0';
     $oauth_consumer_key = $key;
     $store = new LTIToolProviderOAuthDataStore();
     $consumer = $store->lookup_consumer($oauth_consumer_key);
@@ -98,11 +89,6 @@ function cis_lti_service_post($params, $key, $url) {
     $request = OAuthRequest::from_consumer_and_token($consumer, $token, 'POST', $url, $params);
     $request->sign_request($hmac_method, $consumer, $token);
     $params = $request->get_parameters();
-
-    // Remove parameters being passed on the query string.
-    foreach (array_keys($query_params) as $name) {
-      unset($params[$name]);
-    }
     // Connect to tool consumer.
     // http_build_query($params).
     $options = array(
@@ -114,4 +100,43 @@ function cis_lti_service_post($params, $key, $url) {
     $ext_response = drupal_http_request($url, $options);
   }
   return $ext_response;
-}*/
+}
+
+/**
+ * Return the public key for an LTI consumer.
+ */
+function _cis_lti_consumer_from_address($address) {
+  // new entity field query
+  $query = new EntityFieldQuery;
+  $result = $query
+    // select all consumers
+    ->entityCondition('entity_type', 'lti_tool_provider_consumer')
+    // where the address for the consumer matches the asked for one
+    ->propertyCondition('lti_tool_provider_consumer_consumer', $address, '=')
+    // run the query as user 1
+    ->addMetaData('account', user_load(1))
+    ->execute();
+  // if we found a consumer associated to this domain, load it
+  // this will allow for proxy style LTI launches
+  if (isset($result['lti_tool_provider_consumer'])) {
+    // return item's key
+    $items = array_keys($result['lti_tool_provider_consumer']);
+    // this will only be one item cause of how LTI works
+    $consumers = entity_load('lti_tool_provider_consumer', $items);
+    // pop off the 1st result as there should only be one
+    $consumer = array_pop($consumers);
+    // return the object
+    return $consumer;
+  }
+  // nothing found
+  return FALSE;
+}
+
+/**
+ * Implements hook_cis_service_instance_options_alter().
+ */
+function cis_lti_cis_service_instance_options_alter(&$options, $course, $service) {
+	// if this module is enabled, all distributions will have LTI pings
+	$options['en'][] = 'cis_service_lti';
+	$options['fr'][] = 'cis_service_lti';
+}

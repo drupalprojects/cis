@@ -3,3 +3,4 @@ name = "CIS LTI"
 description = "CIS integration with LTI"
 core = 7.x
 package = "CIS"
+dependencies[] = lti_tool_provider

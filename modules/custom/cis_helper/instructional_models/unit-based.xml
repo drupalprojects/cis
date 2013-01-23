@@ -2,6 +2,15 @@
   <node>
     <uid>1</uid>
     <type>page</type>
+    <title>Unit Outline</title>
+    <body></body>
+    <parent></parent>
+    <weight></weight>
+    <uuid>b4c1ac92-58ef-11e2-bc7b-c82d87200bd5</uuid>
+  </node>
+  <node>
+    <uid>1</uid>
+    <type>page</type>
     <title>Introduction</title>
     <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;
 &lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;
