@@ -65,14 +65,14 @@ function cis_helper_quick_setup_page() {
     '#multiple_toggle' => '1',
     '#title' => t('Method of access'),
   );
-	$form['instructional_outline'] = array(
-	  '#type' => 'select',
-		'#options' => _cis_helper_get_instructional_outlines(),
-		'#required' => TRUE,
-		'#title' => t('Instructional outline'),
-		'#description' => t('This helps in creating a default instructional flow for the course, this just helps provide a starting point.'),
-	  '#default_value' => drupal_get_path('module', 'cis_helper') . '/instructional_models/' . CIS_HELPER_DEFAULT_CONTENT_OUTLINE,
-	);
+  $form['instructional_outline'] = array(
+    '#type' => 'select',
+    '#options' => _cis_helper_get_instructional_outlines(),
+    '#required' => TRUE,
+    '#title' => t('Instructional outline'),
+    '#description' => t('This helps in creating a default instructional flow for the course, this just helps provide a starting point.'),
+    '#default_value' => drupal_get_path('module', 'cis_helper') . '/instructional_models/' . CIS_HELPER_DEFAULT_CONTENT_OUTLINE,
+  );
   // list of services
   $form['service'] = array(
     '#multiple' => '0',
@@ -128,13 +128,13 @@ function cis_helper_quick_setup_page() {
     '#collapsible' => '1',
     '#title' => t('Section'),
   );
-	// section number of record
+  // section number of record
   $form['section']['number'] = array(
     '#description' => t('Section number supplied by the registrar.'),
     '#type' => 'textfield',
     '#title' => t('Section number'),
   );
-	// campus code of record
+  // campus code of record
   $form['section']['campus'] = array(
     '#description' => t('Campus code used to identify where this offering takes place.'),
     '#type' => 'textfield',
@@ -155,7 +155,7 @@ function cis_helper_quick_setup_page() {
     '#default_value' => $user->name,
     '#title' => t('Instructor of Record'),
   );
-	// the welcome letter to use for the section to be created
+  // the welcome letter to use for the section to be created
   $form['welcome_letter'] = array(
     '#required' => '0',
     '#description' => t('(PDF only) This gives students instructions on how to get started with their course.'),
@@ -172,7 +172,7 @@ function cis_helper_quick_setup_page() {
       ),
     ),
   );
-	// the welcome letter to use for the section to be created
+  // the welcome letter to use for the section to be created
   $form['materials_letter'] = array(
     '#required' => '0',
     '#description' => t('(PDF only) Communicate to the student what materials are needed to take the course.'),
@@ -223,8 +223,8 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
   $offering = NULL;
   $semester = $form_state['values']['semester'];
   $year = $form_state['values']['year'];
-	$instructional_outline = $form_state['values']['instructional_outline'];
-  $service = $form_state['values']['service'];
+  $instructional_outline = $form_state['values']['instructional_outline'];
+  $service = node_load($form_state['values']['service']);
   // first step is to create the course if it exists
   if ($form_state['values']['course'] == 'new') {
     $name = check_plain($form_state['values']['new_name']);
@@ -237,19 +237,24 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
     // created by the system so root user
     $course->uid = 1;
     $course->title = $name;
-		// set course title
-		$course->field_course_title[LANGUAGE_NONE][0]['value'] = check_plain($form_state['values']['new_title']);
+    // set course title
+    $course->field_course_title[LANGUAGE_NONE][0]['value'] = check_plain($form_state['values']['new_title']);
     // generate machine name
-    $course->field_machine_name[LANGUAGE_NONE][0]['value'] = preg_replace('/[^a-z0-9_]+/', '', drupal_strtolower($name));
+    $mname = preg_replace('/[^a-z0-9_]+/', '', drupal_strtolower($name));
+    // max size of machine name is 16
+    if (strlen($mname) > 10) {
+      $mname = substr($mname, 0, 10);
+    }
+    $course->field_machine_name[LANGUAGE_NONE][0]['value'] = $mname;
     // method of access
     $course->field_method_of_access[LANGUAGE_NONE][0]['value'] = $form_state['values']['access'];
     node_save($course);
   }
   else {
-		// load array of course machine names based on EFQ
-		$courses = _cis_helper_assemble_entity_list('node', 'course', 'field_machine_name', 'nid');
-		// this will be the entity id for a course
-		$etid = $courses[$form_state['values']['course']];
+    // load array of course machine names based on EFQ
+    $courses = _cis_helper_assemble_entity_list('node', 'course', 'field_machine_name', 'nid');
+    // this will be the entity id for a course
+    $etid = $courses[$form_state['values']['course']];
     $course = entity_load_single('node', $etid);
   }
   // make sure that this course doesn't already have an offering for this semester/year
@@ -299,42 +304,42 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
   $section->field_section_number[LANGUAGE_NONE][0]['value'] = $form_state['values']['number'];
   // set the campus code
   $section->field_campus[LANGUAGE_NONE][0]['value'] = $form_state['values']['campus'];
-	// set the access string
+  // set the access string
   $section->field_access_string[LANGUAGE_NONE][0]['value'] = $form_state['values']['access_string'];
   // set the entity reference field (user)
   $section->field_instructor_of_record[LANGUAGE_NONE][0]['target_id'] = $account->uid;
   // special handling for files, if added
-	$file_check = array('syllabus', 'welcome_letter', 'materials_letter');
-	foreach ($file_check as $file_name) {
-		// make sure the file came across
-		if ($form_state['values'][$file_name] != '') {
-			// load the file into an object
-			$file = file_load($form_state['values'][$file_name]);
-			// Change status to permanent so it isn't killed on cron clean up
-			$file->status = FILE_STATUS_PERMANENT;
-			// save file
-			file_save($file);
-			// silly typecast of file object to array for field happiness
-			$file_ary = (array)$file;
-			// set the file to be displayed on this field_collection_item
-			$file_ary['display'] = 1;
-			// field names must match files to check
-			$field_name = 'field_' . $file_name;
-			// set the section's file field to match file array
-			$section->{$field_name}[LANGUAGE_NONE][0] = $file_ary;
-		}
-	}
-	// allow other modules to alter information
-	drupal_alter('cis_quick_submit', $section, $offering);
-	// save section
-	$section->save();
+  $file_check = array('syllabus', 'welcome_letter', 'materials_letter');
+  foreach ($file_check as $file_name) {
+    // make sure the file came across
+    if ($form_state['values'][$file_name] != '') {
+      // load the file into an object
+      $file = file_load($form_state['values'][$file_name]);
+      // Change status to permanent so it isn't killed on cron clean up
+      $file->status = FILE_STATUS_PERMANENT;
+      // save file
+      file_save($file);
+      // silly typecast of file object to array for field happiness
+      $file_ary = (array)$file;
+      // set the file to be displayed on this field_collection_item
+      $file_ary['display'] = 1;
+      // field names must match files to check
+      $field_name = 'field_' . $file_name;
+      // set the section's file field to match file array
+      $section->{$field_name}[LANGUAGE_NONE][0] = $file_ary;
+    }
+  }
+  // allow other modules to alter information
+  drupal_alter('cis_quick_submit', $section, $offering);
+  // save section
+  $section->save();
   
   // now work on the service instance if needed
   $query = new EntityFieldQuery;
   $result = $query
     ->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'service_instance')
-    ->fieldCondition('field_services', 'target_id', $service, '=')
+    ->fieldCondition('field_services', 'target_id', $service->nid, '=')
     ->fieldCondition('field_course', 'target_id', $course->nid, '=')
     ->addMetaData('account', user_load(1)) // Run the query as user 1.
     ->execute();
@@ -346,21 +351,23 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
     $instance->status = 1;
     $instance->revision = 1;
     $instance->language = LANGUAGE_NONE;
+    // set an easy to read title
+    $instance->title = $course->field_machine_name[LANGUAGE_NONE][0]['value'] . ' - ' . $service->field_machine_name[LANGUAGE_NONE][0]['value'];
     // created by the system so root user
     $instance->uid = 1;
     // set the entity reference field to service
-    $instance->field_services[LANGUAGE_NONE][0]['target_id'] = $service;
+    $instance->field_services[LANGUAGE_NONE][0]['target_id'] = $service->nid;
     // set the entity reference field to course
     $instance->field_course[LANGUAGE_NONE][0]['target_id'] = $course->nid;
-		// repurpose the general data field
-		$instance->field_service_data[LANGUAGE_NONE][0]['value'] = getcwd() . '/' . $instructional_outline;
+    // repurpose the general data field
+    $instance->field_service_data[LANGUAGE_NONE][0]['value'] = getcwd() . '/' . $instructional_outline;
     // this will create the service because of the hook_entity_insert used here
     node_save($instance);
-		// instance UUID will be sent to the new course
-		// this is the only case when instruction_outline needs to be populated manually
-		// this value will be targetted and converted during a service account PUT operation
-		$section->field_instructional_outline[LANGUAGE_NONE][0]['value'] = $instance->uuid;
-		// save section
-		$section->save();
+    // instance UUID will be sent to the new course
+    // this is the only case when instruction_outline needs to be populated manually
+    // this value will be targetted and converted during a service account PUT operation
+    $section->field_instructional_outline[LANGUAGE_NONE][0]['value'] = $instance->uuid;
+    // save section
+    $section->save();
   }
 }

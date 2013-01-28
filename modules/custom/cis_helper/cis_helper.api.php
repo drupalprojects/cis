@@ -7,10 +7,10 @@
  * Course / service are also passed in for context
  */
 function hook_cis_service_instance_options_alter(&$options, $course, $service) {
-	// run drush dis pathauto as part of the install routine
-	$options['dis'][] = 'pathauto';
-	// run drush en devel as part of setup
-	$options['en'][] = 'devel';
+  // run drush dis pathauto as part of the install routine
+  $options['dis'][] = 'pathauto';
+  // run drush en devel as part of setup
+  $options['en'][] = 'devel';
 }
 
 /**
@@ -26,6 +26,6 @@ function hook_cis_service_instance_options_alter(&$options, $course, $service) {
  * one based on a pre-packaged XML outline of content.
  */
 function hook_cis_instructional_outlines(&$outlines) {
-	// allow for module based, paced instruction
-	$outlines['module-based'] = t('Module based');
+  // allow for module based, paced instruction
+  $outlines['module-based'] = t('Module based');
 }
