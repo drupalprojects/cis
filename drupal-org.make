@@ -6,7 +6,7 @@ api = "2"
 
 ; Modules
 ; Modules
-projects[admin_menu][version] = "3.0-rc3"
+projects[admin_menu][version] = "3.0-rc4"
 projects[admin_menu][subdir] = "contrib"
 
 projects[ctools][version] = "1.2"
@@ -84,7 +84,7 @@ projects[jammer][subdir] = "contrib"
 projects[lti_tool_provider][version] = "1.x-dev"
 projects[lti_tool_provider][subdir] = "contrib"
 
-projects[imce][version] = "1.6"
+projects[imce][version] = "1.7"
 projects[imce][subdir] = "contrib"
 
 projects[nodeformcols][version] = "1.x-dev"
@@ -96,7 +96,7 @@ projects[ISBN2node][subdir] = "contrib"
 projects[auto_nodetitle][version] = "1.0"
 projects[auto_nodetitle][subdir] = "contrib"
 
-projects[boxes][version] = "1.0"
+projects[boxes][version] = "1.1"
 projects[boxes][subdir] = "contrib"
 
 projects[diff][version] = "3.2"
