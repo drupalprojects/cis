@@ -525,7 +525,7 @@ function cis_types_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '10',
+          'weight' => '11',
         ),
         'token' => array(
           'label' => 'above',
@@ -787,13 +787,13 @@ function cis_types_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 14,
+          'weight' => '12',
         ),
         'full' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '7',
         ),
         'token' => array(
           'label' => 'above',
@@ -864,13 +864,13 @@ function cis_types_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '13',
+          'weight' => '14',
         ),
         'full' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '8',
+          'weight' => '9',
         ),
         'token' => array(
           'label' => 'above',
@@ -943,14 +943,16 @@ function cis_types_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'field_hidden',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '12',
+          'type' => 'field_hidden_text_plain',
+          'weight' => '13',
         ),
         'full' => array(
           'label' => 'above',
+          'module' => 'field_hidden',
           'settings' => array(),
-          'type' => 'hidden',
+          'type' => 'field_hidden_text_plain',
           'weight' => '6',
         ),
         'token' => array(
@@ -1182,7 +1184,7 @@ function cis_types_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '12',
+          'weight' => '13',
         ),
         'token' => array(
           'label' => 'above',
@@ -1348,7 +1350,7 @@ function cis_types_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '11',
+          'weight' => '12',
         ),
         'token' => array(
           'label' => 'above',
@@ -1441,7 +1443,7 @@ function cis_types_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '9',
+          'weight' => '10',
         ),
         'token' => array(
           'label' => 'above',
@@ -1606,7 +1608,7 @@ function cis_types_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '7',
+          'weight' => '8',
         ),
         'token' => array(
           'label' => 'hidden',
@@ -1703,7 +1705,7 @@ function cis_types_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '13',
+          'weight' => '14',
         ),
         'token' => array(
           'label' => 'above',
@@ -3818,6 +3820,849 @@ function cis_types_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-instructional_model-body'.
+  $fields['node-instructional_model-body'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(
+        0 => 'node',
+      ),
+      'field_name' => 'body',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'text_with_summary',
+    ),
+    'field_instance' => array(
+      'bundle' => 'instructional_model',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => 600,
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'body',
+      'label' => 'Body',
+      'required' => FALSE,
+      'settings' => array(
+        'display_summary' => TRUE,
+        'text_processing' => 1,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'rows' => 20,
+          'summary_rows' => 5,
+        ),
+        'type' => 'text_textarea_with_summary',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-instructional_model-field_course'.
+  $fields['node-instructional_model-field_course'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_course',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'node' => array(
+          'columns' => array(
+            'target_id' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 1,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'property' => 'title',
+            'type' => 'property',
+          ),
+          'target_bundles' => array(
+            'course' => 'course',
+          ),
+        ),
+        'target_type' => 'node',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'instructional_model',
+      'default_value' => NULL,
+      'default_value_function' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => 1,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_course',
+      'label' => 'Representative Courses',
+      'required' => 0,
+      'settings' => array(
+        'behaviors' => array(
+          'prepopulate' => array(
+            'status' => 0,
+          ),
+        ),
+        'nodeaccess_nodereference' => array(
+          'all' => array(
+            'view' => 0,
+          ),
+          'all_published' => '0',
+          'author' => array(
+            'delete' => 0,
+            'update' => 0,
+            'view' => 0,
+          ),
+          'author_published' => '0',
+          'priority' => '0',
+          'referenced' => array(
+            'delete' => array(
+              'delete' => 0,
+              'update' => 0,
+              'view' => 0,
+            ),
+            'published' => '0',
+            'update' => array(
+              'delete' => 0,
+              'update' => 0,
+              'view' => 0,
+            ),
+            'view' => array(
+              'delete' => 0,
+              'update' => 0,
+              'view' => 0,
+            ),
+          ),
+          'unused' => '0',
+        ),
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-instructional_model-field_xml_outline'.
+  $fields['node-instructional_model-field_xml_outline'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_xml_outline',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'file',
+      'settings' => array(
+        'display_default' => 0,
+        'display_field' => 0,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'file',
+    ),
+    'field_instance' => array(
+      'bundle' => 'instructional_model',
+      'deleted' => '0',
+      'description' => 'An XML structure that follows the conventions established by ELMS for structuring a content outline.  The easiest way to obtain this is to install the MOOC distribution, create some content in a book outline and then export it to it\'s XML packaging format.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_xml_outline',
+      'label' => 'XML Outline',
+      'required' => 1,
+      'settings' => array(
+        'description_field' => 0,
+        'file_directory' => 'instructional_outlines',
+        'file_extensions' => 'xml',
+        'max_filesize' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'file',
+        'settings' => array(
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'file_generic',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-isbn2node_book-isbn2node_author'.
+  $fields['node-isbn2node_book-isbn2node_author'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'isbn2node_author',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => 255,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'isbn2node_book',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'isbn2node_author',
+      'label' => 'Author',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => -1,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-isbn2node_book-isbn2node_cover'.
+  $fields['node-isbn2node_book-isbn2node_cover'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'isbn2node_cover',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => 0,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+    ),
+    'field_instance' => array(
+      'bundle' => 'isbn2node_book',
+      'cardinality' => 1,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'colorbox_caption' => 'auto',
+            'colorbox_caption_custom' => '',
+            'colorbox_gallery' => 'post',
+            'colorbox_gallery_custom' => '',
+            'colorbox_image_style' => 'big',
+            'colorbox_node_style' => 'thumbnail',
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '-1',
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => 'content',
+            'image_style' => 'thumbnail',
+          ),
+          'type' => 'image',
+          'weight' => -1,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'isbn2node_cover',
+      'label' => 'Cover image',
+      'required' => FALSE,
+      'settings' => array(
+        'alt_field' => 1,
+        'default_image' => 0,
+        'file_directory' => 'image',
+        'file_extensions' => 'png gif jpg jpeg',
+        'max_filesize' => '',
+        'max_resolution' => '',
+        'min_resolution' => '',
+        'title_field' => 1,
+        'user_register_form' => FALSE,
+      ),
+      'type' => 'article_image',
+      'widget' => array(
+        'module' => 'image',
+        'settings' => array(
+          'preview_image_style' => 'thumbnail',
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'image_image',
+        'weight' => -3,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-isbn2node_book-isbn2node_edition'.
+  $fields['node-isbn2node_book-isbn2node_edition'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'isbn2node_edition',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => 255,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'isbn2node_book',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '4',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'isbn2node_edition',
+      'label' => 'Edition',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-isbn2node_book-isbn2node_isbn'.
+  $fields['node-isbn2node_book-isbn2node_isbn'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'isbn2node_isbn',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => 15,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'isbn2node_book',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'isbn2node_isbn',
+      'label' => 'ISBN',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => -2,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-isbn2node_book-isbn2node_physical_description'.
+  $fields['node-isbn2node_book-isbn2node_physical_description'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'isbn2node_physical_description',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => 255,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'isbn2node_book',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '5',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'isbn2node_physical_description',
+      'label' => 'Physical description',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => 2,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-isbn2node_book-isbn2node_publisher'.
+  $fields['node-isbn2node_book-isbn2node_publisher'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'isbn2node_publisher',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => 255,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'isbn2node_book',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '3',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'isbn2node_publisher',
+      'label' => 'Publisher',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-isbn2node_book-isbn2node_subtitle'.
+  $fields['node-isbn2node_book-isbn2node_subtitle'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'isbn2node_subtitle',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => 255,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'isbn2node_book',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'isbn2node_subtitle',
+      'label' => 'Subtitle',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => -4,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-isbn2node_book-isbn2node_year'.
+  $fields['node-isbn2node_book-isbn2node_year'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'isbn2node_year',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => 255,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'isbn2node_book',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '6',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'isbn2node_year',
+      'label' => 'Publishing date',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => 3,
+      ),
+    ),
+  );
+
   // Exported field: 'node-program-body'.
   $fields['node-program-body'] = array(
     'field_config' => array(
@@ -4492,7 +5337,7 @@ Global will be available to all resources to reference',
   $fields['node-service_instance-field_course'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_course',
@@ -4695,36 +5540,27 @@ Global will be available to all resources to reference',
       'field_permissions' => array(
         'type' => '2',
       ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
       'locked' => '0',
-      'module' => 'text',
-      'settings' => array(),
+      'module' => 'field_hidden',
+      'settings' => array(
+        'max_length' => '10000',
+      ),
       'translatable' => '0',
-      'type' => 'text_long',
+      'type' => 'field_hidden_text_long',
     ),
     'field_instance' => array(
       'bundle' => 'service_instance',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'This field contains JSON encoded information related to this specific service instance.  Typically this is a unique type of data structure per service type, but the data itself is unique to the course implementation on that service.  For example: a listing of all book outlines in a course service.  This data is used by service accounts and should not be modified manually.',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '2',
+          'weight' => 4,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4738,16 +5574,14 @@ Global will be available to all resources to reference',
       'label' => 'Service Data',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'text_processing' => 0,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
+        'active' => 0,
+        'module' => 'field_hidden',
+        'settings' => array(),
+        'type' => 'field_hidden',
         'weight' => '4',
       ),
     ),
@@ -4886,7 +5720,9 @@ Global will be available to all resources to reference',
   t('Access duration');
   t('Access string');
   t('Add offerings of this course to activate them for the semester and lead record of their occurance.');
+  t('An XML structure that follows the conventions established by ELMS for structuring a content outline.  The easiest way to obtain this is to install the MOOC distribution, create some content in a book outline and then export it to it\'s XML packaging format.');
   t('Any users that you\'d like to be able to coordinate semester setup and get data about this Academic Unit.');
+  t('Author');
   t('Body');
   t('Campus');
   t('Color');
@@ -4896,14 +5732,17 @@ Global will be available to all resources to reference',
   t('Course Archive');
   t('Course Start');
   t('Course title');
+  t('Cover image');
   t('Cron key');
   t('Delivery Guide');
   t('Description');
   t('Design doc');
   t('Distribution');
   t('Documents');
+  t('Edition');
   t('Generic, sample syllabus for communication to prospective students');
   t('How is this section going to be presented to students.');
+  t('ISBN');
   t('If there is remote authentication (like an LMS) enter those binding credentials here.');
   t('Instructional Designer');
   t('Instructional Outline');
@@ -4918,8 +5757,12 @@ Global will be available to all resources to reference',
   t('Method of offering');
   t('Offerings');
   t('Other documents');
+  t('Physical description');
   t('Program classification');
   t('Promotional screenshots for course');
+  t('Publisher');
+  t('Publishing date');
+  t('Representative Courses');
   t('Resource type');
   t('Resources');
   t('Sample Lesson');
@@ -4932,6 +5775,7 @@ Global will be available to all resources to reference',
   t('Service Data');
   t('Setup guide');
   t('Special Classifications');
+  t('Subtitle');
   t('Syllabus');
   t('TAs that have been allocated to this section');
   t('Teaching assistants');
@@ -4939,7 +5783,6 @@ Global will be available to all resources to reference',
   t('The dates that this section will have access to the material listed in the Access section');
   t('The instructional design assigned to manage this course');
   t('The semester this offering is for');
-  t('This field contains JSON encoded information related to this specific service instance.  Typically this is a unique type of data structure per service type, but the data itself is unique to the course implementation on that service.  For example: a listing of all book outlines in a course service.  This data is used by service accounts and should not be modified manually.');
   t('This field will contain the archive of the course offering once it has finished running.');
   t('Unit Head');
   t('University Bulletin');
@@ -4949,6 +5792,7 @@ Global will be available to all resources to reference',
 System is internally delegated by different services
 Global will be available to all resources to reference');
   t('Who is listed as the instructor of record and in charge of the course.');
+  t('XML Outline');
   t('Year');
   t('machine name of this service. This is used as part of automation');
 

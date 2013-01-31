@@ -15,6 +15,7 @@ features[features_api][] = api:1
 features[views_view][] = cis_bulk_operations
 features[views_view][] = cis_my_courses
 features[views_view][] = cis_resources
+features[views_view][] = cis_services
 features[views_view][] = course_slider
 features[views_view][] = courses_overview
 features[views_view][] = historical_college_data

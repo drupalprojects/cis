@@ -589,6 +589,22 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['fields']['field_type']['table'] = 'field_data_field_type';
   $handler->display->display_options['fields']['field_type']['field'] = 'field_type';
   $handler->display->display_options['fields']['field_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'resource' => 'resource',
+  );
   $handler->display->display_options['path'] = 'cis/resources';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Resources';
@@ -597,6 +613,393 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['menu']['name'] = 'management';
   $handler->display->display_options['menu']['context'] = 0;
   $export['cis_resources'] = $view;
+
+  $view = new view();
+  $view->name = 'cis_services';
+  $view->description = 'List of global resources for use by course sections in the system.';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'CIS Services';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'create service_instance content';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'entity';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'service' => 'service',
+  );
+
+  /* Display: Service Entity Reference */
+  $handler = $view->new_display('entityreference', 'Service Entity Reference', 'entityreference_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'entityreference_style';
+  $handler->display->display_options['style_options']['search_fields'] = array(
+    'title' => 'title',
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'entityreference_fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+
+  /* Display: Service list */
+  $handler = $view->new_display('page', 'Service list', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'CIS Resources';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'field_location' => 'field_location',
+    'field_distribution' => 'field_distribution',
+    'field_machine_name' => 'field_machine_name',
+    'body' => 'body',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_location' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_distribution' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_machine_name' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'body' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Location */
+  $handler->display->display_options['fields']['field_location']['id'] = 'field_location';
+  $handler->display->display_options['fields']['field_location']['table'] = 'field_data_field_location';
+  $handler->display->display_options['fields']['field_location']['field'] = 'field_location';
+  $handler->display->display_options['fields']['field_location']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_location']['click_sort_column'] = 'url';
+  /* Field: Content: Distribution */
+  $handler->display->display_options['fields']['field_distribution']['id'] = 'field_distribution';
+  $handler->display->display_options['fields']['field_distribution']['table'] = 'field_data_field_distribution';
+  $handler->display->display_options['fields']['field_distribution']['field'] = 'field_distribution';
+  $handler->display->display_options['fields']['field_distribution']['element_label_colon'] = FALSE;
+  /* Field: Content: Machine name */
+  $handler->display->display_options['fields']['field_machine_name']['id'] = 'field_machine_name';
+  $handler->display->display_options['fields']['field_machine_name']['table'] = 'field_data_field_machine_name';
+  $handler->display->display_options['fields']['field_machine_name']['field'] = 'field_machine_name';
+  $handler->display->display_options['fields']['field_machine_name']['element_label_colon'] = FALSE;
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = 'Description';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['path'] = 'cis/services';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Services';
+  $handler->display->display_options['menu']['description'] = 'List of all services in the CIS';
+  $handler->display->display_options['menu']['weight'] = '1';
+  $handler->display->display_options['menu']['name'] = 'management';
+  $handler->display->display_options['menu']['context'] = 0;
+
+  /* Display: Service Instance list */
+  $handler = $view->new_display('page', 'Service Instance list', 'page_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Service Instances';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'field_location' => 'field_location',
+    'field_machine_name' => 'field_machine_name',
+    'field_course' => 'field_course',
+    'nothing' => 'nothing',
+    'field_course_1' => 'field_course_1',
+    'field_services' => 'field_services',
+    'edit_node' => 'edit_node',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'field_location' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_machine_name' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_course' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'nothing' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_course_1' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_services' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Service ref */
+  $handler->display->display_options['relationships']['field_services_target_id']['id'] = 'field_services_target_id';
+  $handler->display->display_options['relationships']['field_services_target_id']['table'] = 'field_data_field_services';
+  $handler->display->display_options['relationships']['field_services_target_id']['field'] = 'field_services_target_id';
+  $handler->display->display_options['relationships']['field_services_target_id']['ui_name'] = 'Service ref';
+  $handler->display->display_options['relationships']['field_services_target_id']['label'] = 'Service ref';
+  $handler->display->display_options['relationships']['field_services_target_id']['required'] = TRUE;
+  /* Relationship: course ref */
+  $handler->display->display_options['relationships']['field_course_target_id']['id'] = 'field_course_target_id';
+  $handler->display->display_options['relationships']['field_course_target_id']['table'] = 'field_data_field_course';
+  $handler->display->display_options['relationships']['field_course_target_id']['field'] = 'field_course_target_id';
+  $handler->display->display_options['relationships']['field_course_target_id']['ui_name'] = 'course ref';
+  $handler->display->display_options['relationships']['field_course_target_id']['label'] = 'course ref';
+  $handler->display->display_options['relationships']['field_course_target_id']['required'] = TRUE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Service URL */
+  $handler->display->display_options['fields']['field_location']['id'] = 'field_location';
+  $handler->display->display_options['fields']['field_location']['table'] = 'field_data_field_location';
+  $handler->display->display_options['fields']['field_location']['field'] = 'field_location';
+  $handler->display->display_options['fields']['field_location']['relationship'] = 'field_services_target_id';
+  $handler->display->display_options['fields']['field_location']['ui_name'] = 'Service URL';
+  $handler->display->display_options['fields']['field_location']['label'] = '';
+  $handler->display->display_options['fields']['field_location']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_location']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_location']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_location']['type'] = 'link_plain';
+  /* Field: Content: Cron key */
+  $handler->display->display_options['fields']['field_cron_key']['id'] = 'field_cron_key';
+  $handler->display->display_options['fields']['field_cron_key']['table'] = 'field_data_field_cron_key';
+  $handler->display->display_options['fields']['field_cron_key']['field'] = 'field_cron_key';
+  $handler->display->display_options['fields']['field_cron_key']['label'] = '';
+  $handler->display->display_options['fields']['field_cron_key']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_cron_key']['element_label_colon'] = FALSE;
+  /* Field: Course machine */
+  $handler->display->display_options['fields']['field_machine_name']['id'] = 'field_machine_name';
+  $handler->display->display_options['fields']['field_machine_name']['table'] = 'field_data_field_machine_name';
+  $handler->display->display_options['fields']['field_machine_name']['field'] = 'field_machine_name';
+  $handler->display->display_options['fields']['field_machine_name']['relationship'] = 'field_course_target_id';
+  $handler->display->display_options['fields']['field_machine_name']['ui_name'] = 'Course machine';
+  $handler->display->display_options['fields']['field_machine_name']['label'] = '';
+  $handler->display->display_options['fields']['field_machine_name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_machine_name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_machine_name']['type'] = 'text_plain';
+  /* Field: Content: Course */
+  $handler->display->display_options['fields']['field_course']['id'] = 'field_course';
+  $handler->display->display_options['fields']['field_course']['table'] = 'field_data_field_course';
+  $handler->display->display_options['fields']['field_course']['field'] = 'field_course';
+  $handler->display->display_options['fields']['field_course']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_course']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_course']['settings'] = array(
+    'link' => 0,
+  );
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = 'Link';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = 'Access [field_course]';
+  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['nothing']['alter']['path'] = '[field_location]/[field_machine_name]';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: Content: Course */
+  $handler->display->display_options['fields']['field_course_1']['id'] = 'field_course_1';
+  $handler->display->display_options['fields']['field_course_1']['table'] = 'field_data_field_course';
+  $handler->display->display_options['fields']['field_course_1']['field'] = 'field_course';
+  $handler->display->display_options['fields']['field_course_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_course_1']['settings'] = array(
+    'link' => 1,
+  );
+  /* Field: Content: Service */
+  $handler->display->display_options['fields']['field_services']['id'] = 'field_services';
+  $handler->display->display_options['fields']['field_services']['table'] = 'field_data_field_services';
+  $handler->display->display_options['fields']['field_services']['field'] = 'field_services';
+  $handler->display->display_options['fields']['field_services']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_services']['settings'] = array(
+    'link' => 1,
+  );
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+  $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_1']['label'] = 'Cron';
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'Run Cron';
+  $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['nothing_1']['alter']['path'] = '[field_location]/[field_machine_name]/cron.php?cron_key=[field_cron_key]';
+  $handler->display->display_options['fields']['nothing_1']['alter']['external'] = TRUE;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = '';
+  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['edit_node']['text'] = 'edit instance';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'service_instance' => 'service_instance',
+  );
+  /* Filter criterion: Content: Course (field_course) */
+  $handler->display->display_options['filters']['field_course_target_id']['id'] = 'field_course_target_id';
+  $handler->display->display_options['filters']['field_course_target_id']['table'] = 'field_data_field_course';
+  $handler->display->display_options['filters']['field_course_target_id']['field'] = 'field_course_target_id';
+  $handler->display->display_options['filters']['field_course_target_id']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_course_target_id']['expose']['operator_id'] = 'field_course_target_id_op';
+  $handler->display->display_options['filters']['field_course_target_id']['expose']['label'] = 'Course';
+  $handler->display->display_options['filters']['field_course_target_id']['expose']['operator'] = 'field_course_target_id_op';
+  $handler->display->display_options['filters']['field_course_target_id']['expose']['identifier'] = 'field_course_target_id';
+  $handler->display->display_options['filters']['field_course_target_id']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    9 => 0,
+    11 => 0,
+    5 => 0,
+    10 => 0,
+    6 => 0,
+    4 => 0,
+    7 => 0,
+    8 => 0,
+    3 => 0,
+    13 => 0,
+  );
+  /* Filter criterion: Content: Service (field_services) */
+  $handler->display->display_options['filters']['field_services_target_id']['id'] = 'field_services_target_id';
+  $handler->display->display_options['filters']['field_services_target_id']['table'] = 'field_data_field_services';
+  $handler->display->display_options['filters']['field_services_target_id']['field'] = 'field_services_target_id';
+  $handler->display->display_options['filters']['field_services_target_id']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_services_target_id']['expose']['operator_id'] = 'field_services_target_id_op';
+  $handler->display->display_options['filters']['field_services_target_id']['expose']['label'] = 'Service';
+  $handler->display->display_options['filters']['field_services_target_id']['expose']['operator'] = 'field_services_target_id_op';
+  $handler->display->display_options['filters']['field_services_target_id']['expose']['identifier'] = 'field_services_target_id';
+  $handler->display->display_options['filters']['field_services_target_id']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    9 => 0,
+    11 => 0,
+    5 => 0,
+    10 => 0,
+    6 => 0,
+    4 => 0,
+    7 => 0,
+    8 => 0,
+    3 => 0,
+    13 => 0,
+  );
+  $handler->display->display_options['path'] = 'cis/services/instances';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Service Instances';
+  $handler->display->display_options['menu']['description'] = 'List of all services in the CIS';
+  $handler->display->display_options['menu']['weight'] = '1';
+  $handler->display->display_options['menu']['name'] = 'management';
+  $handler->display->display_options['menu']['context'] = 0;
+  $export['cis_services'] = $view;
 
   $view = new view();
   $view->name = 'course_slider';
