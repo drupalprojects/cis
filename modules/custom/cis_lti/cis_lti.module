@@ -52,15 +52,15 @@ function cis_lti_lti_tool_provider_launch_alter(&$launch_info, $account) {
   else {
     // present form prepopulated for Instructor role
     if (in_array('Instructor', array_values($account->roles))) {
-    // convert LTI launch values into json encoded string
-    $options = array(
-      'query' => array(
-        'lti_launch' => drupal_json_encode($launch_info),
-      ),
-    );
-    // pass the launch over to the quick setup form
-    drupal_goto('cis-quick-setup', $options);
-  }
+      // convert LTI launch values into json encoded string
+      $options = array(
+        'query' => array(
+          'lti_launch' => drupal_json_encode($launch_info),
+        ),
+      );
+      // pass the launch over to the quick setup form
+      drupal_goto('cis-quick-setup', $options);
+    }
   }
 }
 
@@ -136,7 +136,7 @@ function _cis_lti_consumer_from_address($address) {
  * Implements hook_cis_service_instance_options_alter().
  */
 function cis_lti_cis_service_instance_options_alter(&$options, $course, $service) {
-	// if this module is enabled, all distributions will have LTI pings
-	$options['en'][] = 'cis_service_lti';
-	$options['fr'][] = 'cis_service_lti';
+  // if this module is enabled, all distributions will have LTI pings
+  $options['en'][] = 'cis_service_lti';
+  $options['fr'][] = 'cis_service_lti';
 }

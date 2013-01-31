@@ -248,6 +248,8 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   $options['en'][] = 'cis_service_connection_ux';
   // vset the uuid from the service_instance entity into the remote site
   $options['vset'][] = 'cis_service_instance_uuid ' . $service_instance->uuid;
+  // disable site auto-cron run so admin can set policy globally
+  $options['vset'][] = 'cron_safe_threshold 0';
   // allow for advanced drush alterations via code
   drupal_alter('cis_service_instance_options', $options, $course, $service);
   // build space name based on the requested title
