@@ -251,6 +251,11 @@ libraries[profiler][destination] = "libraries"
 libraries[profiler][download][type] = "get"
 libraries[profiler][download][url] = "http://ftp.drupal.org/files/projects/profiler-7.x-2.x-dev.tar.gz"
 
+libraries[quojs][directory_name] = "quojs"
+libraries[quojs][type] = "library"
+libraries[quojs][destination] = "libraries"
+libraries[quojs][download][type] = "get"
+libraries[quojs][download][url] = "https://github.com/soyjavi/QuoJS/archive/master.zip"
 
 ; Patches
 
