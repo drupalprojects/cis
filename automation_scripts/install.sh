@@ -17,8 +17,8 @@ read dbsupw
 sed -i "/^admin=/c\admin=$adminemail" drush-create-site
 sed -i "/^fileloc=/c\fileloc=$wwwjobs" drush-create-site
 sed -i "/^drupalroot=/c\drupalroot=$drupalroot" drush-create-site
-sed -i "/^dbsu=/c\dbusu=$dbsu" drush-create-site
-sed -i "/^dbsupw=/c\dbusupw=$dbsupw" drush-create-site
+sed -i "/^dbsu=/c\dbsu=$dbsu" drush-create-site
+sed -i "/^dbsupw=/c\dbsupw=$dbsupw" drush-create-site
 
 
 
