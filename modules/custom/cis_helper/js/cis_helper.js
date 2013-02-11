@@ -1,5 +1,13 @@
 (function ($) {
   $(document).ready(function(){
+    $('#edit-instructional-outline').change(function(){
+      if ($(this).val() == 'xml_manifest_import') {
+        $('#edit-xml-manifest-import-ajax-wrapper').removeClass('hide_form_field');
+      }
+      else {
+        $('#edit-xml-manifest-import-ajax-wrapper').addClass('hide_form_field');
+      }
+    });
     $('#edit-course').change(function(){
       // hide options related to a new course if it exists
       if ($(this).val() != 'new') {
@@ -11,5 +19,6 @@
       }
     });
     $('#edit-course').change();
+    $('#edit-instructional-outline').change();
   });
 })(jQuery);

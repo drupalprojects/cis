@@ -3,6 +3,7 @@
  * @file
  * Workflow and functionality glue based on the structure of the CIS.
  */
+define('CIS_HELPER_COURSE_SERVICE', 'course');
 define('CIS_HELPER_JOB_PATH', '/var/wwwjobs');
 define('CIS_HELPER_DEFAULT_AUTHENTICATION', 'open');
 define('CIS_HELPER_DEFAULT_CONTENT_OUTLINE', 'lesson-based.xml');
@@ -56,6 +57,9 @@ function cis_helper_permission() {
     'access cis setup form' =>  array(
       'title' => t('Access CIS Quick setup form'),
     ),
+    'cis setup admin options' => array(
+      'title' => t('Access administrative options on setup form'),
+    ),
   );
 }
 
@@ -97,7 +101,7 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
       $service = node_load($instance->field_services[LANGUAGE_NONE][0]['target_id']);
       // handle each service instance's data differently
       switch ($service->field_machine_name[LANGUAGE_NONE][0]['value']) {
-        case 'course':
+        case CIS_HELPER_COURSE_SERVICE:
           // for course this is a json containing the different outlines as uuid => title
           $options = drupal_json_decode($instance->field_service_data[LANGUAGE_NONE][0]['value']);
           // create a visible version of the hidden field
@@ -238,12 +242,11 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
     $options['en'] = $extra_options;
   }
   // only enable activation codes on the course based service
-  if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == 'course' && $course->field_method_of_access[LANGUAGE_NONE][0]['value'] == 'code') {
+  if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE && $course->field_method_of_access[LANGUAGE_NONE][0]['value'] == 'code') {
     $options['en'][] = 'cis_service_activation_codes';
   }
   // service connection is required to talk back to this site
   $options['en'][] = 'cis_service_connection';
-  $options['fr'][] = 'cis_service_lti';
   // ux has the block position settings
   $options['en'][] = 'cis_service_connection_ux';
   // vset the uuid from the service_instance entity into the remote site
@@ -291,7 +294,7 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   // this way they actually revert instead of vset / en disrupting them
   $content .= $fr;
   // only apply default content import for course based service
-  if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == 'course') {
+  if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE) {
     // allow for on creation population of material
     $content .= 'drush feeds-import --verbose feeds_node_helper_book_import --file=' . $service_instance->field_service_data[LANGUAGE_NONE][0]['value'] . "\n";
   }
