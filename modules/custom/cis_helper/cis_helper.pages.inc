@@ -65,22 +65,52 @@ function cis_helper_quick_setup_page() {
     '#multiple_toggle' => '1',
     '#title' => t('Method of access'),
   );
+  $options = _cis_helper_get_instructional_outlines();
+  // add purely administrative options as part of advanced migration
+  if (user_access('cis setup admin options')) {
+    $options['xml_manifest_import'] = t('Upload..');
+  }
   $form['instructional_outline'] = array(
     '#type' => 'select',
-    '#options' => _cis_helper_get_instructional_outlines(),
+    '#options' => $options,
     '#required' => TRUE,
     '#title' => t('Instructional outline'),
     '#description' => t('This helps in creating a default instructional flow for the course, this just helps provide a starting point.'),
     '#default_value' => drupal_get_path('module', 'cis_helper') . '/instructional_models/' . CIS_HELPER_DEFAULT_CONTENT_OUTLINE,
   );
+  if (user_access('cis setup admin options')) {
+    $form['xml_manifest_import'] = array(
+      '#required' => '0',
+      '#description' => t('Use this to import from an XML based version of a course outline.'),
+      '#type' => 'managed_file',
+      '#size' => '30',
+      '#title' => t('XML manifest'),
+      '#upload_location' => 'public://xml_manifest_import/',
+      '#upload_validators' => array(
+        'file_validate_extensions' => array(
+          0 => 'xml',
+        ),
+        'file_validate_size' => array(
+          0 => 10485760,
+        ),
+      ),
+    );
+  }
   // list of services
-  $form['service'] = array(
-    '#multiple' => '0',
-    '#required' => '1',
+  $service_list = _cis_helper_assemble_entity_list('node', 'service', 'nid', 'title');
+  // remove anything with (dev) in title
+  foreach ($service_list as $key => $name) {
+    if (strpos($name, '(dev)')) {
+      unset($service_list[$key]);
+    }
+  }
+  $form['services'] = array(
+    '#multiple' => TRUE,
+    '#required' => TRUE,
     '#key_type_toggled' => '1',
     '#description' => t('The service to deploy for this course'),
-    '#type' => 'select',
-    '#options' => _cis_helper_assemble_entity_list('node', 'service', 'nid', 'title'),
+    '#type' => 'checkboxes',
+    '#options' => $service_list,
     '#multiple_toggle' => '1',
     '#title' => t('Service'),
   );
@@ -224,7 +254,16 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
   $semester = $form_state['values']['semester'];
   $year = $form_state['values']['year'];
   $instructional_outline = $form_state['values']['instructional_outline'];
-  $service = node_load($form_state['values']['service']);
+  // check for admin settings
+  $xml_manifest_import = FALSE;
+  if (user_access('cis setup admin options') && $form_state['values']['xml_manifest_import'] != '') {
+    // load the file into an object
+    $xml_manifest_import = file_load($form_state['values']['xml_manifest_import']);
+    // save file
+    file_save($xml_manifest_import);
+  }
+  // load the services node id items into a list
+  $services = entity_load('node', $form_state['values']['services']);
   // first step is to create the course if it exists
   if ($form_state['values']['course'] == 'new') {
     $name = check_plain($form_state['values']['new_name']);
@@ -334,40 +373,55 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
   // save section
   $section->save();
   
-  // now work on the service instance if needed
-  $query = new EntityFieldQuery;
-  $result = $query
-    ->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'service_instance')
-    ->fieldCondition('field_services', 'target_id', $service->nid, '=')
-    ->fieldCondition('field_course', 'target_id', $course->nid, '=')
-    ->addMetaData('account', user_load(1)) // Run the query as user 1.
-    ->execute();
-  // verify this service doesn't already exist
-  if (count($result) == 0) {
-    // make course, then we need to generate the ids
-    $instance = new stdClass();
-    $instance->type = 'service_instance';
-    $instance->status = 1;
-    $instance->revision = 1;
-    $instance->language = LANGUAGE_NONE;
-    // set an easy to read title
-    $instance->title = $course->field_machine_name[LANGUAGE_NONE][0]['value'] . ' - ' . $service->field_machine_name[LANGUAGE_NONE][0]['value'];
-    // created by the system so root user
-    $instance->uid = 1;
-    // set the entity reference field to service
-    $instance->field_services[LANGUAGE_NONE][0]['target_id'] = $service->nid;
-    // set the entity reference field to course
-    $instance->field_course[LANGUAGE_NONE][0]['target_id'] = $course->nid;
-    // repurpose the general data field
-    $instance->field_service_data[LANGUAGE_NONE][0]['value'] = getcwd() . '/' . $instructional_outline;
-    // this will create the service because of the hook_entity_insert used here
-    node_save($instance);
-    // instance UUID will be sent to the new course
-    // this is the only case when instruction_outline needs to be populated manually
-    // this value will be targetted and converted during a service account PUT operation
-    $section->field_instructional_outline[LANGUAGE_NONE][0]['value'] = $instance->uuid;
-    // save section
-    $section->save();
+  // now work on the services if needed
+  foreach ($services as $service) {
+    $query = new EntityFieldQuery;
+    $result = $query
+      // select all nodes
+      ->entityCondition('entity_type', 'node')
+      // that are service instances
+      ->entityCondition('bundle', 'service_instance')
+      // that match the node id of services
+      ->fieldCondition('field_services', 'target_id', $service->nid, '=')
+      // and also are associated to the current course
+      ->fieldCondition('field_course', 'target_id', $course->nid, '=')
+      // query as user 1
+      ->addMetaData('account', user_load(1))
+      ->execute();
+    // verify this service doesn't already exist
+    if (count($result) == 0) {
+      // make course, then we need to generate the ids
+      $instance = new stdClass();
+      $instance->type = 'service_instance';
+      $instance->status = 1;
+      $instance->revision = 1;
+      $instance->language = LANGUAGE_NONE;
+      // set an easy to read title
+      $instance->title = $course->field_machine_name[LANGUAGE_NONE][0]['value'] . ' - ' . $service->field_machine_name[LANGUAGE_NONE][0]['value'];
+      // created by the system so root user
+      $instance->uid = 1;
+      // set the entity reference field to service
+      $instance->field_services[LANGUAGE_NONE][0]['target_id'] = $service->nid;
+      // set the entity reference field to course
+      $instance->field_course[LANGUAGE_NONE][0]['target_id'] = $course->nid;
+      // repurpose the general data field
+      if (user_access('cis setup admin options') && isset($xml_manifest_import->uri)) {
+        $instance->field_service_data[LANGUAGE_NONE][0]['value'] = drupal_realpath($xml_manifest_import->uri);
+      }
+      else {
+        $instance->field_service_data[LANGUAGE_NONE][0]['value'] = getcwd() . '/' . $instructional_outline;
+      }
+      // this will create the service because of the hook_entity_insert used here
+      node_save($instance);
+      // only run this for course based installs
+      if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE) {
+        // instance UUID will be sent to the new course
+        // this is the only case when instruction_outline needs to be populated manually
+        // this value will be targetted and converted during a service account PUT operation
+        $section->field_instructional_outline[LANGUAGE_NONE][0]['value'] = $instance->uuid;
+        // save section
+        $section->save();
+      }
+    }
   }
 }
