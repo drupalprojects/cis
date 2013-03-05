@@ -33,7 +33,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5d8e4950-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5d9063de-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -90,7 +108,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5d9472d0-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5d96959c-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -147,7 +183,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5d9aad08-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5d9cb422-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -204,7 +258,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5da0c026-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5da2dfd2-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -261,7 +333,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5da743f6-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5da94a5c-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -318,7 +408,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5dadae80-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5dafc864-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -375,7 +483,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5db4132e-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5db649a0-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -432,7 +558,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5dbab1b6-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5dbca5fc-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -489,7 +633,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5dc0a148-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5dc2b762-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -546,7 +708,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5dc6d2d4-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5dc8ea60-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -603,7 +783,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5dcd265c-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5dcf3366-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -660,7 +858,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5dd3d0b0-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5dd627ac-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -717,7 +933,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5dda8dba-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5ddccfee-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -774,7 +1008,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5de11ff4-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5de32eb6-5901-11e2-bc7b-c82d87200bd5</uuid>
@@ -831,7 +1083,25 @@
     <uid>1</uid>
     <type>page</type>
     <title>Page 1</title>
-    <body>&lt;p&gt;Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.&lt;/p&gt;&lt;p&gt;Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;fieldset class="collapsible collapsed elms_collapse"&gt;&lt;legend class="elms_collapse-text"&gt;Collapse&lt;/legend&gt;&lt;div class="elms_collapse-body"&gt;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&lt;/div&gt;&lt;/fieldset&gt;&lt;br /&gt;&lt;div class="elms_readings"&gt;&lt;h2 class="elms_header"&gt;Readings&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Reading 1&lt;/li&gt;&lt;li&gt;Reading 2&lt;/li&gt;&lt;li&gt;Reading 3&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;</body>
+      <body><p>Lorem ipsum dolor sit amet, elit fusce erat, arcu pretium et ultricies velit, parturient faucibus sit dignissim varius, dui nibh ut tellus mauris dolor. Cursus vulputate erat dolore arcu sit egestas, suspendilacus vel in fringilla elit. Fusce tempus ante congue faucibus odio sed, gravida eu libero, elit gravida pede a id varius tempus. Aut massa vel sagittis sed vel donec, et eros. Amet nunc vivamus, gravida suspendisse integer vivamus ligula. Ultrices sociosqu ornare duis, eget tempor quisque.</p>
+          <p>Vestibulum ut est, wisi velit, nulla sollicitudin morbi. Fermentum non wisi. Magna nec id sit consectetuer vel, montes mauris, scelerisque erat purus etiam nisl erat. Sit ut pulvinar quisque quisque. A ante, odio pharetra urna suspendisse nascetur metus. Dignissim dui nullam adipiscing amet, tincidunt tincidunt turpis. Duis a ipsum aliquam purus orci, in nec vel libero fusce, imperdiet quisque sem, in ac aenean ut, ac dolor scelerisque nibh nam.</p>
+          <p>Sapien vestibulum turpis, commodo arcu tortor massa faucibus molestie. Litora suspendisse etiam a tortor in. Ultricies fringilla. Hac vulputate donec auctor. Viverra at ultrices et mattis volutpat, aenean interdum nec. Condimentum a et amet quia, mi feugiat in suscipit, aliquet parhendrerit fames hymenaeos vel, quam bibendum et massa donec nunc.</p>
+          <p></p>
+          <h2>Step X: Complete the Topic Readings</h2>
+          <p>This topic uses one or more required readings and one or more optional readings. By completing these readings before studying the lecture, you will make the most effective use of both. As you read, remember to take good notes using your study sheets.</p>
+          <div class="textbook_box textbook_box_required">
+              <h3>Required</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+              </ol>
+          </div>
+          <div class="textbook_box textbook_box_optional">
+              <h3>Optional</h3>
+              <ol>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Source: The source you are linking to)</li>
+                  <li>&quot;<a href="link">Linked page title</a>&quot; (Note: A note about what you should pay attention to)</li>
+              </ol>
+          </div></body>
     <parent>5de7333a-5901-11e2-bc7b-c82d87200bd5</parent>
     <weight>-14</weight>
     <uuid>5de98414-5901-11e2-bc7b-c82d87200bd5</uuid>
