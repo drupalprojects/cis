@@ -3,22 +3,23 @@
 
 echo "what is the administrator e-mail"
 read adminemail
+echo "what is the site e-mail (e-mail from drupal)"
+read siteemail
 echo "where are you storing the jobs file?"
 read wwwjobs
-echo "where is your drupal installation installed?"
-read drupalroot
 echo "what is the database admin user?"
 read dbsu
 echo "what is the database admin password?"
 read dbsupw
 
 
+
 ##entering starting values
 sed -i "/^admin=/c\admin=$adminemail" drush-create-site
 sed -i "/^fileloc=/c\fileloc=$wwwjobs" drush-create-site
-sed -i "/^drupalroot=/c\drupalroot=$drupalroot" drush-create-site
 sed -i "/^dbsu=/c\dbsu=$dbsu" drush-create-site
 sed -i "/^dbsupw=/c\dbsupw=$dbsupw" drush-create-site
+sed -i "/^site_email=/c\site_email=$siteemail" drush-create-site
 
 
 

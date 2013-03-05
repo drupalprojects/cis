@@ -1,19 +1,28 @@
 #!/bin/bash
+#email that the site uses to send mail
+site_email=sysadmin@vmhost.psu.edu
 #administrator e-mail or alias
 admin=djb44@psu.edu
 #.course .studio file loaction
 fileloc=/var/wwwjobs
 #drupal root is also defined via the .course and .studio files below
-drupalroot=/var/www/html
+webdir=/var/www/
 #sets the hostname for each college
 hostfile=$fileloc/hosts
 
 #database superuser credentials
-dbusu=
-dbusupw=
+dbsu=dbadmin
+dbsupw=password
 
 #sets the date
 date=`date +%Y-%m-%d_%H:%M:%S`
+
+#prevent the script from being run more than once
+if [ -f /tmp/drush-lock ]; then 
+echo "script running"
+exit 1
+fi 
+touch /tmp/drush-lock
 
 #read the files in the $fileloc and set vars based on file name.
 for coursefile in `find $fileloc  ! -name '*processing*' ! -name '*error' ! -name '*processed' ! -name 'hosts' -type f`
@@ -21,36 +30,11 @@ do
 college=`sed -n '2p' $coursefile`
 hostnamesearch=`grep ^$college $hostfile | awk {'print $3'}`
 course=`sed -n '1p' $coursefile`
-#setting databaseuser prefix, and drupalroot for each course type
-dbprefix=null
-
-#check file extension, set vars accordingly
-case ${coursefile#*.} in 
-course) 
-dbprefix=c
-drupalroot=/var/www/html
-coursedb="courses_"$college"_"$course
-hostname=courses.$hostnamesearch
-subdir=courses/$college
-;;
-studio)
-dbprefix=s
-drupalroot=/var/www/html
-coursedb="studio_"$college"_"$course
-hostname=studio.$hostnamesearch
-subdir=studio/$college
-;;
-*)
-echo "extension not supported"
-exit 1
-;;
-esac
-
-if [ $dbprefix = "null" ]; then
-echo "this error shouldn't be possible."
-exit 1
-fi
-
+service=${coursefile#*.}
+drupalroot=$webdir/$service
+coursedb=$service"_"$college"_"$course
+hostname=$service.$hostnamesearch
+subdir=$service/$college
 collegetest=`grep ^$college $hostfile`
 dbpw=`</dev/urandom tr -dc A-Za-z0-9 | head -c14`
 drupalpw=`</dev/urandom tr -dc A-Za-z0-9 | head -c14`
@@ -80,6 +64,11 @@ fi
 
 if [ $coursefilelen -gt 300 ]; then 
 echo "$coursefile is too large."
+error=1
+fi
+
+if [ ! -f $drupalroot/index.php ]; then 
+echo $date " Drupal doesn't exist in $drupalroot"
 error=1
 fi
 
@@ -123,6 +112,25 @@ echo " $date errors!"
 error=1
 fi
 
+#Test if dbuser exists, if it does, then we tack on a number and try again
+dbprefixtest=$dbprefix
+dbcount=0
+function userexist {
+userexist=`mysql -u$dbsu -p$dbsupw -e "select user from mysql.user;" | grep ^$dbprefixtest$college$course`
+}
+userexist
+
+while [ $userexist ]; do 
+dbcount=$((dbcount+1))
+echo "database use exists, adding $dbcount to $dbprefix"
+dbprefixtest=$dbprefix$dbcount
+userexist
+done
+
+if [ $dbcount -gt 0 ]; then 
+dbprefix=$dbprfix$dbcount
+fi
+
 #Test if database exists, if does back out with warning
 dbexist=`mysql -u$dbsu -p$dbsupw -e "show databases;" | grep ^"$coursedb"$`
 if [ $dbexist ]; then 
@@ -143,6 +151,20 @@ echo "it appears this course has already been added. exiting"
 error=1
 fi
 
+#another test for guessing if the course has been added
+if [[ `grep $course $drupalroot/sites/sites.php` ]]; then
+echo "this course is in sites.php. exiting"
+error=1
+fi
+
+#if errors are found, back out
+if [ $error = 1 ]; then
+/bin/mv $coursefile $coursefile.$date.error
+echo "there was an error processing $coursefile. please check the logs" | mail -s "error creating site" $admin
+rm /tmp/drush-lock
+exit 1
+fi
+
 #if sites file doesn't exist, copy it and add empty array
 if [ ! -f $drupalroot/sites/sites.php ]; then
 /bin/cp $drupalroot/sites/example.sites.php $drupalroot/sites/sites.php
@@ -151,23 +173,12 @@ echo "" >> $drupalroot/sites/sites.php
 echo ");" >> $drupalroot/sites/sites.php
 fi
 
-#another test for guessing if the course has been added
-if [[ `grep $course $drupalroot/sites/sites.php` ]]; then 
-echo "this course is in sites.php. exiting"
-error=1
-fi 
-
-if [ $error = 1 ]; then
-/bin/mv $coursefile $coursefile.$date.error
-echo "there was an error processing $coursefile. please check the logs" | mail -s "error creating site" $admin
-exit 1
-fi
-
+#start processing
 /bin/mv $coursefile $coursefile.processing
 
 cd $drupalroot
 #Install site with drush
-/usr/bin/drush -y site-install $insprofile --db-url=mysql://$dbprefix$college$course:$dbpw@localhost/$coursedb --sites-subdir=$course --db-su=$dbsu --db-su-pw=$dbsupw --site-name="$sitename" --account-name=$drupaluid --account-pass=$drupalpw --account-mail=$admin > /dev/null
+/usr/bin/drush -y site-install $insprofile --db-url=mysql://$dbprefix$college$course:$dbpw@localhost/$coursedb --sites-subdir=$course --db-su=$dbsu --db-su-pw=$dbsupw --site-name="$sitename" --account-name=$drupaluid --account-pass=$drupalpw --account-mail=$admin --site-mail=$site_email > /dev/null
 
 #create symlink for subdir
 /bin/ln -s . $course
@@ -256,6 +267,7 @@ if [[ $options ]]; then
 
 if [[ $drushcommand = "NULL" ]]; then
 echo "$badcommand is not a supported drush command." 
+rm /tmp/drush-lock
 exit 1
 fi
         drushoption=`echo $drush | awk '{print $3}'`
@@ -293,3 +305,4 @@ done
 if [[ -f  $coursefile.processing ]]; then
 /bin/mv $coursefile.processing $coursefile.processed
 fi
+rm /tmp/drush-lock

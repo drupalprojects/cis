@@ -10,4 +10,4 @@ sites/*/private
 
 # Ignore stupid dreamweaver files
 *dwsync.xml
-*_notes/*
+libraries/
