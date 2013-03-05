@@ -43,7 +43,7 @@ function cis_lti_lti_tool_provider_launch_alter(&$launch_info, $account) {
             }
           }
         break;
-				default:
+        default:
           // start to build the location for the launch
           $location = $service->field_location[LANGUAGE_NONE][0]['url'];
           // append the machine name of the course
