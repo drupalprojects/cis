@@ -26,9 +26,24 @@ function cis_lti_lti_tool_provider_launch_alter(&$launch_info, $account) {
       $service = node_load($instance->field_services[LANGUAGE_NONE][0]['target_id']);
       // account for different types of services
       switch ($service->field_machine_name[LANGUAGE_NONE][0]['value']) {
-        // TODO course needs to be requested from the context somehow
         // right now we only account for course
-        case 'course':
+        case CIS_HELPER_COURSE_SERVICE:
+          // start to build the location for the launch
+          $location = $service->field_location[LANGUAGE_NONE][0]['url'];
+          // append the machine name of the course
+          $location .= '/' . $course->field_machine_name[LANGUAGE_NONE][0]['value'];
+          // site's base url must be set for resigning
+          global $base_url;
+          // grab object from the current site's address
+          if ($consumer = _cis_lti_consumer_from_address($base_url)) {
+            // perform lti launch against another service
+            if ($resp = cis_lti_service_post($launch_info, $consumer->lti_tool_provider_consumer_key, $location . '/lti')) {
+              // send user to the final destination now that account has been seeded
+              drupal_goto($location);
+            }
+          }
+        break;
+				default:
           // start to build the location for the launch
           $location = $service->field_location[LANGUAGE_NONE][0]['url'];
           // append the machine name of the course
