@@ -3,7 +3,7 @@
  * @file
  * Workflow and functionality glue based on the structure of the CIS.
  */
-define('CIS_HELPER_COURSE_SERVICE', 'course');
+define('CIS_HELPER_COURSE_SERVICE', 'courses');
 define('CIS_HELPER_JOB_PATH', '/var/wwwjobs');
 define('CIS_HELPER_DEFAULT_AUTHENTICATION', 'open');
 define('CIS_HELPER_DEFAULT_CONTENT_OUTLINE', 'lesson-based.xml');
@@ -234,13 +234,6 @@ function cis_helper_get_data_values($column) {
  */
 function _cis_helper_add_service_instance($course, $service, $service_instance, $college, $account) {
   $options = array();
-  // load optional cis_helper defined values
-  $extra_options = variable_get('cis_build_' . $course->field_method_of_access[LANGUAGE_NONE][0]['value'], '');
-  if (!empty($extra_options)) {
-    $extra_options = explode(',', $extra_options);
-    // only allow for enabling options from system variable
-    $options['en'] = $extra_options;
-  }
   // only enable activation codes on the course based service
   if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE && $course->field_method_of_access[LANGUAGE_NONE][0]['value'] == 'code') {
     $options['en'][] = 'cis_service_activation_codes';
@@ -255,6 +248,15 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   $options['vset'][] = 'cron_safe_threshold 0';
   // allow for advanced drush alterations via code
   drupal_alter('cis_service_instance_options', $options, $course, $service);
+  // load optional cis_helper defined values
+  $extra_options = variable_get('cis_build_' . $course->field_method_of_access[LANGUAGE_NONE][0]['value'], '');
+  if (!empty($extra_options)) {
+    $extra_options = explode(',', $extra_options);
+    // only allow for enabling options from system variable
+    foreach ($extra_options as $eoption) {
+      $options['en'][] = $eoption;
+    }
+  }
   // build space name based on the requested title
   $space_name = $course->field_machine_name[LANGUAGE_NONE][0]['value'];
   // create a file based on service name
