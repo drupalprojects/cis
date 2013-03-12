@@ -4,6 +4,7 @@
  * Workflow and functionality glue based on the structure of the CIS.
  */
 define('CIS_HELPER_COURSE_SERVICE', 'courses');
+define('CIS_HELPER_EXTERNAL_FLAG', '--external--');
 define('CIS_HELPER_JOB_PATH', '/var/wwwjobs');
 define('CIS_HELPER_DEFAULT_AUTHENTICATION', 'open');
 define('CIS_HELPER_DEFAULT_CONTENT_OUTLINE', 'lesson-based.xml');
@@ -96,9 +97,13 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'field_collection_item_form' && $form['#entity']->field_name == 'field_sections') {
     // return all service instances this section will have access to
     $service_instances = _cis_helper_derive_service_instances($form['#entity']->item_id);
+    // we need to replace the service options based on those that exist
+    $service_options = array('_none' => t('- None -'));
     // load each service related to the instances found
     foreach ($service_instances as $instance) {
       $service = node_load($instance->field_services[LANGUAGE_NONE][0]['target_id']);
+      // collect array of known services available to this course via instances
+      $service_options[$service->nid] = $service->title;
       // handle each service instance's data differently
       switch ($service->field_machine_name[LANGUAGE_NONE][0]['value']) {
         case CIS_HELPER_COURSE_SERVICE:
@@ -121,6 +126,8 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
         break;
       }
     }
+    // set the allowed options to those found above
+    $form['field_services']['und']['#options'] = $service_options;
   }
   // allow for select style output for fields in data table
   if ($form_id == 'views_exposed_form' && strpos($form['#id'], 'historical-college-data-')) {
@@ -160,8 +167,10 @@ function cis_helper_entity_insert($entity, $type) {
       $course_node = node_load($entity->field_course[LANGUAGE_NONE][0]['target_id']);
       // get current college machine name
       $college = variable_get('cis_college_name', '');
-      // service name from machine name
-      _cis_helper_add_service_instance($course_node, $serv_node, $entity, $college, $account);
+      // make sure this isn't marked external
+      if ($serv_node->field_machine_name[LANGUAGE_NONE][0]['value'] != CIS_HELPER_EXTERNAL_FLAG) {
+        _cis_helper_add_service_instance($course_node, $serv_node, $entity, $college, $account);
+      }
     }
   }  
 }
@@ -170,6 +179,38 @@ function cis_helper_entity_insert($entity, $type) {
  * Implements hook_entity_update().
  */
 function cis_helper_entity_update($entity, $type) {
+  // spider crons of asso  ciated services when section is updated
+  if ($type == 'field_collection_item' && $entity->field_name == 'field_sections') {
+    // load possible services
+    $service_instances = _cis_helper_derive_service_instances($entity->item_id);
+    // cross-reference with those this section is reporting it implements
+    // this avoids possible cron runs of services this section isn't using
+    // overall it's not a big deal but this saves cycles none-the-less
+    $use_array = array();
+    foreach ($entity->field_services[LANGUAGE_NONE] as $in_use) {
+      $use_array[$in_use['target_id']] = $in_use['target_id'];
+    }
+    foreach ($service_instances as $instance) {
+      // check that this instance of a service is in use by this section
+      if (in_array($instance->field_services[LANGUAGE_NONE][0]['target_id'], $use_array)) {
+        // load the service and course entities
+        $service = entity_load_single('node', $instance->field_services[LANGUAGE_NONE][0]['target_id']);
+        $course = entity_load_single('node', $instance->field_course[LANGUAGE_NONE][0]['target_id']);
+        // create the location of this service instance cron
+        $location = $service->field_location[LANGUAGE_NONE][0]['url'] . '/' . $course->field_machine_name[LANGUAGE_NONE][0]['safe_value'];
+        // add on the cron and cron_key values for a secure remote run
+        $data = array(
+          'cron_key' => $instance->field_cron_key[LANGUAGE_NONE][0]['value'],
+        );
+        $location .= '/cron.php?' . http_build_query($data);
+        // call the cron via remote call
+        $resp = drupal_http_request($location);
+        if ($resp->code == 200) {
+          drupal_set_message(t('The remote service `@service` has been syncronized to reflect your changes.', array('@service' => $service->title)), 'status');
+        }
+      }
+    }
+  }
   // check to see if a service_instance is being updated
   if ($type == 'node' && $entity->type == 'service_instance') {
     if (!empty($entity->field_course[LANGUAGE_NONE])) {
