@@ -347,6 +347,12 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
   $section->field_access_string[LANGUAGE_NONE][0]['value'] = $form_state['values']['access_string'];
   // set the entity reference field (user)
   $section->field_instructor_of_record[LANGUAGE_NONE][0]['target_id'] = $account->uid;
+	// set the services in use to the ones just created
+	$serv_count = 0;
+	foreach($form_state['values']['services'] as $serv_item) {
+		$section->field_services[LANGUAGE_NONE][$serv_count] = array('target_id' => $serv_item);
+		$serv_count++;
+	}
   // special handling for files, if added
   $file_check = array('syllabus', 'welcome_letter', 'materials_letter');
   foreach ($file_check as $file_name) {
