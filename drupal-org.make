@@ -33,13 +33,13 @@ projects[date][subdir] = "contrib"
 projects[devel][version] = "1.3"
 projects[devel][subdir] = "contrib"
 
-projects[profiler_builder][version] = "1.0-rc2"
+projects[profiler_builder][version] = "1.x-dev"
 projects[profiler_builder][subdir] = "contrib"
 
 projects[chamfer_defaults][version] = "1.0-beta2"
 projects[chamfer_defaults][subdir] = "contrib"
 
-projects[features][version] = "1.0"
+projects[features][version] = "2.0-beta1"
 projects[features][subdir] = "contrib"
 
 projects[email][version] = "1.2"
@@ -48,7 +48,7 @@ projects[email][subdir] = "contrib"
 projects[entityreference][version] = "1.0"
 projects[entityreference][subdir] = "contrib"
 
-projects[entityreference_prepopulate][version] = "1.1"
+projects[entityreference_prepopulate][version] = "1.2"
 projects[entityreference_prepopulate][subdir] = "contrib"
 
 projects[field_collection][version] = "1.0-beta5"
@@ -63,7 +63,7 @@ projects[field_hidden][subdir] = "contrib"
 projects[field_permissions][version] = "1.0-beta2"
 projects[field_permissions][subdir] = "contrib"
 
-projects[link][version] = "1.0"
+projects[link][version] = "1.1"
 projects[link][subdir] = "contrib"
 
 projects[phone][version] = "1.x-dev"
@@ -72,7 +72,7 @@ projects[phone][subdir] = "contrib"
 projects[flexslider][version] = "1.0-rc3"
 projects[flexslider][subdir] = "contrib"
 
-projects[typogrify][version] = "1.0-rc5"
+projects[typogrify][version] = "1.0-rc6"
 projects[typogrify][subdir] = "contrib"
 
 projects[video_filter][version] = "3.1"
@@ -114,7 +114,7 @@ projects[file_formatters][subdir] = "contrib"
 projects[jquery_colorpicker][version] = "1.0-rc1"
 projects[jquery_colorpicker][subdir] = "contrib"
 
-projects[libraries][version] = "2.0"
+projects[libraries][version] = "2.1"
 projects[libraries][subdir] = "contrib"
 
 projects[masquerade][version] = "1.0-rc5"
@@ -138,7 +138,7 @@ projects[options_element][subdir] = "contrib"
 projects[pathauto][version] = "1.2"
 projects[pathauto][subdir] = "contrib"
 
-projects[restws][version] = "2.0-alpha3"
+projects[restws][version] = "2.0-alpha4"
 projects[restws][subdir] = "contrib"
 
 projects[strongarm][version] = "2.0"
@@ -174,7 +174,10 @@ projects[uuid][subdir] = "contrib"
 projects[tinynav][version] = "1.1"
 projects[tinynav][subdir] = "contrib"
 
-projects[ckeditor_link][version] = "2.2"
+projects[addanother][version] = "2.1"
+projects[addanother][subdir] = "contrib"
+
+projects[ckeditor_link][version] = "2.3"
 projects[ckeditor_link][subdir] = "contrib"
 
 projects[imce_wysiwyg][version] = "1.0"
@@ -231,7 +234,7 @@ libraries[ckeditor][directory_name] = "ckeditor"
 libraries[ckeditor][type] = "library"
 libraries[ckeditor][destination] = "libraries"
 libraries[ckeditor][download][type] = "get"
-libraries[ckeditor][download][url] = "http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.4/ckeditor_3.6.4.tar.gz"
+libraries[ckeditor][download][url] = "http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.6.1/ckeditor_3.6.6.1.tar.gz"
 
 libraries[colorpicker][directory_name] = "colorpicker"
 libraries[colorpicker][type] = "library"
@@ -243,7 +246,7 @@ libraries[flexslider][directory_name] = "flexslider"
 libraries[flexslider][type] = "library"
 libraries[flexslider][destination] = "libraries"
 libraries[flexslider][download][type] = "get"
-libraries[flexslider][download][url] = "https://github.com/downloads/woothemes/FlexSlider/FlexSlider-1.8.zip"
+libraries[flexslider][download][url] = "https://github.com/woothemes/FlexSlider/archive/flexslider1.zip"
 
 libraries[profiler][directory_name] = "profiler"
 libraries[profiler][type] = "library"
@@ -251,14 +254,22 @@ libraries[profiler][destination] = "libraries"
 libraries[profiler][download][type] = "get"
 libraries[profiler][download][url] = "http://ftp.drupal.org/files/projects/profiler-7.x-2.x-dev.tar.gz"
 
+libraries[plupload][directory_name] = "plupload"
+libraries[plupload][download][type] = "file"
+libraries[plupload][download][url] = "http://plupload.com/downloads/plupload_1_5_6.zip"
+libraries[plupload][patch][] = "http://drupal.org/files/plupload-1_5_6-rm_examples-1903850-5.patch"
+libraries[plupload][type] = "library"
+
 ; Patches
-
+; fix issues with install routine for nested field collection items
+projects[field_collection][patch][] = "http://drupal.org/files/field_collection-import-fails-1649548-36.patch"
+; allow for counting items in pie chart better
 projects[google_chart_tools][patch][] = "http://drupal.org/files/google_chart_tools-piechartcounts.patch"
-
+; responsive support
 projects[google_chart_tools][patch][] = "http://drupal.org/files/google_chart_tools-responsive-1810232-4.patch"
-
+; work with install profiles
 projects[nodeaccess_userreference][patch][] = "http://drupal.org/files/nodeaccess_userreference-install-profile-3.patch"
-
+; work with install profiles
 projects[nodeaccess_nodereference][patch][] = "http://drupal.org/files/nodeaccess_nodereference-install-profile.patch"
-
+; fix white-space issue
 projects[ISBN2node][patch][] = "http://drupal.org/files/isbn2node-whitespace-1248604-3.patch"
