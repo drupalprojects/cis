@@ -28,6 +28,8 @@ function cis_install() {
     ->condition('type', 'theme')
     ->condition('name', $admin_theme)
     ->execute();
+  // set both themes
+  variable_set('theme_default', $default_theme);
   variable_set('admin_theme', $admin_theme);
   // activate admin theme when editing a node
   variable_set('node_admin_theme', '1');
@@ -92,25 +94,7 @@ function cis_install() {
     $query->values($block);
   }
   $query->execute();
-  
-  // revert features to ensure they are all installed
-  $features = array(
-    'chamfer_defaults',
-    'cis_displays',
-    'cis_types',
-  );
-  features_revert($features);
-  // From shortcut.install, add shortcuts to the default set on install
-  $shortcut_set = shortcut_set_load(SHORTCUT_DEFAULT_SET_NAME);
-  $shortcut_set->links = NULL;
-  $shortcut_set->links = array(
-    array(
-      'link_path' => 'admin/appearance/settings',
-      'link_title' => st('Theme'),
-      'weight' => -17,
-    ),
-  );
-  shortcut_set_save($shortcut_set);// Create a default role for site administrators, with all available permissions assigned.
+  // add an admin role
   $admin_role = new stdClass();
   $admin_role->name = 'administrator';
   $admin_role->weight = 10;
@@ -125,6 +109,18 @@ function cis_install() {
     ->execute();
   // Update the menu router information.
   menu_rebuild();
+  // revert features to ensure they are all installed
+  $features = array(
+    'chamfer_defaults',
+    'textbook_editor',
+    'cis_data',
+    'cis_displays',
+    'cis_users',
+    'cis_roles',
+		'cis_types',
+		'cis_ux',
+  );
+  features_revert($features);
   // ignore any rebuild messages
   node_access_needs_rebuild(FALSE);
   // ignore any other install messages
