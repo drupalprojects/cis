@@ -21,7 +21,7 @@ function cis_types_field_group_info() {
   $field_group->parent_name = 'group_setup';
   $field_group->data = array(
     'label' => 'Access',
-    'weight' => '16',
+    'weight' => '17',
     'children' => array(
       0 => 'field_access_dates',
       1 => 'field_access_string',
@@ -52,8 +52,11 @@ function cis_types_field_group_info() {
     'label' => 'Administrative',
     'weight' => '0',
     'children' => array(
-      0 => 'field_services',
+      0 => 'field_instructional_designer',
       1 => 'field_method_of_access',
+      2 => 'field_display_in_course_list',
+      3 => 'field_course_author',
+      4 => 'field_lead_instructor',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -111,11 +114,10 @@ function cis_types_field_group_info() {
       0 => 'body',
       1 => 'field_academic_home',
       2 => 'field_course_title',
-      3 => 'field_instructional_designer',
-      4 => 'field_program_classification',
-      5 => 'field_special_classifications',
-      6 => 'field_machine_name',
-      7 => 'title',
+      3 => 'field_program_classification',
+      4 => 'field_special_classifications',
+      5 => 'field_machine_name',
+      6 => 'title',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -405,7 +407,8 @@ function cis_types_field_group_info() {
       1 => 'field_section_number',
       2 => 'field_campus',
       3 => 'field_instructional_outline',
-      4 => 'group_access',
+      4 => 'field_services',
+      5 => 'group_access',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

@@ -976,7 +976,7 @@ function cis_types_field_default_fields() {
         'module' => 'field_hidden',
         'settings' => array(),
         'type' => 'field_hidden',
-        'weight' => '15',
+        'weight' => '16',
       ),
     ),
   );
@@ -1554,6 +1554,105 @@ function cis_types_field_default_fields() {
         ),
         'type' => 'text_textfield',
         'weight' => '13',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_sections-field_services'.
+  $fields['field_collection_item-field_sections-field_services'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_services',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(
+        'node' => array(
+          'columns' => array(
+            'target_id' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 1,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'property' => 'title',
+            'type' => 'property',
+          ),
+          'target_bundles' => array(
+            'service' => 'service',
+          ),
+        ),
+        'target_type' => 'node',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_sections',
+      'default_value' => NULL,
+      'default_value_function' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 15,
+        ),
+        'full' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'token' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_services',
+      'label' => 'Services in use',
+      'required' => 0,
+      'settings' => array(
+        'behaviors' => array(
+          'prepopulate' => array(
+            'status' => 0,
+          ),
+        ),
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '15',
       ),
     ),
   );
@@ -2403,6 +2502,130 @@ function cis_types_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-course-field_course_author'.
+  $fields['node-course-field_course_author'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_course_author',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(
+        'node' => array(
+          'columns' => array(
+            'target_id' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'views',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 1,
+            ),
+          ),
+          'view' => array(
+            'args' => array(),
+            'display_name' => 'entityreference_3',
+            'view_name' => 'user_type_lists',
+          ),
+        ),
+        'target_type' => 'user',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'course',
+      'default_value' => NULL,
+      'default_value_function' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '22',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_course_author',
+      'label' => 'Course Author',
+      'required' => 0,
+      'settings' => array(
+        'behaviors' => array(
+          'prepopulate' => array(
+            'status' => 0,
+          ),
+        ),
+        'nodeaccess_userreference' => array(
+          'all' => array(
+            'view' => 0,
+          ),
+          'all_published' => '0',
+          'author' => array(
+            'delete' => 0,
+            'update' => 0,
+            'view' => 0,
+          ),
+          'author_published' => '0',
+          'create' => array(
+            'academic_unit' => 0,
+            'course' => 0,
+            'instructional_model' => 0,
+            'isbn2node_book' => 0,
+            'program' => 0,
+            'resource' => 0,
+            'service' => 0,
+            'service_instance' => 0,
+          ),
+          'priority' => '0',
+          'referenced' => array(
+            'delete' => 0,
+            'deny_delete' => 0,
+            'deny_update' => 0,
+            'deny_view' => 0,
+            'update' => 0,
+            'view' => 0,
+          ),
+          'referenced_published' => '0',
+          'unused' => '0',
+          'views' => array(
+            'view' => '',
+            'view_args' => '',
+          ),
+        ),
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '23',
+      ),
+    ),
+  );
+
   // Exported field: 'node-course-field_course_title'.
   $fields['node-course-field_course_title'] = array(
     'field_config' => array(
@@ -2469,6 +2692,75 @@ function cis_types_field_default_fields() {
         ),
         'type' => 'text_textfield',
         'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-course-field_display_in_course_list'.
+  $fields['node-course-field_display_in_course_list'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_display_in_course_list',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'Hide from public course list',
+          1 => 'Display in public course list',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'course',
+      'default_value' => array(
+        0 => array(
+          'value' => '0',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '21',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_display_in_course_list',
+      'label' => 'Display in course list',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '21',
       ),
     ),
   );
@@ -2963,7 +3255,131 @@ function cis_types_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '5',
+        'weight' => '24',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-course-field_lead_instructor'.
+  $fields['node-course-field_lead_instructor'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_lead_instructor',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(
+        'node' => array(
+          'columns' => array(
+            'target_id' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'views',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 1,
+            ),
+          ),
+          'view' => array(
+            'args' => array(),
+            'display_name' => 'entityreference_3',
+            'view_name' => 'user_type_lists',
+          ),
+        ),
+        'target_type' => 'user',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'course',
+      'default_value' => NULL,
+      'default_value_function' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '23',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_lead_instructor',
+      'label' => 'Lead Instructor',
+      'required' => 0,
+      'settings' => array(
+        'behaviors' => array(
+          'prepopulate' => array(
+            'status' => 0,
+          ),
+        ),
+        'nodeaccess_userreference' => array(
+          'all' => array(
+            'view' => 0,
+          ),
+          'all_published' => '0',
+          'author' => array(
+            'delete' => 0,
+            'update' => 0,
+            'view' => 0,
+          ),
+          'author_published' => '0',
+          'create' => array(
+            'academic_unit' => 0,
+            'course' => 0,
+            'instructional_model' => 0,
+            'isbn2node_book' => 0,
+            'program' => 0,
+            'resource' => 0,
+            'service' => 0,
+            'service_instance' => 0,
+          ),
+          'priority' => '0',
+          'referenced' => array(
+            'delete' => 0,
+            'deny_delete' => 0,
+            'deny_update' => 0,
+            'deny_view' => 0,
+            'update' => 0,
+            'view' => 0,
+          ),
+          'referenced_published' => '0',
+          'unused' => '0',
+          'views' => array(
+            'view' => '',
+            'view_args' => '',
+          ),
+        ),
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '22',
       ),
     ),
   );
@@ -3078,10 +3494,9 @@ function cis_types_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 20,
+          'type' => 'hidden',
+          'weight' => '20',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -5591,7 +6006,7 @@ Global will be available to all resources to reference',
   $fields['node-service_instance-field_services'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_services',
@@ -5730,6 +6145,7 @@ Global will be available to all resources to reference',
   t('Coordinators');
   t('Course');
   t('Course Archive');
+  t('Course Author');
   t('Course Start');
   t('Course title');
   t('Cover image');
@@ -5737,6 +6153,7 @@ Global will be available to all resources to reference',
   t('Delivery Guide');
   t('Description');
   t('Design doc');
+  t('Display in course list');
   t('Distribution');
   t('Documents');
   t('Edition');
@@ -5748,6 +6165,7 @@ Global will be available to all resources to reference',
   t('Instructional Outline');
   t('Instructions');
   t('Instructor of record');
+  t('Lead Instructor');
   t('Link to the course in the university bulletin');
   t('Location');
   t('Machine name');
@@ -5773,6 +6191,7 @@ Global will be available to all resources to reference',
   t('Semester');
   t('Service');
   t('Service Data');
+  t('Services in use');
   t('Setup guide');
   t('Special Classifications');
   t('Subtitle');

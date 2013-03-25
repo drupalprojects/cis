@@ -93,6 +93,11 @@ function cis_helper_draw_chart_alter(&$settings) {
  * Implements hook_form_alter().
  */
 function cis_helper_form_alter(&$form, $form_state, $form_id) {
+  // add quick link to add offering to the list of offerings
+  if ($form_id == 'views_exposed_form' && arg(2) == 'offerings') {
+    $form['cle_add_new']['#markup'] = l(t('Add new Offering'), 'field-collection/field-offerings/add/node/'. arg(1), array('query' => array('destination' => 'node/' . arg(1) . '/offerings')));
+    $form['cle_add_new']['#weight'] = 100;
+  }
   // alterations for the section field collection
   if ($form_id == 'field_collection_item_form' && $form['#entity']->field_name == 'field_sections') {
     // return all service instances this section will have access to
@@ -100,30 +105,32 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
     // we need to replace the service options based on those that exist
     $service_options = array('_none' => t('- None -'));
     // load each service related to the instances found
-    foreach ($service_instances as $instance) {
-      $service = node_load($instance->field_services[LANGUAGE_NONE][0]['target_id']);
-      // collect array of known services available to this course via instances
-      $service_options[$service->nid] = $service->title;
-      // handle each service instance's data differently
-      switch ($service->field_machine_name[LANGUAGE_NONE][0]['value']) {
-        case CIS_HELPER_COURSE_SERVICE:
-          // for course this is a json containing the different outlines as uuid => title
-          $options = drupal_json_decode($instance->field_service_data[LANGUAGE_NONE][0]['value']);
-          // create a visible version of the hidden field
-          $form['_field_instructional_outline'] = array(
-            '#type' => 'select',
-            '#options' => $options,
-            '#required' => TRUE,
-            '#title' => t('Instructional outline'),
-            '#description' => t('Which outline would you like this section to use'),
-            '#default_value' => $form['field_instructional_outline'][LANGUAGE_NONE][0]['value']['#default_value'],
-            '#weight' => 1,
-          );
-          // add this to the setup fieldset
-          $form['#group_children']['_field_instructional_outline'] = 'group_setup';
-          // load associated js to set the value of the hidden field
-          drupal_add_js(drupal_get_path('module', 'cis_helper') . '/js/instructional_outline.js');
-        break;
+    if (is_array($service_instances)) {
+      foreach ($service_instances as $instance) {
+        $service = node_load($instance->field_services[LANGUAGE_NONE][0]['target_id']);
+        // collect array of known services available to this course via instances
+        $service_options[$service->nid] = $service->title;
+        // handle each service instance's data differently
+        switch ($service->field_machine_name[LANGUAGE_NONE][0]['value']) {
+          case CIS_HELPER_COURSE_SERVICE:
+            // for course this is a json containing the different outlines as uuid => title
+            $options = drupal_json_decode($instance->field_service_data[LANGUAGE_NONE][0]['value']);
+            // create a visible version of the hidden field
+            $form['_field_instructional_outline'] = array(
+              '#type' => 'select',
+              '#options' => $options,
+              '#required' => TRUE,
+              '#title' => t('Instructional outline'),
+              '#description' => t('Which outline would you like this section to use'),
+              '#default_value' => $form['field_instructional_outline'][LANGUAGE_NONE][0]['value']['#default_value'],
+              '#weight' => 1,
+            );
+            // add this to the setup fieldset
+            $form['#group_children']['_field_instructional_outline'] = 'group_setup';
+            // load associated js to set the value of the hidden field
+            drupal_add_js(drupal_get_path('module', 'cis_helper') . '/js/instructional_outline.js');
+          break;
+        }
       }
     }
     // set the allowed options to those found above
