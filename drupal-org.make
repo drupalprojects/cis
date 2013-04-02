@@ -114,6 +114,9 @@ projects[file_formatters][subdir] = "contrib"
 projects[jquery_colorpicker][version] = "1.0-rc1"
 projects[jquery_colorpicker][subdir] = "contrib"
 
+projects[jquery_update][version] = "2.3"
+projects[jquery_update][subdir] = "contrib"
+
 projects[libraries][version] = "2.1"
 projects[libraries][subdir] = "contrib"
 
@@ -271,5 +274,7 @@ projects[google_chart_tools][patch][] = "http://drupal.org/files/google_chart_to
 projects[nodeaccess_userreference][patch][] = "http://drupal.org/files/nodeaccess_userreference-install-profile-3.patch"
 ; work with install profiles
 projects[nodeaccess_nodereference][patch][] = "http://drupal.org/files/nodeaccess_nodereference-install-profile.patch"
+; allow multiple versions of jquery
+projects[jquery_update][patch][] = "http://drupal.org/files/jquery_update-1524944-78.patch"
 ; fix white-space issue
 projects[ISBN2node][patch][] = "http://drupal.org/files/isbn2node-whitespace-1248604-3.patch"
