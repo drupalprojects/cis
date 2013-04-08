@@ -9,7 +9,7 @@ api = "2"
 projects[admin_menu][version] = "3.0-rc4"
 projects[admin_menu][subdir] = "contrib"
 
-projects[ctools][version] = "1.2"
+projects[ctools][version] = "1.3"
 projects[ctools][subdir] = "contrib"
 
 projects[google_chart_tools][version] = "1.x-dev"
@@ -39,7 +39,7 @@ projects[profiler_builder][subdir] = "contrib"
 projects[chamfer_defaults][version] = "1.0-beta2"
 projects[chamfer_defaults][subdir] = "contrib"
 
-projects[features][version] = "2.0-beta1"
+projects[features][version] = "2.0-beta2"
 projects[features][subdir] = "contrib"
 
 projects[email][version] = "1.2"
@@ -192,7 +192,7 @@ projects[wysiwyg][subdir] = "contrib"
 projects[better_exposed_filters][version] = "3.0-beta3"
 projects[better_exposed_filters][subdir] = "contrib"
 
-projects[views][version] = "3.5"
+projects[views][version] = "3.6"
 projects[views][subdir] = "contrib"
 
 projects[views_bulk_operations][version] = "3.1"
