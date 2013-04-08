@@ -294,6 +294,16 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   $options['vset'][] = 'cis_service_instance_uuid ' . $service_instance->uuid;
   // disable site auto-cron run so admin can set policy globally
   $options['vset'][] = 'cron_safe_threshold 0';
+  // add service account globally based on CIS connection details
+  $registry = module_invoke_all('cis_service_registry');
+  if (isset($registry['cis'])) {
+    $name = $registry['cis']['user'];
+    // create the service account w/ a fake email address
+    // this is purely for service account connections via a secure back-channel
+    $options['ucrt'][] = $name . '--mail="' . "$name@$name.$name" . '" --password="' . $registry['cis']['pass'] . '"';
+    // add service account role
+    $options['urol'][] = '"SERVICE ACCOUNT" ' . $name;
+  }
   // allow for advanced drush alterations via code
   drupal_alter('cis_service_instance_options', $options, $course, $service);
   // load optional cis_helper defined values
@@ -514,19 +524,19 @@ function _cis_helper_derive_service_instances($item_id, $course = NULL, $type = 
  * Implements hook_profiler_builder_ignore_alter().
  */
 function cis_helper_profiler_builder_ignore_alter(&$ignore) {
-	// remove cis specific variables from build
-	$ignore[] = 'cis_build_code';
-	$ignore[] = 'cis_build_lms';
-	$ignore[] = 'cis_build_authenticated';
-	$ignore[] = 'cis_build_open';
-	$ignore[] = 'cis_job_path';
-	$ignore[] = 'cis_college_name';
+  // remove cis specific variables from build
+  $ignore[] = 'cis_build_code';
+  $ignore[] = 'cis_build_lms';
+  $ignore[] = 'cis_build_authenticated';
+  $ignore[] = 'cis_build_open';
+  $ignore[] = 'cis_job_path';
+  $ignore[] = 'cis_college_name';
 }
 
 /**
  * Implements hook_profiler_builder_drush_modules_list_alter().
  */
 function cis_helper_profiler_builder_drush_modules_list_alter(&$project_data, $machine_name) {
-	// this module is included with the package as it was a sandbox
+  // this module is included with the package as it was a sandbox
   unset($project_data['Views']['views_field_calc']);
 }
