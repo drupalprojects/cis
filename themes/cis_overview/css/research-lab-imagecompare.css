@@ -1,0 +1,158 @@
+/* ------------------------- Research Lab Image Compare Styles ------------------------- */
+
+.ic-wrapper {
+	clear:both;
+    padding-top: 45px;
+	margin:0 auto;
+	text-align:center;
+}
+ul.ic-nav {
+	margin-bottom: 0;
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:left;
+}
+ul.ic-nav li {
+	width:auto;	
+	text-align: center;
+}
+ul.ic-nav.ic-group-1 {
+	margin-bottom:10px;	
+}
+ul.ic-nav.ic-group-1 li {
+	display:inline-block;
+	padding: 30px 10px 30px 10px;
+	margin-right:5px;
+	color:#393939;
+	list-style:none;
+	cursor:pointer;
+	background-color:#cccccc;
+	border-radius: 6px; 
+	-moz-border-radius: 6px; 
+	-webkit-border-radius: 6px;
+}
+.ul.ic-nav.ic-group-1 li:hover, ul.ic-nav.ic-group-1 li.active-trail {
+	color:#ffffff;
+	background-color: #393939;
+    border:3px solid #a2a2a2;
+}
+
+ul.ic-nav.ic-group-2 li {
+	padding:10px;
+	margin-right:5px;
+	background-color:#bfbfbf;
+	color:#ffffff;
+	list-style:none;
+	display:none;
+	cursor:pointer;
+}
+ul.ic-nav.ic-group-2 li.active-trail {
+	background-color: #393939;
+    margin-bottom: 0;
+    padding-bottom: 15px;
+}
+ul.ic-nav.ic-group-3 {
+	padding-top: 12px;
+	background-color:#393939;
+	width:100%;
+}
+
+ul.ic-nav.ic-group-3 li {
+	padding:10px;
+	margin-left:10px;
+	background-color:transparent;
+	color:#ffffff;
+	list-style:none;
+	display:none;
+	cursor:pointer;
+}
+ul.ic-nav.ic-group-3 li.active-trail {
+	background-color:#638f35;
+}
+.ic-container {
+	width:640px;
+	height:360px;
+	background:#ccc;
+	margin-bottom:45px;
+	margin-left:auto;
+	margin-right:auto;
+	border-left:5px;
+	border-right:5px;
+	border-top:5px;
+	border-bottom:5px;
+	border-style: solid;
+	border-color: #638f35;
+	display:none;
+}
+
+.ic-image-before {
+	width: 50%;
+	height: 100%;
+	overflow:hidden;
+	position:absolute;
+	float:left;	
+	background-color:transparent;
+	top:0;
+	left:0;
+	border:0;
+	background-position:top left;
+	background-repeat:no-repeat;
+	background-size: cover;
+}
+
+.ic-image-after {
+	width:100%;
+	height:100%;
+	padding: 0px;
+	position:relative;
+	float:left;
+	border:0;
+	background-color:transparent;
+	background-position:top left;
+	background-repeat:no-repeat;
+	background-size: cover;
+}
+.ic-display-tab {
+ 	display:inline-block !important;	
+}
+.view-empty {
+	background: url("../images/by-design-proj-wedge.png") no-repeat scroll center top transparent;
+    padding-top: 120px;
+	text-align:center;
+	font-size:2em;
+	color:#983232;
+	margin-bottom:50px;
+}
+/* Webform*/
+.views-exposed-form .views-exposed-widget {
+	margin:0 auto;
+	float:none;
+	text-align:center;
+}
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle {
+	display: none;
+}
+.ic-image-before.resizable {
+	-webkit-box-shadow: 3px 0px 0px rgba(255, 255, 255, 0.3);
+	-moz-box-shadow:    3px 0px 0px rgba(255, 255, 255, 0.3);
+	box-shadow:         3px 0px 0px rgba(255, 255, 255, 0.3);
+}
+.ui-resizable-handle.ui-resizable-e {
+	opacity:0.5;
+	width:25px !important;
+	background-color:#282828 !important;
+	/*background-image:url('../images/btn_slider.png') !important;*/
+	background-position:center left !important;
+	background-repeat:no-repeat !important;
+	-webkit-box-shadow: -3px 0px 0px rgba(255, 255, 255, 0.3);
+	-moz-box-shadow:    -3px 0px 0px rgba(255, 255, 255, 0.3);
+	box-shadow:         -3px 0px 0px rgba(255, 255, 255, 0.3);
+}
+
+.ui-resizable-handle.ui-resizable-e:hover {
+       opacity:1;
+}
+.ui-resizable-handle.ui-resizable-e:active {
+       opacity:1;
+}

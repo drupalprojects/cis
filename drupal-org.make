@@ -210,6 +210,9 @@ projects[views_slideshow][subdir] = "contrib"
 projects[activation_code][version] = "1.x-dev"
 projects[activation_code][subdir] = "contrib"
 
+projects[seckit][version] = "1.5"
+projects[seckit][subdir] = "contrib"
+
 ; Themes
 ; chamfer
 projects[chamfer][type] = "theme"
