@@ -66,6 +66,7 @@ function cis_helper_quick_setup_page() {
     '#title' => t('Method of access'),
   );
   $options = _cis_helper_get_instructional_outlines();
+	$options[variable_get('file_public_path', conf_path() . '/files') . '/cis_outline_import/'] = t('CIS Outline Import (on server)');
   // add purely administrative options as part of advanced migration
   if (user_access('cis setup admin options')) {
     $options['xml_manifest_import'] = t('Upload..');
@@ -296,6 +297,10 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
     $etid = $courses[$form_state['values']['course']];
     $course = entity_load_single('node', $etid);
   }
+	// check for instructional outline special case for on server import
+	if ($instructional_outline == variable_get('file_public_path', conf_path() . '/files') . '/cis_outline_import/') {
+		$instructional_outline .= $course->field_machine_name[LANGUAGE_NONE][0]['value'] . '.xml';
+	}
   // make sure that this course doesn't already have an offering for this semester/year
   if (!empty($course->field_offerings)) {
     foreach ($course->field_offerings[LANGUAGE_NONE] as $offering_ref) {
