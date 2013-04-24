@@ -81,6 +81,7 @@ dependencies[] = imce
 dependencies[] = nodeformcols
 ; Other
 dependencies[] = activation_code
+dependencies[] = httprl
 dependencies[] = auto_nodetitle
 dependencies[] = boxes
 dependencies[] = diff
