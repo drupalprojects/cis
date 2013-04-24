@@ -211,12 +211,17 @@ function cis_helper_entity_update($entity, $type) {
         );
         $location .= '/cron.php?' . http_build_query($data);
         // call the cron via remote call
-        $resp = drupal_http_request($location);
-        if ($resp->code == 200) {
-          drupal_set_message(t('The remote service `@service` has been syncronized to reflect your changes.', array('@service' => $service->title)), 'status');
-        }
+        //TODO replace this with httprl
+        $options = array(
+          'blocking' => FALSE,
+        );
+        // que request
+        httprl_request($location, $options);
+        drupal_set_message(t('The remote service `@service` has been syncronized to reflect your changes.', array('@service' => $service->title)), 'status');
       }
     }
+    // Execute requests in the queue in a non-blocking manner (really fast)
+    $request = httprl_send_request();
   }
   // check to see if a service_instance is being updated
   if ($type == 'node' && $entity->type == 'service_instance') {
@@ -294,16 +299,6 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   $options['vset'][] = 'cis_service_instance_uuid ' . $service_instance->uuid;
   // disable site auto-cron run so admin can set policy globally
   $options['vset'][] = 'cron_safe_threshold 0';
-  // add service account globally based on CIS connection details
-  $registry = module_invoke_all('cis_service_registry');
-  if (isset($registry['cis'])) {
-    $name = $registry['cis']['user'];
-    // create the service account w/ a fake email address
-    // this is purely for service account connections via a secure back-channel
-    $options['ucrt'][] = $name . '--mail="' . "$name@$name.$name" . '" --password="' . $registry['cis']['pass'] . '"';
-    // add service account role
-    $options['urol'][] = '"SERVICE ACCOUNT" ' . $name;
-  }
   // allow for advanced drush alterations via code
   drupal_alter('cis_service_instance_options', $options, $course, $service);
   // load optional cis_helper defined values
