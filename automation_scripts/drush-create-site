@@ -1,11 +1,11 @@
 #!/bin/bash
 #email that the site uses to send mail
-site_email=sysadmin@vmhost.psu.edu
+site_email=admin@example.com
 #administrator e-mail or alias
-admin=djb44@psu.edu
+admin=admin@mai
 #.course .studio file loaction
 fileloc=/var/wwwjobs
-#drupal root is also defined via the .course and .studio files below
+#where all the various drupal roots live
 webdir=/var/www/
 #sets the hostname for each college
 hostfile=$fileloc/hosts
@@ -50,8 +50,6 @@ slogan=`sed -n '4p' $coursefile`
 requester=`sed -n '5p' $coursefile`
 insprofile=`sed -n '6p' $coursefile`
 options=`sed -n '7p' $coursefile`
-
-#chartest=`sed -n '1,6' $coursefile`
 
 ##Error catching here.
 #testing for bad characters. if found any in the course file we exit
@@ -128,7 +126,7 @@ userexist
 done
 
 if [ $dbcount -gt 0 ]; then 
-dbprefix=$dbprfix$dbcount
+dbprefix=$dbprefix$dbcount
 fi
 
 #Test if database exists, if does back out with warning
@@ -199,15 +197,6 @@ arraytest=`/bin/grep -e "^\\$sites" $drupalroot/sites/sites.php`
 else echo "site not added to sites.php" 
 fi
 
-#if [ -f $drupalroot/sites/sites.php ]; then 
-#/bin/sed -i "/^\$sites = array/a \ \t \'$hostname.$course\' =\> \'$subdir\/$course\'\," $drupalroot/sites/sites.php
-#else echo "site not added to sites.php" 
-#fi
-
-##set base_url may use this later
-#sed -i "/\# \$base_url/a \ \t \$base_url= 'http://$hostname';" $drupalroot/sites/$subdir/$course/settings.php
-
-
 ###options
 if [[ $requester ]]; then
 	if [[ $requester == $admin ]]; then
@@ -225,8 +214,6 @@ fi
 if [[ $slogan ]]; then 
 /usr/bin/drush -y --uri=http://$hostname.$course vset site_slogan "$slogan"
 fi
-
-echo ${PWD}
 
 if [[ $options ]]; then 
 	/bin/grep ^drush $coursefile.processing | while read drush; do 
@@ -298,7 +285,12 @@ find $drupalroot/sites/$subdir/$course/files  -type f | xargs chmod 664
 find $drupalroot/sites/$subdir/$course/files  -type d | xargs chmod 775
 chown -R root:apache $drupalroot/sites/$subdir/$course/files
 
-echo " http://$hostname/$course uid:$drupaluid passwd:$drupalpw" | mail -s "$course has been added to $hostname" $admin
+
+##set one time password and send link to user
+
+resetlink=`drush -y --uri=http://$hostname/$course user-login $admin`
+
+echo "Please click the following link to create your account: $resetlink" | mail -s "$course has been added to $hostname" $admin
 echo "$course was added to $hostname on $date"
 
 done
