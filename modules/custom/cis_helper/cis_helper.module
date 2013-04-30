@@ -110,27 +110,6 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
         $service = node_load($instance->field_services[LANGUAGE_NONE][0]['target_id']);
         // collect array of known services available to this course via instances
         $service_options[$service->nid] = $service->title;
-        // handle each service instance's data differently
-        switch ($service->field_machine_name[LANGUAGE_NONE][0]['value']) {
-          case CIS_HELPER_COURSE_SERVICE:
-            // for course this is a json containing the different outlines as uuid => title
-            $options = drupal_json_decode($instance->field_service_data[LANGUAGE_NONE][0]['value']);
-            // create a visible version of the hidden field
-            $form['_field_instructional_outline'] = array(
-              '#type' => 'select',
-              '#options' => $options,
-              '#required' => TRUE,
-              '#title' => t('Instructional outline'),
-              '#description' => t('Which outline would you like this section to use'),
-              '#default_value' => $form['field_instructional_outline'][LANGUAGE_NONE][0]['value']['#default_value'],
-              '#weight' => 1,
-            );
-            // add this to the setup fieldset
-            $form['#group_children']['_field_instructional_outline'] = 'group_setup';
-            // load associated js to set the value of the hidden field
-            drupal_add_js(drupal_get_path('module', 'cis_helper') . '/js/instructional_outline.js');
-          break;
-        }
       }
     }
     // set the allowed options to those found above
@@ -211,7 +190,6 @@ function cis_helper_entity_update($entity, $type) {
         );
         $location .= '/cron.php?' . http_build_query($data);
         // call the cron via remote call
-        //TODO replace this with httprl
         $options = array(
           'blocking' => FALSE,
         );
@@ -222,44 +200,6 @@ function cis_helper_entity_update($entity, $type) {
     }
     // Execute requests in the queue in a non-blocking manner (really fast)
     $request = httprl_send_request();
-  }
-  // check to see if a service_instance is being updated
-  if ($type == 'node' && $entity->type == 'service_instance') {
-    if (!empty($entity->field_course[LANGUAGE_NONE])) {
-      // see if there's an entity field query to match this uuid
-      // this will only be triggered by remote service account PUT operations
-      $query = new EntityFieldQuery;
-      $result = $query
-        // pull all field collections
-        ->entityCondition('entity_type', 'field_collection_item')
-        // that are offerings
-        ->entityCondition('bundle', 'field_sections')
-        // where the section is the one asked for
-        ->fieldCondition('field_instructional_outline', 'value', $entity->uuid, '=')
-        // run the query as user 1
-        ->addMetaData('account', user_load(1))
-        ->execute();
-      // only run this setup portion if we have 1 item
-      if (isset($result['field_collection_item']) && count($result['field_collection_item']) == 1) {
-        $item = array_keys($result['field_collection_item']);
-        // load the section
-        $sections = entity_load('field_collection_item', $item);
-        $section = array_pop($sections);
-        // service data
-        $data = drupal_json_decode($entity->field_service_data[LANGUAGE_NONE][0]['value']);
-        // ensure we have an array
-        if (is_array($data)) {
-          // keys are uuids in this case
-          $uuids = array_keys($data);
-          // we only want 1 though only 1 should ever exist
-          $uuid = array_pop($uuids);
-        }
-        // set section's instructional outline to the service entity's only item (if it has one)
-        $section->field_instructional_outline[LANGUAGE_NONE][0]['value'] = $uuid;
-        // save the section
-        $section->save();
-      }
-    }
   }  
 }
 

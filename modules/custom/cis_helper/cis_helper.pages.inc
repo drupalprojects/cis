@@ -186,40 +186,6 @@ function cis_helper_quick_setup_page() {
     '#default_value' => $user->name,
     '#title' => t('Instructor of Record'),
   );
-  // the welcome letter to use for the section to be created
-  $form['welcome_letter'] = array(
-    '#required' => '0',
-    '#description' => t('(PDF only) This gives students instructions on how to get started with their course.'),
-    '#type' => 'managed_file',
-    '#size' => '30',
-    '#title' => t('Welcome letter'),
-    '#upload_location' => 'public://welcome_letters/',
-    '#upload_validators' => array(
-      'file_validate_extensions' => array(
-        0 => 'pdf',
-      ),
-      'file_validate_size' => array(
-        0 => 10485760,
-      ),
-    ),
-  );
-  // the welcome letter to use for the section to be created
-  $form['materials_letter'] = array(
-    '#required' => '0',
-    '#description' => t('(PDF only) Communicate to the student what materials are needed to take the course.'),
-    '#type' => 'managed_file',
-    '#size' => '30',
-    '#title' => t('Materials letter'),
-    '#upload_location' => 'public://materials_letter/',
-    '#upload_validators' => array(
-      'file_validate_extensions' => array(
-        0 => 'pdf',
-      ),
-      'file_validate_size' => array(
-        0 => 10485760,
-      ),
-    ),
-  );
   // the syllabus to use for the section to be created
   $form['syllabus'] = array(
     '#required' => '0',
@@ -359,7 +325,7 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
     $serv_count++;
   }
   // special handling for files, if added
-  $file_check = array('syllabus', 'welcome_letter', 'materials_letter');
+  $file_check = array('syllabus');
   foreach ($file_check as $file_name) {
     // make sure the file came across
     if ($form_state['values'][$file_name] != '') {
