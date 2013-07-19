@@ -5,6 +5,10 @@
  * This allows for the altering of options (drush calls)
  * just prior to creation of the service based on a course.
  * Course / service are also passed in for context
+ *
+ * options - array of drush commands
+ * course - node object
+ * service - node object
  */
 function hook_cis_service_instance_options_alter(&$options, $course, $service) {
   // run drush dis pathauto as part of the install routine
