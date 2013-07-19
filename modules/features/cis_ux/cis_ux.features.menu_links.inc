@@ -10,24 +10,6 @@
 function cis_ux_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu:cis-quick-setup
-  $menu_links['main-menu:cis-quick-setup'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'cis-quick-setup',
-    'router_path' => 'cis-quick-setup',
-    'link_title' => 'Request Setup',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Request setup form for testing',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '2',
-  );
   // Exported menu link: management:admin/config/system/cis
   $menu_links['management:admin/config/system/cis'] = array(
     'menu_name' => 'management',
@@ -40,11 +22,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
     'parent_path' => 'admin/config/system',
   );
   // Exported menu link: management:cis
@@ -59,11 +41,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '10',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => 10,
   );
   // Exported menu link: management:cis/admin
   $menu_links['management:cis/admin'] = array(
@@ -77,11 +59,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-43',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -43,
     'parent_path' => 'cis',
   );
   // Exported menu link: management:cis/admin/field-collections
@@ -92,11 +74,11 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'Field Collection admin',
     'options' => array(),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '30',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 30,
     'parent_path' => 'cis',
   );
   // Exported menu link: management:cis/courses
@@ -111,11 +93,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-50',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -50,
     'parent_path' => 'cis',
   );
   // Exported menu link: management:cis/courses/bulk_ops
@@ -130,11 +112,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '-49',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
     'parent_path' => 'cis/courses',
   );
   // Exported menu link: management:cis/courses/map
@@ -149,11 +131,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '-50',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
     'parent_path' => 'cis/courses',
   );
   // Exported menu link: management:cis/historical_college_data
@@ -164,11 +146,11 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'College data',
     'options' => array(),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-44',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -44,
     'parent_path' => 'cis',
   );
   // Exported menu link: management:cis/historical_college_data/campus
@@ -179,11 +161,11 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'Campus',
     'options' => array(),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
     'parent_path' => 'cis/historical_college_data',
   );
   // Exported menu link: management:cis/historical_college_data/program
@@ -194,11 +176,11 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'Program',
     'options' => array(),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '1',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => 1,
     'parent_path' => 'cis/historical_college_data',
   );
   // Exported menu link: management:cis/historical_college_data/program/enrollments
@@ -209,11 +191,11 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'Enrollments',
     'options' => array(),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '2',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 2,
     'parent_path' => 'cis/historical_college_data/program',
   );
   // Exported menu link: management:cis/historical_college_data/unit
@@ -224,11 +206,11 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'Unit',
     'options' => array(),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '1',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => 1,
     'parent_path' => 'cis/historical_college_data',
   );
   // Exported menu link: management:cis/historical_college_data/unit/enrollments
@@ -239,11 +221,11 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'Enrollments',
     'options' => array(),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '1',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 1,
     'parent_path' => 'cis/historical_college_data/unit',
   );
   // Exported menu link: management:cis/historical_college_data/year
@@ -254,11 +236,11 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'Year',
     'options' => array(),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '-1',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -1,
     'parent_path' => 'cis/historical_college_data',
   );
   // Exported menu link: management:cis/offerings
@@ -269,11 +251,11 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'Offerings',
     'options' => array(),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-49',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -49,
     'parent_path' => 'cis',
   );
   // Exported menu link: management:cis/offerings/course-map
@@ -288,11 +270,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
     'parent_path' => 'cis/offerings',
   );
   // Exported menu link: management:cis/offerings/section-map
@@ -307,11 +289,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
     'parent_path' => 'cis/offerings',
   );
   // Exported menu link: management:cis/offerings/semester-map
@@ -326,11 +308,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
     'parent_path' => 'cis/offerings',
   );
   // Exported menu link: management:cis/programs
@@ -341,11 +323,11 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'Programs',
     'options' => array(),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-48',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -48,
     'parent_path' => 'cis',
   );
   // Exported menu link: management:cis/programs/map
@@ -360,11 +342,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
     'parent_path' => 'cis/programs',
   );
   // Exported menu link: management:cis/resources
@@ -379,11 +361,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-47',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -47,
     'parent_path' => 'cis',
   );
   // Exported menu link: management:cis/services
@@ -398,11 +380,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-45',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -45,
     'parent_path' => 'cis',
   );
   // Exported menu link: management:cis/services/instances
@@ -417,11 +399,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '1',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 1,
     'parent_path' => 'cis/services',
   );
   // Exported menu link: management:cis/services/map
@@ -436,11 +418,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
     'parent_path' => 'cis/services',
   );
   // Exported menu link: management:cis/units
@@ -451,11 +433,11 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'Units',
     'options' => array(),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-46',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -46,
     'parent_path' => 'cis',
   );
   // Exported menu link: management:cis/units/map
@@ -466,11 +448,11 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'Unit Map',
     'options' => array(),
     'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
     'parent_path' => 'cis/units',
   );
   // Exported menu link: management:node/add/academic-unit
@@ -485,11 +467,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '27',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 27,
     'parent_path' => 'cis/units',
   );
   // Exported menu link: management:node/add/course
@@ -504,11 +486,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '27',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 27,
     'parent_path' => 'cis/courses',
   );
   // Exported menu link: management:node/add/program
@@ -523,11 +505,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '29',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 29,
     'parent_path' => 'cis/programs',
   );
   // Exported menu link: management:node/add/resource
@@ -542,11 +524,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
     'parent_path' => 'cis/resources',
   );
   // Exported menu link: management:node/add/service
@@ -561,11 +543,11 @@ function cis_ux_menu_default_menu_links() {
       ),
     ),
     'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '30',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 30,
     'parent_path' => 'cis/services',
   );
   // Translatables
@@ -588,7 +570,6 @@ function cis_ux_menu_default_menu_links() {
   t('Program');
   t('Program map');
   t('Programs');
-  t('Request Setup');
   t('Resources');
   t('Section Map');
   t('Semester Map');

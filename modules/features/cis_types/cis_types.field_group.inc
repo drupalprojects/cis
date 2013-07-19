@@ -55,8 +55,7 @@ function cis_types_field_group_info() {
       0 => 'field_instructional_designer',
       1 => 'field_method_of_access',
       2 => 'field_display_in_course_list',
-      3 => 'field_course_author',
-      4 => 'field_lead_instructor',
+      3 => 'field_lead_instructor',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -286,21 +285,25 @@ function cis_types_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Samples',
+    'label' => 'Promotional',
     'weight' => '2',
     'children' => array(
       0 => 'field_sample_lesson',
       1 => 'field_sample_syllabus',
       2 => 'field_university_bulletin',
-      3 => 'group_screenshots',
+      3 => 'field_course_author',
+      4 => 'field_credits',
+      5 => 'field_first_offered',
+      6 => 'field_related_courses',
+      7 => 'group_screenshots',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'label' => 'Samples',
+      'label' => 'Promotional',
       'instance_settings' => array(
         'required_fields' => 0,
         'classes' => '',
-        'description' => '',
+        'description' => 'Fields related to the promotion of the course and marketing on this website.',
       ),
       'formatter' => 'collapsed',
     ),
@@ -317,14 +320,16 @@ function cis_types_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_samples';
   $field_group->data = array(
-    'label' => 'Screenshots',
-    'weight' => '5',
+    'label' => 'Visuals',
+    'weight' => '31',
     'children' => array(
       0 => 'field_screenshot',
+      1 => 'field_banner',
+      2 => 'field_author_video',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'label' => 'Screenshots',
+      'label' => 'Visuals',
       'instance_settings' => array(
         'required_fields' => 0,
         'classes' => '',
@@ -435,12 +440,11 @@ function cis_types_field_group_info() {
     'label' => 'Syllabus',
     'weight' => '2',
     'children' => array(
-      0 => 'field_materials',
-      1 => 'field_syllabus',
-      2 => 'field_resources',
-      3 => 'field_welcome_letter',
-      4 => 'field_materials_letter',
-      5 => 'field_contact_info',
+      0 => 'field_syllabus',
+      1 => 'field_resources',
+      2 => 'field_welcome_letter',
+      3 => 'field_contact_info',
+      4 => 'field_welcome_page',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
