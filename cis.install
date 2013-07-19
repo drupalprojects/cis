@@ -117,8 +117,8 @@ function cis_install() {
     'cis_displays',
     'cis_users',
     'cis_roles',
-		'cis_types',
-		'cis_ux',
+    'cis_types',
+    'cis_ux',
   );
   features_revert($features);
   // ignore any rebuild messages

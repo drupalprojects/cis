@@ -5,7 +5,113 @@
  */
  
 /**
- * Callback for quick setup page
+ * Callback for offering planning
+ */
+function cis_helper_offering_planning_page($form, $form_state) {
+  // list of available semesters for this offering
+  $field = field_info_field('field_semester');
+  $form['semester'] = array(
+    '#required' => '1',
+    '#multiple' => '0',
+    '#key_type_toggled' => '1',
+    '#type' => 'select',
+    '#options' => $field['settings']['allowed_values'],
+    '#multiple_toggle' => '1',
+    '#title' => t('Semester'),
+  );
+  // academic year of this offering
+  $field = field_info_field('field_year');
+  $form['year'] = array(
+    '#required' => '1',
+    '#multiple' => '0',
+    '#key_type_toggled' => '1',
+    '#type' => 'select',
+    '#options' => $field['settings']['allowed_values'],
+    '#multiple_toggle' => '1',
+    '#title' => t('Year'),
+  );
+  // select the course desired
+  $form['courses'] = array(
+    '#required' => '1',
+    '#multiple' => '1',
+    '#key_type_toggled' => '1',
+    '#description' => t('The courses to establish offerings for'),
+    '#type' => 'checkboxes',
+    '#options' => _cis_helper_assemble_entity_list('node', 'course', 'nid', 'title', array('field_display_in_course_list' => 1)),
+    '#multiple_toggle' => '1',
+    '#theme' => 'cis_helper_checkbox_table',
+    '#title' => t('Course'),
+  );
+  $form['actions']['#type'] = 'actions';
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Create planned offerings'),
+  );
+  return $form;
+}
+
+/**
+ * Submit handler for cis_helper_offering_planning_page.
+ */
+function cis_helper_offering_planning_page_submit($form, $form_state) {
+  $year = $form_state['values']['year'];
+  $semester = $form_state['values']['semester'];
+  $courses = entity_load('node', $form_state['values']['courses']);
+  foreach ($courses as $nid => $course) {
+    $offering = NULL;
+    // make sure that this course doesn't already have an offering for this semester/year
+    if (!empty($course->field_offerings)) {
+      $offering_refs = array();
+      foreach ($course->field_offerings[LANGUAGE_NONE] as $offering_ref) {
+        $offering_refs[] = $offering_ref['value'];
+      }
+      $query = new EntityFieldQuery;
+      $result = $query
+        // select all field collections
+        ->entityCondition('entity_type', 'field_collection_item')
+        // that are offerings
+        ->entityCondition('bundle', 'field_offerings')
+        // that have an internal id associated to the current course
+        ->propertyCondition('item_id', $offering_refs, 'IN')
+        // and semester of the one submitted
+        ->fieldCondition('field_semester', 'value', $semester, '=')
+        // and year of the one submitted
+        ->fieldCondition('field_year', 'value', $year, '=')
+        // load as user 1 to ignore access issues for current user
+        ->addMetaData('account', user_load(1))
+        ->execute();
+      // if we had results, set the offering
+      if (isset($result['field_collection_item'])) {
+        $item = array_keys($result['field_collection_item']);
+        $offerings = entity_load('field_collection_item', $item);
+        $offering = array_pop($offerings);
+      }
+    }
+    // create an offering if we didn't select one above
+    if (is_null($offering)) {
+      // now work on the offering
+      $offering = entity_create('field_collection_item', array('field_name' => 'field_offerings'));
+      // associate this offering to the course
+      $offering->setHostEntity('node', $course);
+      // set semester
+      $offering->field_semester[LANGUAGE_NONE][0]['value'] = $semester;
+      // set year
+      $offering->field_year[LANGUAGE_NONE][0]['value'] = $year;
+      // save offering to the node
+      $offering->save();
+      drupal_set_message(t("Created @course offering for @sem @year", array('@course' => $course->title, '@sem' => $semester, '@year' => $year)), 'notice');
+    }
+    else {
+      drupal_set_message(t("@course had an offering listed for @sem @year so it was not created", array('@course' => $course->title, '@sem' => $semester, '@year' => $year)), 'warning');
+    }
+  }
+}
+ 
+/**
+ * Callback for quick setup page to build a lot of elements at once
+ * At the end this will setup a course, offering, section, and service instance
+ * on an as needed basis.  This is primarily used for handling LTI launches
+ * as they can be rather complex in translation to actual information in CIS.
  */
 function cis_helper_quick_setup_page() {
   global $user;
@@ -66,7 +172,7 @@ function cis_helper_quick_setup_page() {
     '#title' => t('Method of access'),
   );
   $options = _cis_helper_get_instructional_outlines();
-	$options[variable_get('file_public_path', conf_path() . '/files') . '/cis_outline_import/'] = t('CIS Outline Import (on server)');
+  $options[variable_get('file_public_path', conf_path() . '/files') . '/cis_outline_import/'] = t('CIS Outline Import (on server)');
   // add purely administrative options as part of advanced migration
   if (user_access('cis setup admin options')) {
     $options['xml_manifest_import'] = t('Upload..');
@@ -124,30 +230,24 @@ function cis_helper_quick_setup_page() {
     '#title' => t('Offering'),
   );
   // list of available semesters for this offering
+  $field = field_info_field('field_semester');
   $form['offering']['semester'] = array(
     '#required' => '1',
     '#multiple' => '0',
     '#key_type_toggled' => '1',
     '#type' => 'select',
-    '#options' => array(
-      'fa' => t('Fall'),
-      'sp' => t('Spring'),
-      'su' => t('Summer'),
-    ),
+    '#options' => $field['settings']['allowed_values'],
     '#multiple_toggle' => '1',
     '#title' => t('Semester'),
   );
   // academic year of this offering
+  $field = field_info_field('field_year');
   $form['offering']['year'] = array(
     '#required' => '1',
     '#multiple' => '0',
     '#key_type_toggled' => '1',
     '#type' => 'select',
-    '#options' => array(
-      '201213' => t('2012-13'),
-      '201314' => t('2013-14'),
-      '201415' => t('2014-15'),
-    ),
+    '#options' => $field['settings']['allowed_values'],
     '#multiple_toggle' => '1',
     '#title' => t('Year'),
   );
@@ -263,10 +363,10 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
     $etid = $courses[$form_state['values']['course']];
     $course = entity_load_single('node', $etid);
   }
-	// check for instructional outline special case for on server import
-	if ($instructional_outline == variable_get('file_public_path', conf_path() . '/files') . '/cis_outline_import/') {
-		$instructional_outline .= $course->field_machine_name[LANGUAGE_NONE][0]['value'] . '.xml';
-	}
+  // check for instructional outline special case for on server import
+  if ($instructional_outline == variable_get('file_public_path', conf_path() . '/files') . '/cis_outline_import/') {
+    $instructional_outline .= $course->field_machine_name[LANGUAGE_NONE][0]['value'] . '.xml';
+  }
   // make sure that this course doesn't already have an offering for this semester/year
   if (!empty($course->field_offerings)) {
     foreach ($course->field_offerings[LANGUAGE_NONE] as $offering_ref) {

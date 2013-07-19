@@ -90,7 +90,6 @@ function drush_cis_helper_cis_release_kraken() {
   else {
     drush_print(dt('Good luck!'));
     foreach ($courses as $name => $title) {
-      $string = '201314FAUP___NAME__123_' . rand(100, 900);
       if (drush_get_option('actually_run')) {
         drush_cis_helper_create_service_instances($name, $string);
       }

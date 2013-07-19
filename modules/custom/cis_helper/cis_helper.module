@@ -10,14 +10,78 @@ define('CIS_HELPER_DEFAULT_AUTHENTICATION', 'open');
 define('CIS_HELPER_DEFAULT_CONTENT_OUTLINE', 'lesson-based.xml');
 
 /**
- * Implements hook_init().
+ * Implements hook_page_build().
  */
-function cis_helper_init() {
+function cis_helper_page_build(&$page) {
   drupal_add_css(drupal_get_path('module', 'cis_helper') .'/css/cis_helper.css');
+  $node = menu_get_object();
   // special js for hiding / displaying groups of form fields
   if (arg(0) == 'cis-quick-setup') {
     drupal_add_js(drupal_get_path('module', 'cis_helper') .'/js/cis_helper.js');
   }
+  else if (isset($node->type)) {
+    // only apply these to course pages
+    if (($node->type == 'course' || $node->type == 'program' || $node->type == 'person') && isset($node->field_academic_home['und'])) {
+      $unit = node_load($node->field_academic_home['und'][0]['target_id']);
+      $color = $unit->field_color['und'][0]['jquery_colorpicker'];
+      $css = '
+      .unit-color-border li.active, 
+      .unit-color-border li.active-trail, 
+      .unit-color-border{
+        border-color: #' . $color . ' !important;
+      }
+      .unit-color, .amp, .unit-color a {
+        color: #' . $color . ' !important;
+      }
+      .unit-bg-color {
+        background-color: #' . $color . ' !important;
+      }
+      ::-moz-selection {
+        background-color: #' . $color . ';
+      }
+      ::selection {
+        background-color: #' . $color . ';
+      }
+      ';
+      // make sure it's added very late so it takes priority, even with important
+      $options = array(
+        'type' => 'inline',
+        'group' => CSS_THEME,
+        'weight' => 100,
+        'preprocess' => FALSE,        
+      );
+      drupal_add_css($css, $options);
+    }
+  }
+}
+
+/**
+ * Implements hook_theme
+ */
+function cis_helper_theme($existing, $type, $theme, $path){
+  return array(
+    'cis_helper_checkbox_table' => array(
+      'render element' => 'element',
+    ),
+  );
+}
+
+/**
+ * Theme callback to render checkboxes as a table
+ */
+function theme_cis_helper_checkbox_table($variables) {
+  $element = $variables['element'];
+  
+  $rows = array();
+  $row = array();
+  foreach (element_children($element) as $n => $key) {
+    $row[] = drupal_render($element[$key]);
+    if ($n+1 == count($element['#options']) || ($n+1) % 5 == 0) {  //5 can be replaced by number of checkboxes you want in one row.
+      $rows[] = $row;
+      $row = array();
+    }
+  }
+  return theme('table', array('header' => array(), 'rows' => $rows, 'attributes' => array('class' => array('cis_course_table_list'))));
 }
 
 /**
@@ -39,7 +103,8 @@ function cis_helper_menu() {
   );
   // quick setup form
   $items['cis-quick-setup'] = array(
-    'title' => 'Section Setup',
+    'title' => 'System Setup',
+    'description' => 'Setup a new course and plug it into the network of tools',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('cis_helper_quick_setup_page'),
     'access arguments' => array('access cis setup form'),
@@ -47,6 +112,19 @@ function cis_helper_menu() {
     'file' => 'cis_helper.pages.inc',
     'file path' => $path,
   );
+  // quick setup form
+  $items['cis/offerings/planning'] = array(
+    'title' => 'Planning',
+    'weight' => 0,
+    'description' => 'Plan what courses are going to be offered in the future',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('cis_helper_offering_planning_page'),
+    'access arguments' => array('access cis setup form'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'cis_helper.pages.inc',
+    'file path' => $path,
+  );
+  
   return $items;
 }
 
@@ -93,6 +171,48 @@ function cis_helper_draw_chart_alter(&$settings) {
  * Implements hook_form_alter().
  */
 function cis_helper_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && arg(0) == 'courses' && $form_state['view']->name == 'courses_overview') {
+    // add nice html5 placeholders
+    $form['title']['#placeholder'] = t('Find a course');
+    $form['title_1']['#placeholder'] = t('Enter a number');
+    $form['viewby'] = array(
+      '#markup' => t('View by'),
+    );
+    // department container
+    $form['department'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Department'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+      '#weight' => 1,
+    );
+    $form['department']['field_program_classification_target_id'] = $form['field_program_classification_target_id'];
+    unset($form['field_program_classification_target_id']);
+    
+    // program container
+    $form['program'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Program'),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+      '#weight' => 2,
+    );
+    $form['program']['field_academic_home_target_id'] = $form['field_academic_home_target_id'];
+    unset($form['field_academic_home_target_id']);
+  
+  // course_num container
+    $form['course_num'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Course Number'),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+      '#weight' => 3,
+    );
+    $form['course_num']['title_1'] = $form['title_1'];
+    unset($form['title_1']);
+    $form['reset']['#weight'] = 4;
+  dpm($form);
+  }
   // add quick link to add offering to the list of offerings
   if ($form_id == 'views_exposed_form' && arg(2) == 'offerings') {
     $form['cle_add_new']['#markup'] = l(t('Add new Offering'), 'field-collection/field-offerings/add/node/'. arg(1), array('query' => array('destination' => 'node/' . arg(1) . '/offerings')));
@@ -231,10 +351,6 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE && $course->field_method_of_access[LANGUAGE_NONE][0]['value'] == 'code') {
     $options['en'][] = 'cis_service_activation_codes';
   }
-  // service connection is required to talk back to this site
-  $options['en'][] = 'cis_service_connection';
-  // ux has the block position settings
-  $options['en'][] = 'cis_service_connection_ux';
   // vset the uuid from the service_instance entity into the remote site
   $options['vset'][] = 'cis_service_instance_uuid ' . $service_instance->uuid;
   // disable site auto-cron run so admin can set policy globally
@@ -357,16 +473,22 @@ function _cis_helper_derive_parent($item_id, $field_collection_type = 'section',
 /**
  * Helper function to generate options list of entities based on type
  */
-function _cis_helper_assemble_entity_list($entity_type, $bundle, $id_field, $title_field) {
+function _cis_helper_assemble_entity_list($entity_type, $bundle, $id_field, $title_field, $field_conditions = array()) {
   // pull items based on bundle
   $options = array();
   // assemble all entities requested
   $query = new EntityFieldQuery;
-  $result = $query
-    ->entityCondition('entity_type', $entity_type)
-    ->entityCondition('bundle', $bundle)
-    ->propertyOrderBy($title_field)
-    ->execute();
+  $query->entityCondition('entity_type', $entity_type)
+    ->entityCondition('bundle', $bundle);
+  // allow for simple field conditions
+  if (!empty($field_conditions)) {
+    // only allowed relationship is simple value field name / value pair
+    foreach ($field_conditions as $field_name => $field_value) {
+      $query->fieldCondition($field_name, 'value', $field_value, '=');
+    }
+  }
+  $result = $query->propertyOrderBy($title_field)
+   ->execute();
   // convert to load only keys of items found
   $etids = array_keys($result[$entity_type]);
   // load all the entities in the array
@@ -475,3 +597,38 @@ function cis_helper_profiler_builder_drush_modules_list_alter(&$project_data, $m
   // this module is included with the package as it was a sandbox
   unset($project_data['Views']['views_field_calc']);
 }
+
+/**
+ * Alter the outgoing response.
+ *
+ * @param mixed $response
+ *   The response data being returned by the REST service (not yet serialized).
+ *
+ * @param string $function
+ *   The function being called on the REST service.
+ *
+ * @param string $format
+ *   The name of the format serializing the response.
+ */
+ /*
+//TODO https://drupal.org/node/2024603#comment-7595901
+function cis_helper_restws_response_alter(&$response, $function, $formatName) {
+  // specific modifications based common request type
+  if ($function == 'viewResource' && $formatName == 'json') {
+    if (isset($_GET['deep-load-refs'])) {
+      foreach ($response as $key => &$val) {
+        if (is_array($val) && isset($val[0]['id'])) {
+          foreach ($val as &$item) {
+            $entity = entity_load_single($item['resource'], $item['id']);
+            $item[$item['resource']] = (array) $entity;
+          }
+        }
+        elseif (is_array($val) && isset($val['id'])) {
+          $entity = entity_load_single($val['resource'], $val['id']);
+          $val[$val['resource']] = (array) $entity;
+        }
+      }
+      //dpm($response);
+    }
+  }
+}*/
