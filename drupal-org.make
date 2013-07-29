@@ -144,7 +144,7 @@ projects[options_element][subdir] = "contrib"
 projects[pathauto][version] = "1.2"
 projects[pathauto][subdir] = "contrib"
 
-projects[restws][version] = "2.0-alpha4"
+projects[restws][version] = "2.0"
 projects[restws][subdir] = "contrib"
 
 projects[strongarm][version] = "2.0"
@@ -272,6 +272,8 @@ libraries[plupload][type] = "library"
 ; Patches
 ; fix issues with install routine for nested field collection items
 projects[field_collection][patch][] = "http://drupal.org/files/field_collection-import-fails-1649548-36.patch"
+; allow for custom meta controllers to enable deep querying
+projects[restws][patch][] = "http://drupal.org/files/restws_meta_controls-2053147-1.patch"
 ; allow for counting items in pie chart better
 projects[google_chart_tools][patch][] = "http://drupal.org/files/google_chart_tools-piechartcounts.patch"
 ; responsive support
