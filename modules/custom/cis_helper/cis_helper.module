@@ -171,12 +171,14 @@ function cis_helper_draw_chart_alter(&$settings) {
  * Implements hook_form_alter().
  */
 function cis_helper_form_alter(&$form, $form_state, $form_id) {
+  // courses overview view / display
   if ($form_id == 'views_exposed_form' && arg(0) == 'courses' && $form_state['view']->name == 'courses_overview') {
     // add nice html5 placeholders
     $form['title']['#placeholder'] = t('Find a course');
     $form['title_1']['#placeholder'] = t('Enter a number');
+    // TODO add a button for show all that triggers click on reset
     $form['viewby'] = array(
-      '#markup' => t('View by'),
+      '#markup' => '<span class="cis-view-by">' . t('View by') . '</span>',
     );
     // department container
     $form['department'] = array(
@@ -186,8 +188,8 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
       '#collapsed' => FALSE,
       '#weight' => 1,
     );
-    $form['department']['field_program_classification_target_id'] = $form['field_program_classification_target_id'];
-    unset($form['field_program_classification_target_id']);
+    $form['department']['field_academic_home_target_id'] = $form['field_academic_home_target_id'];
+    unset($form['field_academic_home_target_id']);
     
     // program container
     $form['program'] = array(
@@ -197,8 +199,8 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
       '#collapsed' => TRUE,
       '#weight' => 2,
     );
-    $form['program']['field_academic_home_target_id'] = $form['field_academic_home_target_id'];
-    unset($form['field_academic_home_target_id']);
+    $form['program']['field_program_classification_target_id'] = $form['field_program_classification_target_id'];
+    unset($form['field_program_classification_target_id']);
   
   // course_num container
     $form['course_num'] = array(
@@ -210,8 +212,29 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
     );
     $form['course_num']['title_1'] = $form['title_1'];
     unset($form['title_1']);
-    $form['reset']['#weight'] = 4;
-  dpm($form);
+    // move reset button up
+    $form['reset']['#attributes'] = array('class' => array('element-invisible'));
+  }
+  // faculty overview view / display
+  if ($form_id == 'views_exposed_form' && arg(0) == 'faculty' && $form_state['view']->name == 'cis_faculty') {
+    // add nice html5 placeholders
+    $form['field_display_name_value']['#placeholder'] = t('Search for faculty');
+    $form['field_display_name_value']['#title_display'] = 'invisible';
+    $form['viewby'] = array(
+      '#markup' => '<span class="cis-view-by">' . t('View by') . '</span>',
+    );
+    // department container
+    $form['department'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Department'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+      '#weight' => 1,
+    );
+    $form['department']['field_academic_home_target_id'] = $form['field_academic_home_target_id'];
+    unset($form['field_academic_home_target_id']);
+    // move reset button up
+    $form['reset']['#weight'] = 0;
   }
   // add quick link to add offering to the list of offerings
   if ($form_id == 'views_exposed_form' && arg(2) == 'offerings') {
@@ -296,30 +319,32 @@ function cis_helper_entity_update($entity, $type) {
     foreach ($entity->field_services[LANGUAGE_NONE] as $in_use) {
       $use_array[$in_use['target_id']] = $in_use['target_id'];
     }
-    foreach ($service_instances as $instance) {
-      // check that this instance of a service is in use by this section
-      if (in_array($instance->field_services[LANGUAGE_NONE][0]['target_id'], $use_array)) {
-        // load the service and course entities
-        $service = entity_load_single('node', $instance->field_services[LANGUAGE_NONE][0]['target_id']);
-        $course = entity_load_single('node', $instance->field_course[LANGUAGE_NONE][0]['target_id']);
-        // create the location of this service instance cron
-        $location = $service->field_location[LANGUAGE_NONE][0]['url'] . '/' . $course->field_machine_name[LANGUAGE_NONE][0]['safe_value'];
-        // add on the cron and cron_key values for a secure remote run
-        $data = array(
-          'cron_key' => $instance->field_cron_key[LANGUAGE_NONE][0]['value'],
-        );
-        $location .= '/cron.php?' . http_build_query($data);
-        // call the cron via remote call
-        $options = array(
-          'blocking' => FALSE,
-        );
-        // que request
-        httprl_request($location, $options);
-        drupal_set_message(t('The remote service `@service` has been syncronized to reflect your changes.', array('@service' => $service->title)), 'status');
+    if (is_array($service_instances)) {
+      foreach ($service_instances as $instance) {
+        // check that this instance of a service is in use by this section
+        if (in_array($instance->field_services[LANGUAGE_NONE][0]['target_id'], $use_array)) {
+          // load the service and course entities
+          $service = entity_load_single('node', $instance->field_services[LANGUAGE_NONE][0]['target_id']);
+          $course = entity_load_single('node', $instance->field_course[LANGUAGE_NONE][0]['target_id']);
+          // create the location of this service instance cron
+          $location = $service->field_location[LANGUAGE_NONE][0]['url'] . '/' . $course->field_machine_name[LANGUAGE_NONE][0]['safe_value'];
+          // add on the cron and cron_key values for a secure remote run
+          $data = array(
+            'cron_key' => $instance->field_cron_key[LANGUAGE_NONE][0]['value'],
+          );
+          $location .= '/cron.php?' . http_build_query($data);
+          // call the cron via remote call
+          $options = array(
+            'blocking' => FALSE,
+          );
+          // que request
+          httprl_request($location, $options);
+          drupal_set_message(t('The remote service `@service` has been syncronized to reflect your changes.', array('@service' => $service->title)), 'status');
+        }
       }
+      // Execute requests in the queue in a non-blocking manner (really fast)
+      $request = httprl_send_request();
     }
-    // Execute requests in the queue in a non-blocking manner (really fast)
-    $request = httprl_send_request();
   }  
 }
 
@@ -600,6 +625,8 @@ function cis_helper_profiler_builder_drush_modules_list_alter(&$project_data, $m
 
 /**
  * Alter the outgoing response.
+ * 
+ * related support issue https://drupal.org/node/2024603
  *
  * @param mixed $response
  *   The response data being returned by the REST service (not yet serialized).
@@ -610,25 +637,100 @@ function cis_helper_profiler_builder_drush_modules_list_alter(&$project_data, $m
  * @param string $format
  *   The name of the format serializing the response.
  */
- /*
-//TODO https://drupal.org/node/2024603#comment-7595901
 function cis_helper_restws_response_alter(&$response, $function, $formatName) {
   // specific modifications based common request type
-  if ($function == 'viewResource' && $formatName == 'json') {
-    if (isset($_GET['deep-load-refs'])) {
-      foreach ($response as $key => &$val) {
-        if (is_array($val) && isset($val[0]['id'])) {
-          foreach ($val as &$item) {
-            $entity = entity_load_single($item['resource'], $item['id']);
-            $item[$item['resource']] = (array) $entity;
-          }
-        }
-        elseif (is_array($val) && isset($val['id'])) {
-          $entity = entity_load_single($val['resource'], $val['id']);
-          $val[$val['resource']] = (array) $entity;
-        }
+  if (($function == 'viewResource' || $function == 'queryResource') && $formatName == 'json' && isset($_GET['deep-load-refs'])) {
+    // query response is nested, direct access is not
+    if ($function == 'queryResource') {
+      foreach ($response['list'] as &$object) {
+        _cis_helper_restws_deep_load($object);
       }
-      //dpm($response);
+    }
+    else {
+      _cis_helper_restws_deep_load($response);
     }
   }
-}*/
+}
+
+/**
+ * Callback to perform deep load on a base entity
+ */
+function _cis_helper_restws_deep_load(&$response) {
+  // build list of allowed entity types to deep pull down
+  $allowed = explode(',', $_GET['deep-load-refs']);
+  // allow for deep loading of resources
+  foreach ($response as $key => &$val) {
+    // check for a single resource verses many
+    if (is_array($val) && isset($val[0]['id'])) {
+      // loop through items loading them in
+      foreach ($val as &$item) {
+        if (in_array($item['resource'], $allowed)) {
+          // load the entity
+          $entity = entity_load_single($item['resource'], $item['id']);
+          // ensure they can view this specific item
+          if (entity_access('view', $item['resource'], $entity)) {
+            // create a meta wrapper to act on for entity
+            $wrapper = entity_metadata_wrapper($item['resource'], $entity);
+            // filter out these values
+            $wrap = restws_property_access_filter($wrapper);
+            $eary = (array) $entity;
+            foreach ($eary as $property => $value) {
+              // value needs to be removed as it didn't pass wrapper validation
+              if (!isset($wrap[$property])) {
+                unset($eary[$property]);
+              }
+            }
+            // edge-case unique to cis with nested field collections
+            // the rest of this code is generalized to work with anything
+            if (isset($eary['field_sections']['und']) && count($eary['field_sections']['und']) > 0) {
+              // perform deep load of sections
+              foreach ($eary['field_sections']['und'] as &$section) {
+                $section_entity = entity_load_single($item['resource'], $section['value']);
+                // ensure they can view this specific item
+                if (entity_access('view', $item['resource'], $section_entity)) {
+                  // create a meta wrapper to act on for entity
+                  $section_wrapper = entity_metadata_wrapper($item['resource'], $section_entity);
+                  // filter out these values
+                  $sec_wrap = restws_property_access_filter($section_wrapper);
+                  $sec_eary = (array) $section_entity;
+                  foreach ($sec_eary as $sec_property => $sec_value) {
+                    // value needs to be removed as it didn't pass wrapper validation
+                    if (!isset($sec_wrap[$sec_property])) {
+                      unset($sec_eary[$sec_property]);
+                    }
+                  }
+                  $section = $sec_eary;
+                }
+              }
+            }
+            // add values based on wrapper passing correctly
+            $item = $eary;
+          }
+        }
+      }
+    }
+    elseif (is_array($val) && isset($val['id'])) {
+      if (in_array($val['resource'], $allowed)) {
+        // load the entity
+        $entity = entity_load_single($val['resource'], $val['id']);
+        // ensure they can view this specific item
+        if (entity_access('view', $val['resource'], $entity)) {
+          // create a meta wrapper to act on for entity
+          $wrapper = entity_metadata_wrapper($val['resource'], $entity);
+          // filter out fields
+          $wrap = restws_property_access_filter($wrapper);
+          // typecast entity as array for property evaluation
+          $eary = (array) $entity;
+          foreach ($eary as $property => $value) {
+            // value needs to be removed as it didn't pass wrapper validation
+            if (!isset($wrap[$property])) {
+              unset($eary[$property]);
+            }
+          }
+          // add values based on wrapper passing correctly
+          $val = $eary;
+        }
+      }
+    }
+  }
+}
