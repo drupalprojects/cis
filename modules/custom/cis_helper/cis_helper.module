@@ -430,7 +430,7 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   // this way they actually revert instead of vset / en disrupting them
   $content .= $fr;
   // only apply default content import for course based service
-  if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE) {
+  if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE && !empty($service_instance->field_service_data[LANGUAGE_NONE][0]['value'])) {
     // allow for on creation population of material
     $content .= 'drush feeds-import --verbose feeds_node_helper_book_import --file=' . $service_instance->field_service_data[LANGUAGE_NONE][0]['value'] . "\n";
   }
@@ -479,6 +479,10 @@ function _cis_helper_derive_parent($item_id, $field_collection_type = 'section',
   if ($find == 'offering') {
     return $offering;
   }
+  
+  if (empty($offering)) {
+    return FALSE;
+  }
   // pull the node associated to this offering
   $query = new EntityFieldQuery;
   $result = $query
@@ -492,7 +496,10 @@ function _cis_helper_derive_parent($item_id, $field_collection_type = 'section',
     ->addMetaData('account', user_load(1))
     ->execute();
   // load node of the course and return it
-  return node_load(array_pop(array_keys($result['node'])));
+  if (isset($result['node'])) {
+    return node_load(array_pop(array_keys($result['node'])));
+  }
+  return FALSE;
 }
 
 /**
@@ -582,6 +589,9 @@ function _cis_helper_derive_service_instances($item_id, $course = NULL, $type = 
         return FALSE;
       break;
     }
+  }
+  if ($course == NULL) {
+    return FALSE;
   }
   // query to return all service instances for this course
   $query = new EntityFieldQuery;
@@ -680,26 +690,29 @@ function _cis_helper_restws_deep_load(&$response) {
                 unset($eary[$property]);
               }
             }
+            // CIS SPECIFIC
             // edge-case unique to cis with nested field collections
             // the rest of this code is generalized to work with anything
             if (isset($eary['field_sections']['und']) && count($eary['field_sections']['und']) > 0) {
               // perform deep load of sections
               foreach ($eary['field_sections']['und'] as &$section) {
-                $section_entity = entity_load_single($item['resource'], $section['value']);
-                // ensure they can view this specific item
-                if (entity_access('view', $item['resource'], $section_entity)) {
-                  // create a meta wrapper to act on for entity
-                  $section_wrapper = entity_metadata_wrapper($item['resource'], $section_entity);
-                  // filter out these values
-                  $sec_wrap = restws_property_access_filter($section_wrapper);
-                  $sec_eary = (array) $section_entity;
-                  foreach ($sec_eary as $sec_property => $sec_value) {
-                    // value needs to be removed as it didn't pass wrapper validation
-                    if (!isset($sec_wrap[$sec_property])) {
-                      unset($sec_eary[$sec_property]);
+                if ($section['value'] != NULL) {
+                  $section_entity = entity_load_single($item['resource'], $section['value']);
+                  // ensure they can view this specific item
+                  if (entity_access('view', $item['resource'], $section_entity)) {
+                    // create a meta wrapper to act on for entity
+                    $section_wrapper = entity_metadata_wrapper($item['resource'], $section_entity);
+                    // filter out these values
+                    $sec_wrap = restws_property_access_filter($section_wrapper);
+                    $sec_eary = (array) $section_entity;
+                    foreach ($sec_eary as $sec_property => $sec_value) {
+                      // value needs to be removed as it didn't pass wrapper validation
+                      if (!isset($sec_wrap[$sec_property])) {
+                        unset($sec_eary[$sec_property]);
+                      }
                     }
+                    $section = $sec_eary;
                   }
-                  $section = $sec_eary;
                 }
               }
             }
