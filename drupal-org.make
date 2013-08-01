@@ -9,7 +9,7 @@ api = "2"
 projects[admin_menu][version] = "3.0-rc4"
 projects[admin_menu][subdir] = "contrib"
 
-projects[httprl][version] = "1.11"
+projects[httprl][version] = "1.12"
 projects[httprl][subdir] = "contrib"
 
 projects[ctools][version] = "1.3"
