@@ -9,14 +9,22 @@ core = "7.x"
 ; Administration
 dependencies[] = admin_menu
 dependencies[] = admin_menu_toolbar
+; Advanced CSS/JS Aggregation
+dependencies[] = advagg
+dependencies[] = advagg_bundler
+; CIS
+dependencies[] = cis_connector
+dependencies[] = cis_helper
+dependencies[] = cis_lti
 ; Chaos tool suite
 dependencies[] = ctools
 ; Charting
 dependencies[] = google_chart_tools
 dependencies[] = google_chart_tools_views
+; Content
+dependencies[] = field_redirection
 ; Context
 dependencies[] = context
-dependencies[] = context_condition_theme
 dependencies[] = context_ui
 ; Core
 dependencies[] = block
@@ -37,6 +45,7 @@ dependencies[] = number
 dependencies[] = options
 dependencies[] = overlay
 dependencies[] = path
+dependencies[] = rdf
 dependencies[] = search
 dependencies[] = system
 dependencies[] = text
@@ -53,6 +62,11 @@ dependencies[] = schema
 dependencies[] = date
 dependencies[] = date_api
 dependencies[] = date_views
+; Entity
+dependencies[] = activation_code
+dependencies[] = replicate
+dependencies[] = replicate_field_collection
+dependencies[] = replicate_ui
 ; Fields
 dependencies[] = email
 dependencies[] = entityreference
@@ -63,11 +77,11 @@ dependencies[] = field_hidden
 dependencies[] = field_permissions
 dependencies[] = link
 dependencies[] = phone
-; Flex Slider
-dependencies[] = flexslider
-dependencies[] = flexslider_fields
-dependencies[] = flexslider_views
-dependencies[] = flexslider_views_slideshow
+dependencies[] = select_or_other
+; Filter
+dependencies[] = simplehtmldom
+; Image
+dependencies[] = smartcrop
 ; Input filters
 dependencies[] = typogrify
 dependencies[] = video_filter
@@ -77,71 +91,88 @@ dependencies[] = jammer
 dependencies[] = lti_tool_provider
 ; Media
 dependencies[] = imce
+dependencies[] = video_embed_field
 ; Node form columns
 dependencies[] = nodeformcols
+; Nodequeue
+dependencies[] = nodequeue
+; OAuth
+dependencies[] = oauth_common
 ; Other
-dependencies[] = activation_code
-dependencies[] = httprl
 dependencies[] = auto_nodetitle
 dependencies[] = boxes
+dependencies[] = clone
+dependencies[] = dhtml_menu
 dependencies[] = diff
 dependencies[] = entity
 dependencies[] = entity_token
 dependencies[] = field_collection_table
 dependencies[] = file_formatters
+dependencies[] = fitvids
 dependencies[] = isbn2node
 dependencies[] = jquery_colorpicker
 dependencies[] = libraries
 dependencies[] = masquerade
+dependencies[] = menu_attributes
+dependencies[] = menu_block
+dependencies[] = menu_position
 dependencies[] = module_filter
 dependencies[] = nocurrent_pass
 dependencies[] = nodeaccess_nodereference
 dependencies[] = nodeaccess_userreference
-dependencies[] = options_element
 dependencies[] = pathauto
+dependencies[] = placeholder
+dependencies[] = responsive_tables
 dependencies[] = restws
 dependencies[] = restws_basic_auth
+dependencies[] = special_menu_items
 dependencies[] = strongarm
 dependencies[] = token
 dependencies[] = transliteration
 dependencies[] = unique_field
+; Path breadcrumbs
+dependencies[] = path_breadcrumbs
 ; Performance and scalability
+dependencies[] = boost_crawler
 dependencies[] = entitycache
+dependencies[] = httprl
+; Regions
+dependencies[] = regions
+dependencies[] = regions_admin_left
+; Security
+dependencies[] = seckit
+; Shadowbox
+dependencies[] = file_shadowbox
+dependencies[] = image_shadowbox
+dependencies[] = shadowbox
 ; Textbook
 dependencies[] = textbook
-dependencies[] = textbook_editor
-; Theme Tools
-dependencies[] = delta
-dependencies[] = delta_blocks
-dependencies[] = delta_color
-dependencies[] = delta_ui
-dependencies[] = omega_tools
 ; UUID
 dependencies[] = uuid
-; User Interface
-dependencies[] = tinynav
 ; User interface
+dependencies[] = addanother
 dependencies[] = ckeditor_link
 dependencies[] = imce_wysiwyg
+dependencies[] = jquery_update
+dependencies[] = options_element
 dependencies[] = wysiwyg
 ; Views
 dependencies[] = better_exposed_filters
+dependencies[] = editableviews
 dependencies[] = views
+dependencies[] = views_autocomplete_filters
 dependencies[] = views_bulk_operations
 dependencies[] = views_data_export
 dependencies[] = views_field_calc
 dependencies[] = views_fluid_grid
-dependencies[] = views_slideshow
 dependencies[] = views_ui
-; CIS
-dependencies[] = cis_helper
-dependencies[] = cis_lti
 ; Features
 dependencies[] = features
-dependencies[] = chamfer_defaults
 dependencies[] = cis_data
-dependencies[] = cis_ux
-dependencies[] = cis_types
-dependencies[] = cis_users
 dependencies[] = cis_displays
 dependencies[] = cis_roles
+dependencies[] = cis_types
+dependencies[] = cis_users
+dependencies[] = cis_ux
+dependencies[] = regions_admin_example
+dependencies[] = textbook_editor

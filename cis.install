@@ -111,14 +111,14 @@ function cis_install() {
   menu_rebuild();
   // revert features to ensure they are all installed
   $features = array(
-    'chamfer_defaults',
     'textbook_editor',
     'cis_data',
-    'cis_displays',
-    'cis_users',
-    'cis_roles',
     'cis_types',
     'cis_ux',
+    'cis_users',
+    'cis_displays',
+    'cis_roles',
+    'regions_admin_example'
   );
   features_revert($features);
   // ignore any rebuild messages
