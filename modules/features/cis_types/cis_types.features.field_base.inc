@@ -10,38 +10,6 @@
 function cis_types_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'body'
-  $field_bases['body'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(
-      0 => 'node',
-    ),
-    'field_name' => 'body',
-    'field_permissions' => array(
-      'type' => 0,
-    ),
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'text_with_summary',
-  );
-
   // Exported field_base: 'field_abbreviation'
   $field_bases['field_abbreviation'] = array(
     'active' => 1,
@@ -68,6 +36,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 60,
     ),
     'translatable' => 0,
@@ -100,6 +70,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
@@ -121,6 +93,108 @@ function cis_types_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
+  // Exported field_base: 'field_access_dates'
+  $field_bases['field_access_dates'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_access_dates',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'date',
+    'settings' => array(
+      'cache_count' => 4,
+      'cache_enabled' => 0,
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 0,
+        'minute' => 0,
+        'month' => 'month',
+        'second' => 0,
+        'year' => 'year',
+      ),
+      'timezone_db' => '',
+      'todate' => 'optional',
+      'tz_handling' => 'none',
+    ),
+    'translatable' => 0,
+    'type' => 'datetime',
+  );
+
+  // Exported field_base: 'field_access_string'
+  $field_bases['field_access_string'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_access_string',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'max_length' => 60,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_address'
+  $field_bases['field_address'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_address',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
   // Exported field_base: 'field_author_video'
   $field_bases['field_author_video'] = array(
     'active' => 1,
@@ -135,7 +209,10 @@ function cis_types_field_default_field_bases() {
     'indexes' => array(),
     'locked' => 0,
     'module' => 'video_embed_field',
-    'settings' => array(),
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'video_embed_field',
   );
@@ -166,11 +243,67 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'image',
     'settings' => array(
-      'default_image' => 0,
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'default_image' => 157,
       'uri_scheme' => 'public',
     ),
     'translatable' => 0,
     'type' => 'image',
+  );
+
+  // Exported field_base: 'field_campus'
+  $field_bases['field_campus'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_campus',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'wd' => 'World Campus',
+        'up' => 'University Park',
+        'oz' => 'Abington Campus',
+        'aa' => 'Altoona Campus',
+        'br' => 'Beaver Campus',
+        'bk' => 'Berks Campus',
+        'de' => 'Brandywine Campus',
+        'dn' => 'Dickinson School of Law',
+        'ds' => 'Dubois Campus',
+        'fe' => 'Fayette Campus',
+        'xs' => 'Foreign Studies Program',
+        'mk' => 'Greater Allegheny Campus',
+        'hn' => 'Hazleton Campus',
+        'an' => 'Lehigh Valley Campus',
+        'hy' => 'Milton S. Hershey Medical Center',
+        'ma' => 'Mont Alto Campus',
+        'nk' => 'New Kensington Campus',
+        'bd' => 'Penn State Erie, The Behrend College',
+        'kp' => 'Penn State Great Valley',
+        'cl' => 'Penn State Harrisburg, The Capital College',
+        'sl' => 'Schuylkill Campus',
+        'sv' => 'Shenango Campus',
+        'wb' => 'Wilkes-Barre Campus',
+        'ws' => 'Worthington Scranton Campus',
+        'yk' => 'York Campus',
+      ),
+      'allowed_values_function' => '',
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
   );
 
   // Exported field_base: 'field_color'
@@ -187,9 +320,45 @@ function cis_types_field_default_field_bases() {
     'indexes' => array(),
     'locked' => 0,
     'module' => 'jquery_colorpicker',
-    'settings' => array(),
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'jquery_colorpicker',
+  );
+
+  // Exported field_base: 'field_contact_info'
+  $field_bases['field_contact_info'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_contact_info',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_coordinators'
@@ -218,6 +387,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'handler' => 'views',
       'handler_settings' => array(
         'behaviors' => array(
@@ -263,6 +434,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
@@ -283,6 +456,42 @@ function cis_types_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'entityreference',
+  );
+
+  // Exported field_base: 'field_course_archive'
+  $field_bases['field_course_archive'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_course_archive',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(
+      'fid' => array(
+        'columns' => array(
+          'fid' => 'fid',
+        ),
+        'table' => 'file_managed',
+      ),
+    ),
+    'indexes' => array(
+      'fid' => array(
+        0 => 'fid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'file',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'display_default' => 0,
+      'display_field' => 0,
+      'uri_scheme' => 'private',
+    ),
+    'translatable' => 0,
+    'type' => 'file',
   );
 
   // Exported field_base: 'field_course_author'
@@ -311,6 +520,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'handler' => 'views',
       'handler_settings' => array(
         'behaviors' => array(
@@ -320,7 +531,7 @@ function cis_types_field_default_field_bases() {
         ),
         'view' => array(
           'args' => array(),
-          'display_name' => 'entityreference_1',
+          'display_name' => 'entityreference_2',
           'view_name' => 'person_references',
         ),
       ),
@@ -328,6 +539,41 @@ function cis_types_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'entityreference',
+  );
+
+  // Exported field_base: 'field_course_start'
+  $field_bases['field_course_start'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_course_start',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'date',
+    'settings' => array(
+      'cache_count' => 4,
+      'cache_enabled' => 0,
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 0,
+        'minute' => 0,
+        'month' => 'month',
+        'second' => 0,
+        'year' => 'year',
+      ),
+      'timezone_db' => '',
+      'todate' => '',
+      'tz_handling' => 'none',
+    ),
+    'translatable' => 0,
+    'type' => 'datetime',
   );
 
   // Exported field_base: 'field_course_title'
@@ -353,6 +599,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -385,6 +633,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 100,
     ),
     'translatable' => 0,
@@ -417,6 +667,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 100,
     ),
     'translatable' => 0,
@@ -431,7 +683,7 @@ function cis_types_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_display_in_course_list',
     'field_permissions' => array(
-      'type' => 2,
+      'type' => 0,
     ),
     'foreign keys' => array(),
     'indexes' => array(
@@ -447,6 +699,8 @@ function cis_types_field_default_field_bases() {
         1 => 'Display in public course list',
       ),
       'allowed_values_function' => '',
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'list_boolean',
@@ -478,6 +732,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -510,10 +766,34 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 60,
     ),
     'translatable' => 0,
     'type' => 'text',
+  );
+
+  // Exported field_base: 'field_email'
+  $field_bases['field_email'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_email',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'email',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'email',
   );
 
   // Exported field_base: 'field_facebook'
@@ -536,6 +816,8 @@ function cis_types_field_default_field_bases() {
         'rel' => '',
         'target' => 'default',
       ),
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display' => array(
         'url_cutoff' => 80,
       ),
@@ -566,6 +848,8 @@ function cis_types_field_default_field_bases() {
     'settings' => array(
       'cache_count' => 4,
       'cache_enabled' => 0,
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'granularity' => array(
         'day' => 0,
         'hour' => 0,
@@ -608,6 +892,43 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'image',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'default_image' => 0,
+      'uri_scheme' => 'public',
+    ),
+    'translatable' => 0,
+    'type' => 'image',
+  );
+
+  // Exported field_base: 'field_icon'
+  $field_bases['field_icon'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_icon',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'fid' => array(
+        'columns' => array(
+          'fid' => 'fid',
+        ),
+        'table' => 'file_managed',
+      ),
+    ),
+    'indexes' => array(
+      'fid' => array(
+        0 => 'fid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'image',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'default_image' => 0,
       'uri_scheme' => 'public',
     ),
@@ -641,6 +962,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'file',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display_default' => 0,
       'display_field' => 0,
       'uri_scheme' => 'public',
@@ -675,6 +998,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'file',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display_default' => 0,
       'display_field' => 0,
       'uri_scheme' => 'public',
@@ -708,7 +1033,10 @@ function cis_types_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'text_long',
   );
@@ -739,6 +1067,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'file',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display_default' => 0,
       'display_field' => 0,
       'uri_scheme' => 'public',
@@ -773,6 +1103,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'file',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display_default' => 0,
       'display_field' => 0,
       'uri_scheme' => 'public',
@@ -807,6 +1139,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'handler' => 'views',
       'handler_settings' => array(
         'behaviors' => array(
@@ -820,6 +1154,54 @@ function cis_types_field_default_field_bases() {
           'view_name' => 'user_type_lists',
         ),
       ),
+      'target_type' => 'user',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
+  // Exported field_base: 'field_instructor_of_record'
+  $field_bases['field_instructor_of_record'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_instructor_of_record',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(
+      'node' => array(
+        'columns' => array(
+          'target_id' => 'nid',
+        ),
+        'table' => 'node',
+      ),
+    ),
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'handler' => 'views',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 1,
+          ),
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => 'entityreference_3',
+          'view_name' => 'user_type_lists',
+        ),
+      ),
+      'handler_submit' => 'Change handler',
       'target_type' => 'user',
     ),
     'translatable' => 0,
@@ -850,6 +1232,8 @@ function cis_types_field_default_field_bases() {
         'staff' => 'Staff',
       ),
       'allowed_values_function' => '',
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'list_text',
@@ -881,6 +1265,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'handler' => 'views',
       'handler_settings' => array(
         'behaviors' => array(
@@ -920,6 +1306,8 @@ function cis_types_field_default_field_bases() {
         'rel' => '',
         'target' => 'default',
       ),
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display' => array(
         'url_cutoff' => 80,
       ),
@@ -931,6 +1319,39 @@ function cis_types_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'link_field',
+  );
+
+  // Exported field_base: 'field_long_description'
+  $field_bases['field_long_description'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_long_description',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_machine_name'
@@ -959,6 +1380,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 16,
     ),
     'translatable' => 0,
@@ -991,6 +1414,8 @@ function cis_types_field_default_field_bases() {
         'code' => 'Activation code required',
       ),
       'allowed_values_function' => '',
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'list_text',
@@ -1022,6 +1447,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'image',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'default_image' => 0,
       'uri_scheme' => 'public',
     ),
@@ -1044,11 +1471,36 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'field_collection',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'hide_blank_items' => 0,
       'path' => '',
     ),
     'translatable' => 0,
     'type' => 'field_collection',
+  );
+
+  // Exported field_base: 'field_phone_number'
+  $field_bases['field_phone_number'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_phone_number',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'phone',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'country' => 'ca',
+    ),
+    'translatable' => 0,
+    'type' => 'phone',
   );
 
   // Exported field_base: 'field_professional_title'
@@ -1077,6 +1529,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -1109,6 +1563,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
@@ -1150,6 +1606,8 @@ function cis_types_field_default_field_bases() {
         'rel' => '',
         'target' => 'default',
       ),
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display' => array(
         'url_cutoff' => 80,
       ),
@@ -1183,6 +1641,8 @@ function cis_types_field_default_field_bases() {
         'rel' => '',
         'target' => 'default',
       ),
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display' => array(
         'url_cutoff' => 80,
       ),
@@ -1222,6 +1682,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
@@ -1268,6 +1730,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
@@ -1286,6 +1750,53 @@ function cis_types_field_default_field_bases() {
           'person' => 'person',
           'program' => 'program',
           'service' => 'service',
+        ),
+      ),
+      'target_type' => 'node',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
+  // Exported field_base: 'field_resources'
+  $field_bases['field_resources'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_resources',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'node' => array(
+        'columns' => array(
+          'target_id' => 'nid',
+        ),
+        'table' => 'node',
+      ),
+    ),
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'handler' => 'views',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 1,
+          ),
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => 'entityreference_1',
+          'view_name' => 'cis_resources',
         ),
       ),
       'target_type' => 'node',
@@ -1317,6 +1828,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'file',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display_default' => 0,
       'display_field' => 0,
       'uri_scheme' => 'public',
@@ -1348,12 +1861,48 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'file',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display_default' => 0,
       'display_field' => 0,
       'uri_scheme' => 'public',
     ),
     'translatable' => 0,
     'type' => 'file',
+  );
+
+  // Exported field_base: 'field_schedule_number'
+  $field_bases['field_schedule_number'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_schedule_number',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
   );
 
   // Exported field_base: 'field_screenshot'
@@ -1379,11 +1928,103 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'image',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'default_image' => 0,
       'uri_scheme' => 'public',
     ),
     'translatable' => 0,
     'type' => 'image',
+  );
+
+  // Exported field_base: 'field_section_number'
+  $field_bases['field_section_number'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_section_number',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'max_length' => 10,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_sections'
+  $field_bases['field_sections'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_sections',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'field_collection',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'hide_blank_items' => 0,
+      'path' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'field_collection',
+  );
+
+  // Exported field_base: 'field_semester'
+  $field_bases['field_semester'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_semester',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'fa' => 'Fall',
+        'sp' => 'Spring',
+        'su' => 'Summer',
+      ),
+      'allowed_values_function' => '',
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
   );
 
   // Exported field_base: 'field_service_data'
@@ -1401,6 +2042,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'field_hidden',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 10000,
     ),
     'translatable' => 0,
@@ -1433,6 +2076,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
@@ -1488,9 +2133,47 @@ function cis_types_field_default_field_bases() {
         'W' => 'Writing Across the Curriculum',
       ),
       'allowed_values_function' => '',
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_syllabus'
+  $field_bases['field_syllabus'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_syllabus',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(
+      'fid' => array(
+        'columns' => array(
+          'fid' => 'fid',
+        ),
+        'table' => 'file_managed',
+      ),
+    ),
+    'indexes' => array(
+      'fid' => array(
+        0 => 'fid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'file',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'display_default' => 0,
+      'display_field' => 0,
+      'uri_scheme' => 'public',
+    ),
+    'translatable' => 0,
+    'type' => 'file',
   );
 
   // Exported field_base: 'field_ta_documents'
@@ -1519,6 +2202,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'file',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display_default' => 0,
       'display_field' => 0,
       'uri_scheme' => 'public',
@@ -1552,7 +2237,90 @@ function cis_types_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
+  // Exported field_base: 'field_teaching_assistants'
+  $field_bases['field_teaching_assistants'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_teaching_assistants',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(
+      'node' => array(
+        'columns' => array(
+          'target_id' => 'nid',
+        ),
+        'table' => 'node',
+      ),
+    ),
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'handler' => 'views',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 1,
+          ),
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => 'entityreference_5',
+          'view_name' => 'user_type_lists',
+        ),
+      ),
+      'target_type' => 'user',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
+  // Exported field_base: 'field_topics_covered_text'
+  $field_bases['field_topics_covered_text'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_topics_covered_text',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'text_long',
   );
@@ -1577,6 +2345,8 @@ function cis_types_field_default_field_bases() {
         'rel' => '',
         'target' => 'default',
       ),
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display' => array(
         'url_cutoff' => 80,
       ),
@@ -1588,6 +2358,40 @@ function cis_types_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'link_field',
+  );
+
+  // Exported field_base: 'field_twitter_account'
+  $field_bases['field_twitter_account'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_twitter_account',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
   );
 
   // Exported field_base: 'field_type'
@@ -1614,6 +2418,8 @@ function cis_types_field_default_field_bases() {
         'system' => 'System',
       ),
       'allowed_values_function' => '',
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'list_text',
@@ -1645,6 +2451,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'handler' => 'views',
       'handler_settings' => array(
         'behaviors' => array(
@@ -1682,6 +2490,8 @@ function cis_types_field_default_field_bases() {
         'rel' => '',
         'target' => 'default',
       ),
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display' => array(
         'url_cutoff' => 80,
       ),
@@ -1721,6 +2531,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'handler' => 'views',
       'handler_settings' => array(
         'behaviors' => array(
@@ -1738,6 +2550,110 @@ function cis_types_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'entityreference',
+  );
+
+  // Exported field_base: 'field_website'
+  $field_bases['field_website'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_website',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'link',
+    'settings' => array(
+      'attributes' => array(
+        'class' => '',
+        'rel' => '',
+        'target' => 'default',
+      ),
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'title' => 'optional',
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+    ),
+    'translatable' => 0,
+    'type' => 'link_field',
+  );
+
+  // Exported field_base: 'field_welcome_letter'
+  $field_bases['field_welcome_letter'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_welcome_letter',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'foreign keys' => array(
+      'fid' => array(
+        'columns' => array(
+          'fid' => 'fid',
+        ),
+        'table' => 'file_managed',
+      ),
+    ),
+    'indexes' => array(
+      'fid' => array(
+        0 => 'fid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'file',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+      'display_default' => 0,
+      'display_field' => 0,
+      'uri_scheme' => 'public',
+    ),
+    'translatable' => 0,
+    'type' => 'file',
+  );
+
+  // Exported field_base: 'field_welcome_page'
+  $field_bases['field_welcome_page'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_welcome_page',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_xml_outline'
@@ -1766,12 +2682,49 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'file',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'display_default' => 0,
       'display_field' => 0,
       'uri_scheme' => 'public',
     ),
     'translatable' => 0,
     'type' => 'file',
+  );
+
+  // Exported field_base: 'field_year'
+  $field_bases['field_year'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_year',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        201213 => '2012-13',
+        201314 => '2013-14',
+        201415 => '2014-15',
+        201516 => '2015-16',
+        201617 => '2016-17',
+        201718 => '2017-18',
+      ),
+      'allowed_values_function' => '',
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
   );
 
   // Exported field_base: 'isbn2node_author'
@@ -1797,6 +2750,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -1826,6 +2781,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'image',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'default_image' => 0,
       'uri_scheme' => 'public',
     ),
@@ -1856,6 +2813,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -1885,6 +2844,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 15,
     ),
     'translatable' => 0,
@@ -1914,6 +2875,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -1943,6 +2906,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -1972,6 +2937,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -2001,6 +2968,8 @@ function cis_types_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'cis_connector_access' => FALSE,
+      'cis_connector_disable' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,

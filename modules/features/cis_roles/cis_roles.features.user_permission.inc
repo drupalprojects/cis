@@ -396,16 +396,7 @@ function cis_roles_user_default_permissions() {
   $permissions['create field_course_archive'] = array(
     'name' => 'create field_course_archive',
     'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: create field_course_author.
-  $permissions['create field_course_author'] = array(
-    'name' => 'create field_course_author',
-    'roles' => array(
-      'Staff' => 'Staff',
+      'SERVICE ACCOUNT' => 'SERVICE ACCOUNT',
       'administrator' => 'administrator',
     ),
     'module' => 'field_permissions',
@@ -421,29 +412,11 @@ function cis_roles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: create field_display_in_course_list.
-  $permissions['create field_display_in_course_list'] = array(
-    'name' => 'create field_display_in_course_list',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: create field_distribution.
   $permissions['create field_distribution'] = array(
     'name' => 'create field_distribution',
     'roles' => array(
       'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: create field_email.
-  $permissions['create field_email'] = array(
-    'name' => 'create field_email',
-    'roles' => array(
       'administrator' => 'administrator',
     ),
     'module' => 'field_permissions',
@@ -540,15 +513,6 @@ function cis_roles_user_default_permissions() {
     'name' => 'create field_method_of_access',
     'roles' => array(
       'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: create field_phone_number.
-  $permissions['create field_phone_number'] = array(
-    'name' => 'create field_phone_number',
-    'roles' => array(
       'administrator' => 'administrator',
     ),
     'module' => 'field_permissions',
@@ -670,21 +634,29 @@ function cis_roles_user_default_permissions() {
   // Exported permission: create resource content.
   $permissions['create resource content'] = array(
     'name' => 'create resource content',
-    'roles' => array(),
+    'roles' => array(
+      'Staff' => 'Staff',
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: create service content.
   $permissions['create service content'] = array(
     'name' => 'create service content',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: create service_instance content.
   $permissions['create service_instance content'] = array(
     'name' => 'create service_instance content',
-    'roles' => array(),
+    'roles' => array(
+      'Staff' => 'Staff',
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -735,21 +707,27 @@ function cis_roles_user_default_permissions() {
   // Exported permission: delete any resource content.
   $permissions['delete any resource content'] = array(
     'name' => 'delete any resource content',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: delete any service content.
   $permissions['delete any service content'] = array(
     'name' => 'delete any service content',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: delete any service_instance content.
   $permissions['delete any service_instance content'] = array(
     'name' => 'delete any service_instance content',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -801,21 +779,27 @@ function cis_roles_user_default_permissions() {
   // Exported permission: delete own resource content.
   $permissions['delete own resource content'] = array(
     'name' => 'delete own resource content',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: delete own service content.
   $permissions['delete own service content'] = array(
     'name' => 'delete own service content',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: delete own service_instance content.
   $permissions['delete own service_instance content'] = array(
     'name' => 'delete own service_instance content',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -879,21 +863,29 @@ function cis_roles_user_default_permissions() {
   // Exported permission: edit any resource content.
   $permissions['edit any resource content'] = array(
     'name' => 'edit any resource content',
-    'roles' => array(),
+    'roles' => array(
+      'Staff' => 'Staff',
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: edit any service content.
   $permissions['edit any service content'] = array(
     'name' => 'edit any service content',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: edit any service_instance content.
   $permissions['edit any service_instance content'] = array(
     'name' => 'edit any service_instance content',
-    'roles' => array(),
+    'roles' => array(
+      'Staff' => 'Staff',
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -964,16 +956,7 @@ function cis_roles_user_default_permissions() {
   $permissions['edit field_course_archive'] = array(
     'name' => 'edit field_course_archive',
     'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit field_course_author.
-  $permissions['edit field_course_author'] = array(
-    'name' => 'edit field_course_author',
-    'roles' => array(
-      'Staff' => 'Staff',
+      'SERVICE ACCOUNT' => 'SERVICE ACCOUNT',
       'administrator' => 'administrator',
     ),
     'module' => 'field_permissions',
@@ -989,28 +972,9 @@ function cis_roles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: edit field_display_in_course_list.
-  $permissions['edit field_display_in_course_list'] = array(
-    'name' => 'edit field_display_in_course_list',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: edit field_distribution.
   $permissions['edit field_distribution'] = array(
     'name' => 'edit field_distribution',
-    'roles' => array(
-      'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit field_email.
-  $permissions['edit field_email'] = array(
-    'name' => 'edit field_email',
     'roles' => array(
       'Staff' => 'Staff',
       'administrator' => 'administrator',
@@ -1108,16 +1072,6 @@ function cis_roles_user_default_permissions() {
   // Exported permission: edit field_method_of_access.
   $permissions['edit field_method_of_access'] = array(
     'name' => 'edit field_method_of_access',
-    'roles' => array(
-      'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit field_phone_number.
-  $permissions['edit field_phone_number'] = array(
-    'name' => 'edit field_phone_number',
     'roles' => array(
       'Staff' => 'Staff',
       'administrator' => 'administrator',
@@ -1286,16 +1240,7 @@ function cis_roles_user_default_permissions() {
   $permissions['edit own field_course_archive'] = array(
     'name' => 'edit own field_course_archive',
     'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit own field_course_author.
-  $permissions['edit own field_course_author'] = array(
-    'name' => 'edit own field_course_author',
-    'roles' => array(
-      'Staff' => 'Staff',
+      'SERVICE ACCOUNT' => 'SERVICE ACCOUNT',
       'administrator' => 'administrator',
     ),
     'module' => 'field_permissions',
@@ -1311,28 +1256,9 @@ function cis_roles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: edit own field_display_in_course_list.
-  $permissions['edit own field_display_in_course_list'] = array(
-    'name' => 'edit own field_display_in_course_list',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: edit own field_distribution.
   $permissions['edit own field_distribution'] = array(
     'name' => 'edit own field_distribution',
-    'roles' => array(
-      'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit own field_email.
-  $permissions['edit own field_email'] = array(
-    'name' => 'edit own field_email',
     'roles' => array(
       'Staff' => 'Staff',
       'administrator' => 'administrator',
@@ -1430,16 +1356,6 @@ function cis_roles_user_default_permissions() {
   // Exported permission: edit own field_method_of_access.
   $permissions['edit own field_method_of_access'] = array(
     'name' => 'edit own field_method_of_access',
-    'roles' => array(
-      'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: edit own field_phone_number.
-  $permissions['edit own field_phone_number'] = array(
-    'name' => 'edit own field_phone_number',
     'roles' => array(
       'Staff' => 'Staff',
       'administrator' => 'administrator',
@@ -1563,21 +1479,29 @@ function cis_roles_user_default_permissions() {
   // Exported permission: edit own resource content.
   $permissions['edit own resource content'] = array(
     'name' => 'edit own resource content',
-    'roles' => array(),
+    'roles' => array(
+      'Staff' => 'Staff',
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: edit own service content.
   $permissions['edit own service content'] = array(
     'name' => 'edit own service content',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: edit own service_instance content.
   $permissions['edit own service_instance content'] = array(
     'name' => 'edit own service_instance content',
-    'roles' => array(),
+    'roles' => array(
+      'Staff' => 'Staff',
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -1700,23 +1624,8 @@ function cis_roles_user_default_permissions() {
   $permissions['view field_course_archive'] = array(
     'name' => 'view field_course_archive',
     'roles' => array(
+      'SERVICE ACCOUNT' => 'SERVICE ACCOUNT',
       'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view field_course_author.
-  $permissions['view field_course_author'] = array(
-    'name' => 'view field_course_author',
-    'roles' => array(
-      'Coordinator' => 'Coordinator',
-      'Dean' => 'Dean',
-      'Instructor' => 'Instructor',
-      'Learning Designer' => 'Learning Designer',
-      'Staff' => 'Staff',
-      'Teaching Assistant' => 'Teaching Assistant',
-      'Unit Head' => 'Unit Head',
       'administrator' => 'administrator',
     ),
     'module' => 'field_permissions',
@@ -1732,30 +1641,11 @@ function cis_roles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: view field_display_in_course_list.
-  $permissions['view field_display_in_course_list'] = array(
-    'name' => 'view field_display_in_course_list',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: view field_distribution.
   $permissions['view field_distribution'] = array(
     'name' => 'view field_distribution',
     'roles' => array(
       'SERVICE ACCOUNT' => 'SERVICE ACCOUNT',
-      'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view field_email.
-  $permissions['view field_email'] = array(
-    'name' => 'view field_email',
-    'roles' => array(
       'Staff' => 'Staff',
       'administrator' => 'administrator',
     ),
@@ -1864,16 +1754,6 @@ function cis_roles_user_default_permissions() {
   // Exported permission: view field_method_of_access.
   $permissions['view field_method_of_access'] = array(
     'name' => 'view field_method_of_access',
-    'roles' => array(
-      'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view field_phone_number.
-  $permissions['view field_phone_number'] = array(
-    'name' => 'view field_phone_number',
     'roles' => array(
       'Staff' => 'Staff',
       'administrator' => 'administrator',
@@ -2034,23 +1914,8 @@ function cis_roles_user_default_permissions() {
   $permissions['view own field_course_archive'] = array(
     'name' => 'view own field_course_archive',
     'roles' => array(
+      'SERVICE ACCOUNT' => 'SERVICE ACCOUNT',
       'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view own field_course_author.
-  $permissions['view own field_course_author'] = array(
-    'name' => 'view own field_course_author',
-    'roles' => array(
-      'Coordinator' => 'Coordinator',
-      'Dean' => 'Dean',
-      'Instructor' => 'Instructor',
-      'Learning Designer' => 'Learning Designer',
-      'Staff' => 'Staff',
-      'Teaching Assistant' => 'Teaching Assistant',
-      'Unit Head' => 'Unit Head',
       'administrator' => 'administrator',
     ),
     'module' => 'field_permissions',
@@ -2066,30 +1931,11 @@ function cis_roles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: view own field_display_in_course_list.
-  $permissions['view own field_display_in_course_list'] = array(
-    'name' => 'view own field_display_in_course_list',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: view own field_distribution.
   $permissions['view own field_distribution'] = array(
     'name' => 'view own field_distribution',
     'roles' => array(
       'SERVICE ACCOUNT' => 'SERVICE ACCOUNT',
-      'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view own field_email.
-  $permissions['view own field_email'] = array(
-    'name' => 'view own field_email',
-    'roles' => array(
       'Staff' => 'Staff',
       'administrator' => 'administrator',
     ),
@@ -2198,16 +2044,6 @@ function cis_roles_user_default_permissions() {
   // Exported permission: view own field_method_of_access.
   $permissions['view own field_method_of_access'] = array(
     'name' => 'view own field_method_of_access',
-    'roles' => array(
-      'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: view own field_phone_number.
-  $permissions['view own field_phone_number'] = array(
-    'name' => 'view own field_phone_number',
     'roles' => array(
       'Staff' => 'Staff',
       'administrator' => 'administrator',
