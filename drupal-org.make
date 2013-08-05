@@ -275,16 +275,6 @@ projects[rubik][type] = "theme"
 projects[rubik][version] = "4.0-beta8"
 projects[rubik][subdir] = "contrib"
 
-; omega
-projects[omega][type] = "theme"
-projects[omega][version] = "3.1"
-projects[omega][subdir] = "contrib"
-
-; chamfer
-projects[chamfer][type] = "theme"
-projects[chamfer][version] = "1.x-dev"
-projects[chamfer][subdir] = "contrib"
-
 ; cube
 projects[cube][type] = "theme"
 projects[cube][version] = "1.3"

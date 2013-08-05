@@ -9,7 +9,7 @@
  */
 function cis_install() {
   // Enable some cis blocks.
-  $default_theme = 'chamfer';
+  $default_theme = 'cis_theme';
   $admin_theme = 'rubik';
   // disable all themes
   db_update('system')
