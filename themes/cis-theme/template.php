@@ -1,11 +1,44 @@
 <?php
 
 /**
+ * Implements theme_breadrumb().
+ *
+ * Print breadcrumbs as a list, with separators.
+ */
+function cis_theme_breadcrumb($variables) {
+  $breadcrumb = $variables['breadcrumb'];
+
+  if (!empty($breadcrumb)) {
+    // Provide a navigational heading to give context for breadcrumb links to
+    // screen-reader users. Make the heading invisible with .element-invisible.
+    $breadcrumbs = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
+
+    $breadcrumbs .= '<ul class="breadcrumbs">';
+		// courses view shows courses twice for some reason
+		if (arg(0) == 'courses') {
+			array_pop($breadcrumb);
+		}
+    foreach ($breadcrumb as $key => $value) {
+      $breadcrumbs .= '<li>' . $value . '</li>';
+    }
+
+    //$title = strip_tags(drupal_get_title());
+		// just menu item title instead of drupal title
+		$item = menu_get_item();
+		$title = $item['title'];
+    $breadcrumbs .= '<li class="current"><a href="#">' . $title. '</a></li>';
+    $breadcrumbs .= '</ul>';
+
+    return $breadcrumbs;
+  }
+}
+
+/**
  * Implements theme_links() targeting the main menu specifically
  * Outputs Foundation Nav bar http://foundation.zurb.com/docs/navigation.php
  * 
  */
-//function cis_starter_theme_links__system_main_menu($variables) {
+//function cis_theme_links__system_main_menu($variables) {
 //  // Get all the main menu links
 //  $menu_links = menu_tree_output(menu_tree_all_data('main-menu'));
 //  
@@ -43,7 +76,7 @@
  * Implements template_preprocess_html().
  * 
  */
-//function cis_starter_theme_preprocess_html(&$variables) {
+//function cis_theme_preprocess_html(&$variables) {
 //  // Add conditional CSS for IE. To use uncomment below and add IE css file
 //  drupal_add_css(path_to_theme() . '/css/ie.css', array('weight' => CSS_THEME, 'browsers' => array('!IE' => FALSE), 'preprocess' => FALSE));
 //  
@@ -52,23 +85,95 @@
 //}
 
 /**
+ * Implements template_process_html().
+ *
+ * Override or insert variables into the page template for HTML output.
+ */
+function cis_theme_process_html(&$variables) {
+  // Hook into color.module.
+  if (module_exists('color')) {
+    _color_html_alter($variables);
+  }
+}
+
+/*
+ * Implements template_process_page().
+ */
+function cis_theme_process_page(&$variables, $hook) {
+  // Hook into color.module.
+  if (module_exists('color')) {
+    _color_page_alter($variables);
+  }
+}
+
+/**
  * Implements template_preprocess_page
  *
  */
-//function cis_starter_theme_preprocess_page(&$variables) {
-//}
+function cis_theme_preprocess_page(&$variables) {
+	// walk tree looking for deeper items
+	$menu = menu_tree_all_data(variable_get('menu_secondary_links_source', 'main-menu'));
+	foreach ($menu as $key => $value) {
+		if ($value['link']['href'] == arg(0)) {
+			$active_menu = $value['below'];
+			break;
+		}
+	}
+	// only render if we have a 3rd level of nav
+	if (isset($active_menu)) {
+		$menu_links = menu_tree_output($active_menu);
+		// Initialize some variables to prevent errors
+		$output = '';
+		$sub_menu = '';
+		$small_link = '';
+	
+		foreach ($menu_links as $key => $link) {
+			// Add special class needed for Foundation dropdown menu to work
+			$small_link = $link; //duplicate version that won't get the dropdown class, save for later
+			!empty($link['#below']) ? $link['#attributes']['class'][] = 'has-dropdown' : '';
+	
+			// Render top level and make sure we have an actual link
+			if (!empty($link['#href'])) {
+	
+				$output .= '<li' . drupal_attributes($link['#attributes']) . '>' . l($link['#title'], $link['#href']);
+				// Uncomment if we don't want to repeat the links under the dropdown for large-screen
+				// $small_link['#attributes']['class'][] = 'show-for-small';
+				$sub_menu = '<li' . drupal_attributes($small_link['#attributes']) . '>' . l($link['#title'], $link['#href']);
+				// Get sub navigation links if they exist
+				foreach ($link['#below'] as $key => $sub_link) {
+					if (!empty($sub_link['#href'])) {
+					$sub_menu .= '<li>' . l($sub_link['#title'], $sub_link['#href']) . '</li>';
+					}
+				}
+				$output .= !empty($link['#below']) ? '<ul class="dropdown">' . $sub_menu . '</ul>' : '';
+	
+				// Reset dropdown to prevent duplicates
+				unset($sub_menu);
+				unset($small_link);
+				$small_link = '';
+				$sub_menu = '';
+	
+				$output .=  '</li>';
+			}
+		}
+		// only output level 3 if we have a level 2
+		if (isset($variables['secondary_menu'])) {
+			$variables['third_menu_links'] = '<h3 class="element-invisible">Local level Menu</h3><ul id="third-menu" class="third link-list">' . $output . '</ul>';
+		}
+	}
+}
 
 /**
  * Implements template_preprocess_node
  *
  */
-//function cis_starter_theme_preprocess_node(&$variables) {
+//function cis_theme_preprocess_node(&$variables) {
 //}
 
 /**
  * Implements hook_preprocess_block()
  */
-//function cis_starter_theme_preprocess_block(&$variables) {
+//function cis_theme_preprocess_block(&$variables) {
 //  // Add wrapping div with global class to all block content sections.
 //  $variables['content_attributes_array']['class'][] = 'block-content';
 //  
@@ -108,28 +213,37 @@
 //  }
 //}
 
-//function cis_starter_theme_preprocess_views_view(&$variables) {
-//}
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function cis_theme_preprocess_views_view(&$variables) {
+	// target the faculty and course displays as they have specialized exposed filters
+	if (in_array($variables['name'], array('courses_overview', 'cis_faculty'))) {
+		// form elements weren't responding to array alters
+		// this class hides the labels but will render for accessibility to screen-readers
+		$variables['exposed'] = str_replace('<label ', '<label class="element-invisible"', $variables['exposed']);
+	}
+}
 
 /**
  * Implements template_preprocess_panels_pane().
  *
  */
-//function cis_starter_theme_preprocess_panels_pane(&$variables) {
+//function cis_theme_preprocess_panels_pane(&$variables) {
 //}
 
 /**
  * Implements template_preprocess_views_views_fields().
  *
  */
-//function cis_starter_theme_preprocess_views_view_fields(&$variables) {
+//function cis_theme_preprocess_views_view_fields(&$variables) {
 //}
 
 /**
  * Status messages in reveal modal
  *
  */
-//function cis_starter_theme_status_messages($variables) {
+//function cis_theme_status_messages($variables) {
 //  $display = $variables['display'];
 //  $output = ''; 
 //
@@ -170,7 +284,7 @@
  * Implements theme_form_element_label()
  * Use foundation tooltips
  */
-//function cis_starter_theme_form_element_label($variables) {
+//function cis_theme_form_element_label($variables) {
 //  if (!empty($variables['element']['#title'])) {
 //    $variables['element']['#title'] = '<span class="secondary label">' . $variables['element']['#title'] . '</span>';
 //  }
@@ -183,7 +297,7 @@
 /**
  * Implements hook_preprocess_button().
  */
-//function cis_starter_theme_preprocess_button(&$variables) {
+//function cis_theme_preprocess_button(&$variables) {
 //  $variables['element']['#attributes']['class'][] = 'button';
 //  if (isset($variables['element']['#parents'][0]) && $variables['element']['#parents'][0] == 'submit') {
 //    $variables['element']['#attributes']['class'][] = 'secondary';
@@ -194,7 +308,7 @@
  * Implements hook_form_alter()
  * Example of using foundation sexy buttons
  */
-//function cis_starter_theme_form_alter(&$form, &$form_state, $form_id) {
+//function cis_theme_form_alter(&$form, &$form_state, $form_id) {
 //  // Sexy submit buttons
 //  if (!empty($form['actions']) && !empty($form['actions']['submit'])) {
 //    $form['actions']['submit']['#attributes'] = array('class' => array('primary', 'button', 'radius'));
@@ -202,6 +316,6 @@
 //}
 
 // Sexy preview buttons
-//function cis_starter_theme_form_comment_form_alter(&$form, &$form_state) {
+//function cis_theme_form_comment_form_alter(&$form, &$form_state) {
 //  $form['actions']['preview']['#attributes']['class'][] = array('class' => array('secondary', 'button', 'radius'));
 //}

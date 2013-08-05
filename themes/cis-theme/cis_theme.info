@@ -1,6 +1,5 @@
-name = CIS
-description = Custom sub-theme, inherits from the Foundation base theme 
-read <a href="http://foundation.zurb.com/docs/index.php">framework documentation</a>
+name = CIS Theme
+description = CIS default Zurb sub-theme
 screenshot = images/screenshot.png
 
 core = 7.x
@@ -28,10 +27,12 @@ base theme = zurb_foundation
 ; CSS3 media queries: http://www.w3.org/TR/css3-mediaqueries/
 
 ; Base theme specific CSS
-stylesheets[all][] = css/cis_starter_theme.css
+stylesheets[all][] = css/cis_theme.css
+; colorizable
+stylesheets[all][] = css/color.css
 
 ; An empty JavaScript file ready to be used just uncomment and add JavaScript
-; scripts[] = js/cis_starter_theme.js
+; scripts[] = js/cis_theme.js
 
 ; This section lists the regions defined in the page.tpl.php. The name in 
 ; brackets is the machine name of the region. The text after the equals sign is
