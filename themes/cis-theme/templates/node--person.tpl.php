@@ -77,26 +77,26 @@
 ?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
 <div class="row">
-	<div class="columns small-12 large-3 person-col-1">
+  <div class="columns small-12 large-3 person-col-1">
   <?php
-		if (isset($content['field_headshot'])) {
-			print render($content['field_headshot']);
-		}
-		if (isset($content['field_email'])) {
-			print '<div class="unit-color">' . render($content['field_email']) . '</div>';
-		}
-		if (isset($node->field_twitter_account['und'][0]['value'])) {
-			print '<div class="unit-color"><a href="https://twitter.com/' . strip_tags($node->field_twitter_account['und'][0]['value']) . '">@' . $node->field_twitter_account['und'][0]['value'] . '</a></div>';
-		}
-		if (isset($content['field_website'])) {
-			print '<div class="unit-color">' . render($content['field_website']) . '</div>';
-		}
-		if (isset($content['field_phone_number'])) {
-			print render($content['field_phone_number']);
-		}
-		if (isset($content['field_address'])) {
-			print render($content['field_address']);
-		}
+    if (isset($content['field_headshot'])) {
+      print render($content['field_headshot']);
+    }
+    if (isset($content['field_email'])) {
+      print '<div class="unit-color">' . render($content['field_email']) . '</div>';
+    }
+    if (isset($node->field_twitter_account['und'][0]['value'])) {
+      print '<div class="unit-color"><a href="https://twitter.com/' . strip_tags($node->field_twitter_account['und'][0]['value']) . '">@' . $node->field_twitter_account['und'][0]['value'] . '</a></div>';
+    }
+    if (isset($content['field_website'])) {
+      print '<div class="unit-color">' . render($content['field_website']) . '</div>';
+    }
+    if (isset($content['field_phone_number'])) {
+      print render($content['field_phone_number']);
+    }
+    if (isset($content['field_address'])) {
+      print render($content['field_address']);
+    }
   ?>
   </div>
   
@@ -104,7 +104,7 @@
     <h2<?php print $title_attributes; ?>><span class="person-title"><?php print render($content['field_display_name']); ?></span></h2>
     <hr class="unit-color-border cis_hr" />
     <div class="person-pro-title unit-color">
-			<?php print render($content['field_professional_title']); ?>
+      <?php print render($content['field_professional_title']); ?>
     </div>
     <?php print render($content['body']); ?>
   </div>

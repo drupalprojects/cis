@@ -24,19 +24,42 @@
  * @ingroup views_templates
  */
 ?>
+<div class="row">
 <?php foreach ($fields as $id => $field): ?>
-	<?php if ($id == 'field_headshot' || $id == 'field_display_name') : ?>
-		<div class="faculty-block-<?php print $id;?>-wrapper">
+<?php
+$cols = 0;
+if ($id == 'field_headshot') {
+  $cols = array(
+    'small' => 5,
+    'large' => 2,
+  );
+}
+else if ($id == 'field_display_name') {
+  $cols = array(
+    'small' => 7,
+    'large' => 10,
+  );
+}
+?>
+  <?php if (is_array($cols)) : ?>
+    <div class="columns small-<?php print $cols['small']; ?> large-<?php print $cols['large']; ?>">
   <?php endif; ?>
-	<?php if (!empty($field->separator)): ?>
+  <?php if (!empty($field->separator)): ?>
     <?php print $field->separator; ?>
   <?php endif; ?>
 
   <?php print $field->wrapper_prefix; ?>
     <?php print $field->label_html; ?>
-    <?php print $field->content; ?>
+    <?php
+    if ($id == 'view_node') {
+      print str_replace('<a href="', '<a style="color:#' . $row->field_field_color[0]['raw']['jquery_colorpicker'] . '" href="', $field->content);
+    }
+    else {
+      print $field->content;
+    }?>
   <?php print $field->wrapper_suffix; ?>
   <?php if ($id == 'view_node' || $id == 'field_headshot') : ?>
-		</div>
+    </div>
   <?php endif; ?>
 <?php endforeach; ?>
+</div>

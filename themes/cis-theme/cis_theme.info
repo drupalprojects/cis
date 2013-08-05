@@ -32,7 +32,7 @@ stylesheets[all][] = css/cis_theme.css
 stylesheets[all][] = css/color.css
 
 ; An empty JavaScript file ready to be used just uncomment and add JavaScript
-; scripts[] = js/cis_theme.js
+ scripts[] = js/cis_theme.js
 
 ; This section lists the regions defined in the page.tpl.php. The name in 
 ; brackets is the machine name of the region. The text after the equals sign is

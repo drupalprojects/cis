@@ -78,18 +78,18 @@
   $author_name = '';
   // verify that author exists
   if (isset($node->field_course_author['und'])) {
- 	  $author = node_load($node->field_course_author['und'][0]['target_id']);
-	  $author_name = $author->field_display_name['und'][0]['safe_value'];
+     $author = node_load($node->field_course_author['und'][0]['target_id']);
+    $author_name = $author->field_display_name['und'][0]['safe_value'];
   }
   $course_abrev = $node->title;
-	$course_number = '';
-	// this is looking for a nice NAME NUM split in the title
-	// example: art 100
+  $course_number = '';
+  // this is looking for a nice NAME NUM split in the title
+  // example: art 100
   $parts = explode(' ', $node->title);
-	if (count($parts) == 2) {
-		$course_abrev = $parts[0];
-		$course_number = $parts[1];
-	}
+  if (count($parts) == 2) {
+    $course_abrev = $parts[0];
+    $course_number = $parts[1];
+  }
 ?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
   <div class="row course_top_container">
@@ -99,7 +99,7 @@
         <div class="course_flag_number"><?php print $course_number; ?></div>
       </div>
       <div class="large-11 columns">
-				<?php if (isset($node->field_course_title['und'])) : ?>
+        <?php if (isset($node->field_course_title['und'])) : ?>
           <h1 id="page-title" class="title"><?php print check_markup($node->field_course_title['und'][0]['value'], 'textbook_editor'); ?></h1>
         <?php endif;?>
       </div>
@@ -126,37 +126,36 @@
   </div>
   <div class="dark-triangle-down border-step-1"></div>
   <div class="row course_info">
-	<div class="large-3 columns course_info_images">
-	<?php if (isset($content['field_screenshot'])) : print render($content['field_screenshot']); endif; ?>
-	</div>
+  <div class="large-3 columns course_info_images">
+  <?php if (isset($content['field_screenshot'])) : print render($content['field_screenshot']); endif; ?>
+  </div>
   <?php if (isset($node->field_long_description['und'])) : ?>
   <div class="large-9 columns course_info_about">
   <?php if (!is_null($author)) : ?>
-  <?php dpm($author); ?>
-  	<div class="course_author_block">
-    	<h4 class="course_author_name">
-				<?php print $author->field_display_name['und'][0]['safe_value']; ?>
-    	</h4>
-    	<div class="unit-color course_author_pro_title">
-				<?php print $author->field_professional_title['und'][0]['safe_value']; ?>
-    	</div>
-    	<div class="course_author_profile">
+    <div class="course_author_block">
+      <h4 class="course_author_name">
+        <?php print $author->field_display_name['und'][0]['safe_value']; ?>
+      </h4>
+      <div class="unit-color course_author_pro_title">
+        <?php print $author->field_professional_title['und'][0]['safe_value']; ?>
+      </div>
+      <div class="course_author_profile">
       <?php
-				$headshot = $author->field_headshot['und'][0];
-				$hero_image = array(
-					'style_name' => 'course_author_thumb',
-					'path' => $headshot['uri'],
-					'width' => '95px',
-					'height' => '95px',
-					'alt' => $headshot['alt'],
-					'title' => $headshot['title'],
-				);
-				print theme('image_style',$hero_image);
-			?>
-				<?php print $author->body['und'][0]['summary']; ?>
-    	</div>
-    	<div class="course_author_view_profile">
-				<?php print l(t('View profile'), 'node/' . $author->nid, array('attributes' => array('class' => 'cis_dark_text'))); ?>
+        $headshot = $author->field_headshot['und'][0];
+        $hero_image = array(
+          'style_name' => 'course_author_thumb',
+          'path' => $headshot['uri'],
+          'width' => '95px',
+          'height' => '95px',
+          'alt' => $headshot['alt'],
+          'title' => $headshot['title'],
+        );
+        print theme('image_style',$hero_image);
+      ?>
+        <?php print $author->body['und'][0]['summary']; ?>
+      </div>
+      <div class="course_author_view_profile">
+        <?php print l(t('View profile'), 'node/' . $author->nid, array('attributes' => array('class' => 'cis_dark_text'))); ?>
        </div>
     </div>
   <?php endif; ?>

@@ -14,18 +14,18 @@ function cis_theme_breadcrumb($variables) {
     $breadcrumbs = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
 
     $breadcrumbs .= '<ul class="breadcrumbs">';
-		// courses view shows courses twice for some reason
-		if (arg(0) == 'courses') {
-			array_pop($breadcrumb);
-		}
+    // courses view shows courses twice for some reason
+    if (arg(0) == 'courses') {
+      array_pop($breadcrumb);
+    }
     foreach ($breadcrumb as $key => $value) {
       $breadcrumbs .= '<li>' . $value . '</li>';
     }
 
     //$title = strip_tags(drupal_get_title());
-		// just menu item title instead of drupal title
-		$item = menu_get_item();
-		$title = $item['title'];
+    // just menu item title instead of drupal title
+    $item = menu_get_item();
+    $title = $item['title'];
     $breadcrumbs .= '<li class="current"><a href="#">' . $title. '</a></li>';
     $breadcrumbs .= '</ul>';
 
@@ -111,56 +111,56 @@ function cis_theme_process_page(&$variables, $hook) {
  *
  */
 function cis_theme_preprocess_page(&$variables) {
-	// walk tree looking for deeper items
-	$menu = menu_tree_all_data(variable_get('menu_secondary_links_source', 'main-menu'));
-	foreach ($menu as $key => $value) {
-		if ($value['link']['href'] == arg(0)) {
-			$active_menu = $value['below'];
-			break;
-		}
-	}
-	// only render if we have a 3rd level of nav
-	if (isset($active_menu)) {
-		$menu_links = menu_tree_output($active_menu);
-		// Initialize some variables to prevent errors
-		$output = '';
-		$sub_menu = '';
-		$small_link = '';
-	
-		foreach ($menu_links as $key => $link) {
-			// Add special class needed for Foundation dropdown menu to work
-			$small_link = $link; //duplicate version that won't get the dropdown class, save for later
-			!empty($link['#below']) ? $link['#attributes']['class'][] = 'has-dropdown' : '';
-	
-			// Render top level and make sure we have an actual link
-			if (!empty($link['#href'])) {
-	
-				$output .= '<li' . drupal_attributes($link['#attributes']) . '>' . l($link['#title'], $link['#href']);
-				// Uncomment if we don't want to repeat the links under the dropdown for large-screen
-				// $small_link['#attributes']['class'][] = 'show-for-small';
-				$sub_menu = '<li' . drupal_attributes($small_link['#attributes']) . '>' . l($link['#title'], $link['#href']);
-				// Get sub navigation links if they exist
-				foreach ($link['#below'] as $key => $sub_link) {
-					if (!empty($sub_link['#href'])) {
-					$sub_menu .= '<li>' . l($sub_link['#title'], $sub_link['#href']) . '</li>';
-					}
-				}
-				$output .= !empty($link['#below']) ? '<ul class="dropdown">' . $sub_menu . '</ul>' : '';
-	
-				// Reset dropdown to prevent duplicates
-				unset($sub_menu);
-				unset($small_link);
-				$small_link = '';
-				$sub_menu = '';
-	
-				$output .=  '</li>';
-			}
-		}
-		// only output level 3 if we have a level 2
-		if (isset($variables['secondary_menu'])) {
-			$variables['third_menu_links'] = '<h3 class="element-invisible">Local level Menu</h3><ul id="third-menu" class="third link-list">' . $output . '</ul>';
-		}
-	}
+  // walk tree looking for deeper items
+  $menu = menu_tree_all_data(variable_get('menu_secondary_links_source', 'main-menu'));
+  foreach ($menu as $key => $value) {
+    if ($value['link']['href'] == arg(0)) {
+      $active_menu = $value['below'];
+      break;
+    }
+  }
+  // only render if we have a 3rd level of nav
+  if (isset($active_menu)) {
+    $menu_links = menu_tree_output($active_menu);
+    // Initialize some variables to prevent errors
+    $output = '';
+    $sub_menu = '';
+    $small_link = '';
+  
+    foreach ($menu_links as $key => $link) {
+      // Add special class needed for Foundation dropdown menu to work
+      $small_link = $link; //duplicate version that won't get the dropdown class, save for later
+      !empty($link['#below']) ? $link['#attributes']['class'][] = 'has-dropdown' : '';
+  
+      // Render top level and make sure we have an actual link
+      if (!empty($link['#href'])) {
+  
+        $output .= '<li' . drupal_attributes($link['#attributes']) . '>' . l($link['#title'], $link['#href']);
+        // Uncomment if we don't want to repeat the links under the dropdown for large-screen
+        // $small_link['#attributes']['class'][] = 'show-for-small';
+        $sub_menu = '<li' . drupal_attributes($small_link['#attributes']) . '>' . l($link['#title'], $link['#href']);
+        // Get sub navigation links if they exist
+        foreach ($link['#below'] as $key => $sub_link) {
+          if (!empty($sub_link['#href'])) {
+          $sub_menu .= '<li>' . l($sub_link['#title'], $sub_link['#href']) . '</li>';
+          }
+        }
+        $output .= !empty($link['#below']) ? '<ul class="dropdown">' . $sub_menu . '</ul>' : '';
+  
+        // Reset dropdown to prevent duplicates
+        unset($sub_menu);
+        unset($small_link);
+        $small_link = '';
+        $sub_menu = '';
+  
+        $output .=  '</li>';
+      }
+    }
+    // only output level 3 if we have a level 2
+    if (isset($variables['secondary_menu'])) {
+      $variables['third_menu_links'] = '<h3 class="element-invisible">Local level Menu</h3><ul id="third-menu" class="third link-list">' . $output . '</ul>';
+    }
+  }
 }
 
 /**
@@ -217,12 +217,12 @@ function cis_theme_preprocess_page(&$variables) {
  * Implements hook_preprocess_views_view().
  */
 function cis_theme_preprocess_views_view(&$variables) {
-	// target the faculty and course displays as they have specialized exposed filters
-	if (in_array($variables['name'], array('courses_overview', 'cis_faculty'))) {
-		// form elements weren't responding to array alters
-		// this class hides the labels but will render for accessibility to screen-readers
-		$variables['exposed'] = str_replace('<label ', '<label class="element-invisible"', $variables['exposed']);
-	}
+  // target the faculty and course displays as they have specialized exposed filters
+  if (in_array($variables['name'], array('courses_overview', 'cis_faculty'))) {
+    // form elements weren't responding to array alters
+    // this class hides the labels but will render for accessibility to screen-readers
+    $variables['exposed'] = str_replace('<label ', '<label class="element-invisible"', $variables['exposed']);
+  }
 }
 
 /**

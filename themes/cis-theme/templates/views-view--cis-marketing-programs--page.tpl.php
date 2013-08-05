@@ -51,7 +51,7 @@
   <?php endif; ?>
   <?php if ($rows): ?>
     <div class="view-content programs_wrapper small-centered columns">
-    	<div class="light-triangle-down border-step-center"></div>
+      <div class="light-triangle-down border-step-center"></div>
       <?php print $rows; ?>
     </div>
   <?php elseif ($empty): ?>

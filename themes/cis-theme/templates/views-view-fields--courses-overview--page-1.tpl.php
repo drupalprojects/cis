@@ -25,28 +25,28 @@
  */
 ?>
 <?php foreach ($fields as $id => $field): ?>
-	<?php if ($id == 'field_course_title' || $id == 'field_banner') : ?>
-		<div class="course-block-<?php print $id;?>-wrapper">
+  <?php if ($id == 'field_course_title' || $id == 'field_banner') : ?>
+    <div class="course-block-<?php print $id;?>-wrapper">
   <?php endif; ?>
-	<?php if (!empty($field->separator)): ?>
+  <?php if (!empty($field->separator)): ?>
     <?php print $field->separator; ?>
   <?php endif; ?>
 
   <?php print $field->wrapper_prefix; ?>
     <?php print $field->label_html; ?>
     <?php 
-			$fieldcontent = $field->content;
-			// try and split course title into 2 values
-			if ($id == 'title') {
-				$tmp = explode(' ', $fieldcontent);
-				if (count($tmp) == 2) {
-				  $fieldcontent = '<span class="course-block-display-split-name">' . $tmp[0] . '</span><span class="course-block-display-split-number">' . $tmp[1] . '</span>';
-				}
-			}
-			print $fieldcontent;
-		?>
+      $fieldcontent = $field->content;
+      // try and split course title into 2 values
+      if ($id == 'title') {
+        $tmp = explode(' ', $fieldcontent);
+        if (count($tmp) == 2) {
+          $fieldcontent = '<span class="course-block-display-split-name">' . $tmp[0] . '</span><span class="course-block-display-split-number">' . $tmp[1] . '</span>';
+        }
+      }
+      print $fieldcontent;
+    ?>
   <?php print $field->wrapper_suffix; ?>
   <?php if ($id == 'view_node' || $id == 'title') : ?>
-		</div>
+    </div>
   <?php endif; ?>
 <?php endforeach; ?>

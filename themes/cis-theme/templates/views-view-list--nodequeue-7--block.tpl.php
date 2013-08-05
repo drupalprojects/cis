@@ -11,9 +11,9 @@
 ?>
 <div class="light-triangle-down triangle-overflow border-step-center"></div>
 <div class="row accolades-wrapper">
-	<div class="small-centered columns small-11 large-8">
+  <div class="small-centered columns small-11 large-8">
   <h2 class="block-title"><?php print t('Accolades'); ?></h2>
-	<?php print $wrapper_prefix; ?>
+  <?php print $wrapper_prefix; ?>
     <?php if (!empty($title)) : ?>
       <h3><?php print $title; ?></h3>
     <?php endif; ?>

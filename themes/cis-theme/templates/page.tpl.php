@@ -7,7 +7,7 @@
       <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
     <section class="top-bar-section user-menu">
-			<?php if ($main_menu_links) :?>
+      <?php if ($main_menu_links) :?>
         <?php print $main_menu_links; ?>
       <?php endif; ?>
       <?php if (!empty($page['header'])): ?>
@@ -113,7 +113,7 @@
   <hr class="footer-divider">
   </div>
   <div class="row">
-  	<div class="large-8 small-12 columns">
+    <div class="large-8 small-12 columns">
     </div>
     <div class="large-4 small-12 columns powered_by">
     </div>

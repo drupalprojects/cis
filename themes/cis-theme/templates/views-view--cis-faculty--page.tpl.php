@@ -38,7 +38,7 @@
       <?php print $header; ?>
     </div>
   <?php endif; ?>
-	<div class="large-3 columns faculty-overview-filters">
+  <div class="large-3 columns faculty-overview-filters">
   <?php if ($exposed): ?>
     <div class="view-filters">
       <?php print $exposed; ?>
