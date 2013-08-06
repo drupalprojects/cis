@@ -7,7 +7,7 @@ api = "2"
 projects[admin_menu][version] = "3.0-rc4"
 projects[admin_menu][subdir] = "contrib"
 
-projects[advagg][version] = "2.0-alpha2"
+projects[advagg][version] = "2.0-rc1"
 projects[advagg][subdir] = "contrib"
 
 projects[ctools][version] = "1.3"
@@ -19,7 +19,7 @@ projects[google_chart_tools][subdir] = "contrib"
 projects[field_redirection][version] = "2.5"
 projects[field_redirection][subdir] = "contrib"
 
-projects[context][version] = "3.0-beta6"
+projects[context][version] = "3.0-beta7"
 projects[context][subdir] = "contrib"
 
 projects[data][version] = "1.0-alpha4"
@@ -43,8 +43,11 @@ projects[replicate][subdir] = "contrib"
 projects[replicate_field_collection][version] = "1.x-dev"
 projects[replicate_field_collection][subdir] = "contrib"
 
-projects[features][version] = "2.0-rc1"
+projects[features][version] = "2.0-rc2"
 projects[features][subdir] = "contrib"
+
+projects[features_override‎][version] = "2.0-beta3"
+projects[features_override‎][subdir] = "contrib"
 
 projects[email][version] = "1.2"
 projects[email][subdir] = "contrib"
@@ -61,7 +64,7 @@ projects[field_collection][subdir] = "contrib"
 projects[field_group][version] = "1.1"
 projects[field_group][subdir] = "contrib"
 
-projects[field_hidden][version] = "1.3"
+projects[field_hidden][version] = "1.4"
 projects[field_hidden][subdir] = "contrib"
 
 projects[field_permissions][version] = "1.0-beta2"
@@ -73,7 +76,7 @@ projects[link][subdir] = "contrib"
 projects[phone][version] = "1.x-dev"
 projects[phone][subdir] = "contrib"
 
-projects[select_or_other][version] = "2.17"
+projects[select_or_other][version] = "2.18"
 projects[select_or_other][subdir] = "contrib"
 
 projects[simplehtmldom][version] = "1.12"
@@ -133,7 +136,7 @@ projects[field_collection_table][subdir] = "contrib"
 projects[file_formatters][version] = "1.0"
 projects[file_formatters][subdir] = "contrib"
 
-projects[fitvids][version] = "1.9"
+projects[fitvids][version] = "1.12"
 projects[fitvids][subdir] = "contrib"
 
 projects[jquery_colorpicker][version] = "1.0-rc2"
@@ -166,7 +169,7 @@ projects[node_clone][subdir] = "contrib"
 projects[nodeaccess_nodereference][version] = "1.22"
 projects[nodeaccess_nodereference][subdir] = "contrib"
 
-projects[nodeaccess_userreference][version] = "3.9"
+projects[nodeaccess_userreference][version] = "3.10"
 projects[nodeaccess_userreference][subdir] = "contrib"
 
 projects[pathauto][version] = "1.2"
@@ -178,7 +181,7 @@ projects[placeholder][subdir] = "contrib"
 projects[responsive_tables][version] = "2.x-dev"
 projects[responsive_tables][subdir] = "contrib"
 
-projects[restws][version] = "2.0-alpha5"
+projects[restws][version] = "2.0"
 projects[restws][subdir] = "contrib"
 
 projects[special_menu_items][version] = "2.0"
@@ -211,7 +214,7 @@ projects[httprl][subdir] = "contrib"
 projects[regions][version] = "1.x-dev"
 projects[regions][subdir] = "contrib"
 
-projects[seckit][version] = "1.5"
+projects[seckit][version] = "1.6"
 projects[seckit][subdir] = "contrib"
 
 projects[textbook][version] = "1.0-rc2"
@@ -247,7 +250,7 @@ projects[editableviews][subdir] = "contrib"
 projects[views][version] = "3.7"
 projects[views][subdir] = "contrib"
 
-projects[views_autocomplete_filters][version] = "1.0-rc1"
+projects[views_autocomplete_filters][version] = "1.0"
 projects[views_autocomplete_filters][subdir] = "contrib"
 
 projects[views_bulk_operations][version] = "3.1"
