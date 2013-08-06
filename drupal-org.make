@@ -214,9 +214,6 @@ projects[regions][subdir] = "contrib"
 projects[seckit][version] = "1.5"
 projects[seckit][subdir] = "contrib"
 
-projects[shadowbox][version] = "4.0-rc1"
-projects[shadowbox][subdir] = "contrib"
-
 projects[textbook][version] = "1.0-rc2"
 projects[textbook][subdir] = "contrib"
 

@@ -6,6 +6,10 @@ projects[drupal][version] = "7.x"
 ; include the d.o. profile base
 includes[] = "drupal-org.make"
 
+; shadowbox needs to fix issue before it can be included in correct make file
+projects[shadowbox][version] = "4.0-rc1"
+projects[shadowbox][subdir] = "contrib"
+
 ; +++++ Libraries +++++
 
 ; Profiler
@@ -16,11 +20,13 @@ libraries[profiler][download][type] = "get"
 libraries[profiler][download][url] = "http://ftp.drupal.org/files/projects/profiler-7.x-2.x-dev.tar.gz"
 
 ; shadowbox
-;libraries[shadowbox][directory_name] = "shadowbox"
-;libraries[shadowbox][type] = "library"
-;libraries[shadowbox][destination] = "libraries"
-;libraries[shadowbox][download][type] = "get"
-;libraries[shadowbox][download][url] = "" ; TODO add download URI
+libraries[shadowbox][download][type] = "post"
+libraries[shadowbox][download][post_data] = "format=tar&adapter=jquery&players[]=img&players[]=iframe&players[]=html&players[]=swf&players[]=flv&players[]=qt&players[]=wmp&language=en&css_support=on"
+libraries[shadowbox][download][file_type] = "tar.gz"
+libraries[shadowbox][download][url] = "http://www.shadowbox-js.com/download"
+libraries[shadowbox][directory_name] = "shadowbox"
+libraries[shadowbox][destination] = "libraries"
+
 
 ; cis
 libraries[cis][directory_name] = "cis"
