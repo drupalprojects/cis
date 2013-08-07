@@ -268,6 +268,9 @@ projects[activation_code][subdir] = "contrib"
 projects[replicate_ui][version] = "1.x-dev"
 projects[replicate_ui][subdir] = "contrib"
 
+projects[cis_connector][version] = "1.x-dev"
+projects[cis_connector][subdir] = "contrib"
+
 ; +++++ Themes +++++
 
 ; rubik
