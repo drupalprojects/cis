@@ -6,18 +6,18 @@
       <li class="name"><img class="logo show-for-medium-up" src="<?php print $logo; ?>" alt="<?php print $site_slogan; ?> image" title="<?php print $site_slogan; ?> image" /><span class="show-for-medium-up pipe-space">|</span><h1><?php print $linked_site_name; ?></h1></li>
       <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
-    <section class="top-bar-section user-menu">
-      <?php if ($main_menu_links) :?>
-        <?php print $main_menu_links; ?>
+    <section class="right top-bar-section user-menu">
+      <?php if ($top_bar_main_menu) :?>
+        <?php print $top_bar_main_menu; ?>
       <?php endif; ?>
       <?php if (!empty($page['header'])): ?>
         <?php print render($page['header']);?>
       <?php endif; ?>
     </section>
-  <?php if ($secondary_menu_links) :?>
+  <?php if ($top_bar_secondary_menu) :?>
   <section class="top-bar-section main-menu">
     <div class="unit-color-border">
-        <?php print $secondary_menu_links; ?>
+        <?php print $top_bar_secondary_menu; ?>
     </div>
   </section>
   <?php endif; ?>
