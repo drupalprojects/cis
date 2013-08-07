@@ -112,12 +112,6 @@ projects[nodeformcols][subdir] = "contrib"
 projects[nodequeue][version] = "2.0-beta1"
 projects[nodequeue][subdir] = "contrib"
 
-projects[oauth][version] = "3.1"
-projects[oauth][subdir] = "contrib"
-
-projects[ISBN2node][version] = "1.3"
-projects[ISBN2node][subdir] = "contrib"
-
 projects[auto_nodetitle][version] = "1.0"
 projects[auto_nodetitle][subdir] = "contrib"
 
@@ -348,5 +342,3 @@ projects[nodeaccess_userreference][patch][] = "http://drupal.org/files/nodeacces
 projects[nodeaccess_nodereference][patch][] = "http://drupal.org/files/nodeaccess_nodereference-install-profile.patch"
 ; allow multiple versions of jquery
 projects[jquery_update][patch][] = "http://drupal.org/files/jquery_update-1524944-78.patch"
-; fix white-space issue
-projects[ISBN2node][patch][] = "http://drupal.org/files/isbn2node-whitespace-1248604-3.patch"

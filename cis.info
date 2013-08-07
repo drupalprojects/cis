@@ -110,7 +110,6 @@ dependencies[] = field_collection_table
 dependencies[] = file_formatters
 dependencies[] = fitvids
 dependencies[] = imagefield_focus
-dependencies[] = isbn2node
 dependencies[] = jquery_colorpicker
 dependencies[] = libraries
 dependencies[] = masquerade

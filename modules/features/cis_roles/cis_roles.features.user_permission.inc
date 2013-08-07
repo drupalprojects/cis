@@ -300,15 +300,6 @@ function cis_roles_user_default_permissions() {
     'module' => 'cis_helper',
   );
 
-  // Exported permission: configure isbn2node.
-  $permissions['configure isbn2node'] = array(
-    'name' => 'configure isbn2node',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'isbn2node',
-  );
-
   // Exported permission: create academic_unit content.
   $permissions['create academic_unit content'] = array(
     'name' => 'create academic_unit content',
