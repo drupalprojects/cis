@@ -121,53 +121,5 @@ function cis_ux_context_default_contexts() {
   t('News block related to an entity in the system');
   $export['cis-news'] = $context;
 
-  $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
-  $context->name = 'course-display';
-  $context->description = 'The layout and blocks that make up a course display, only active on the coure node';
-  $context->tag = 'Course';
-  $context->conditions = array(
-    'node' => array(
-      'values' => array(
-        'course' => 'course',
-      ),
-      'options' => array(
-        'node_form' => '0',
-      ),
-    ),
-    'path' => array(
-      'values' => array(
-        'node/*' => 'node/*',
-        '~node/*/*' => '~node/*/*',
-      ),
-    ),
-  );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'views-cis_course_blocks-block' => array(
-          'module' => 'views',
-          'delta' => 'cis_course_blocks-block',
-          'region' => 'sidebar_first',
-          'weight' => '-10',
-        ),
-        'views-author_block-block' => array(
-          'module' => 'views',
-          'delta' => 'author_block-block',
-          'region' => 'sidebar_second',
-          'weight' => '-10',
-        ),
-      ),
-    ),
-  );
-  $context->condition_mode = 1;
-
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('Course');
-  t('The layout and blocks that make up a course display, only active on the coure node');
-  $export['course-display'] = $context;
-
   return $export;
 }
