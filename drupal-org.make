@@ -22,6 +22,9 @@ projects[field_redirection][subdir] = "contrib"
 projects[context][version] = "3.0-beta7"
 projects[context][subdir] = "contrib"
 
+projects[imagefield_focus][version] = "1.0"
+projects[imagefield_focus][subdir] = "contrib"
+
 projects[data][version] = "1.0-alpha4"
 projects[data][subdir] = "contrib"
 

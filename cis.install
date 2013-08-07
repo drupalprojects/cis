@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Implements hook_install().
  *
@@ -113,10 +112,10 @@ function cis_install() {
     'cis_data',
     'cis_types',
     'cis_ux',
-    'cis_users',
     'cis_displays',
+    'regions_admin_example',
+    'cis_users',
     'cis_roles',
-    'regions_admin_example'
   );
   features_revert($features);
   // ignore any rebuild messages
