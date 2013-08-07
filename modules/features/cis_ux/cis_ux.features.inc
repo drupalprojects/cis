@@ -112,20 +112,37 @@ function cis_ux_image_default_styles() {
   $styles['people_headshot'] = array(
     'name' => 'people_headshot',
     'effects' => array(
-      8 => array(
-        'label' => 'Scale and Smart Crop',
-        'help' => 'Similar to "Scale And Crop", but preserves the portion of the image with the most entropy.',
-        'effect callback' => 'smartcrop_scale_effect',
+      10 => array(
+        'label' => 'Focus Scale And Crop',
+        'help' => 'Scale and crop based on data provided by <em>ImageField Focus</em>.',
+        'effect callback' => 'imagefield_focus_scale_and_crop_effect',
+        'form callback' => 'imagefield_focus_scale_and_crop_form',
+        'summary theme' => 'imagefield_focus_scale_and_crop_summary',
+        'module' => 'imagefield_focus',
+        'name' => 'imagefield_focus_scale_and_crop',
+        'data' => array(
+          'width' => 720,
+          'height' => 580,
+          'strength' => 'high',
+          'fallback' => 'smartcrop',
+        ),
+        'weight' => -10,
+      ),
+      11 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
         'form callback' => 'image_scale_form',
         'summary theme' => 'image_scale_summary',
-        'module' => 'smartcrop',
-        'name' => 'smartcrop_scale_and_crop',
+        'module' => 'image',
+        'name' => 'image_scale',
         'data' => array(
           'width' => 720,
           'height' => 580,
           'upscale' => 1,
         ),
-        'weight' => 2,
+        'weight' => -9,
       ),
     ),
   );

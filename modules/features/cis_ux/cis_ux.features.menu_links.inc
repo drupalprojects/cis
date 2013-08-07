@@ -79,6 +79,25 @@ function cis_ux_menu_default_menu_links() {
     'weight' => -49,
     'parent_path' => 'cis/admin',
   );
+  // Exported menu link: management:cis/admin/people
+  $menu_links['management:cis/admin/people'] = array(
+    'menu_name' => 'management',
+    'link_path' => 'cis/admin/people',
+    'router_path' => 'cis/admin/people',
+    'link_title' => 'People',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'view all people in the system',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'parent_path' => 'cis',
+  );
   // Exported menu link: management:cis/courses
   $menu_links['management:cis/courses'] = array(
     'menu_name' => 'management',
@@ -273,6 +292,42 @@ function cis_ux_menu_default_menu_links() {
     'has_children' => 0,
     'expanded' => 0,
     'weight' => -48,
+    'parent_path' => 'cis/offerings',
+  );
+  // Exported menu link: management:cis/offerings/manage-semester
+  $menu_links['management:cis/offerings/manage-semester'] = array(
+    'menu_name' => 'management',
+    'link_path' => 'cis/offerings/manage-semester',
+    'router_path' => 'cis/offerings',
+    'link_title' => 'Manage Semester',
+    'options' => array(
+      'attributes' => array(),
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'parent_path' => 'cis/offerings',
+  );
+  // Exported menu link: management:cis/offerings/planning
+  $menu_links['management:cis/offerings/planning'] = array(
+    'menu_name' => 'management',
+    'link_path' => 'cis/offerings/planning',
+    'router_path' => 'cis/offerings/planning',
+    'link_title' => 'Planning',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Plan what courses are going to be offered in the future',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
     'parent_path' => 'cis/offerings',
   );
   // Exported menu link: management:cis/offerings/section-map
@@ -548,6 +603,76 @@ function cis_ux_menu_default_menu_links() {
     'weight' => 30,
     'parent_path' => 'cis/services',
   );
+  // Exported menu link: user-menu:cis-quick-setup
+  $menu_links['user-menu:cis-quick-setup'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'cis-quick-setup',
+    'router_path' => 'cis-quick-setup',
+    'link_title' => 'Build Service Instance',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Use this to Build a course, associate an offering and section to it, and then go and request the setup of webservices that will be used by the course.',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'parent_path' => 'user',
+  );
+  // Exported menu link: user-menu:login
+  $menu_links['user-menu:login'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'login',
+    'router_path' => 'login',
+    'link_title' => 'Login',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+  );
+  // Exported menu link: user-menu:user
+  $menu_links['user-menu:user'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'user',
+    'router_path' => 'user',
+    'link_title' => 'User account',
+    'options' => array(
+      'alter' => TRUE,
+      'attributes' => array(),
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -49,
+  );
+  // Exported menu link: user-menu:user/logout
+  $menu_links['user-menu:user/logout'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'user/logout',
+    'router_path' => 'user/logout',
+    'link_title' => 'Log out',
+    'options' => array(
+      'attributes' => array(),
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+  );
   // Translatables
   // Included for use with string extractors like potx.
   t('Add Course');
@@ -556,6 +681,7 @@ function cis_ux_menu_default_menu_links() {
   t('Add Service');
   t('Add Unit');
   t('Admin');
+  t('Build Service Instance');
   t('Bulk Ops');
   t('CIS');
   t('Campus');
@@ -564,7 +690,12 @@ function cis_ux_menu_default_menu_links() {
   t('Courses');
   t('Enrollments');
   t('Field Collection admin');
+  t('Log out');
+  t('Login');
+  t('Manage Semester');
   t('Offerings');
+  t('People');
+  t('Planning');
   t('Program');
   t('Program map');
   t('Programs');
@@ -577,6 +708,7 @@ function cis_ux_menu_default_menu_links() {
   t('Unit');
   t('Unit Map');
   t('Units');
+  t('User account');
   t('Year');
 
 
