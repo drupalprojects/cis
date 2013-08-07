@@ -49,8 +49,8 @@ projects[replicate_field_collection][subdir] = "contrib"
 projects[features][version] = "2.0-rc2"
 projects[features][subdir] = "contrib"
 
-projects[features_override‎][version] = "2.0-beta3"
-projects[features_override‎][subdir] = "contrib"
+projects[features_override][version] = "2.0-beta3"
+projects[features_override][subdir] = "contrib"
 
 projects[email][version] = "1.2"
 projects[email][subdir] = "contrib"
