@@ -96,8 +96,6 @@ dependencies[] = video_embed_field
 dependencies[] = nodeformcols
 ; Nodequeue
 dependencies[] = nodequeue
-; OAuth
-dependencies[] = oauth_common
 ; Other
 dependencies[] = auto_nodetitle
 dependencies[] = boxes
