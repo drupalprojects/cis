@@ -103,7 +103,7 @@ projects[lti_tool_provider][subdir] = "contrib"
 projects[imce][version] = "1.7"
 projects[imce][subdir] = "contrib"
 
-projects[video_embed_field][version] = "2.0-beta5"
+projects[video_embed_field][version] = "2.x-dev"
 projects[video_embed_field][subdir] = "contrib"
 
 projects[nodeformcols][version] = "1.x-dev"
