@@ -1412,6 +1412,9 @@ function cis_types_field_default_field_instances() {
       'default_image' => 0,
       'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg svg',
+      'focus' => 0,
+      'focus_lock_ratio' => 0,
+      'focus_min_size' => '',
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -1627,6 +1630,9 @@ function cis_types_field_default_field_instances() {
       'default_image' => 0,
       'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg',
+      'focus' => 0,
+      'focus_lock_ratio' => 0,
+      'focus_min_size' => '',
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -2712,6 +2718,9 @@ function cis_types_field_default_field_instances() {
       'default_image' => 0,
       'file_directory' => 'course_screenshots',
       'file_extensions' => 'png gif jpg jpeg',
+      'focus' => 0,
+      'focus_lock_ratio' => 0,
+      'focus_min_size' => '',
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -3105,340 +3114,6 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-isbn2node_book-isbn2node_author'
-  $field_instances['node-isbn2node_book-isbn2node_author'] = array(
-    'bundle' => 'isbn2node_book',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'isbn2node_author',
-    'label' => 'Author',
-    'required' => FALSE,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -1,
-    ),
-  );
-
-  // Exported field_instance: 'node-isbn2node_book-isbn2node_cover'
-  $field_instances['node-isbn2node_book-isbn2node_cover'] = array(
-    'bundle' => 'isbn2node_book',
-    'cardinality' => 1,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'colorbox_caption' => 'auto',
-          'colorbox_caption_custom' => '',
-          'colorbox_gallery' => 'post',
-          'colorbox_gallery_custom' => '',
-          'colorbox_image_style' => 'big',
-          'colorbox_node_style' => 'thumbnail',
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
-        'weight' => -1,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => 'content',
-          'image_style' => 'thumbnail',
-        ),
-        'type' => 'image',
-        'weight' => -1,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'isbn2node_cover',
-    'label' => 'Cover image',
-    'required' => FALSE,
-    'settings' => array(
-      'alt_field' => 1,
-      'default_image' => 0,
-      'file_directory' => 'image',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'type' => 'article_image',
-    'widget' => array(
-      'module' => 'image',
-      'settings' => array(
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'image_image',
-      'weight' => -3,
-    ),
-  );
-
-  // Exported field_instance: 'node-isbn2node_book-isbn2node_edition'
-  $field_instances['node-isbn2node_book-isbn2node_edition'] = array(
-    'bundle' => 'isbn2node_book',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'isbn2node_edition',
-    'label' => 'Edition',
-    'required' => FALSE,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 1,
-    ),
-  );
-
-  // Exported field_instance: 'node-isbn2node_book-isbn2node_isbn'
-  $field_instances['node-isbn2node_book-isbn2node_isbn'] = array(
-    'bundle' => 'isbn2node_book',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'isbn2node_isbn',
-    'label' => 'ISBN',
-    'required' => FALSE,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -2,
-    ),
-  );
-
-  // Exported field_instance: 'node-isbn2node_book-isbn2node_physical_description'
-  $field_instances['node-isbn2node_book-isbn2node_physical_description'] = array(
-    'bundle' => 'isbn2node_book',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 5,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'isbn2node_physical_description',
-    'label' => 'Physical description',
-    'required' => FALSE,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'node-isbn2node_book-isbn2node_publisher'
-  $field_instances['node-isbn2node_book-isbn2node_publisher'] = array(
-    'bundle' => 'isbn2node_book',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 3,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'isbn2node_publisher',
-    'label' => 'Publisher',
-    'required' => FALSE,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance: 'node-isbn2node_book-isbn2node_subtitle'
-  $field_instances['node-isbn2node_book-isbn2node_subtitle'] = array(
-    'bundle' => 'isbn2node_book',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'isbn2node_subtitle',
-    'label' => 'Subtitle',
-    'required' => FALSE,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -4,
-    ),
-  );
-
-  // Exported field_instance: 'node-isbn2node_book-isbn2node_year'
-  $field_instances['node-isbn2node_book-isbn2node_year'] = array(
-    'bundle' => 'isbn2node_book',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 6,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'isbn2node_year',
-    'label' => 'Publishing date',
-    'required' => FALSE,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 3,
-    ),
-  );
-
   // Exported field_instance: 'node-news-body'
   $field_instances['node-news-body'] = array(
     'bundle' => 'news',
@@ -3592,6 +3267,9 @@ function cis_types_field_default_field_instances() {
       'default_image' => 0,
       'file_directory' => 'news',
       'file_extensions' => 'png gif jpg jpeg',
+      'focus' => 0,
+      'focus_lock_ratio' => 0,
+      'focus_min_size' => '',
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -4065,6 +3743,9 @@ function cis_types_field_default_field_instances() {
       'default_image' => 0,
       'file_directory' => 'people_photos',
       'file_extensions' => 'png gif jpg jpeg',
+      'focus' => 1,
+      'focus_lock_ratio' => 0,
+      'focus_min_size' => '',
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -4222,7 +3903,28 @@ Associate Professor, Music Technology
 Professor of Art Education
 Assistant Professor, School of Visual Arts
 Research Associate
-Associate Professor Emeritus, Art Education',
+Associate Professor Emeritus, Art Education
+Associate Professor of Art Education
+Associate Professor of Art 
+Visiting Assistant Professor of Art
+Assistant Professor of Graphic Design
+Associate Professor, Department Head, Graphic Design
+Associate Professor of Landscape Architecture 
+Associate Professor of Landscape Architecture 
+Associate Professor of Landscape Architecture 
+Associate Professor & Director, Hamer Center
+Associate Professor & Director, Hamer Center
+Professor Emeritus of Music Education 
+Associate Professor of Music Education
+Assistant Professor of Music Education
+Assistant Professor of Theatre 
+Professor of Art 
+Associate Professor of Music
+Associate Professor of Music Theory
+Associate Professor in Choreography and Performance
+Associate Professor in Choreography and Performance
+Associate Professor in Choreography and Performance
+Associate Professor, Head of Dance',
         'available_options_php' => '',
         'markup_available_options_php' => '&lt;none&gt;',
         'other' => 'New Title',
@@ -5282,7 +4984,6 @@ Global will be available to all resources to reference',
   t('Address');
   t('An XML structure that follows the conventions established by ELMS for structuring a content outline.  The easiest way to obtain this is to install the MOOC distribution, create some content in a book outline and then export it to it\'s XML packaging format.');
   t('Any users that you\'d like to be able to coordinate semester setup and get data about this Academic Unit.');
-  t('Author');
   t('Author video');
   t('Banner');
   t('Body');
@@ -5295,7 +4996,6 @@ Global will be available to all resources to reference',
   t('Course Author');
   t('Course Start');
   t('Course title');
-  t('Cover image');
   t('Credit hours');
   t('Cron key');
   t('Delivery Guide');
@@ -5305,13 +5005,11 @@ Global will be available to all resources to reference',
   t('Display in course list');
   t('Distribution');
   t('Documents');
-  t('Edition');
   t('Email');
   t('Facebook');
   t('First Offered');
   t('Generic, sample syllabus for communication to prospective students');
   t('Headshot');
-  t('ISBN');
   t('If there is remote authentication (like an LMS) enter those binding credentials here.');
   t('Instructional Designer');
   t('Instructions');
@@ -5327,14 +5025,11 @@ Global will be available to all resources to reference',
   t('Offerings');
   t('Other documents');
   t('Phone number');
-  t('Physical description');
   t('Preferred salutation such as Dr. Warner or Karen Jones, MFA');
   t('Professional Title');
   t('Program classification');
   t('Program site');
   t('Promotional screenshots for course');
-  t('Publisher');
-  t('Publishing date');
   t('Redirect to');
   t('Related Academic home');
   t('Related Entities');
@@ -5354,7 +5049,6 @@ Global will be available to all resources to reference',
   t('Services in use');
   t('Setup guide');
   t('Special Classifications');
-  t('Subtitle');
   t('Syllabus');
   t('TAs that have been allocated to this section');
   t('Teaching assistants');
