@@ -2,7 +2,7 @@
 // $Id: color.inc,v 1.7 2010/12/14 19:53:14 dries Exp $
 
 // Put the logo path into JavaScript for the live preview.
-drupal_add_js(array('color' => array('logo' => theme_get_setting('logo', 'chamfer'))), 'setting');
+drupal_add_js(array('color' => array('logo' => theme_get_setting('logo', 'cis_theme'))), 'setting');
 
 $info = array(
   // Available colors and color labels used in theme.
