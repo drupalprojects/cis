@@ -79,7 +79,7 @@ projects[link][subdir] = "contrib"
 projects[phone][version] = "1.x-dev"
 projects[phone][subdir] = "contrib"
 
-projects[select_or_other][version] = "2.18"
+projects[select_or_other][version] = "2.19"
 projects[select_or_other][subdir] = "contrib"
 
 projects[simplehtmldom][version] = "1.12"
@@ -178,7 +178,7 @@ projects[placeholder][subdir] = "contrib"
 projects[responsive_tables][version] = "2.x-dev"
 projects[responsive_tables][subdir] = "contrib"
 
-projects[restws][version] = "2.0"
+projects[restws][version] = "2.1"
 projects[restws][subdir] = "contrib"
 
 projects[special_menu_items][version] = "2.0"
