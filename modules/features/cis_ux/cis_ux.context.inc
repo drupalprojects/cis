@@ -13,6 +13,51 @@ function cis_ux_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'cis-about';
+  $context->description = 'Blocks for the about page';
+  $context->tag = 'CIS';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'pages/about' => 'pages/about',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-nodequeue_5-block' => array(
+          'module' => 'views',
+          'delta' => 'nodequeue_5-block',
+          'region' => 'content',
+          'weight' => '10',
+        ),
+        'views-nodequeue_8-block' => array(
+          'module' => 'views',
+          'delta' => 'nodequeue_8-block',
+          'region' => 'content',
+          'weight' => '11',
+        ),
+        'views-nodequeue_7-block' => array(
+          'module' => 'views',
+          'delta' => 'nodequeue_7-block',
+          'region' => 'content',
+          'weight' => '12',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Blocks for the about page');
+  t('CIS');
+  $export['cis-about'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'cis-faculty_blocks';
   $context->description = 'Faculty courses authored block';
   $context->tag = 'CIS';
@@ -45,6 +90,51 @@ function cis_ux_context_default_contexts() {
   t('CIS');
   t('Faculty courses authored block');
   $export['cis-faculty_blocks'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'cis-front_page';
+  $context->description = 'Front page blocks';
+  $context->tag = 'CIS';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        '<front>' => '<front>',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-nodequeue_3-block' => array(
+          'module' => 'views',
+          'delta' => 'nodequeue_3-block',
+          'region' => 'content',
+          'weight' => '-23',
+        ),
+        'views-nodequeue_2-block' => array(
+          'module' => 'views',
+          'delta' => 'nodequeue_2-block',
+          'region' => 'content',
+          'weight' => '-23',
+        ),
+        'views-nodequeue_1-block' => array(
+          'module' => 'views',
+          'delta' => 'nodequeue_1-block',
+          'region' => 'content',
+          'weight' => '-23',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 1;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('CIS');
+  t('Front page blocks');
+  $export['cis-front_page'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
