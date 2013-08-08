@@ -3924,7 +3924,11 @@ Associate Professor of Music Theory
 Associate Professor in Choreography and Performance
 Associate Professor in Choreography and Performance
 Associate Professor in Choreography and Performance
-Associate Professor, Head of Dance',
+Associate Professor, Head of Dance
+Instructor of Landscape Architecture
+Practitioner Instructor of Landscape Architecture
+Visiting Instructor, GeoDesign
+Associate Professor ',
         'available_options_php' => '',
         'markup_available_options_php' => '&lt;none&gt;',
         'other' => 'New Title',

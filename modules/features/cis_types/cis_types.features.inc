@@ -95,14 +95,6 @@ function cis_types_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
-    'resource' => array(
-      'name' => t('Course Resource'),
-      'base' => 'node_content',
-      'description' => t('A resource that can be utilized across courses and sections.  This is standard language for describing how to use different services and technologies used in a course.'),
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
     'service' => array(
       'name' => t('Web Service'),
       'base' => 'node_content',
