@@ -108,9 +108,13 @@ function cis_theme_process_page(&$variables, $hook) {
 
 /**
  * Implements template_preprocess_page
- *
  */
 function cis_theme_preprocess_page(&$variables) {
+  // special tpl for the pages/about page
+  // this method avoids the need for declaring a nid
+  if (request_path() == 'pages/about') {
+    $variables['theme_hook_suggestions'][] = 'page__pages__about';
+  }
   // walk tree looking for deeper items
   $menu = menu_tree_all_data(variable_get('menu_secondary_links_source', 'main-menu'));
   foreach ($menu as $key => $value) {
