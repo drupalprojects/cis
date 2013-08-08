@@ -52,6 +52,9 @@ projects[features][subdir] = "contrib"
 projects[features_override][version] = "2.0-beta3"
 projects[features_override][subdir] = "contrib"
 
+projects[features_extra][version] = "1.0-beta1"
+projects[features_extra][subdir] = "contrib"
+
 projects[email][version] = "1.2"
 projects[email][subdir] = "contrib"
 

@@ -135,6 +135,41 @@ function cis_ux_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'nodequeue_autocomplete_limit';
+  $strongarm->value = '10';
+  $export['nodequeue_autocomplete_limit'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodequeue_links';
+  $strongarm->value = FALSE;
+  $export['nodequeue_links'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodequeue_tab_name';
+  $strongarm->value = 'Nodequeue';
+  $export['nodequeue_tab_name'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodequeue_use_tab';
+  $strongarm->value = 0;
+  $export['nodequeue_use_tab'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodequeue_view_per_queue';
+  $strongarm->value = 1;
+  $export['nodequeue_view_per_queue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_case';
   $strongarm->value = '1';
   $export['pathauto_case'] = $strongarm;
@@ -530,6 +565,20 @@ function cis_ux_strongarm() {
   $strongarm->name = 'path_breadcrumbs_rich_snippets';
   $strongarm->value = '0';
   $export['path_breadcrumbs_rich_snippets'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'schema_status_report';
+  $strongarm->value = 0;
+  $export['schema_status_report'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'schema_suppress_type_warnings';
+  $strongarm->value = 1;
+  $export['schema_suppress_type_warnings'] = $strongarm;
 
   return $export;
 }
