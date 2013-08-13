@@ -282,6 +282,8 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
  * Implements hook_entity_insert().
  */
 function cis_helper_entity_insert($entity, $type) {
+  // run the same code as entity_update as that fires for sections
+  cis_helper_entity_update($entity, $type);
   // check to see if a service_instance is being inserted
   if ($type == 'node' && $entity->type == 'service_instance') {
     // set the entity reference field to course    
@@ -308,10 +310,10 @@ function cis_helper_entity_insert($entity, $type) {
  * Implements hook_entity_update().
  */
 function cis_helper_entity_update($entity, $type) {
-  // spider crons of asso  ciated services when section is updated
+  // spider crons of associated services when section is updated
   if ($type == 'field_collection_item' && $entity->field_name == 'field_sections') {
     // load possible services
-    $service_instances = _cis_helper_derive_service_instances($entity->item_id);
+    $service_instances = _cis_helper_derive_service_instances($entity->item_id, $entity->HostEntity()->HostEntity());
     // cross-reference with those this section is reporting it implements
     // this avoids possible cron runs of services this section isn't using
     // overall it's not a big deal but this saves cycles none-the-less
