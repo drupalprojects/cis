@@ -42,6 +42,18 @@ function cis_helper_offering_planning_page($form, $form_state) {
     '#theme' => 'cis_helper_checkbox_table',
     '#title' => t('Course'),
   );
+  // list of available campuses to generate sections for this offering
+  $field = field_info_field('field_campus');
+  $form['campuses'] = array(
+    '#required' => '0',
+    '#multiple' => '1',
+    '#key_type_toggled' => '1',
+    '#type' => 'checkboxes',
+    '#theme' => 'cis_helper_checkbox_table',
+    '#options' => $field['settings']['allowed_values'],
+    '#multiple_toggle' => '1',
+    '#title' => t('Campus'),
+  );
   $form['actions']['#type'] = 'actions';
   $form['actions']['submit'] = array(
     '#type' => 'submit',
@@ -103,6 +115,26 @@ function cis_helper_offering_planning_page_submit($form, $form_state) {
     }
     else {
       drupal_set_message(t("@course had an offering listed for @sem @year so it was not created", array('@course' => $course->title, '@sem' => $semester, '@year' => $year)), 'warning');
+    }
+    // allow for auto section stub-population of sections for campuses
+    $campuses = array();
+    // convert from null to key values since drupal sends checkboxes oddly
+    foreach ($form_state['values']['campuses'] as $code) {
+      if ($code != '0' && !empty($code) && $code != '') {
+        $campuses[] = $code;
+      }
+    }
+    // build a section for each campus requested
+    foreach ($campuses as $campus) {
+      if ($campus != '') {
+        $section = entity_create('field_collection_item', array('field_name' => 'field_sections'));
+        // associate this section to the offering
+        $section->setHostEntity('field_collection_item', $offering);
+        // set the campus code
+        $section->field_campus[LANGUAGE_NONE][0]['value'] = $campus;
+        // save section
+        $section->save();
+      }
     }
   }
 }
@@ -490,15 +522,6 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
       }
       // this will create the service because of the hook_entity_insert used here
       node_save($instance);
-      // only run this for course based installs
-      if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE) {
-        // instance UUID will be sent to the new course
-        // this is the only case when instruction_outline needs to be populated manually
-        // this value will be targetted and converted during a service account PUT operation
-        $section->field_instructional_outline[LANGUAGE_NONE][0]['value'] = $instance->uuid;
-        // save section
-        $section->save();
-      }
     }
   }
 }
