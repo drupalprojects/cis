@@ -244,7 +244,7 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
   // alterations for the section field collection
   if ($form_id == 'field_collection_item_form' && $form['#entity']->field_name == 'field_sections') {
     // return all service instances this section will have access to
-    $service_instances = _cis_helper_derive_service_instances($form['#entity']->item_id);
+    $service_instances = _cis_helper_derive_service_instances($form['#entity']->item_id, $form['#entity']->HostEntity()->HostEntity());
     // we need to replace the service options based on those that exist
     $service_options = array('_none' => t('- None -'));
     // load each service related to the instances found
@@ -457,49 +457,23 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
 function _cis_helper_derive_parent($item_id, $field_collection_type = 'section', $find = 'course') {
   // additional level of searching for a section that matches
   if ($field_collection_type == 'section') {
-    $query = new EntityFieldQuery;
-    $result = $query
-      // pull all field collections
-      ->entityCondition('entity_type', 'field_collection_item')
-      // that are offerings
-      ->entityCondition('bundle', 'field_offerings')
-      // where the section is the one asked for
-      ->fieldCondition('field_sections', 'value', $item_id, '=')
-      // run the query as user 1
-      ->addMetaData('account', user_load(1))
-      ->execute();
-    $item = array_keys($result['field_collection_item']);
+    $section = entity_load_single('field_collection_item', $item_id);
+    $offering = $section->HostEntity();
   }
   else {
-    // entity load expects an array
-    $item = array($item_id);
+    $offering = entity_load_single('field_collection_item', $item_id);
   }
-  // load the offering
-  $offerings = entity_load('field_collection_item', $item);
-  $offering = array_pop($offerings);
   // allow for stopping here if we wanted offering
   if ($find == 'offering') {
     return $offering;
   }
-  
+  // make sure we have something as an offering, edge case
   if (empty($offering)) {
     return FALSE;
   }
-  // pull the node associated to this offering
-  $query = new EntityFieldQuery;
-  $result = $query
-    // pull all nodes
-    ->entityCondition('entity_type', 'node')
-    // that are courses
-    ->entityCondition('bundle', 'course')
-    // where the offering matches the one found
-    ->fieldCondition('field_offerings', 'value', $offering->item_id, '=')
-    // run the query as user 1
-    ->addMetaData('account', user_load(1))
-    ->execute();
-  // load node of the course and return it
-  if (isset($result['node'])) {
-    return node_load(array_pop(array_keys($result['node'])));
+  // make sure we have a course nid set
+  if (isset($offering->HostEntity()->nid)) {
+    return $offering->HostEntity();
   }
   return FALSE;
 }
