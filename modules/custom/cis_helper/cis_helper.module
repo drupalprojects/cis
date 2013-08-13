@@ -316,8 +316,10 @@ function cis_helper_entity_update($entity, $type) {
     // this avoids possible cron runs of services this section isn't using
     // overall it's not a big deal but this saves cycles none-the-less
     $use_array = array();
-    foreach ($entity->field_services[LANGUAGE_NONE] as $in_use) {
-      $use_array[$in_use['target_id']] = $in_use['target_id'];
+    if (!empty($entity->field_services)) {
+      foreach ($entity->field_services[LANGUAGE_NONE] as $in_use) {
+        $use_array[$in_use['target_id']] = $in_use['target_id'];
+      }
     }
     if (is_array($service_instances)) {
       foreach ($service_instances as $instance) {
