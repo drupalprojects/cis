@@ -10,6 +10,91 @@ define('CIS_HELPER_DEFAULT_AUTHENTICATION', 'open');
 define('CIS_HELPER_DEFAULT_CONTENT_OUTLINE', 'lesson-based.xml');
 
 /**
+ * Implements hook_cron().
+ */
+function cis_helper_cron() {
+  $query = new EntityFieldQuery;
+  $result = $query
+    // pull all field collections
+    ->entityCondition('entity_type', 'field_collection_item')
+    // that are sections
+    ->entityCondition('bundle', 'field_sections')
+    // that aren't archived
+    ->propertyCondition('archived', 0)
+    // that have something in the cis_ops field
+    ->fieldCondition('field_cis_ops', 'value', 'NULL', '!=')
+    // run as user 1 to avoid issues of ability to load as cron is anon
+    ->addMetaData('account', user_load(1))
+    ->execute();
+  // load the instances
+  if (isset($result['field_collection_item'])) {
+    $sections = entity_load('field_collection_item', array_keys($result['field_collection_item']));
+    foreach($sections as $section) {
+      // handle the logic of the operation to perform
+      _cis_helper_run_operation($section);
+    }
+  }
+}
+
+/**
+ * Callback to run operational logic for a remote call that was requested.
+ */
+function _cis_helper_run_operation($section) {
+  $call = unserialize($section->field_cis_ops[LANGUAGE_NONE][0]['value']);
+  switch ($call['op']) {
+    // allow fields to be set and written to data files
+    case 'set':
+      // grab the semester, year and course
+      $semester = $section->HostEntity()->field_semester[LANGUAGE_NONE][0]['value'];
+      $year = $section->HostEntity()->field_year[LANGUAGE_NONE][0]['value'];
+      $course_name = $section->HostEntity()->HostEntity()->field_machine_name[LANGUAGE_NONE][0]['value'];
+      // build registry for this setting
+      $settings = _cis_connector_build_registry($call['bucket']);
+      // build the address to do a secure call over webservices
+      $address = _cis_connector_format_address($settings, '/' . $course_name);
+      // execute the request
+      httprl_request($address . '/' . $call['url']);
+      $request = httprl_send_request();
+      // pull out the data from this call
+      $xml = array_pop($request)->data;
+      // load the structure of the field so we can get the storage location
+      $field = field_info_field('field_course_archive');
+      // get the instance settings so we can get the directory
+      $instance = field_info_instance('field_collection_item', 'field_course_archive', 'field_sections');
+      // file path
+      $file_base = $field['settings']['uri_scheme'] . '://';
+      if (isset($instance['settings']['file_directory']) && !empty($instance['settings']['file_directory'])) {
+        $file_base .= $instance['settings']['file_directory'] . '/';
+      }
+      $file_path = $file_base . $course_name . '_' . $semester . '_' . $year . '.xml';
+      // test that we can actually save the file
+      if ($file = file_save_data($xml, $file_path)) {
+        // Change status to permanent so it isn't killed on cron clean up
+        $file->status = FILE_STATUS_PERMANENT;
+        // bulk job so set uid to 1 since it's site ownership and non anon
+        $file->uid = 1;
+        $file->filename = str_replace($file_base, '', $file->uri);
+        $file->display = 1;
+        $file->description = '';
+        $file->focus_rect = '';
+        $file->crop_rect = '';
+        $file->rdf_mapping = array();
+        // save file
+        file_save($file);
+        // silly typecast of file object to array for field happiness
+        $file_ary = (array)$file;
+        // set the section's file field to match file array
+        $section->{$call['field']}[LANGUAGE_NONE][0] = $file_ary;
+        // clear the operation field so this doesn't run next time
+        $section->field_cis_ops[LANGUAGE_NONE][0]['value'] = NULL;
+        // save the section
+        entity_save('field_collection_item', $section);
+      }
+    break;
+  }
+}
+
+/**
  * Implements hook_page_build().
  */
 function cis_helper_page_build(&$page) {
@@ -21,9 +106,9 @@ function cis_helper_page_build(&$page) {
   }
   else if (isset($node->type)) {
     // only apply these to course pages
-    if (($node->type == 'course' || $node->type == 'program' || $node->type == 'person') && isset($node->field_academic_home['und'])) {
-      $unit = node_load($node->field_academic_home['und'][0]['target_id']);
-      $color = $unit->field_color['und'][0]['jquery_colorpicker'];
+    if (($node->type == 'course' || $node->type == 'program' || $node->type == 'person') && isset($node->field_academic_home[LANGUAGE_NONE])) {
+      $unit = node_load($node->field_academic_home[LANGUAGE_NONE][0]['target_id']);
+      $color = $unit->field_color[LANGUAGE_NONE][0]['jquery_colorpicker'];
       $css = '
       .unit-color-border li.active, 
       .unit-color-border li.active-trail, 
@@ -256,7 +341,7 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
       }
     }
     // set the allowed options to those found above
-    $form['field_services']['und']['#options'] = $service_options;
+    $form['field_services'][LANGUAGE_NONE]['#options'] = $service_options;
   }
   // allow for select style output for fields in data table
   if ($form_id == 'views_exposed_form' && strpos($form['#id'], 'historical-college-data-')) {
@@ -671,9 +756,9 @@ function _cis_helper_restws_deep_load(&$response) {
             // CIS SPECIFIC
             // edge-case unique to cis with nested field collections
             // the rest of this code is generalized to work with anything
-            if (isset($eary['field_sections']['und']) && count($eary['field_sections']['und']) > 0) {
+            if (isset($eary['field_sections'][LANGUAGE_NONE]) && count($eary['field_sections'][LANGUAGE_NONE]) > 0) {
               // perform deep load of sections
-              foreach ($eary['field_sections']['und'] as &$section) {
+              foreach ($eary['field_sections'][LANGUAGE_NONE] as &$section) {
                 if ($section['value'] != NULL) {
                   $section_entity = entity_load_single($item['resource'], $section['value']);
                   // ensure they can view this specific item
