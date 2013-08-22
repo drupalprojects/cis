@@ -109,8 +109,8 @@ function cis_helper_offering_planning_page_submit($form, $form_state) {
       $offering->field_semester[LANGUAGE_NONE][0]['value'] = $semester;
       // set year
       $offering->field_year[LANGUAGE_NONE][0]['value'] = $year;
-      // save offering to the node
-      $offering->save();
+      // make sure it isn't archived
+      $offering->archived = 0;
       drupal_set_message(t("Created @course offering for @sem @year", array('@course' => $course->title, '@sem' => $semester, '@year' => $year)), 'notice');
     }
     else {
@@ -124,16 +124,59 @@ function cis_helper_offering_planning_page_submit($form, $form_state) {
         $campuses[] = $code;
       }
     }
-    // build a section for each campus requested
-    foreach ($campuses as $campus) {
-      if ($campus != '') {
-        $section = entity_create('field_collection_item', array('field_name' => 'field_sections'));
-        // associate this section to the offering
-        $section->setHostEntity('field_collection_item', $offering);
-        // set the campus code
-        $section->field_campus[LANGUAGE_NONE][0]['value'] = $campus;
-        // save section
-        $section->save();
+    // if no campuses to build then save offering as a container
+    if (empty($campuses)) {
+      $offering->save();
+    }
+    else {
+      // build a section for each campus requested, looking for existing
+      foreach ($campuses as $key => $campus) {
+        // make sure that there's a campus code set
+        if ($campus != '') {
+          // check for existing references to this offering / campus combo
+          $section_refs = array();
+          if (isset($offering->field_sections)) {
+            foreach ($offering->field_sections[LANGUAGE_NONE] as $section_ref) {
+              $section_refs[] = $section_ref['value'];
+            }
+          }
+          $result = array();
+          // make sure we have references
+          if (!empty($section_refs)) {
+            $query = new EntityFieldQuery;
+            $result = $query
+              // select all field collections
+              ->entityCondition('entity_type', 'field_collection_item')
+              // that are offerings
+              ->entityCondition('bundle', 'field_sections')
+              // that have an internal id associated to the current course
+              ->propertyCondition('item_id', $section_refs, 'IN')
+              // and campus matches this one
+              ->fieldCondition('field_campus', 'value', $campus, '=')
+              // load as user 1 to ignore access issues for current user
+              ->addMetaData('account', user_load(1))
+              ->execute();
+          }
+          // if we had results, set the offering
+          if (isset($result['field_collection_item'])) {
+            drupal_set_message(t("@course had a section listed for campus @campus for @sem @year so it was not created", array('@course' => $course->title, '@campus' => $campus, '@sem' => $semester, '@year' => $year)), 'warning');
+          }
+          else {
+            // TODO: see if this location was taught last year in this semeter
+            // if not, look to if taught last semester
+            // if not, look to if taught ANY previous time
+            // replicate those values and dump the access string
+            // if no previous times run, create a new generic one below
+            $section = entity_create('field_collection_item', array('field_name' => 'field_sections'));
+            // associate this section to the offering
+            $section->setHostEntity('field_collection_item', $offering);
+            // set the campus code
+            $section->field_campus[LANGUAGE_NONE][0]['value'] = $campus;
+            // save section
+            $section->save();
+            drupal_set_message(t("Created @course campus section @campus for @sem @year", array('@course' => $course->title, '@campus' => $campus, '@sem' => $semester, '@year' => $year)), 'notice');
+          }
+        }
       }
     }
   }
