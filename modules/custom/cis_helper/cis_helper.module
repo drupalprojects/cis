@@ -398,7 +398,7 @@ function cis_helper_entity_update($entity, $type) {
   // spider crons of associated services when section is updated
   if ($type == 'field_collection_item' && $entity->field_name == 'field_sections') {
     // load possible services
-    $service_instances = _cis_helper_derive_service_instances($entity->item_id, $entity->HostEntity()->HostEntity());
+    $service_instances = _cis_helper_derive_service_instances($entity->item_id);
     // cross-reference with those this section is reporting it implements
     // this avoids possible cron runs of services this section isn't using
     // overall it's not a big deal but this saves cycles none-the-less
