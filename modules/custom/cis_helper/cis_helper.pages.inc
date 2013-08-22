@@ -71,9 +71,10 @@ function cis_helper_offering_planning_page_submit($form, $form_state) {
   $courses = entity_load('node', $form_state['values']['courses']);
   foreach ($courses as $nid => $course) {
     $offering = NULL;
+    $offerings = array();
+    $offering_refs = array();
     // make sure that this course doesn't already have an offering for this semester/year
     if (!empty($course->field_offerings)) {
-      $offering_refs = array();
       foreach ($course->field_offerings[LANGUAGE_NONE] as $offering_ref) {
         $offering_refs[] = $offering_ref['value'];
       }
@@ -131,6 +132,8 @@ function cis_helper_offering_planning_page_submit($form, $form_state) {
     else {
       // build a section for each campus requested, looking for existing
       foreach ($campuses as $key => $campus) {
+        $campus_match = NULL;
+        $sec_match = NULL;
         // make sure that there's a campus code set
         if ($campus != '') {
           // check for existing references to this offering / campus combo
@@ -162,16 +165,98 @@ function cis_helper_offering_planning_page_submit($form, $form_state) {
             drupal_set_message(t("@course had a section listed for campus @campus for @sem @year so it was not created", array('@course' => $course->title, '@campus' => $campus, '@sem' => $semester, '@year' => $year)), 'warning');
           }
           else {
-            // TODO: see if this location was taught last year in this semeter
-            // if not, look to if taught last semester
-            // if not, look to if taught ANY previous time
-            // replicate those values and dump the access string
-            // if no previous times run, create a new generic one below
+            // select all offerings for this course, looking for a past one
+            $tmprefs = array();
+            if (!empty($offering_refs)) {
+              $query = new EntityFieldQuery;
+              $query
+                // select all field collections
+                ->entityCondition('entity_type', 'field_collection_item')
+                // that are offerings
+                ->entityCondition('bundle', 'field_offerings')
+                // that have an internal id associated to the current course
+                ->propertyCondition('item_id', $offering_refs, 'IN')
+                // order by ID descending so most recent is picked
+                ->propertyOrderBy('item_id', 'DESC')
+                // limit range to 1 item
+                ->range(0, 1)
+                // load as user 1 to ignore access issues for current user
+                ->addMetaData('account', user_load(1));
+              // make sure it's not the current one being acted on
+              if (isset($offering->item_id) && !is_null($offering->item_id)) {
+                $query->propertyCondition('item_id', $offering->item_id, '<>');
+              }
+              $result = $query->execute();
+              $tmpoff = array();
+              // if we had results, set the offering
+              if (isset($result['field_collection_item'])) {
+                $item = array_keys($result['field_collection_item']);
+                $tmp = entity_load('field_collection_item', $item);
+                $tmpoff = array_pop($tmp);
+              }
+              // see if this found anything
+              // check for existing references to this offering / campus combo
+              if (isset($tmpoff->field_sections)) {
+                foreach ($tmpoff->field_sections[LANGUAGE_NONE] as $tmpref) {
+                  $tmprefs[] = $tmpref['value'];
+                }
+              }
+              // sort just to be safe
+              sort($tmprefs);
+              $result = array();
+              $sec_match = NULL;
+              $campus_match = NULL;
+              // make sure we have references
+              if (!empty($tmprefs)) {
+                $query = new EntityFieldQuery;
+                dpm($tmprefs);
+                $result = $query
+                  // select all field collections
+                  ->entityCondition('entity_type', 'field_collection_item')
+                  // that are offerings
+                  ->entityCondition('bundle', 'field_sections')
+                  // that have an internal id associated to the current course
+                  ->propertyCondition('item_id', $tmprefs, 'IN')
+                  // load as user 1 to ignore access issues for current user
+                  ->addMetaData('account', user_load(1))
+                  ->execute();
+                // if we had results, look through them
+                dpm($result);
+                if (isset($result['field_collection_item'])) {
+                  $item = array_keys($result['field_collection_item']);
+                  $past_sections = entity_load('field_collection_item', $item);
+                  foreach ($past_sections as $sec) {
+                    if ($sec->field_campus['und'][0]['value'] == $campus) {
+                      $campus_match = $sec;
+                    }
+                    else {
+                      $sec_match = $sec;
+                    }
+                  }
+                }
+              }
+            }
+            // create the new section container
             $section = entity_create('field_collection_item', array('field_name' => 'field_sections'));
             // associate this section to the offering
             $section->setHostEntity('field_collection_item', $offering);
             // set the campus code
             $section->field_campus[LANGUAGE_NONE][0]['value'] = $campus;
+            // see if we found anything worth trying for additional field population
+            if (!is_null($campus_match) || !is_null($sec_match)) {
+              // give priority to a past campus code match
+              if (!is_null($campus_match)) {
+                $clone = replicate_clone_entity('field_collection_item', $campus_match);
+              }
+              else {
+                $clone = replicate_clone_entity('field_collection_item', $sec_match);
+              }
+              // dup data that's possibly useful
+              $section->field_welcome_page = $clone->field_welcome_page;
+              $section->field_contact_info = $clone->field_contact_info;
+              $section->field_resources = $clone->field_resources;
+              $section->field_services = $clone->field_services;
+            }
             // save section
             $section->save();
             drupal_set_message(t("Created @course campus section @campus for @sem @year", array('@course' => $course->title, '@campus' => $campus, '@sem' => $semester, '@year' => $year)), 'notice');
