@@ -21,7 +21,7 @@ function cis_types_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Access',
-    'weight' => '0',
+    'weight' => '1',
     'children' => array(
       0 => 'field_access_dates',
       1 => 'field_access_string',
@@ -38,6 +38,34 @@ function cis_types_field_group_info() {
     ),
   );
   $export['group_access|field_collection_item|field_sections|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_administrative|field_collection_item|field_sections|form';
+  $field_group->group_name = 'group_administrative';
+  $field_group->entity_type = 'field_collection_item';
+  $field_group->bundle = 'field_sections';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Administrative',
+    'weight' => '4',
+    'children' => array(
+      0 => 'field_course_archive',
+      1 => 'field_cis_ops',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_administrative|field_collection_item|field_sections|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -406,7 +434,7 @@ function cis_types_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Setup',
-    'weight' => '1',
+    'weight' => '2',
     'children' => array(
       0 => 'field_section_number',
       1 => 'field_campus',
@@ -467,8 +495,8 @@ function cis_types_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Syllabus',
-    'weight' => '3',
+    'label' => 'Syllabus / Welcome',
+    'weight' => '0',
     'children' => array(
       0 => 'field_syllabus',
       1 => 'field_resources',
@@ -478,12 +506,13 @@ function cis_types_field_group_info() {
     ),
     'format_type' => 'tab',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'label' => 'Syllabus / Welcome',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => '',
         'required_fields' => 1,
+        'classes' => '',
+        'description' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_syllabus|field_collection_item|field_sections|form'] = $field_group;
@@ -528,7 +557,7 @@ function cis_types_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Teachers',
-    'weight' => '2',
+    'weight' => '3',
     'children' => array(
       0 => 'field_instructor_of_record',
       1 => 'field_teaching_assistants',

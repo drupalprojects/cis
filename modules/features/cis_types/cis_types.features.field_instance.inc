@@ -459,6 +459,49 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'field_collection_item-field_sections-field_cis_ops'
+  $field_instances['field_collection_item-field_sections-field_cis_ops'] = array(
+    'bundle' => 'field_sections',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 16,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'token' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_cis_ops',
+    'label' => 'CIS ops',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'field_hidden',
+      'settings' => array(),
+      'type' => 'field_hidden',
+      'weight' => 6,
+    ),
+  );
+
   // Exported field_instance: 'field_collection_item-field_sections-field_contact_info'
   $field_instances['field_collection_item-field_sections-field_contact_info'] = array(
     'bundle' => 'field_sections',
@@ -501,7 +544,7 @@ function cis_types_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 29,
+      'weight' => 30,
     ),
   );
 
@@ -549,7 +592,7 @@ function cis_types_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 31,
+      'weight' => 5,
     ),
   );
 
@@ -673,7 +716,6 @@ function cis_types_field_default_field_instances() {
         'create' => array(
           'academic_unit' => 0,
           'course' => 0,
-          'isbn2node_book' => 0,
           'program' => 0,
         ),
         'priority' => 0,
@@ -753,7 +795,7 @@ function cis_types_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 30,
+      'weight' => 31,
     ),
   );
 
@@ -947,7 +989,7 @@ function cis_types_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 26,
+      'weight' => 28,
     ),
   );
 
@@ -1052,7 +1094,7 @@ function cis_types_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 28,
+      'weight' => 29,
     ),
   );
 
@@ -1225,7 +1267,6 @@ function cis_types_field_default_field_instances() {
         'create' => array(
           'academic_unit' => 0,
           'course' => 0,
-          'isbn2node_book' => 0,
           'program' => 0,
         ),
         'priority' => 0,
@@ -1305,7 +1346,6 @@ function cis_types_field_default_field_instances() {
         'create' => array(
           'academic_unit' => 0,
           'course' => 0,
-          'isbn2node_book' => 0,
           'program' => 0,
           'service' => 0,
         ),
@@ -2164,7 +2204,6 @@ function cis_types_field_default_field_instances() {
         'create' => array(
           'academic_unit' => 0,
           'course' => 0,
-          'isbn2node_book' => 0,
           'program' => 0,
         ),
         'priority' => 0,
@@ -2240,7 +2279,6 @@ function cis_types_field_default_field_instances() {
           'academic_unit' => 0,
           'course' => 0,
           'instructional_model' => 0,
-          'isbn2node_book' => 0,
           'program' => 0,
           'resource' => 0,
           'service' => 0,
@@ -3928,7 +3966,8 @@ Associate Professor, Head of Dance
 Instructor of Landscape Architecture
 Practitioner Instructor of Landscape Architecture
 Visiting Instructor, GeoDesign
-Associate Professor ',
+Associate Professor 
+Professor of Architecture and Integrative Arts, Emeritus',
         'available_options_php' => '',
         'markup_available_options_php' => '&lt;none&gt;',
         'other' => 'New Title',
@@ -4034,7 +4073,6 @@ Associate Professor ',
           'college_services' => 0,
           'course' => 0,
           'instructional_model' => 0,
-          'isbn2node_book' => 0,
           'page' => 0,
           'person' => 0,
           'program' => 0,
@@ -4991,6 +5029,7 @@ Global will be available to all resources to reference',
   t('Author video');
   t('Banner');
   t('Body');
+  t('CIS ops');
   t('Campus');
   t('Color');
   t('Contact info');

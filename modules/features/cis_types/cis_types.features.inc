@@ -7,12 +7,10 @@
 /**
  * Implements hook_ctools_plugin_api().
  */
-function cis_types_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
+function cis_types_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "field_group" && $api == "field_group") {
     return array("version" => "1");
   }
-  list($module, $api) = func_get_args();
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -51,14 +49,6 @@ function cis_types_node_info() {
       'name' => t('Instructional Model'),
       'base' => 'node_content',
       'description' => t('Store reusable instructional models for helping to develop instructional best practices for your college to follow.'),
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
-    'isbn2node_book' => array(
-      'name' => t('Course Material'),
-      'base' => 'node_content',
-      'description' => t('Information about material needed to take a course.  The default fields are for textbooks but they can be repurposed for other items.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
