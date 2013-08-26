@@ -501,6 +501,7 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   $content .= $service->field_distribution[LANGUAGE_NONE][0]['value'] . "\n";
   // process potential drush operation lists
   $fr = '';
+  $un = '';
   foreach ($options as $op => $commands) {
     // write each command to the file for this operation
     $tmp = '';
@@ -508,16 +509,20 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
       $tmp .= 'drush ' . $op . ' ' . $command . "\n";
     }
     // hold off on fr to after all other operations
-    if ($op != 'fr') {
-      $content .= $tmp;
+    if ($op == 'fr') {
+      $fr = $tmp;
+    }
+    // same, hold off on uninstall
+    elseif ($op == 'pm-uninstall') {
+      $un = $tmp;
     }
     else {
-      $fr = $tmp;
+      $content .= $tmp;
     }
   }
   // push feature revert requests off til the end
   // this way they actually revert instead of vset / en disrupting them
-  $content .= $fr;
+  $content .= $fr . $un;
   // only apply default content import for course based service
   if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE && !empty($service_instance->field_service_data[LANGUAGE_NONE][0]['value'])) {
     // allow for on creation population of material
