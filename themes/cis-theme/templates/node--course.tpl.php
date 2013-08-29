@@ -164,16 +164,20 @@
   <?php endif; ?>
 </div>
 <div class="row course_topics">
-  <h2 class="">Topics we'll cover</h2>
-  <?php if (isset($node->field_topics_covered_text['und'])) : ?>
+<?php if (isset($node->field_topics_covered_text['und'])) : ?>
+  <h2 class="course_topics_heading"><?php print t("Topics we'll cover"); ?></h2>
   <div class="large-6 columns course_info_about">
   <?php print $node->field_topics_covered_text['und'][0]['safe_value']; ?>
   </div>
   <?php endif; ?>
 </div>
 <div class="row course_readings">
-  <h2>Readings</h2>
-  <p>This should be a block of info.</p>
+<?php if (isset($node->field_course_readings['und'])) : ?>
+  <h2 class="course_readings_heading"><?php print t("Readings"); ?></h2>
+  <div class="large-6 columns course_info_about">
+  <?php print $node->field_course_readings['und'][0]['safe_value']; ?>
+  </div>
+  <?php endif; ?>
 </div>
 <div class="light-triangle-down border-step-3 triangle-overflow"></div>
 </article>
