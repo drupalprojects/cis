@@ -716,6 +716,7 @@ function cis_types_field_default_field_instances() {
         'create' => array(
           'academic_unit' => 0,
           'course' => 0,
+          'isbn2node_book' => 0,
           'program' => 0,
         ),
         'priority' => 0,
@@ -1267,6 +1268,7 @@ function cis_types_field_default_field_instances() {
         'create' => array(
           'academic_unit' => 0,
           'course' => 0,
+          'isbn2node_book' => 0,
           'program' => 0,
         ),
         'priority' => 0,
@@ -1346,6 +1348,7 @@ function cis_types_field_default_field_instances() {
         'create' => array(
           'academic_unit' => 0,
           'course' => 0,
+          'isbn2node_book' => 0,
           'program' => 0,
           'service' => 0,
         ),
@@ -1760,8 +1763,48 @@ function cis_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_buttons',
+      'type' => 'options_select',
       'weight' => 30,
+    ),
+  );
+
+  // Exported field_instance: 'node-course-field_course_readings'
+  $field_instances['node-course-field_course_readings'] = array(
+    'bundle' => 'course',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 30,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_course_readings',
+    'label' => 'Readings',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 10,
     ),
   );
 
@@ -2204,6 +2247,7 @@ function cis_types_field_default_field_instances() {
         'create' => array(
           'academic_unit' => 0,
           'course' => 0,
+          'isbn2node_book' => 0,
           'program' => 0,
         ),
         'priority' => 0,
@@ -2279,6 +2323,7 @@ function cis_types_field_default_field_instances() {
           'academic_unit' => 0,
           'course' => 0,
           'instructional_model' => 0,
+          'isbn2node_book' => 0,
           'program' => 0,
           'resource' => 0,
           'service' => 0,
@@ -4073,6 +4118,7 @@ Professor of Architecture and Integrative Arts, Emeritus',
           'college_services' => 0,
           'course' => 0,
           'instructional_model' => 0,
+          'isbn2node_book' => 0,
           'page' => 0,
           'person' => 0,
           'program' => 0,
@@ -5073,6 +5119,7 @@ Global will be available to all resources to reference',
   t('Program classification');
   t('Program site');
   t('Promotional screenshots for course');
+  t('Readings');
   t('Redirect to');
   t('Related Academic home');
   t('Related Entities');

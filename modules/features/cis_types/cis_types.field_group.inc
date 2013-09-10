@@ -590,6 +590,7 @@ function cis_types_field_group_info() {
       0 => 'body',
       1 => 'field_long_description',
       2 => 'field_topics_covered_text',
+      3 => 'field_course_readings',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

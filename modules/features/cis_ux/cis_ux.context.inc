@@ -58,6 +58,42 @@ function cis_ux_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'cis-course_blocks';
+  $context->description = 'Blocks for course pages';
+  $context->tag = 'CIS';
+  $context->conditions = array(
+    'node' => array(
+      'values' => array(
+        'course' => 'course',
+      ),
+      'options' => array(
+        'node_form' => '0',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-courses_overview-block_3' => array(
+          'module' => 'views',
+          'delta' => 'courses_overview-block_3',
+          'region' => 'content',
+          'weight' => '10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 1;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Blocks for course pages');
+  t('CIS');
+  $export['cis-course_blocks'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'cis-faculty_blocks';
   $context->description = 'Faculty courses authored block';
   $context->tag = 'CIS';
@@ -70,13 +106,24 @@ function cis_ux_context_default_contexts() {
         'node_form' => '0',
       ),
     ),
+    'path' => array(
+      'values' => array(
+        'faculty/*' => 'faculty/*',
+      ),
+    ),
   );
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'views-cis_faculty_courses-block' => array(
+        'views-courses_overview-block_1' => array(
           'module' => 'views',
-          'delta' => 'cis_faculty_courses-block',
+          'delta' => 'courses_overview-block_1',
+          'region' => 'content',
+          'weight' => '9',
+        ),
+        'views-courses_overview-block_2' => array(
+          'module' => 'views',
+          'delta' => 'courses_overview-block_2',
           'region' => 'content',
           'weight' => '10',
         ),
