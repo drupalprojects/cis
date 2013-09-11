@@ -793,6 +793,13 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
       }
       // this will create the service because of the hook_entity_insert used here
       node_save($instance);
+      // create a file based on service name
+      $filename = $course->field_machine_name[LANGUAGE_NONE][0]['value'] . '.' . $service->field_machine_name[LANGUAGE_NONE][0]['value'];
+      //$handle = fopen(variable_get('cis_job_path', CIS_HELPER_JOB_PATH) . '/' . $filename, 'r');
+      // bring along expected filename that points to the instance data
+      $instances_created[$filename] = $instance;
     }
   }
+  // TODO invoke batch process using captured $instances_created array
+
 }
