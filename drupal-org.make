@@ -10,6 +10,12 @@ projects[admin_menu][subdir] = "contrib"
 projects[advagg][version] = "2.0-rc3"
 projects[advagg][subdir] = "contrib"
 
+projects[imageinfo_cache][version] = "3.0"
+projects[imageinfo_cache][subdir] = "contrib"
+
+projects[subpathauto][version] = "1.3"
+projects[subpathauto][subdir] = "contrib"
+
 projects[ctools][version] = "1.3"
 projects[ctools][subdir] = "contrib"
 

@@ -134,6 +134,8 @@ dependencies[] = path_breadcrumbs
 dependencies[] = boost_crawler
 dependencies[] = entitycache
 dependencies[] = httprl
+dependencies[] = subpathauto
+dependencies[] = imageinfo_cache
 ; Regions
 dependencies[] = regions
 dependencies[] = regions_admin_left
