@@ -124,7 +124,6 @@ function drush_cis_helper_create_service_instances($machine_name, $string) {
       unset($services[$key]);
     }
   }
-  drush_print_r($services);
   $uname = drush_get_option('uname');
   // if no username, assume admin
   if (!$uname || !user_validate_name($uname)) {
@@ -163,5 +162,5 @@ function drush_cis_helper_create_service_instances($machine_name, $string) {
   // required for forced submission
   $form_state['values']['op'] = t('Create course');
   // try and "submit" the form
-  //drupal_form_submit('cis_helper_quick_setup_page', $form_state);
+  drupal_form_submit('cis_helper_quick_setup_page', $form_state);
 }
