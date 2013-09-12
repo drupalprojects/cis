@@ -395,6 +395,35 @@ function cis_helper_entity_insert($entity, $type) {
  * Implements hook_entity_update().
  */
 function cis_helper_entity_update($entity, $type) {
+  // once cron key is set for a service_instance, run that cron
+  // this will complete part of the initial sync proceedure
+  if (
+    $type == 'node' && 
+    $entity->type == 'service_instance' && 
+    !isset($entity->original->field_cron_key[LANGUAGE_NONE][0]) && 
+    isset($entity->field_cron_key[LANGUAGE_NONE][0])
+  ) {
+    // load the service and course entities
+    $service = entity_load_single('node', $entity->field_services[LANGUAGE_NONE][0]['target_id']);
+    $course = entity_load_single('node', $entity->field_course[LANGUAGE_NONE][0]['target_id']);
+    // create the location of this service instance cron
+    $location = $service->field_location[LANGUAGE_NONE][0]['url'] . '/' . $course->field_machine_name[LANGUAGE_NONE][0]['safe_value'];
+    // add on the cron and cron_key values for a secure remote run
+    $data = array(
+      'cron_key' => $entity->field_cron_key[LANGUAGE_NONE][0]['value'],
+      'force_roster_sync' => '',
+    );
+    $location .= '/cron.php?' . http_build_query($data);
+    // call the cron via remote call
+    $options = array(
+      'blocking' => FALSE,
+    );
+    // que request
+    httprl_request($location, $options);
+    drupal_set_message(t('The remote service `@service` has been syncronized to reflect your changes.', array('@service' => $service->title)), 'status');
+    // Execute requests in the queue in a non-blocking manner (really fast)
+    $request = httprl_send_request();
+  }
   // spider crons of associated services when section is updated
   if ($type == 'field_collection_item' && $entity->field_name == 'field_sections') {
     // load possible services
