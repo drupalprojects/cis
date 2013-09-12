@@ -461,10 +461,18 @@ function cis_helper_get_data_values($column) {
  */
 function _cis_helper_add_service_instance($course, $service, $service_instance, $college, $account) {
   $options = array();
-  // only enable activation codes on the course based service
-  if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE && $course->field_method_of_access[LANGUAGE_NONE][0]['value'] == 'code') {
-    $options['en'][] = 'cis_service_activation_codes';
+  // course / mooc is kind of an edge-case in the network
+  if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE) {
+    // revert the mooc ux defaults, they struggle to automatically
+    $options['fr'][] = 'mooc_ux_defaults';
+    // enable activation codes if that's been requested as access
+    if ($course->field_method_of_access[LANGUAGE_NONE][0]['value'] == 'code') {
+      $options['en'][] = 'cis_service_activation_codes';
+    }
   }
+  // always revert the section an additional time
+  // this is due to other things settings permissions
+  $options['fr'][] = 'cis_section';
   // vset the uuid from the service_instance entity into the remote site
   $options['vset'][] = 'cis_service_instance_uuid ' . $service_instance->uuid;
 
