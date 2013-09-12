@@ -677,9 +677,9 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
         foreach ($tmpoff->field_sections[LANGUAGE_NONE] as $tmpref) {
           $tmprefs[] = $tmpref['value'];
         }
+        // sort just to be safe
+        sort($tmprefs);
       }
-      // sort just to be safe
-      sort($tmprefs);
       $result = array();
       $sec_match = NULL;
       $campus_match = NULL;
