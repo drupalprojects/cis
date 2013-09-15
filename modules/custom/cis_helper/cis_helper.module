@@ -141,30 +141,30 @@ function cis_helper_page_build(&$page) {
   // build shortcuts to create other services, excluding current ones
   if (arg(2) == 'service-instances' && is_numeric(arg(1))) {
     $key = array('field_services', 'target_id');
-		$fields = array('field_course' => array('target_id', arg(1)));
-		// build a list of current services
+    $fields = array('field_course' => array('target_id', arg(1)));
+    // build a list of current services
     $current = _cis_helper_assemble_entity_list('node', 'service_instance', $key, 'title', $fields);
     $services = _cis_helper_assemble_entity_list('node', 'service', 'nid', 'title');
-		foreach($current as $k => $t) {
-			unset($services[$k]);
-		}		
-		$links = '<div class="cis-create-additional-services">' . "\n<ul>\n";
-		foreach ($services as $snid => $name) {
-			$options = array(
-				'query' => array(
-					'field_services' => $snid,
-					'field_course' => arg(1),
-					'destination' => current_path(),
-				)
-			);
-			$links .= '<li>' . l(t('Add `@service` service', array('@service' => $name)), 'node/add/service-instance', $options) . "</li>\n";
-		}
-		$links .= "\n</ul>\n</div>";
-		$page['content']['system_main']['cis-links'] = array(
-			'#markup' => $links,
-			'#weight' => 1,
-		);
-	}
+    foreach($current as $k => $t) {
+      unset($services[$k]);
+    }    
+    $links = '<div class="cis-create-additional-services">' . "\n<ul>\n";
+    foreach ($services as $snid => $name) {
+      $options = array(
+        'query' => array(
+          'field_services' => $snid,
+          'field_course' => arg(1),
+          'destination' => current_path(),
+        )
+      );
+      $links .= '<li>' . l(t('Add `@service` service', array('@service' => $name)), 'node/add/service-instance', $options) . "</li>\n";
+    }
+    $links .= "\n</ul>\n</div>";
+    $page['content']['system_main']['cis-links'] = array(
+      '#markup' => $links,
+      '#weight' => 1,
+    );
+  }
 }
 
 /**
@@ -397,12 +397,12 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
 function cis_helper_entity_presave($entity, $type) {
   // check to see if a service_instance is being saved
   if ($type == 'node' && $entity->type == 'service_instance') {
-		// force title to match pattern, ant may miss this
-		$serv_node = node_load($entity->field_services[LANGUAGE_NONE][0]['target_id']);
-		// load the course node
-		$course_node = node_load($entity->field_course[LANGUAGE_NONE][0]['target_id']);
+    // force title to match pattern, ant may miss this
+    $serv_node = node_load($entity->field_services[LANGUAGE_NONE][0]['target_id']);
+    // load the course node
+    $course_node = node_load($entity->field_course[LANGUAGE_NONE][0]['target_id']);
     $entity->title = $course_node->field_machine_name[LANGUAGE_NONE][0]['value'] . ' - ' . $serv_node->field_machine_name[LANGUAGE_NONE][0]['value'];
-	}
+  }
 }
 /**
  * Implements hook_entity_insert().
@@ -436,35 +436,6 @@ function cis_helper_entity_insert($entity, $type) {
  * Implements hook_entity_update().
  */
 function cis_helper_entity_update($entity, $type) {
-  // once cron key is set for a service_instance, run that cron
-  // this will complete part of the initial sync proceedure
-  if (
-    $type == 'node' && 
-    $entity->type == 'service_instance' && 
-    !isset($entity->original->field_cron_key[LANGUAGE_NONE][0]) && 
-    isset($entity->field_cron_key[LANGUAGE_NONE][0])
-  ) {
-    // load the service and course entities
-    $service = entity_load_single('node', $entity->field_services[LANGUAGE_NONE][0]['target_id']);
-    $course = entity_load_single('node', $entity->field_course[LANGUAGE_NONE][0]['target_id']);
-    // create the location of this service instance cron
-    $location = $service->field_location[LANGUAGE_NONE][0]['url'] . '/' . $course->field_machine_name[LANGUAGE_NONE][0]['safe_value'];
-    // add on the cron and cron_key values for a secure remote run
-    $data = array(
-      'cron_key' => $entity->field_cron_key[LANGUAGE_NONE][0]['value'],
-      'force_roster_sync' => '',
-    );
-    $location .= '/cron.php?' . http_build_query($data);
-    // call the cron via remote call
-    $options = array(
-      'blocking' => FALSE,
-    );
-    // que request
-    httprl_request($location, $options);
-    drupal_set_message(t('The remote service `@service` has been syncronized to reflect your changes.', array('@service' => $service->title)), 'status');
-    // Execute requests in the queue in a non-blocking manner (really fast)
-    $request = httprl_send_request();
-  }
   // spider crons of associated services when section is updated
   if ($type == 'field_collection_item' && $entity->field_name == 'field_sections') {
     // load possible services
@@ -617,6 +588,8 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   $content .= 'drush cron' . "\n";
   // run ecl to help seed caches for all entities
   $content .= 'drush ecl' . "\n";
+  // may seem odd but double running cron can prime syncing
+  $content .= 'drush cron' . "\n";
   // write the structured file to a lower directory
   $handle = fopen(variable_get('cis_job_path', CIS_HELPER_JOB_PATH) . '/' . $filename, 'x+');
   fwrite($handle, $content);
@@ -909,10 +882,10 @@ function _cis_helper_assemble_entity_list($entity_type, $bundle, $id_field, $tit
     // load entities and build array of id -> title
     foreach ($elist as $entity) {
       // allow for field value as key
-			if (is_array($id_field)) {
-				$key = $entity->{$id_field[0]}[LANGUAGE_NONE][0][$id_field[1]];
-			}
-			else if (strpos($id_field, 'field_') !== FALSE) {
+      if (is_array($id_field)) {
+        $key = $entity->{$id_field[0]}[LANGUAGE_NONE][0][$id_field[1]];
+      }
+      else if (strpos($id_field, 'field_') !== FALSE) {
         $key = $entity->{$id_field}[LANGUAGE_NONE][0]['value'];
       }
       else {
@@ -928,6 +901,6 @@ function _cis_helper_assemble_entity_list($entity_type, $bundle, $id_field, $tit
  * Implements hook_httprl_spider_other_paths_alter(&$paths).
  */
 function cis_helper_httprl_spider_other_paths_alter(&$paths) {
-	$paths[] = 'courses';
-	$paths[] = 'programs';
+  $paths[] = 'courses';
+  $paths[] = 'programs';
 }
