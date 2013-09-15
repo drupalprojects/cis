@@ -105,8 +105,12 @@ function cis_lti_service_post($params, $key, $url) {
       'method' => 'POST',
       'max_redirects' => 5,
       'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
-    );
-    $ext_response = drupal_http_request($url, $options);
+    	'blocking' => FALSE,
+		);
+    // queue up the launch
+		httprl_request($url, $options);
+		// execuse request, we won't get a real response
+		$ext_response = httprl_send_request();
   }
   return $ext_response;
 }
