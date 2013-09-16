@@ -97,7 +97,7 @@ projects[simplehtmldom][subdir] = "contrib"
 projects[smartcrop][version] = "1.x-dev"
 projects[smartcrop][subdir] = "contrib"
 
-projects[typogrify][version] = "1.0-rc6"
+projects[typogrify][version] = "1.0-rc7"
 projects[typogrify][subdir] = "contrib"
 
 projects[video_filter][version] = "3.1"
