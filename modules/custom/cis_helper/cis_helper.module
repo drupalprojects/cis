@@ -108,34 +108,37 @@ function cis_helper_page_build(&$page) {
     // only apply these to course pages
     if (($node->type == 'course' || $node->type == 'program' || $node->type == 'person') && isset($node->field_academic_home[LANGUAGE_NONE])) {
       $unit = node_load($node->field_academic_home[LANGUAGE_NONE][0]['target_id']);
-      $color = $unit->field_color[LANGUAGE_NONE][0]['jquery_colorpicker'];
-      $css = '
-      .unit-color-border li.active, 
-      .unit-color-border li.active-trail, 
-      .unit-color-border{
-        border-color: #' . $color . ' !important;
+      // ensure we have a color for a unit
+      if (isset($unit->field_color[LANGUAGE_NONE])) {
+        $color = $unit->field_color[LANGUAGE_NONE][0]['jquery_colorpicker'];
+        $css = '
+        .unit-color-border li.active, 
+        .unit-color-border li.active-trail, 
+        .unit-color-border{
+          border-color: #' . $color . ' !important;
+        }
+        .unit-color, .amp, .unit-color a {
+          color: #' . $color . ' !important;
+        }
+        .unit-bg-color {
+          background-color: #' . $color . ' !important;
+        }
+        ::-moz-selection {
+          background-color: #' . $color . ';
+        }
+        ::selection {
+          background-color: #' . $color . ';
+        }
+        ';
+        // make sure it's added very late so it takes priority, even with important
+        $options = array(
+          'type' => 'inline',
+          'group' => CSS_THEME,
+          'weight' => 100,
+          'preprocess' => FALSE,        
+        );
+        drupal_add_css($css, $options);
       }
-      .unit-color, .amp, .unit-color a {
-        color: #' . $color . ' !important;
-      }
-      .unit-bg-color {
-        background-color: #' . $color . ' !important;
-      }
-      ::-moz-selection {
-        background-color: #' . $color . ';
-      }
-      ::selection {
-        background-color: #' . $color . ';
-      }
-      ';
-      // make sure it's added very late so it takes priority, even with important
-      $options = array(
-        'type' => 'inline',
-        'group' => CSS_THEME,
-        'weight' => 100,
-        'preprocess' => FALSE,        
-      );
-      drupal_add_css($css, $options);
     }
   }
   // build shortcuts to create other services, excluding current ones
