@@ -17,6 +17,43 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
   box-shadow: none;
 }
 
+.views-exposed-form {
+	background-color: #373b44;
+}
+
+.bef-select-as-checkboxes-fieldset label {
+	color:#979797;
+	font-weight:normal;
+}
+.bef-select-as-checkboxes-fieldset label:hover {
+	color:#fffffd;
+}
+.bef-select-as-checkboxes-fieldset input[type="radio"]:checked + label,
+.bef-select-as-checkboxes-fieldset input[type="checkbox"]:checked + label {
+	color:#fffffd;
+}
+
+.bef-select-as-checkboxes-fieldset input[type="radio"],
+.bef-select-as-checkboxes-fieldset input[type="checkbox"]{
+	width:2em;
+	height:2em;
+	margin:.25em;
+}
+
+.views-exposed-widgets #edit-title-wrapper {
+	border-bottom:solid 1em #ffffff;
+}
+.views-exposed-widgets #edit-title-wrapper input {
+	margin:0em;
+}
+
+.views-exposed-widgets #edit-field-display-name-value-wrapper {
+  border-bottom:solid 1em #ffffff;
+}
+.views-exposed-widgets #edit-field-display-name-value-wrapper input {
+	margin:0em;
+}
+
 .unit-color {
   font-weight:bold;
 }
@@ -397,6 +434,7 @@ html.js .courses-overview-filters fieldset.collapse-processed .fieldset-legend {
 .faculty-overview-filters {
   background-color:#373b44;
   color:#ffffff;
+	padding:0em;
 }
 
 .faculty-overview-filters .views-exposed-widget {
@@ -416,6 +454,8 @@ html.js .faculty-overview-filters fieldset.collapse-processed .fieldset-legend {
 
 .faculty-overview-filters fieldset {
   border:none;
+	font-family: 'Open Sans', sans-serif;
+  font-weight:lighter;
 }
 
 .faculty-overview-filters legend {
@@ -423,8 +463,8 @@ html.js .faculty-overview-filters fieldset.collapse-processed .fieldset-legend {
 }
 .faculty-overview-filters a.fieldset-title {
   color:#ffffff;
-  padding-left:1.5em;
-  margin-left:-1.5em;
+  padding-left:2em;
+  margin-left:-2em;
 }
 
 
@@ -949,6 +989,22 @@ div.course_author_view_profile {
   color:#139be9;
 }
 
+.fluid-width-video-wrapper {
+	position: relative;
+	padding-bottom: 56.25% !important; /* 16/9 ratio */
+	height: 0;
+}
+
+.fluid-width-video-wrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0px 0px 20px 0px !important;
+	padding:0px;
+}
+
 /* Fluid adjustments for mobile menu items */
 @media only screen and (max-width: 940px) {
   .menu-1190, .menu-1196, .menu-1193 {
@@ -964,13 +1020,6 @@ div.course_author_view_profile {
   h1#page-title {
     text-align:center;
     line-height:1em;
-  }
-}
-
-/* fitvids support */
-@media only screen and (max-width: 400px) {
-  .fluid-width-video-wrapper {
-    height:12.5em;
   }
 }
 @media only screen and (max-width: 680px) {
@@ -997,9 +1046,6 @@ div.course_author_view_profile {
   }
 }
 @media only screen and (min-width: 400px) {
-  .fluid-width-video-wrapper {
-    height:13.75em;
-  }
   .course_author_block {
     width:100%;
   }
@@ -1015,15 +1061,7 @@ div.course_author_view_profile {
     margin:.25em 0em 0em 0em;
   }
 }
-@media only screen and (min-width: 500px) {
-  .fluid-width-video-wrapper {
-    height:16.25em;
-  }
-}
 @media only screen and (min-width: 600px) {
-  .fluid-width-video-wrapper {
-    height:17.5em;
-  }
   .hero-wrapper, .hero-image {
     height:15em;
     -webkit-background-size: 100% 15em;
@@ -1038,15 +1076,7 @@ div.course_author_view_profile {
     font-size:2.5em;
   }
 }
-@media only screen and (min-width: 700px) {
-  .fluid-width-video-wrapper {
-    height:18.75em;
-  }
-}
 @media only screen and (min-width: 768px) {
-  .fluid-width-video-wrapper {
-    height:20em;
-  }
   .course_author_block {
     width:15.625em;
   }
@@ -1079,11 +1109,6 @@ div.course_author_view_profile {
   }
 }
 @media only screen and (min-width: 840px) {
-
-  /* fitvids support */
-  .fluid-width-video-wrapper {
-    height:22.5em;
-  }
   .hero-wrapper, .hero-image {
     height:20em;
     -webkit-background-size: 100% 20em;
@@ -1103,20 +1128,12 @@ div.course_author_view_profile {
   .hero-wrapper h1#page-title {
     margin:-.25em 0em 0em 0em;
   }
-  /* fitvids support */
-  .fluid-width-video-wrapper {
-    height:28.125em;
-  }
 }
 
 @media only screen and (min-width: 1200px) {
   .about_headshot {
     width:18em;
     height:14.5em;
-  }
-  /* fitvids support */
-  .fluid-width-video-wrapper {
-    height:32em;
   }
   .hero-wrapper, .hero-image {
     height:25em;
@@ -1128,10 +1145,6 @@ div.course_author_view_profile {
 }
 
 @media only screen and (min-width: 1400px) {
-  /* fitvids support */
-  .fluid-width-video-wrapper {
-    height:36em;
-  }
   .hero-wrapper, .hero-image {
     height:29.25em;
     -webkit-background-size: 100% 29.25em;

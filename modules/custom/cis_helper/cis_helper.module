@@ -288,31 +288,6 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
     // add nice html5 placeholders
     $form['title']['#placeholder'] = t('Find a course');
     $form['title_1']['#placeholder'] = t('Enter a number');
-    // TODO add a button for show all that triggers click on reset
-    $form['viewby'] = array(
-      '#markup' => '<span class="cis-view-by">' . t('View by') . '</span>',
-    );
-    // department container
-    $form['department'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Department'),
-      '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
-      '#weight' => 1,
-    );
-    $form['department']['field_academic_home_target_id'] = $form['field_academic_home_target_id'];
-    unset($form['field_academic_home_target_id']);
-    
-    // program container
-    $form['program'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Program'),
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-      '#weight' => 2,
-    );
-    $form['program']['field_program_classification_target_id'] = $form['field_program_classification_target_id'];
-    unset($form['field_program_classification_target_id']);
   
   // course_num container
     $form['course_num'] = array(
@@ -324,29 +299,11 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
     );
     $form['course_num']['title_1'] = $form['title_1'];
     unset($form['title_1']);
-    // move reset button up
-    $form['reset']['#attributes'] = array('class' => array('element-invisible'));
   }
   // faculty overview view / display
   if ($form_id == 'views_exposed_form' && arg(0) == 'faculty' && $form_state['view']->name == 'cis_faculty') {
     // add nice html5 placeholders
     $form['field_display_name_value']['#placeholder'] = t('Search for faculty');
-    $form['field_display_name_value']['#title_display'] = 'invisible';
-    $form['viewby'] = array(
-      '#markup' => '<span class="cis-view-by">' . t('View by') . '</span>',
-    );
-    // department container
-    $form['department'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Department'),
-      '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
-      '#weight' => 1,
-    );
-    $form['department']['field_academic_home_target_id'] = $form['field_academic_home_target_id'];
-    unset($form['field_academic_home_target_id']);
-    // move reset button up
-    $form['reset']['#weight'] = 0;
   }
   // add quick link to add offering to the list of offerings
   if ($form_id == 'views_exposed_form' && arg(2) == 'offerings') {

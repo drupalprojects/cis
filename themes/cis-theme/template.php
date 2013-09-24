@@ -225,7 +225,9 @@ function cis_theme_preprocess_views_view(&$variables) {
   if (in_array($variables['name'], array('courses_overview', 'cis_faculty'))) {
     // form elements weren't responding to array alters
     // this class hides the labels but will render for accessibility to screen-readers
-    $variables['exposed'] = str_replace('<label ', '<label class="element-invisible"', $variables['exposed']);
+    $variables['exposed'] = str_replace('<label for="edit-field-display-name-value"', '<label class="element-invisible" for="edit-field-display-name-value"', $variables['exposed']);
+    $variables['exposed'] = str_replace('<label for="edit-title"', '<label class="element-invisible" for="edit-title"', $variables['exposed']);
+    $variables['exposed'] = str_replace('<label for="">', '<label class="element-invisible" for="edit-title-1">', $variables['exposed']);
   }
 }
 
