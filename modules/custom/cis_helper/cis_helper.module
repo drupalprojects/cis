@@ -499,7 +499,7 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   // create a file based on service name
   $filename = $space_name . '.' . $service->field_machine_name[LANGUAGE_NONE][0]['value'];
   // set title to name of course
-  $site_title = $course->title;
+  $site_title = str_replace('&', 'and', $course->title);
   // formulate the pattern of the file to what the job wants
   // site symlink to build
   $content = $space_name . "\n";
@@ -508,7 +508,7 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   // title to set for the site name value
   $content .= $site_title  . "\n";
   // slogan value for the course
-  $content .= $course->field_course_title[LANGUAGE_NONE][0]['value'] . "\n";
+  $content .= str_replace('&', 'and', $course->field_course_title[LANGUAGE_NONE][0]['value']) . "\n";
   // email / user requesting account
   $content .= $account->mail . "\n";
   // add distribution to create
