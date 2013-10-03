@@ -7,7 +7,7 @@ api = "2"
 projects[admin_menu][version] = "3.0-rc4"
 projects[admin_menu][subdir] = "contrib"
 
-projects[advagg][version] = "2.0-rc3"
+projects[advagg][version] = "2.0-rc4"
 projects[advagg][subdir] = "contrib"
 
 projects[imageinfo_cache][version] = "3.0"
@@ -25,7 +25,7 @@ projects[google_chart_tools][subdir] = "contrib"
 projects[field_redirection][version] = "2.5"
 projects[field_redirection][subdir] = "contrib"
 
-projects[context][version] = "3.0-beta7"
+projects[context][version] = "3.0-rc1"
 projects[context][subdir] = "contrib"
 
 projects[imagefield_focus][version] = "1.0"
@@ -52,7 +52,7 @@ projects[replicate][subdir] = "contrib"
 projects[replicate_field_collection][version] = "1.x-dev"
 projects[replicate_field_collection][subdir] = "contrib"
 
-projects[features][version] = "2.0-rc3"
+projects[features][version] = "2.0-rc4"
 projects[features][subdir] = "contrib"
 
 projects[features_override][version] = "2.0-beta3"
@@ -73,7 +73,7 @@ projects[entityreference_prepopulate][subdir] = "contrib"
 projects[field_collection][version] = "1.0-beta5"
 projects[field_collection][subdir] = "contrib"
 
-projects[field_group][version] = "1.2"
+projects[field_group][version] = "1.3"
 projects[field_group][subdir] = "contrib"
 
 projects[field_hidden][version] = "1.4"
@@ -214,13 +214,16 @@ projects[boost][subdir] = "contrib"
 projects[entitycache][version] = "1.1"
 projects[entitycache][subdir] = "contrib"
 
+projects[display_cache][version] = "1.0-beta1"
+projects[display_cache][subdir] = "contrib"
+
 projects[httprl][version] = "1.12"
 projects[httprl][subdir] = "contrib"
 
 projects[regions][version] = "1.x-dev"
 projects[regions][subdir] = "contrib"
 
-projects[seckit][version] = "1.6"
+projects[seckit][version] = "1.7"
 projects[seckit][subdir] = "contrib"
 
 projects[textbook][version] = "1.0"

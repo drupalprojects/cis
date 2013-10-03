@@ -133,6 +133,7 @@ dependencies[] = path_breadcrumbs
 ; Performance and scalability
 dependencies[] = boost_crawler
 dependencies[] = entitycache
+dependencies[] = display_cache
 dependencies[] = httprl
 dependencies[] = subpathauto
 dependencies[] = imageinfo_cache
