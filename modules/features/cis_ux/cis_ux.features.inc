@@ -198,6 +198,45 @@ function cis_ux_fe_nodequeue_export_fields() {
 }
 
 /**
+ * Implements hook_context_default_contexts_alter().
+ */
+function cis_ux_context_default_contexts_alter(&$data) {
+  if (isset($data['regions_admin'])) {
+    $data['regions_admin']->conditions['path']['values']['~node/edit/*'] = '~node/edit/*'; /* WAS: '' */
+    unset($data['regions_admin']->conditions['path']['values']['~ajax*']);
+    unset($data['regions_admin']->conditions['path']['values']['~node/*/*']);
+  }
+}
+
+/**
+ * Implements hook_filter_default_formats_alter().
+ */
+function cis_ux_filter_default_formats_alter(&$data) {
+  if (isset($data['textbook_editor'])) {
+    $data['textbook_editor']['filters']['lazyloader_filter'] = array(
+      'settings' => array(),
+      'status' => 1,
+      'weight' => 0,
+    ); /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['1/2'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['1/3'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['1/4'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['1/5'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['1/6'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['1/8'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['2/3'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['2/5'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['3/4'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['3/5'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['3/8'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['4/5'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['5/6'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['5/8'] = 0; /* WAS: '' */
+    $data['textbook_editor']['filters']['typogrify']['settings']['fractions']['7/8'] = 0; /* WAS: '' */
+  }
+}
+
+/**
  * Implements hook_image_default_styles().
  */
 function cis_ux_image_default_styles() {

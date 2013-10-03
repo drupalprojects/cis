@@ -109,16 +109,6 @@ function cis_roles_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: 'access resource activation_code'.
-  $permissions['access resource activation_code'] = array(
-    'name' => 'access resource activation_code',
-    'roles' => array(
-      'SERVICE ACCOUNT' => 'SERVICE ACCOUNT',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'restws',
-  );
-
   // Exported permission: 'access resource field_collection_item'.
   $permissions['access resource field_collection_item'] = array(
     'name' => 'access resource field_collection_item',
@@ -203,16 +193,6 @@ function cis_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'user',
-  );
-
-  // Exported permission: 'administer activation_code'.
-  $permissions['administer activation_code'] = array(
-    'name' => 'administer activation_code',
-    'roles' => array(
-      'SERVICE ACCOUNT' => 'SERVICE ACCOUNT',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'activation_code',
   );
 
   // Exported permission: 'administer blocks'.
@@ -308,16 +288,6 @@ function cis_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node',
-  );
-
-  // Exported permission: 'create activation_code'.
-  $permissions['create activation_code'] = array(
-    'name' => 'create activation_code',
-    'roles' => array(
-      'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'activation_code',
   );
 
   // Exported permission: 'create course content'.
@@ -1488,17 +1458,6 @@ function cis_roles_user_default_permissions() {
     'module' => 'filter',
   );
 
-  // Exported permission: 'view activation_code'.
-  $permissions['view activation_code'] = array(
-    'name' => 'view activation_code',
-    'roles' => array(
-      'SERVICE ACCOUNT' => 'SERVICE ACCOUNT',
-      'Staff' => 'Staff',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'activation_code',
-  );
-
   // Exported permission: 'view field_abbreviation'.
   $permissions['view field_abbreviation'] = array(
     'name' => 'view field_abbreviation',
@@ -1553,6 +1512,8 @@ function cis_roles_user_default_permissions() {
       'Staff' => 'Staff',
       'Unit Head' => 'Unit Head',
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -1585,6 +1546,8 @@ function cis_roles_user_default_permissions() {
       'SERVICE ACCOUNT' => 'SERVICE ACCOUNT',
       'Staff' => 'Staff',
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -1621,6 +1584,8 @@ function cis_roles_user_default_permissions() {
       'Teaching Assistant' => 'Teaching Assistant',
       'Unit Head' => 'Unit Head',
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -1630,6 +1595,7 @@ function cis_roles_user_default_permissions() {
     'name' => 'view field_instructor_of_record',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
@@ -1675,6 +1641,8 @@ function cis_roles_user_default_permissions() {
     'roles' => array(
       'Staff' => 'Staff',
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -1768,6 +1736,7 @@ function cis_roles_user_default_permissions() {
     'name' => 'view field_unit_head',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
@@ -1847,6 +1816,8 @@ function cis_roles_user_default_permissions() {
       'Staff' => 'Staff',
       'Unit Head' => 'Unit Head',
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -1879,6 +1850,8 @@ function cis_roles_user_default_permissions() {
       'SERVICE ACCOUNT' => 'SERVICE ACCOUNT',
       'Staff' => 'Staff',
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -1915,6 +1888,8 @@ function cis_roles_user_default_permissions() {
       'Teaching Assistant' => 'Teaching Assistant',
       'Unit Head' => 'Unit Head',
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -1924,6 +1899,7 @@ function cis_roles_user_default_permissions() {
     'name' => 'view own field_instructor_of_record',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
@@ -1969,6 +1945,8 @@ function cis_roles_user_default_permissions() {
     'roles' => array(
       'Staff' => 'Staff',
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -2062,6 +2040,7 @@ function cis_roles_user_default_permissions() {
     'name' => 'view own field_unit_head',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',

@@ -343,7 +343,7 @@ function cis_types_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'ant_pattern_service_instance';
-  $strongarm->value = '[node:field-services:field_machine_name] - [node:field-course:field_machine_name]';
+  $strongarm->value = '[node:field-services:1:field_machine_name] - [node:field-course:1:field_machine_name]';
   $export['ant_pattern_service_instance'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -420,7 +420,7 @@ function cis_types_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'ant_service_instance';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['ant_service_instance'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -622,6 +622,617 @@ function cis_types_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_field_collection_item_field_offerings_default';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_sections' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_semester' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_year' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+  );
+  $export['display_cache_field_collection_item_field_offerings_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_field_collection_item_field_sections_default';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_section_number' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_instructor_of_record' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_teaching_assistants' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_syllabus' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_access_string' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_access_dates' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_resources' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_campus' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_welcome_letter' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_contact_info' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_services' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_schedule_number' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_course_archive' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+  );
+  $export['display_cache_field_collection_item_field_sections_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_field_collection_item_field_sections_full';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_instructor_of_record' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_campus' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_welcome_letter' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_access_string' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+  );
+  $export['display_cache_field_collection_item_field_sections_full'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_node_academic_unit_default';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_color' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_unit_head' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_coordinators' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+  );
+  $export['display_cache_node_academic_unit_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_node_college_services_default';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'body' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+  );
+  $export['display_cache_node_college_services_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_node_course_default';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_author_video' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'body' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_banner' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_first_offered' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_topics_covered_text' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_special_classifications' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_academic_home' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_program_classification' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_long_description' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_course_title' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_credits' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_screenshot' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_sample_syllabus' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_sample_lesson' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_university_bulletin' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_related_courses' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+    'field_course_readings' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '1',
+      'granularity' => '1',
+    ),
+  );
+  $export['display_cache_node_course_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_node_instructional_model_default';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'body' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_course' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+  );
+  $export['display_cache_node_instructional_model_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_node_news_default';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_redirect_to' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'body' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_academic_home' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_related_entity' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_news_image' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+  );
+  $export['display_cache_node_news_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_node_page_default';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'body' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+  );
+  $export['display_cache_node_page_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_node_person_default';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_professional_title' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_headshot' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'body' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_academic_home' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_display_name' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_twitter_account' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_email' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_website' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_phone_number' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_address' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+  );
+  $export['display_cache_node_person_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_node_program_default';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_academic_home' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_program_site' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_twitter' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_facebook' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'body' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+  );
+  $export['display_cache_node_program_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_node_resource_default';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'body' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+  );
+  $export['display_cache_node_resource_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_node_service_default';
+  $strongarm->value = array(
+    'default' => array(
+      'use' => '1',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_location' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'body' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+    'field_distribution' => array(
+      'override' => '2',
+      'page_granularity' => '0',
+      'user_granularity' => '0',
+      'granularity' => '0',
+    ),
+  );
+  $export['display_cache_node_service_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'display_cache_variables';
+  $strongarm->value = array(
+    0 => 'display_cache_node_academic_unit_default',
+    1 => 'display_cache_node_course_default',
+    2 => 'display_cache_node_program_default',
+    3 => 'display_cache_node_person_default',
+    4 => 'display_cache_node_page_default',
+    5 => 'display_cache_node_news_default',
+    6 => 'display_cache_field_collection_item_field_sections_default',
+    7 => 'display_cache_field_collection_item_field_offerings_default',
+    8 => 'display_cache_field_collection_item_field_sections_full',
+    9 => 'display_cache_node_college_services_default',
+    10 => 'display_cache_node_resource_default',
+    11 => 'display_cache_node_instructional_model_default',
+    12 => 'display_cache_node_service_default',
+  );
+  $export['display_cache_variables'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'enable_revisions_page_resource';
   $strongarm->value = 1;
   $export['enable_revisions_page_resource'] = $strongarm;
@@ -651,6 +1262,9 @@ function cis_types_strongarm() {
       ),
       'token' => array(
         'custom_settings' => TRUE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(
@@ -701,6 +1315,15 @@ function cis_types_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -721,7 +1344,29 @@ function cis_types_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__college_services';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(
         'title' => array(
@@ -865,6 +1510,41 @@ function cis_types_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__page';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__person';
   $strongarm->value = array(
     'view_modes' => array(
@@ -970,6 +1650,9 @@ function cis_types_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -1007,6 +1690,9 @@ function cis_types_strongarm() {
         'custom_settings' => FALSE,
       ),
       'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
     ),

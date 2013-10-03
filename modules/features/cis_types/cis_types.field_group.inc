@@ -32,7 +32,7 @@ function cis_types_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-access field-group-tab',
         'required_fields' => 1,
       ),
     ),
@@ -60,7 +60,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-administrative field-group-fieldset',
         'required_fields' => 1,
       ),
     ),
@@ -90,7 +90,7 @@ function cis_types_field_group_info() {
       'label' => 'Administrative',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => '',
+        'classes' => ' group-administrative field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'collapsed',
@@ -151,7 +151,7 @@ function cis_types_field_group_info() {
       'label' => 'Details',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => '',
+        'classes' => ' group-details field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'collapsed',
@@ -173,14 +173,13 @@ function cis_types_field_group_info() {
     'weight' => '5',
     'children' => array(
       0 => 'field_welcome_letter',
-      1 => 'field_materials_letter',
     ),
     'format_type' => 'accordion',
     'format_settings' => array(
       'formatter' => '',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-files field-group-accordion',
       ),
     ),
   );
@@ -210,7 +209,7 @@ function cis_types_field_group_info() {
       'label' => 'Instructors',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => '',
+        'classes' => ' group-instructors field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'collapsed',
@@ -238,7 +237,7 @@ function cis_types_field_group_info() {
       'label' => 'Offerings',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => '',
+        'classes' => ' group-offerings field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'collapsed',
@@ -267,7 +266,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-personel field-group-fieldset',
         'required_fields' => 1,
       ),
     ),
@@ -295,7 +294,7 @@ function cis_types_field_group_info() {
       'label' => 'Resources',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => '',
+        'classes' => ' group-resources field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'collapsed',
@@ -330,7 +329,7 @@ function cis_types_field_group_info() {
       'label' => 'Promotional',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => '',
+        'classes' => ' group-samples field-group-fieldset',
         'description' => 'Fields related to the promotion of the course and marketing on this website.',
       ),
       'formatter' => 'collapsed',
@@ -360,7 +359,7 @@ function cis_types_field_group_info() {
       'label' => 'Visuals',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => '',
+        'classes' => ' group-screenshots field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'collapsed',
@@ -388,7 +387,7 @@ function cis_types_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-sections field-group-tab',
         'required_fields' => 1,
       ),
     ),
@@ -416,7 +415,7 @@ function cis_types_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-semester field-group-tab',
         'required_fields' => 1,
       ),
     ),
@@ -446,7 +445,7 @@ function cis_types_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-setup field-group-tab',
         'required_fields' => 1,
       ),
     ),
@@ -477,7 +476,7 @@ function cis_types_field_group_info() {
       'label' => 'Social',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => '',
+        'classes' => ' group-social field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'collapsed',
@@ -509,7 +508,7 @@ function cis_types_field_group_info() {
       'label' => 'Syllabus / Welcome',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => '',
+        'classes' => ' group-syllabus field-group-tab',
         'description' => '',
       ),
       'formatter' => 'open',
@@ -538,7 +537,7 @@ function cis_types_field_group_info() {
       'label' => 'Teaching Assistants',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => '',
+        'classes' => ' group-tas field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'collapsed',
@@ -567,7 +566,7 @@ function cis_types_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-teachers field-group-tab',
         'required_fields' => 1,
       ),
     ),
@@ -597,7 +596,7 @@ function cis_types_field_group_info() {
       'label' => 'Text areas',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => '',
+        'classes' => ' group-text-areas field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'collapsed',
@@ -623,7 +622,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-wholething field-group-fieldset',
       ),
     ),
   );

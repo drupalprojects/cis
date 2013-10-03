@@ -702,11 +702,39 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
-  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Show all';
-  $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
   $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
+  $handler->display->display_options['exposed_form']['options']['bef'] = array(
+    'general' => array(
+      'allow_secondary' => 0,
+      'secondary_label' => 'Advanced options',
+    ),
+    'field_display_name_value' => array(
+      'more_options' => array(
+        'is_secondary' => 0,
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+      ),
+    ),
+    'field_academic_home_target_id' => array(
+      'bef_format' => 'bef',
+      'more_options' => array(
+        'bef_select_all_none' => FALSE,
+        'bef_collapsible' => 1,
+        'is_secondary' => 0,
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+      ),
+    ),
+  );
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '0';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -867,7 +895,7 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['filters']['field_academic_home_target_id']['group'] = 1;
   $handler->display->display_options['filters']['field_academic_home_target_id']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_academic_home_target_id']['expose']['operator_id'] = 'field_academic_home_target_id_op';
-  $handler->display->display_options['filters']['field_academic_home_target_id']['expose']['label'] = 'Academic home';
+  $handler->display->display_options['filters']['field_academic_home_target_id']['expose']['label'] = 'Department';
   $handler->display->display_options['filters']['field_academic_home_target_id']['expose']['operator'] = 'field_academic_home_target_id_op';
   $handler->display->display_options['filters']['field_academic_home_target_id']['expose']['identifier'] = 'field_academic_home_target_id';
   $handler->display->display_options['filters']['field_academic_home_target_id']['expose']['remember_roles'] = array(
@@ -1622,7 +1650,7 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['fields']['field_section_number_editable']['widget_type'] = '0';
   $handler->display->display_options['fields']['field_section_number_editable']['suppress_label'] = 1;
   $handler->display->display_options['fields']['field_section_number_editable']['suppress_description'] = 1;
-  /* Field: Field: Service (editable) */
+  /* Field: Field: Services in use (editable) */
   $handler->display->display_options['fields']['field_services_editable']['id'] = 'field_services_editable';
   $handler->display->display_options['fields']['field_services_editable']['table'] = 'field_data_field_services';
   $handler->display->display_options['fields']['field_services_editable']['field'] = 'field_services_editable';
@@ -3512,10 +3540,11 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['fields']['title_1']['field'] = 'title';
   $handler->display->display_options['fields']['title_1']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['title_1']['alter']['text'] = '[field_course]';
-  /* Field: Field: Service */
+  /* Field: Field: Services in use */
   $handler->display->display_options['fields']['field_services']['id'] = 'field_services';
   $handler->display->display_options['fields']['field_services']['table'] = 'field_data_field_services';
   $handler->display->display_options['fields']['field_services']['field'] = 'field_services';
+  $handler->display->display_options['fields']['field_services']['label'] = 'Service';
   $handler->display->display_options['fields']['field_services']['settings'] = array(
     'link' => 1,
   );
@@ -3591,10 +3620,11 @@ function cis_displays_views_default_views() {
   /* Display: Courses */
   $handler = $view->new_display('page', 'Courses', 'page_1');
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Field: Service */
+  /* Field: Field: Services in use */
   $handler->display->display_options['fields']['field_services']['id'] = 'field_services';
   $handler->display->display_options['fields']['field_services']['table'] = 'field_data_field_services';
   $handler->display->display_options['fields']['field_services']['field'] = 'field_services';
+  $handler->display->display_options['fields']['field_services']['label'] = 'Service';
   $handler->display->display_options['fields']['field_services']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_services']['settings'] = array(
     'link' => 0,
@@ -3933,10 +3963,11 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['fields']['field_course_1']['settings'] = array(
     'link' => 1,
   );
-  /* Field: Field: Service */
+  /* Field: Field: Services in use */
   $handler->display->display_options['fields']['field_services']['id'] = 'field_services';
   $handler->display->display_options['fields']['field_services']['table'] = 'field_data_field_services';
   $handler->display->display_options['fields']['field_services']['field'] = 'field_services';
+  $handler->display->display_options['fields']['field_services']['label'] = 'Service';
   $handler->display->display_options['fields']['field_services']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_services']['settings'] = array(
     'link' => 1,
@@ -4006,7 +4037,7 @@ function cis_displays_views_default_views() {
     3 => 0,
     13 => 0,
   );
-  /* Filter criterion: Field: Service (field_services) */
+  /* Filter criterion: Field: Services in use (field_services) */
   $handler->display->display_options['filters']['field_services_target_id']['id'] = 'field_services_target_id';
   $handler->display->display_options['filters']['field_services_target_id']['table'] = 'field_data_field_services';
   $handler->display->display_options['filters']['field_services_target_id']['field'] = 'field_services_target_id';
@@ -4494,6 +4525,7 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
   $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Show all';
   $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
   $handler->display->display_options['exposed_form']['options']['bef'] = array(
     'general' => array(
@@ -4514,7 +4546,7 @@ function cis_displays_views_default_views() {
     'field_academic_home_target_id' => array(
       'bef_format' => 'bef',
       'more_options' => array(
-        'bef_select_all_none' => 1,
+        'bef_select_all_none' => 0,
         'bef_collapsible' => 1,
         'is_secondary' => 0,
         'bef_filter_description' => '',
@@ -4528,7 +4560,7 @@ function cis_displays_views_default_views() {
     'field_program_classification_target_id' => array(
       'bef_format' => 'bef',
       'more_options' => array(
-        'bef_select_all_none' => 1,
+        'bef_select_all_none' => 0,
         'bef_collapsible' => 1,
         'is_secondary' => 0,
         'bef_filter_description' => '',

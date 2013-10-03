@@ -701,40 +701,6 @@ function cis_types_field_default_field_instances() {
           'status' => 0,
         ),
       ),
-      'custom_add_another' => '',
-      'nodeaccess_userreference' => array(
-        'all' => array(
-          'view' => 'view',
-        ),
-        'all_published' => 0,
-        'author' => array(
-          'delete' => 0,
-          'update' => 'update',
-          'view' => 0,
-        ),
-        'author_published' => 0,
-        'create' => array(
-          'academic_unit' => 0,
-          'course' => 0,
-          'isbn2node_book' => 0,
-          'program' => 0,
-        ),
-        'priority' => 0,
-        'referenced' => array(
-          'delete' => 0,
-          'deny_delete' => 0,
-          'deny_update' => 0,
-          'deny_view' => 0,
-          'update' => 'update',
-          'view' => 0,
-        ),
-        'referenced_published' => 0,
-        'unused' => 1,
-        'views' => array(
-          'view' => '',
-          'view_args' => '',
-        ),
-      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1155,7 +1121,7 @@ function cis_types_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1230,12 +1196,9 @@ function cis_types_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => 1,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 3,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1267,9 +1230,16 @@ function cis_types_field_default_field_instances() {
         'author_published' => 0,
         'create' => array(
           'academic_unit' => 0,
+          'college_services' => 0,
           'course' => 0,
-          'isbn2node_book' => 0,
+          'instructional_model' => 0,
+          'news' => 0,
+          'page' => 0,
+          'person' => 0,
           'program' => 0,
+          'resource' => 0,
+          'service' => 0,
+          'service_instance' => 0,
         ),
         'priority' => 0,
         'referenced' => array(
@@ -1308,12 +1278,9 @@ function cis_types_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => 1,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 2,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1347,10 +1314,16 @@ function cis_types_field_default_field_instances() {
         'author_published' => 0,
         'create' => array(
           'academic_unit' => 0,
+          'college_services' => 0,
           'course' => 0,
-          'isbn2node_book' => 0,
+          'instructional_model' => 0,
+          'news' => 0,
+          'page' => 0,
+          'person' => 0,
           'program' => 0,
+          'resource' => 0,
           'service' => 0,
+          'service_instance' => 0,
         ),
         'priority' => 0,
         'referenced' => array(
@@ -1431,12 +1404,8 @@ function cis_types_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 1,
       ),
       'teaser' => array(
@@ -2232,7 +2201,6 @@ function cis_types_field_default_field_instances() {
           'status' => 0,
         ),
       ),
-      'custom_add_another' => '',
       'nodeaccess_userreference' => array(
         'all' => array(
           'view' => 0,
@@ -2246,9 +2214,16 @@ function cis_types_field_default_field_instances() {
         'author_published' => 0,
         'create' => array(
           'academic_unit' => 0,
+          'college_services' => 0,
           'course' => 0,
-          'isbn2node_book' => 0,
+          'instructional_model' => 0,
+          'news' => 0,
+          'page' => 0,
+          'person' => 0,
           'program' => 0,
+          'resource' => 0,
+          'service' => 0,
+          'service_instance' => 0,
         ),
         'priority' => 0,
         'referenced' => array(
@@ -2321,9 +2296,12 @@ function cis_types_field_default_field_instances() {
         'author_published' => 0,
         'create' => array(
           'academic_unit' => 0,
+          'college_services' => 0,
           'course' => 0,
           'instructional_model' => 0,
-          'isbn2node_book' => 0,
+          'news' => 0,
+          'page' => 0,
+          'person' => 0,
           'program' => 0,
           'resource' => 0,
           'service' => 0,
@@ -4707,10 +4685,9 @@ Global will be available to all resources to reference',
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 3,
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4802,7 +4779,7 @@ Global will be available to all resources to reference',
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4834,7 +4811,7 @@ Global will be available to all resources to reference',
   $field_instances['node-service_instance-field_course'] = array(
     'bundle' => 'service_instance',
     'default_value' => NULL,
-    'default_value_function' => '',
+    'default_value_function' => 'entityreference_prepopulate_field_default_value',
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -4861,7 +4838,12 @@ Global will be available to all resources to reference',
     'settings' => array(
       'behaviors' => array(
         'prepopulate' => array(
-          'status' => 0,
+          'action' => 'none',
+          'action_on_edit' => 0,
+          'fallback' => 'none',
+          'og_context' => 0,
+          'skip_perm' => 0,
+          'status' => 1,
         ),
       ),
       'nodeaccess_nodereference' => array(
@@ -4987,7 +4969,7 @@ Global will be available to all resources to reference',
   $field_instances['node-service_instance-field_services'] = array(
     'bundle' => 'service_instance',
     'default_value' => NULL,
-    'default_value_function' => '',
+    'default_value_function' => 'entityreference_prepopulate_field_default_value',
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -5014,7 +4996,12 @@ Global will be available to all resources to reference',
     'settings' => array(
       'behaviors' => array(
         'prepopulate' => array(
-          'status' => 0,
+          'action' => 'none',
+          'action_on_edit' => 0,
+          'fallback' => 'none',
+          'og_context' => 0,
+          'skip_perm' => 0,
+          'status' => 1,
         ),
       ),
       'nodeaccess_nodereference' => array(
