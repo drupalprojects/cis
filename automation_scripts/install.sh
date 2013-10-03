@@ -1,51 +1,37 @@
-#installs the drush-create-site script
+#install script goes here
+installdir="/usr/local/bin/drush-create-site2"
+wwwuser="apache"
+jobsdir="/var/wwwjobs"
 
-
-echo "what is the administrator e-mail"
-read adminemail
-echo "what is the site e-mail (e-mail from drupal)"
-read siteemail
-echo "where are you storing the jobs file?"
-read wwwjobs
-echo "what is the database admin user?"
-read dbsu
-echo "what is the database admin password?"
-read dbsupw
-
-
-
-##entering starting values
-sed -i "/^admin=/c\admin=$adminemail" drush-create-site
-sed -i "/^fileloc=/c\fileloc=$wwwjobs" drush-create-site
-sed -i "/^dbsu=/c\dbsu=$dbsu" drush-create-site
-sed -i "/^dbsupw=/c\dbsupw=$dbsupw" drush-create-site
-sed -i "/^site_email=/c\site_email=$siteemail" drush-create-site
-
-
-
-#moves the hosts file to the jobs folder
-if [ ! -f $wwwjobs ]; then 
-    mkdir -p $wwwjobs
-fi
-cp hosts $wwwjobs/hosts
-
-#copies the drush script to /usr/local/bin/
-
-if [ ! -f /usr/local/bin/drush-create-site ]; then
-cp drush-create-site /usr/local/bin/drush-create-site
+if [ ! -d $installdir ]; then 
+	mkdir $installdir
+	/bin/cp drush-create-site $installdir
+	/bin/cp config.cfg.example $installdir
+	/bin/cp rm-site.sh $installdir
+	/bin/cp init-script /etc/init.d/dcs
 else 
-    echo "file seemingly exists, do you want to overwrite? [y/n]"
-        read overwrite
-        if [ $overwrite = "y" ]; then 
-            cp drush-create-site /usr/local/bin/drush-create-site
-            else
-                echo "file not copied"
-         fi
-         
+	echo "Install Directory Exisits. overwrite(y/n)"
+	read overwrite
+
+		if [ $overwrite = y ]; then 
+			/bin/cp -f drush-create-site $installdir
+			/bin/cp -f config.cfg.example $installdir
+			/bin/cp rm-site.sh $installdir
+			/bin/cp init-script /etc/init.d/dcs
+		fi
+			
+		
 fi
 
-echo "drush-create-site installed to /usr/local/bin/drush-create-site"
+#add jobs loc
 
-
-
-
+if [  ! -d $jobsdir ]; then 
+	mkdir $jobsdir
+	/bin/cp hosts.example $jobsdir/hosts
+else
+	echo "Jobs Directory Exists. overwrite(y/n)"
+	read jobsoverwrite
+		if [ $jobsoverwrite = y ]; then 
+			/bin/cp -f hosts.example $jobsdir/hosts
+		fi
+fi

@@ -40,7 +40,6 @@ date=`date +%Y-%m-%d_%H:%M:%S`
 
 #prevent the script from being run more than once
 if [ -f /tmp/drush-lock ]; then
-echo "script running"
 exit 1
 fi
 touch /tmp/drush-lock
