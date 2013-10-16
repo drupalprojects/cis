@@ -106,7 +106,7 @@ function cis_helper_page_build(&$page) {
   }
   else if (isset($node->type)) {
     // only apply these to course pages
-    if (($node->type == 'course' || $node->type == 'program' || $node->type == 'person') && isset($node->field_academic_home[LANGUAGE_NONE])) {
+    if (in_array($node->type, array('person', 'program', 'news', 'course')) && isset($node->field_academic_home[LANGUAGE_NONE])) {
       $unit = node_load($node->field_academic_home[LANGUAGE_NONE][0]['target_id']);
       // ensure we have a color for a unit
       if (isset($unit->field_color[LANGUAGE_NONE])) {
