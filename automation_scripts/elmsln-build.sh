@@ -9,7 +9,7 @@ fi
 college='aa'
 dbsu='root'
 dbsupw='root'
-admin='bto108@psu.edu'
+admin='test@test.test'
 # current supported version
 currentversion='drupal-7.23'
 # webroot
