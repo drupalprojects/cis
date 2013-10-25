@@ -4,71 +4,127 @@ if [ -z "$1" ]; then
 echo "Usage: $0 <directorytocreate>"
 exit 1
 fi
-# settings
+
+# settings and global vars
 college='aa'
 dbsu='root'
 dbsupw='root'
-admin='admin@example.com'
+admin='bto108@psu.edu'
+# current supported version
+currentversion='drupal-7.23'
+# webroot
+webroot='www'
+dslmloc='dslmcode'
+dslmbase="$(pwd)/${1}/${dslmloc}"
+
+# supported cores
+cores=('drupal-6' 'drupal-7')
+# projects to run / download
+dl=('cis-7.x-1.x-dev' 'mooc-7.x-1.x-dev' 'cle-7.x-1.0-alpha1' 'remote_watchdog-7.x-1.x-dev')
+# distro name to match
+distros=('cis' 'mooc' 'cle' 'remote_watchdog')
+# locations to move these distributions to
+stacks=('online' 'courses' 'studio')
+
+# this is all execution of the script to build the entire stack
 
 # move to location requested
 mkdir $1
 cd $1
-# projects to run / download
-dl=('cis-7.x-1.0-alpha9' 'mooc-7.x-1.x-dev' 'cle-7.x-1.0-alpha1')
-# distro name to match
-distros=('cis' 'mooc' 'cle')
-# which distros to install into which stacks
-build=('cis' 'remote_watchdog' 'remote_watchdog')
-# locations to move these distributions to
-mvs=('online' 'courses' 'studio')
-COUNTER=0
+# make dslm share
+mkdir $dslmloc
 
+# make sure we have dslm and patch it
+cd ~/.drush
+# write path option into user loc drush file
+echo -e "\n\$options['dslm_base'] = '${dslmbase}';" >> drushrc.php
+# get a fresh copy of dslm for patching
+drush dl dslm
+cd ~/.drush/dslm/lib
+# shortcut so patches apply without question
+ln -s ../README.txt README.txt
+# shared modules/libraries/themes support
+wget http://drupal.org/files/shared-sites-all-2118957-1.patch
+patch < shared-sites-all-2118957-1.patch
+# .ds_store
+wget http://drupal.org/files/DS_Store-2119199-1.patch
+patch < DS_Store-2119199-1.patch
+# patch to allow for better profile versioning
+wget http://drupal.org/files/profile-name-in-dir-2117807-3.patch
+patch < profile-name-in-dir-2117807-3.patch
+# clear drush cache to give us new capability
+drush cc drush
+# rm symbolic link
+rm README.txt
+
+# start to work off of the dslm base location
+cd $dslmbase
+
+# make profiles, cores and shared dir
+mkdir profiles
+mkdir cores
+mkdir shared
+mkdir stacks
+
+# setup the shared code base dir structure
+cd shared
+for core in "${cores[@]}"
+do
+  mkdir ${core}.x
+  cd ${core}.x
+  mkdir libraries
+  mkdir themes
+  mkdir modules
+  cd modules
+  mkdir supported_contrib
+  cd ../..
+done
+
+# move to the cores directory and dl all cores
+cd ../cores
+for core in "${cores[@]}"
+do
+  drush dl $core
+done
+
+# move to profiles and work on them
+cd ../profiles
+
+COUNTER=0
 # run commands to get all versions of distros we need
 for dist in "${dl[@]}"
 do
   # download the distribution via drush w. version
   drush dl $dist
-  # move this to a real location and go into it
-  mv $dist ${mvs[$COUNTER]}
-  cd ${mvs[$COUNTER]}
-  # remove all txt files for security
-  rm *.txt
-  # move libraries, modules, themes to a normal location for management
-  cp -r profiles/${distros[$COUNTER]}/libraries sites/all/libraries
-  mv profiles/${distros[$COUNTER]}/modules/contrib sites/all/modules/contrib
-  mv profiles/${distros[$COUNTER]}/themes/contrib sites/all/themes/contrib
+  mkdir tmp
+  mv ${dist}/profiles/${distros[$COUNTER]}/* tmp
+  rm -r -f $dist
+  mv tmp $dist
+
+  COUNTER=$[COUNTER + 1]
+done
+COUNTER=0
+# work on producing the assembled stacks
+cd ../stacks
+for stack in "${stacks[@]}"
+do
+  drush dslm-new $stack $currentversion
+  cd $stack
+  drush dslm-add-profile ${dl[$COUNTER]/'.x-'/'.x '} --current
+  # make remote_watchdog available in each stack
+  drush dslm-add-profile remote_watchdog-7.x 1.x-dev --current
   cd ..
-  # increment counter to run next location
   COUNTER=$[COUNTER + 1]
 done
 
-# special exception for cis cause of packaging issues on d.o.
-cd online
-drush dl shadowbox-7.x-4.0-rc1
-cd ..
-
-# get remote watchdog so we can add it to the other distros
-drush dl remote_watchdog-7.x-1.x-dev
-mv remote_watchdog-7.x-1.x-dev watchdog
-COUNTER=0
-for dist in "${dl[@]}"
+# now hook the stacks up to a sample instance
+cd ../../
+mkdir $webroot
+cd $webroot
+for stack in "${stacks[@]}"
 do
-  cp -r watchdog/profiles/remote_watchdog ${mvs[$COUNTER]}/profiles/remote_watchdog
-	COUNTER=$[COUNTER + 1]
-done
-# we only downloaded this distro to get its manifest into the other stacks
-rm -r -f watchdog
-
-# run an install routine for each system in order
-COUNTER=0
-for dist in "${dl[@]}"
-do
-  # move to the directory to execute the drush command
-	cd ${mvs[$COUNTER]}
-	# generate random password for the new user account
-  dbpw=`LC_CTYPE=C tr -dc A-Za-z0-9 < /dev/urandom | head -c 14`
-	# install distro selected
-  drush si ${build[$COUNTER]} --db-url=mysql://${mvs[$COUNTER]}_$college:$dbpw@localhost/${mvs[$COUNTER]}_$college --db-su=$dbsu --db-su-pw=$dbsupw --account-mail=$admin --site-mail=$admin --site-name='${mvs[$COUNTER]} $college site' --y  > /dev/null
-  COUNTER=$[COUNTER + 1]
-	cd ..
+  mkdir $stack
+  cd $stack
+  ln -s ../../${dslmloc}/stacks/${stack} root
+  cd ..
 done

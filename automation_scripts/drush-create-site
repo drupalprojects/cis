@@ -249,7 +249,7 @@ fi
 #fi
 
 ##set base_url may use this later
-sed -i "/\# \$base_url/a \ \t \$base_url= 'http://$hostname';" $drupalroot/sites/$subdir/$course/settings.php
+sed -i "/\# \$base_url/a \ \t \$base_url= 'https://$hostname/$course';" $drupalroot/sites/$subdir/$course/settings.php
 
 ###options
 if [[ $requester ]]; then
