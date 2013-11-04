@@ -114,8 +114,8 @@
         <?php if (isset($content['field_first_offered'])) : ?><div class="course_first_offered"><?php print render($content['field_first_offered']); ?></div><?php endif; ?>
         <div class="course_last_offered"><div class="field field-type-datetime field-label-inline clearfix field-wrapper"><div class="field-label">Last Offered:&nbsp;</div><span>Calculated</span></div></div>
         <?php if (isset($content['field_sample_syllabus'])) : ?><div class="course_sample_syllabus"><a title="<?php print $node->title . ' Sample syllabus'; ?>" alt="<?php print $node->title . ' Sample syllabus'; ?>" href="<?php print $content['field_sample_syllabus'][0]['#markup']; ?>" rel="shadowbox"><button class="button unit-bg-color">Sample Syllabus</button></a></div><?php endif; ?>
-        <div class="course_button_enroll"><button class="button unit-bg-color">Enroll</button></div>
-        <div class="course_button_question"><button class="button gray-button">Ask a Question</button></div>
+        <?php //<div class="course_button_enroll"><button class="button unit-bg-color">Enroll</button></div> ?>
+        <?php //<div class="course_button_question"><button class="button gray-button">Ask a Question</button></div> ?>
       </div>
       <div class="large-9 columns">
         <?php if (isset($content['field_author_video'])) : print '<div class="course_video_container unit-color">' . render($content['field_author_video']) . '</div>'; endif; ?>
