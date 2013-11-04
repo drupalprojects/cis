@@ -4,14 +4,19 @@ if [ -z "$1" ]; then
 echo "Usage: $0 <directorytocreate>"
 exit 1
 fi
-
 # settings and global vars
-college='aa'
+university='youruni'
+collegeshort='aa'
+college='aanda'
 dbsu='root'
 dbsupw='root'
-admin='test@test.test'
+email='youruni.edu'
+address='youruni.edu'
+serviceaddress='youruni.edu'
+admin='admin'
 # current supported version
 currentversion='drupal-7.23'
+drupalbranch='7.x'
 # webroot
 webroot='www'
 dslmloc='dslmcode'
@@ -25,6 +30,8 @@ dl=('cis-7.x-1.x-dev' 'mooc-7.x-1.x-dev' 'cle-7.x-1.0-alpha1' 'remote_watchdog-7
 distros=('cis' 'mooc' 'cle' 'remote_watchdog')
 # locations to move these distributions to
 stacks=('online' 'courses' 'studio')
+# array of instance definitions for the distro type
+instances=('FALSE' 'TRUE' 'TRUE' 'FALSE')
 
 # this is all execution of the script to build the entire stack
 
@@ -77,7 +84,42 @@ do
   mkdir modules
   cd modules
   mkdir supported_contrib
-  cd ../..
+  # make an area specific to the university
+  mkdir ${university}
+  cd ${university}
+  # make a module to house the settings array
+  mkdir ${university}_${college}_settings
+  cd ${university}_${college}_settings
+  
+  # write the .info file
+  printf "name = ${university} ${college} Settings\ndescription = This contains registry information for all ${college} connection details\ncore = ${drupalbranch}\npackage = ${university}" >> ${university}_${college}_settings.info
+  
+  # write the .module file
+  printf "<?php\n\n// service module that makes this implementation specific\n\n/**\n * Implements hook_cis_service_registry().\n */\nfunction ${university}_${college}_settings_cis_service_registry() {\n  \$items = array(\n" >> ${university}_${college}_settings.module
+  # write the array of connection values dynamically
+  COUNTER=0
+  char=(0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V X W Y Z)
+  max=${#char[*]}
+  for distro in "${distros[@]}"
+  do
+    # array built up to password
+    printf "    // ${distro} distro instance called ${stacks[$COUNTER]}\n    '${distro}' => array(\n      'protocol' => 'https',\n      'service_address' => 'data.${stacks[$COUNTER]}.${serviceaddress}',\n      'address' => '${stacks[$COUNTER]}.${college}.${address}',\n      'user' => 'SERVICE_${distro}_${collegeshort}',\n      'mail' => 'SERVICE_${distro}_${collegeshort}@${email}',\n      'pass' => '" >> ${university}_${college}_settings.module
+     pass=''
+    # generate a random 30 digit password
+    for i in `seq 1 30`
+    do
+      let "rand=$RANDOM % 62"
+      pass="${pass}${char[$rand]}"
+    done
+    # write password to file
+    printf $pass >> ${university}_${college}_settings.module
+    # finish off array
+    printf "',\n      'instance' => ${instances[$COUNTER]},\n    ),\n" >> ${university}_${college}_settings.module
+    COUNTER=$[COUNTER + 1]
+  done
+  # close out function and file
+  printf "  );\n\n  return \$items;\n}" >> ${university}_${college}_settings.module
+  cd ../../../..
 done
 
 # move to the cores directory and dl all cores
