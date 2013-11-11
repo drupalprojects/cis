@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Trigger hidden input field when visible one selected.
+ */
 (function ($) {
   $(document).ready(function(){
     $('#edit-field-instructional-outline--2').change(function(){

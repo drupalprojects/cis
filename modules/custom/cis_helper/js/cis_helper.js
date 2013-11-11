@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Basic form usability tweaks based on conditional values.
+ */
 (function ($) {
   $(document).ready(function(){
     $('#edit-instructional-outline').change(function(){

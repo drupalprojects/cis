@@ -38,5 +38,5 @@ function cis_ux_features_override_default_overrides() {
   $overrides["filter.textbook_editor.filters|typogrify|settings|fractions|5/8"] = 0;
   $overrides["filter.textbook_editor.filters|typogrify|settings|fractions|7/8"] = 0;
 
- return $overrides;
+  return $overrides;
 }

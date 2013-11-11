@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Views plugin.
@@ -18,7 +17,7 @@ function views_field_calc_views_plugins() {
     'style' => array(
       // Style plugin for the navigation.
       'views_field_calc' => array(
-        'title' => t('Views Field Calc Table'),
+        'title' => t('Views field calc table'),
         'help' => t('Creates a table with column calculations using fields.'),
         'handler' => 'views_field_calc_table',
         'path' => $path,

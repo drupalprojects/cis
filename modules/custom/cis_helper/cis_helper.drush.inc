@@ -1,10 +1,8 @@
 <?php
-
 /**
  * @file
  * Drush integration for CIS distribution.
  */
-
 /**
  * Implements hook_drush_command().
  */
@@ -22,11 +20,11 @@ function cis_helper_drush_command() {
     ),
     'aliases' => array('cis-si'),
     'examples' => array(
-      'drush create-course-instance art010 2012faup001' => 
+      'drush create-course-instance art010 2012faup001' =>
         'Add service instances to art010, use user 1 and use default outline for mooc',
-      'drush cis-ci gd100 2012spaa002 --outline_import' => 
+      'drush cis-ci gd100 2012spaa002 --outline_import' =>
         'Add service instances to gd100, use user 1 and import from import bucket gd100.xml',
-      'drush cis-ci gd100 2012spaa001 --uname=admin' => 
+      'drush cis-ci gd100 2012spaa001 --uname=admin' =>
         'Add service instances to gd100, user is admin',
     ),
   );
@@ -39,9 +37,9 @@ function cis_helper_drush_command() {
       'outline_import' => dt('Point to sites/{site}/files/cis_outline_import/{machine_name}.xml for outline to use instead of default.'),
     ),
     'examples' => array(
-      'drush cis-release-kraken' => 
+      'drush cis-release-kraken' =>
         'Add service instances to all known courses in system',
-      'drush cis-kraken --outline_import --build_service=course' => 
+      'drush cis-kraken --outline_import --build_service=course' =>
         'Add service instances to all known courses in system, attempt outline importing, only building the "course" instance.',
     ),
   );

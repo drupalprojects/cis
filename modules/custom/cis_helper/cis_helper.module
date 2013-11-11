@@ -3,10 +3,15 @@
  * @file
  * Workflow and functionality glue based on the structure of the CIS.
  */
+// default service to select for site creation.
 define('CIS_HELPER_COURSE_SERVICE', 'courses');
+// machine_name to indicate that  service is external to the system.
 define('CIS_HELPER_EXTERNAL_FLAG', '--external--');
+// server location of the jobs path for files to be written to.
 define('CIS_HELPER_JOB_PATH', '/var/wwwjobs');
+// default authentication method of newly created courses / sites.
 define('CIS_HELPER_DEFAULT_AUTHENTICATION', 'open');
+// default instructional outline to import into mooc instance.
 define('CIS_HELPER_DEFAULT_CONTENT_OUTLINE', 'lesson-based.xml');
 
 /**
@@ -29,7 +34,7 @@ function cis_helper_cron() {
   // load the instances
   if (isset($result['field_collection_item'])) {
     $sections = entity_load('field_collection_item', array_keys($result['field_collection_item']));
-    foreach($sections as $section) {
+    foreach ($sections as $section) {
       // handle the logic of the operation to perform
       _cis_helper_run_operation($section);
     }
@@ -38,6 +43,15 @@ function cis_helper_cron() {
 
 /**
  * Callback to run operational logic for a remote call that was requested.
+ *
+ * This allows for additional global operations to be written back to
+ * the CIS from other places via the field_cis_ops field. 'set' is the
+ * current allowed operation which allows other sites in the network
+ * to define that a remote service should save a file locally and set
+ * it to the field defined in the call's field.
+ *
+ * @param $section
+ *   fully loaded field_collection_item entity that has an operation to run.
  */
 function _cis_helper_run_operation($section) {
   $call = unserialize($section->field_cis_ops[LANGUAGE_NONE][0]['value']);
@@ -98,13 +112,13 @@ function _cis_helper_run_operation($section) {
  * Implements hook_page_build().
  */
 function cis_helper_page_build(&$page) {
-  drupal_add_css(drupal_get_path('module', 'cis_helper') .'/css/cis_helper.css');
+  drupal_add_css(drupal_get_path('module', 'cis_helper') . '/css/cis_helper.css');
   $node = menu_get_object();
   // special js for hiding / displaying groups of form fields
   if (arg(0) == 'cis-quick-setup') {
-    drupal_add_js(drupal_get_path('module', 'cis_helper') .'/js/cis_helper.js');
+    drupal_add_js(drupal_get_path('module', 'cis_helper') . '/js/cis_helper.js');
   }
-  else if (isset($node->type)) {
+  elseif (isset($node->type)) {
     // only apply these to course pages
     if (in_array($node->type, array('person', 'program', 'news', 'course')) && isset($node->field_academic_home[LANGUAGE_NONE])) {
       $unit = node_load($node->field_academic_home[LANGUAGE_NONE][0]['target_id']);
@@ -112,9 +126,9 @@ function cis_helper_page_build(&$page) {
       if (isset($unit->field_color[LANGUAGE_NONE])) {
         $color = $unit->field_color[LANGUAGE_NONE][0]['jquery_colorpicker'];
         $css = '
-        .unit-color-border li.active, 
-        .unit-color-border li.active-trail, 
-        .unit-color-border{
+        .unit-color-border li.active,
+        .unit-color-border li.active-trail,
+        .unit-color-border {
           border-color: #' . $color . ' !important;
         }
         .unit-color, .amp, .unit-color a {
@@ -128,14 +142,13 @@ function cis_helper_page_build(&$page) {
         }
         ::selection {
           background-color: #' . $color . ';
-        }
-        ';
+        }';
         // make sure it's added very late so it takes priority, even with important
         $options = array(
           'type' => 'inline',
           'group' => CSS_THEME,
           'weight' => 100,
-          'preprocess' => FALSE,        
+          'preprocess' => FALSE,
         );
         drupal_add_css($css, $options);
       }
@@ -148,9 +161,9 @@ function cis_helper_page_build(&$page) {
     // build a list of current services
     $current = _cis_helper_assemble_entity_list('node', 'service_instance', $key, 'title', $fields);
     $services = _cis_helper_assemble_entity_list('node', 'service', 'nid', 'title');
-    foreach($current as $k => $t) {
+    foreach ($current as $k => $t) {
       unset($services[$k]);
-    }    
+    }
     $links = '<div class="cis-create-additional-services">' . "\n<ul>\n";
     foreach ($services as $snid => $name) {
       $options = array(
@@ -171,9 +184,9 @@ function cis_helper_page_build(&$page) {
 }
 
 /**
- * Implements hook_theme
+ * Implements hook_theme().
  */
-function cis_helper_theme($existing, $type, $theme, $path){
+function cis_helper_theme($existing, $type, $theme, $path) {
   return array(
     'cis_helper_checkbox_table' => array(
       'render element' => 'element',
@@ -182,16 +195,19 @@ function cis_helper_theme($existing, $type, $theme, $path){
 }
 
 /**
- * Theme callback to render checkboxes as a table
+ * Theme callback to render checkboxes as a table.
+ *
+ * @param $variables
+ *   an element with checkboxes which will be rendered as rows.
  */
 function theme_cis_helper_checkbox_table($variables) {
   $element = $variables['element'];
-  
   $rows = array();
   $row = array();
   foreach (element_children($element) as $n => $key) {
     $row[] = drupal_render($element[$key]);
-    if ($n+1 == count($element['#options']) || ($n+1) % 5 == 0) {  //5 can be replaced by number of checkboxes you want in one row.
+    // 5 can be replaced by number of checkboxes you want in one row.
+    if ($n+1 == count($element['#options']) || ($n+1) % 5 == 0) {
       $rows[] = $row;
       $row = array();
     }
@@ -208,7 +224,7 @@ function cis_helper_menu() {
   // admin settings for CIS
   $items['admin/config/system/cis'] = array(
     'title' => 'CIS',
-    'description' => 'Course Information System configuration',
+    'description' => 'Course information system configuration',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('cis_helper_admin_settings'),
     'access arguments' => array('administer site configuration'),
@@ -218,7 +234,7 @@ function cis_helper_menu() {
   );
   // quick setup form
   $items['cis-quick-setup'] = array(
-    'title' => 'System Setup',
+    'title' => 'System setup',
     'description' => 'Setup a new course and plug it into the network of tools',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('cis_helper_quick_setup_page'),
@@ -239,17 +255,16 @@ function cis_helper_menu() {
     'file' => 'cis_helper.pages.inc',
     'file path' => $path,
   );
-  
   return $items;
 }
 
 /**
- * Implements hook_permission()
+ * Implements hook_permission().
  */
 function cis_helper_permission() {
     return array(
     'access cis setup form' =>  array(
-      'title' => t('Access CIS Quick setup form'),
+      'title' => t('Access cis quick setup form'),
     ),
     'cis setup admin options' => array(
       'title' => t('Access administrative options on setup form'),
@@ -291,11 +306,10 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
     // add nice html5 placeholders
     $form['title']['#placeholder'] = t('Find a course');
     $form['title_1']['#placeholder'] = t('Enter a number');
-  
-  // course_num container
+    // course_num container
     $form['course_num'] = array(
       '#type' => 'fieldset',
-      '#title' => t('Course Number'),
+      '#title' => t('Course number'),
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
       '#weight' => 3,
@@ -310,7 +324,7 @@ function cis_helper_form_alter(&$form, $form_state, $form_id) {
   }
   // add quick link to add offering to the list of offerings
   if ($form_id == 'views_exposed_form' && arg(2) == 'offerings') {
-    $form['cle_add_new']['#markup'] = l(t('Add new Offering'), 'field-collection/field-offerings/add/node/'. arg(1), array('query' => array('destination' => 'node/' . arg(1) . '/offerings')));
+    $form['cle_add_new']['#markup'] = l(t('Add new offering'), 'field-collection/field-offerings/add/node/' . arg(1), array('query' => array('destination' => 'node/' . arg(1) . '/offerings')));
     $form['cle_add_new']['#weight'] = 100;
   }
   // alterations for the section field collection
@@ -364,6 +378,7 @@ function cis_helper_entity_presave($entity, $type) {
     $entity->title = $course_node->field_machine_name[LANGUAGE_NONE][0]['value'] . ' - ' . $serv_node->field_machine_name[LANGUAGE_NONE][0]['value'];
   }
 }
+
 /**
  * Implements hook_entity_insert().
  */
@@ -372,7 +387,7 @@ function cis_helper_entity_insert($entity, $type) {
   cis_helper_entity_update($entity, $type);
   // check to see if a service_instance is being inserted
   if ($type == 'node' && $entity->type == 'service_instance') {
-    // set the entity reference field to course    
+    // set the entity reference field to course
     global $user;
     // generally a bad idea to pass around the user global
     $account = $user;
@@ -389,7 +404,7 @@ function cis_helper_entity_insert($entity, $type) {
         _cis_helper_add_service_instance($course_node, $serv_node, $entity, $college, $account);
       }
     }
-  }  
+  }
 }
 
 /**
@@ -435,11 +450,11 @@ function cis_helper_entity_update($entity, $type) {
       // Execute requests in the queue in a non-blocking manner (really fast)
       $request = httprl_send_request();
     }
-  }  
+  }
 }
 
 /**
- * Helper to pull list of possible values.
+ * Helper to pull list of possible values from custom data tables.
  */
 function cis_helper_get_data_values($column) {
   // pull from historical course data table
@@ -458,7 +473,28 @@ function cis_helper_get_data_values($column) {
 }
 
 /**
- * Helper function to trigger cron based service creation
+ * Helper function to trigger cron based service creation.
+ *
+ * This is the main function that allows the CIS distro to
+ * spin up new sites of other distribution types.  The contains
+ * all logic and general structure for creating the file pattern
+ * needed to be picked up by the drush-create-site process running
+ * on the server.
+ *
+ * @param $course
+ *   fully loaded course node.
+ * @param $service
+ *   fully loaded service node.
+ * @param $service_instance
+ *   fully loaded service_instance node
+ * @param $college
+ *   abreviation for a college, pulled from variables table.
+ * @param $account
+ *   fully loaded user account that requested this be built.
+ * @return NULL
+ *   This returns nothing but does write a file to server to build a site.
+ * @see cis_helper_entity_insert()
+ * @see hook_service_instance_options_alter()
  */
 function _cis_helper_add_service_instance($course, $service, $service_instance, $college, $account) {
   $options = array();
@@ -476,7 +512,6 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   $options['fr'][] = 'cis_section';
   // vset the uuid from the service_instance entity into the remote site
   $options['vset'][] = 'cis_service_instance_uuid ' . $service_instance->uuid;
-
   // this can be modified via the alter below if the admin really wants
   // disable site auto-cron run so admin can set policy globally
   $options['vset'][] = 'cron_safe_threshold 0';
@@ -506,7 +541,7 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   // college requesting for dbo / db name
   $content .= $college . "\n";
   // title to set for the site name value
-  $content .= $site_title  . "\n";
+  $content .= $site_title . "\n";
   // slogan value for the course
   $content .= str_replace('&', 'and', $course->field_course_title[LANGUAGE_NONE][0]['value']) . "\n";
   // email / user requesting account
@@ -562,7 +597,23 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
 
 /**
  * Helper function to return a section / offering's associated course
- * input is a field_collection_item id of a section and type to search for
+ *
+ * Wrapper for hunting for hostEntities from an origin entity. This is
+ * useful because of the structure of the course node being.
+ *  -- course
+ *  ---- offering(s)
+ *  ------ section(s)
+ * This allows for easy selection of an offering from a section,
+ * a course from a section or a course from an offering as they
+ * are a specialized entity reference otherwise due to how field_collection
+ * structures related data.
+ *
+ * @param $item_id
+ *   field_collection_item id to search from.
+ * @param $field_collection_type
+ *   type of field collection to search from, section or offering possible.
+ * @param $find
+ *   item to derive from the current item, defaults to course.
  */
 function _cis_helper_derive_parent($item_id, $field_collection_type = 'section', $find = 'course') {
   // additional level of searching for a section that matches
@@ -590,6 +641,9 @@ function _cis_helper_derive_parent($item_id, $field_collection_type = 'section',
 
 /**
  * Returns all instructional outlines that are xml packages
+ *
+ * @return $options
+ *   array of options provided by external alter hooks being used.
  */
 function _cis_helper_get_instructional_outlines() {
   $options = array();
@@ -600,6 +654,14 @@ function _cis_helper_get_instructional_outlines() {
 
 /**
  * Implements hook_cis_instructional_outlines_alter().
+ *
+ * This is CIS's default implementation of the outline list so
+ * that the outlines that come packaged with CIS are made available
+ * by default. Also makes it easier to add other things in down the
+ * road by doing it this way from the start.
+ *
+ * @param $outlines
+ *   an array of options as outline location => name
  */
 function cis_helper_cis_instructional_outlines_alter(&$outlines) {
   // lazy scan the included instructional models
@@ -607,7 +669,7 @@ function cis_helper_cis_instructional_outlines_alter(&$outlines) {
   $full_path = drupal_get_path('module', 'cis_helper') . '/instructional_models/';
   // get each item
   $files = array();
-  while($file_name = readdir($directory)) {
+  while ($file_name = readdir($directory)) {
     if (strpos($file_name, '.xml')) {
       // add the template to the list
       $files[$full_path . $file_name] = t('@name Instructional Outline', array('@name' => ucwords(str_replace('-', ' ', str_replace('.xml', '', $file_name)))));
@@ -618,8 +680,21 @@ function cis_helper_cis_instructional_outlines_alter(&$outlines) {
   // merge the located file outlines in with those present in the site
   $outlines = array_merge($outlines, $files);
 }
+
 /**
  * Derive service instances from an entity id.
+ *
+ * Used to figure out what services a node/collection has access to.
+ *
+ * @param $item_id
+ *   field_collection_item's item_id or a course nid
+ * @param $course
+ *   course object to check against, defaults to null to support lookup.
+ * @param $type
+ *   The type associated with this id since it can be field collection or node.
+ *
+ * @return array
+ *   an array fully loaded service_instance nodes, potentially many.
  */
 function _cis_helper_derive_service_instances($item_id, $course = NULL, $type = 'section') {
   // load course correctly
@@ -684,21 +759,19 @@ function cis_helper_profiler_builder_drush_modules_list_alter(&$project_data, $m
 
 /**
  * Alter the outgoing response.
- * 
- * related support issue https://drupal.org/node/2024603
  *
  * @param mixed $response
  *   The response data being returned by the REST service (not yet serialized).
- *
  * @param string $function
  *   The function being called on the REST service.
- *
- * @param string $format
+ * @param string $format_name
  *   The name of the format serializing the response.
+ *
+ * related issue https://drupal.org/node/2024603
  */
-function cis_helper_restws_response_alter(&$response, $function, $formatName) {
+function cis_helper_restws_response_alter(&$response, $function, $format_name) {
   // specific modifications based common request type
-  if (($function == 'viewResource' || $function == 'queryResource') && $formatName == 'json' && isset($_GET['deep-load-refs'])) {
+  if (($function == 'viewResource' || $function == 'queryResource') && $format_name == 'json' && isset($_GET['deep-load-refs'])) {
     // query response is nested, direct access is not
     if ($function == 'queryResource') {
       foreach ($response['list'] as &$object) {
@@ -713,6 +786,12 @@ function cis_helper_restws_response_alter(&$response, $function, $formatName) {
 
 /**
  * Callback to perform deep load on a base entity
+ *
+ * @param $response
+ *   response about to be sent back for the RestWS query
+ * @return NULL
+ *   this will load additional items into the response, filtering their
+ *   fields based on account access to the deep loaded items.
  */
 function _cis_helper_restws_deep_load(&$response) {
   // build list of allowed entity types to deep pull down
@@ -798,10 +877,27 @@ function _cis_helper_restws_deep_load(&$response) {
 }
 
 /**
- * Helper function to generate options list of entities based on type
+ * Helper function to generate options list of entities.
+ *
  * This is a very powerful function that returns a simple array
  * based on passing it a few criteria.  Think of this as a function
  * to abstract and simplify entity field queries.
+ *
+ * @param $entity_type
+ *   entity type to filter by
+ * @param $bundle
+ *   bundle of that type to filter by
+ * @param $id_field
+ *   field to use for the key in the array
+ * @param $title_field
+ *   field to use as the value in the array
+ * @param $field_conditions
+ *   (optional) additional conditions to apply to field filtering
+ * @param $property_conditions
+ *   (optional) additional conditions to apply for properties
+ *
+ * @return $options
+ *   array of options as a clean list for selection of an entity id
  */
 function _cis_helper_assemble_entity_list($entity_type, $bundle, $id_field, $title_field, $field_conditions = array(), $property_conditions = array()) {
   // pull items based on bundle
@@ -832,7 +928,7 @@ function _cis_helper_assemble_entity_list($entity_type, $bundle, $id_field, $tit
   }
   // order by the title property
   $result = $query->propertyOrderBy($title_field)
-   ->execute();
+    ->execute();
   // ensure this produces results to avoid null queries
   if (!empty($result)) {
     // convert to load only keys of items found
@@ -845,7 +941,7 @@ function _cis_helper_assemble_entity_list($entity_type, $bundle, $id_field, $tit
       if (is_array($id_field)) {
         $key = $entity->{$id_field[0]}[LANGUAGE_NONE][0][$id_field[1]];
       }
-      else if (strpos($id_field, 'field_') !== FALSE) {
+      elseif (strpos($id_field, 'field_') !== FALSE) {
         $key = $entity->{$id_field}[LANGUAGE_NONE][0]['value'];
       }
       else {

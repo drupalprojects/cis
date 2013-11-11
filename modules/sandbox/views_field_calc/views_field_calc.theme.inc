@@ -1,10 +1,10 @@
 <?php
-
 /**
  * @file
  * An array of preprocessors to fill variables for templates and helper
  * functions to make theming easier.
  */
+
 /**
  * Theme the form for the table style plugin
  */
@@ -19,7 +19,7 @@ function theme_views_field_calc_ui_table($variables) {
     t('Align'),
     t('Separator'),
     t('Sortable'),
-    t('Default Order'),
+    t('Default order'),
     t('Default sort'),
   );
   $rows = array();
@@ -118,7 +118,7 @@ function template_preprocess_views_field_calc_table(&$vars) {
         $query['order'] = $field;
         $query['sort'] = $initial;
         $link_options = array(
-          'html' => true,
+          'html' => TRUE,
           'attributes' => array('title' => $title),
           'query' => $query,
         );

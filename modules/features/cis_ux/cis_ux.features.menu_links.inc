@@ -18,7 +18,7 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'CIS',
     'options' => array(
       'attributes' => array(
-        'title' => 'Course Information System configuration',
+        'title' => 'Course information system configuration',
       ),
     ),
     'module' => 'system',
@@ -106,7 +106,7 @@ function cis_ux_menu_default_menu_links() {
     'link_title' => 'Courses',
     'options' => array(
       'attributes' => array(
-        'title' => 'List of Courses',
+        'title' => 'List of courses',
       ),
     ),
     'module' => 'system',
@@ -122,10 +122,10 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'cis/courses/bulk_ops',
     'router_path' => 'cis/courses/bulk_ops',
-    'link_title' => 'Bulk Ops',
+    'link_title' => 'Bulk ops',
     'options' => array(
       'attributes' => array(
-        'title' => 'Course Bulk Operations',
+        'title' => 'Course bulk operations',
       ),
     ),
     'module' => 'system',
@@ -141,7 +141,7 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'cis/courses/map',
     'router_path' => 'cis/courses/map',
-    'link_title' => 'Course Map',
+    'link_title' => 'Course map',
     'options' => array(
       'attributes' => array(
         'title' => 'Visual list of courses',
@@ -280,10 +280,10 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'cis/offerings/course-map',
     'router_path' => 'cis/offerings/course-map',
-    'link_title' => 'Course Map',
+    'link_title' => 'Course map',
     'options' => array(
       'attributes' => array(
-        'title' => 'Course Map',
+        'title' => 'Course map',
       ),
     ),
     'module' => 'system',
@@ -299,7 +299,7 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'cis/offerings/manage-semester',
     'router_path' => 'cis/offerings',
-    'link_title' => 'Manage Semester',
+    'link_title' => 'Manage semester',
     'options' => array(
       'attributes' => array(),
     ),
@@ -335,10 +335,10 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'cis/offerings/section-map',
     'router_path' => 'cis/offerings/section-map',
-    'link_title' => 'Section Map',
+    'link_title' => 'Section map',
     'options' => array(
       'attributes' => array(
-        'title' => 'Section Map',
+        'title' => 'Section map',
       ),
     ),
     'module' => 'system',
@@ -354,10 +354,10 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'cis/offerings/semester-map',
     'router_path' => 'cis/offerings/semester-map',
-    'link_title' => 'Semester Map',
+    'link_title' => 'Semester map',
     'options' => array(
       'attributes' => array(
-        'title' => 'Semester Map',
+        'title' => 'Semester map',
       ),
     ),
     'module' => 'system',
@@ -445,7 +445,7 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'cis/services/instances',
     'router_path' => 'cis/services/instances',
-    'link_title' => 'Service Instances',
+    'link_title' => 'Service instances',
     'options' => array(
       'attributes' => array(
         'title' => 'List of all services in the CIS',
@@ -464,7 +464,7 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'cis/services/map',
     'router_path' => 'cis/services/map',
-    'link_title' => 'Service Map',
+    'link_title' => 'Service map',
     'options' => array(
       'attributes' => array(
         'title' => 'Service map',
@@ -498,7 +498,7 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'cis/units/map',
     'router_path' => 'cis/units/map',
-    'link_title' => 'Unit Map',
+    'link_title' => 'Unit map',
     'options' => array(),
     'module' => 'system',
     'hidden' => 0,
@@ -513,7 +513,7 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'node/add/academic-unit',
     'router_path' => 'node/add/academic-unit',
-    'link_title' => 'Add Unit',
+    'link_title' => 'Add unit',
     'options' => array(
       'attributes' => array(
         'title' => 'Add an academic unit',
@@ -532,7 +532,7 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'node/add/course',
     'router_path' => 'node/add/course',
-    'link_title' => 'Add Course',
+    'link_title' => 'Add course',
     'options' => array(
       'attributes' => array(
         'title' => 'Add a course to CIS',
@@ -551,10 +551,10 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'node/add/program',
     'router_path' => 'node/add/program',
-    'link_title' => 'Add Program',
+    'link_title' => 'Add program',
     'options' => array(
       'attributes' => array(
-        'title' => 'Add a Program of study',
+        'title' => 'Add a program of study',
       ),
     ),
     'module' => 'menu',
@@ -570,7 +570,7 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'node/add/resource',
     'router_path' => 'node/add/resource',
-    'link_title' => 'Add Resource',
+    'link_title' => 'Add resource',
     'options' => array(
       'attributes' => array(
         'title' => 'Add a new resource for use in courses',
@@ -589,10 +589,10 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'management',
     'link_path' => 'node/add/service',
     'router_path' => 'node/add/service',
-    'link_title' => 'Add Service',
+    'link_title' => 'Add service',
     'options' => array(
       'attributes' => array(
-        'title' => 'Add a Service for courses to use',
+        'title' => 'Add a service for courses to use',
       ),
     ),
     'module' => 'menu',
@@ -608,10 +608,10 @@ function cis_ux_menu_default_menu_links() {
     'menu_name' => 'user-menu',
     'link_path' => 'cis-quick-setup',
     'router_path' => 'cis-quick-setup',
-    'link_title' => 'Build Service Instance',
+    'link_title' => 'Build service instance',
     'options' => array(
       'attributes' => array(
-        'title' => 'Use this to Build a course, associate an offering and section to it, and then go and request the setup of webservices that will be used by the course.',
+        'title' => 'Use this to build a course, associate an offering and section to it, and then go and request the setup of webservices that will be used by the course.',
       ),
     ),
     'module' => 'menu',
@@ -675,24 +675,24 @@ function cis_ux_menu_default_menu_links() {
   );
   // Translatables
   // Included for use with string extractors like potx.
-  t('Add Course');
-  t('Add Program');
-  t('Add Resource');
-  t('Add Service');
-  t('Add Unit');
+  t('Add course');
+  t('Add program');
+  t('Add resource');
+  t('Add service');
+  t('Add unit');
   t('Admin');
-  t('Build Service Instance');
-  t('Bulk Ops');
+  t('Build service instance');
+  t('Bulk ops');
   t('CIS');
   t('Campus');
   t('College data');
-  t('Course Map');
+  t('Course map');
   t('Courses');
   t('Enrollments');
-  t('Field Collection admin');
+  t('Field collection admin');
   t('Log out');
   t('Login');
-  t('Manage Semester');
+  t('Manage semester');
   t('Offerings');
   t('People');
   t('Planning');
@@ -700,13 +700,13 @@ function cis_ux_menu_default_menu_links() {
   t('Program map');
   t('Programs');
   t('Resources');
-  t('Section Map');
-  t('Semester Map');
-  t('Service Instances');
-  t('Service Map');
+  t('Section map');
+  t('Semester map');
+  t('Service instances');
+  t('Service map');
   t('Services');
   t('Unit');
-  t('Unit Map');
+  t('Unit map');
   t('Units');
   t('User account');
   t('Year');

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Copied from the table style plugin and from views_calc module.
@@ -11,10 +10,11 @@
  * @ingroup views_style_plugins
  */
 class views_field_calc_table extends views_plugin_style_table {
-
+  /**
+   * Define default options
+   */
   function option_definition() {
     $options = parent::option_definition();
-
     $options['detailed_values'] = array('default' => 0);
     return $options;
   }
@@ -55,7 +55,7 @@ class views_field_calc_table extends views_plugin_style_table {
         '#options' => $options,
         '#default_value' => isset($this->options['info'][$field]['calc']) ? $this->options['info'][$field]['calc'] : array(),
         '#states' => array(
-          'visible' => array(':checkbox[name="style_options[info][' . $field . '][has_calc]"]' => array('checked' => TRUE),),  // condition
+          'visible' => array(':checkbox[name="style_options[info][' . $field . '][has_calc]"]' => array('checked' => TRUE), ), // condition
         ),
         '#multiple' => TRUE,
       );

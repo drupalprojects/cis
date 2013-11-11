@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * UX simplification for install of the distro.
+ */
 
 /**
  * Implements hook_form_FORM_ID_alter().

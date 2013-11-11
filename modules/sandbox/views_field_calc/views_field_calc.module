@@ -1,9 +1,12 @@
 <?php
-
 /**
  * @file
+ * View table style that calculates on rendered values.
  */
 
+/**
+ * Implements hook_views_api().
+ */
 function views_field_calc_views_api() {
   return array(
     'api' => 3,
@@ -13,6 +16,7 @@ function views_field_calc_views_api() {
 
 /**
  * Implements hook_theme().
+ *
  * @see http://drupal.org/node/1354
  */
 function views_field_calc_theme() {
@@ -26,23 +30,24 @@ function views_field_calc_theme() {
 }
 
 /**
- *  Column calculation alternatives
+ * Column calculation alternatives.
  */
 function _views_field_calc_calc_options() {
-  // TODO: Will add drupal_alter to add modules to capture additional calcs.
+  // @todo Will add drupal_alter to add modules to capture additional calcs.
   return array('COUNT' => 'Count', 'SUM' => 'Sum', 'AVG' => 'Average', 'MIN' => 'Minimum', 'MAX' => 'Maximum', 'MED' => 'Median');
 }
 
 /**
  * Calculate total.
- * @param $calc string
- *  Operator for calculation.
- * @param $results array()
- *  Array of results from all rows for a certain field.
+ *
+ * @param $calc
+ *   Operator for calculation.
+ * @param $results
+ *   Array of results from all rows for a certain field.
  */
 function views_field_calc_total($calc, $results) {
   $module = 'views_field_calc';
-  // TODO: Will add drupal_alter to add modules to capture additional calcs.
+  // @todo Will add drupal_alter to add modules to capture additional calcs.
   $function = $module . '_' . $calc;
   $total = $function($results);
   return $total;
@@ -85,6 +90,7 @@ function views_field_calc_COUNT($arr) {
 
 /**
  * Calculate average.
+ *
  * From http://www.php.net/manual/en/ref.math.php#55168
  */
 function views_field_calc_AVG($arr) {
@@ -96,6 +102,7 @@ function views_field_calc_AVG($arr) {
 
 /**
  * Calculate median.
+ *
  * From http://www.php.net/manual/en/ref.math.php#55173
  */
 function views_field_calc_MED() {
@@ -129,4 +136,3 @@ function views_field_calc_MED() {
   }
   return $median;
 }
-

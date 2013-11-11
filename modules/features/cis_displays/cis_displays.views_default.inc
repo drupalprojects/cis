@@ -22,7 +22,7 @@ function cis_displays_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'About the Author';
+  $handler->display->display_options['title'] = 'About the author';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -130,7 +130,7 @@ function cis_displays_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Course Bulk Operations';
+  $handler->display->display_options['title'] = 'Course bulk operations';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
@@ -521,14 +521,14 @@ function cis_displays_views_default_views() {
   $view->description = 'Views that help visualize department information';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'CIS Departments';
+  $view->human_name = 'CIS departments';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'CIS Departments';
+  $handler->display->display_options['title'] = 'CIS departments';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -927,14 +927,14 @@ function cis_displays_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'CIS Faculty Courses';
+  $view->human_name = 'CIS faculty courses';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Courses Authored';
+  $handler->display->display_options['title'] = 'Courses authored';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -2097,7 +2097,7 @@ function cis_displays_views_default_views() {
   /* Display: Verification */
   $handler = $view->new_display('page', 'Verification', 'page');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Instructor Verification';
+  $handler->display->display_options['title'] = 'Instructor verification';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -2246,7 +2246,7 @@ function cis_displays_views_default_views() {
   /* Display: Welcome Page */
   $handler = $view->new_display('page', 'Welcome Page', 'page_5');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Welcome Page';
+  $handler->display->display_options['title'] = 'Welcome page';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
@@ -2344,10 +2344,10 @@ function cis_displays_views_default_views() {
 
   $view = new view();
   $view->name = 'cis_marketing_programs';
-  $view->description = 'Listings of Programs';
+  $view->description = 'Listings of programs';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'CIS Marketing programs';
+  $view->human_name = 'CIS marketing programs';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -2554,14 +2554,14 @@ function cis_displays_views_default_views() {
   $view->description = 'Course listing in the administrative CIS side';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'CIS Courses';
+  $view->human_name = 'CIS courses';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'CIS My Courses';
+  $handler->display->display_options['title'] = 'CIS my courses';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -2614,7 +2614,7 @@ function cis_displays_views_default_views() {
   /* Display: Instructor */
   $handler = $view->new_display('block', 'Instructor', 'block_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Courses I Teach';
+  $handler->display->display_options['title'] = 'Courses I teach';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Offering */
   $handler->display->display_options['relationships']['field_offerings_value']['id'] = 'field_offerings_value';
@@ -2673,14 +2673,14 @@ function cis_displays_views_default_views() {
   $view->description = 'Displays useful in visualizing what is being offered';
   $view->tag = 'default';
   $view->base_table = 'field_collection_item';
-  $view->human_name = 'CIS Offerings';
+  $view->human_name = 'CIS offerings';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'CIS Offerings';
+  $handler->display->display_options['title'] = 'CIS offerings';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -3179,17 +3179,17 @@ function cis_displays_views_default_views() {
 
   $view = new view();
   $view->name = 'cis_programs';
-  $view->description = 'Listings of Programs';
+  $view->description = 'Listings of programs';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'CIS Programs';
+  $view->human_name = 'CIS programs';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'CIS Programs';
+  $handler->display->display_options['title'] = 'CIS programs';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -3320,7 +3320,7 @@ function cis_displays_views_default_views() {
   $view->description = 'List of global resources for use by course sections in the system.';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'CIS Resources';
+  $view->human_name = 'CIS resources';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -3401,7 +3401,7 @@ function cis_displays_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'CIS Resources';
+  $handler->display->display_options['title'] = 'CIS resources';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -3679,7 +3679,7 @@ function cis_displays_views_default_views() {
   $view->description = 'List of global resources for use by course sections in the system.';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'CIS Services';
+  $view->human_name = 'CIS services';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -3740,7 +3740,7 @@ function cis_displays_views_default_views() {
   /* Display: Service list */
   $handler = $view->new_display('page', 'Service list', 'page_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'CIS Resources';
+  $handler->display->display_options['title'] = 'CIS resources';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -3830,7 +3830,7 @@ function cis_displays_views_default_views() {
   /* Display: Service Instance list */
   $handler = $view->new_display('page', 'Service Instance list', 'page_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Service Instances';
+  $handler->display->display_options['title'] = 'Service instances';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -4074,14 +4074,14 @@ function cis_displays_views_default_views() {
   $view->description = 'Quick links to service instances used in a course';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Course Service Instances';
+  $view->human_name = 'Course service instances';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Service Instances';
+  $handler->display->display_options['title'] = 'Service instances';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'edit any course content';
@@ -4353,7 +4353,7 @@ function cis_displays_views_default_views() {
   /* Display: TA Tab */
   $handler = $view->new_display('page', 'TA Tab', 'page_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Teaching Assistant Resources';
+  $handler->display->display_options['title'] = 'Teaching assistant resources';
   $handler->display->display_options['display_description'] = 'Teaching assistant area for documents and resources';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['access'] = FALSE;
@@ -4395,7 +4395,7 @@ function cis_displays_views_default_views() {
   /* Display: Inst Tab */
   $handler = $view->new_display('page', 'Inst Tab', 'page_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Instructor Resources';
+  $handler->display->display_options['title'] = 'Instructor resources';
   $handler->display->display_options['display_description'] = 'Instructor tab';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['access'] = FALSE;
@@ -4509,7 +4509,7 @@ function cis_displays_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Courses Overview';
+  $view->human_name = 'Courses overview';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -4983,7 +4983,7 @@ function cis_displays_views_default_views() {
   /* Display: Author block */
   $handler = $view->new_display('block', 'Author block', 'block_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Courses Authored';
+  $handler->display->display_options['title'] = 'Courses authored';
   $handler->display->display_options['display_description'] = 'Block of courses authored by the contextual user';
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -5099,9 +5099,9 @@ function cis_displays_views_default_views() {
   $handler->display->display_options['block_description'] = 'Course Author';
 
   /* Display: Instructor Highlights */
-  $handler = $view->new_display('block', 'Instructor Highlights', 'block_2');
+  $handler = $view->new_display('block', 'Instructor highlights', 'block_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Highlight Reel';
+  $handler->display->display_options['title'] = 'Highlight reel';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['display_description'] = 'Media for this instructor';
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
@@ -5196,7 +5196,7 @@ function cis_displays_views_default_views() {
   /* Display: Related Course */
   $handler = $view->new_display('block', 'Related Course', 'block_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Related Courses';
+  $handler->display->display_options['title'] = 'Related courses';
   $handler->display->display_options['display_description'] = 'Courses related to this one';
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';

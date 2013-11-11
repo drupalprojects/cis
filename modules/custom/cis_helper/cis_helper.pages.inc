@@ -3,7 +3,7 @@
  * @file
  * User page callbacks for the cis_helper module.
  */
- 
+
 /**
  * Callback for offering planning
  */
@@ -264,9 +264,10 @@ function cis_helper_offering_planning_page_submit($form, $form_state) {
     }
   }
 }
- 
+
 /**
- * Callback for quick setup page to build a lot of elements at once
+ * Callback for quick setup page to build a lot of elements at once.
+ *
  * At the end this will setup a course, offering, section, and service instance
  * on an as needed basis.  This is primarily used for handling LTI launches
  * as they can be rather complex in translation to actual information in CIS.
@@ -349,7 +350,6 @@ function cis_helper_quick_setup_page() {
     '#collapsible' => '1',
     '#title' => t('Section logistics'),
   );
-  
   $form['details']['instructional_outline'] = array(
     '#type' => 'select',
     '#options' => $options,
@@ -457,12 +457,12 @@ function cis_helper_quick_setup_page() {
     '#description' => t('Instructor of record for the course'),
     '#type' => 'textfield',
     '#default_value' => $user->name,
-    '#title' => t('Instructor of Record'),
+    '#title' => t('Instructor of record'),
   );
   // the syllabus to use for the section to be created
   $form['logistics']['syllabus'] = array(
     '#required' => '0',
-    '#description' => t('(PDF only) Syllabus for the course'),
+    '#description' => t('(PDF only) syllabus for the course'),
     '#type' => 'managed_file',
     '#size' => '30',
     '#title' => t('Syllabus'),
@@ -595,7 +595,6 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
     // set year
     $offering->field_year[LANGUAGE_NONE][0]['value'] = $year;
   }
-  
   // now work on the section
   $section = entity_create('field_collection_item', array('field_name' => 'field_sections'));
   // associate this section to the offering
@@ -610,7 +609,7 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
   $section->field_instructor_of_record[LANGUAGE_NONE][0]['target_id'] = $account->uid;
   // set the services in use to the ones just created
   $serv_count = 0;
-  foreach($form_state['values']['services'] as $serv_item) {
+  foreach ($form_state['values']['services'] as $serv_item) {
     $section->field_services[LANGUAGE_NONE][$serv_count] = array('target_id' => $serv_item);
     $serv_count++;
   }
@@ -752,7 +751,6 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
   drupal_alter('cis_quick_submit', $section, $offering);
   // save section
   $section->save();
-  
   // now work on the services if needed
   foreach ($services as $service) {
     $query = new EntityFieldQuery;
@@ -795,11 +793,9 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
       node_save($instance);
       // create a file based on service name
       $filename = $course->field_machine_name[LANGUAGE_NONE][0]['value'] . '.' . $service->field_machine_name[LANGUAGE_NONE][0]['value'];
-      //$handle = fopen(variable_get('cis_job_path', CIS_HELPER_JOB_PATH) . '/' . $filename, 'r');
       // bring along expected filename that points to the instance data
       $instances_created[$filename] = $instance;
     }
   }
-  // TODO invoke batch process using captured $instances_created array
-
+  // @todo invoke batch process using captured $instances_created
 }

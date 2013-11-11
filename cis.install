@@ -1,5 +1,10 @@
 <?php
 /**
+ * @file
+ * post module install routine to clean up initial setup.
+ */
+
+/**
  * Implements hook_install().
  *
  * Perform actions to set up the site for this profile.

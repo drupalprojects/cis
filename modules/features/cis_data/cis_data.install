@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Install, update and uninstall functions for the cis_data module.
@@ -53,7 +52,7 @@ function cis_data_schema() {
         'not null' => TRUE,
       ),
       'enrolled' => array(
-        'description' => 'Course Enrollments',
+        'description' => 'Course enrollments',
         'type' => 'int',
         'not null' => TRUE,
       ),

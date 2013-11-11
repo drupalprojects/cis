@@ -60,7 +60,7 @@ function cis_ux_fe_nodequeue_export_fields() {
   // Exported nodequeues: cis_faculty
   $nodequeues['cis_faculty'] = array(
     'name' => 'cis_faculty',
-    'title' => 'Featured Faculty',
+    'title' => 'Featured faculty',
     'subqueue_title' => '',
     'size' => 3,
     'link' => '',
@@ -83,7 +83,7 @@ function cis_ux_fe_nodequeue_export_fields() {
   // Exported nodequeues: cis_featured_courses
   $nodequeues['cis_featured_courses'] = array(
     'name' => 'cis_featured_courses',
-    'title' => 'Featured Courses',
+    'title' => 'Featured courses',
     'subqueue_title' => '',
     'size' => 4,
     'link' => '',
@@ -106,7 +106,7 @@ function cis_ux_fe_nodequeue_export_fields() {
   // Exported nodequeues: cis_featured_services
   $nodequeues['cis_featured_services'] = array(
     'name' => 'cis_featured_services',
-    'title' => 'Featured Services',
+    'title' => 'Featured services',
     'subqueue_title' => '',
     'size' => 0,
     'link' => '',
@@ -130,7 +130,7 @@ function cis_ux_fe_nodequeue_export_fields() {
   // Exported nodequeues: cis_homepage_featured
   $nodequeues['cis_homepage_featured'] = array(
     'name' => 'cis_homepage_featured',
-    'title' => 'CIS Homepage featured',
+    'title' => 'CIS homepage featured',
     'subqueue_title' => '',
     'size' => 6,
     'link' => '',
@@ -151,7 +151,7 @@ function cis_ux_fe_nodequeue_export_fields() {
   // Exported nodequeues: cis_programs
   $nodequeues['cis_programs'] = array(
     'name' => 'cis_programs',
-    'title' => 'Featured Programs',
+    'title' => 'Featured programs',
     'subqueue_title' => '',
     'size' => 3,
     'link' => '',
@@ -174,7 +174,7 @@ function cis_ux_fe_nodequeue_export_fields() {
   // Exported nodequeues: our_people
   $nodequeues['our_people'] = array(
     'name' => 'our_people',
-    'title' => 'Our People',
+    'title' => 'Our people',
     'subqueue_title' => '',
     'size' => 0,
     'link' => '',

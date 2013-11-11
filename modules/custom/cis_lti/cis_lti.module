@@ -1,5 +1,10 @@
 <?php
 /**
+ * @file
+ * LTI integration into the CIS setup.
+ */
+
+/**
  * Implements hook_lti_tool_provider_launch_alter().
  */
 function cis_lti_lti_tool_provider_launch_alter(&$launch_info, $account) {
@@ -12,7 +17,7 @@ function cis_lti_lti_tool_provider_launch_alter(&$launch_info, $account) {
     ->fieldCondition('field_access_string', 'value', $launch_info['context_id'], '=')
     ->addMetaData('account', user_load(1)) // Run the query as user 1.
     ->execute();
-  // if no items were returned this is a new course / nonexistant course  
+  // if no items were returned this is a new course / nonexistant course
   if (isset($result['field_collection_item'])) {
     $items = array_keys($result['field_collection_item']);
     // only want 1 item, should only be 1
@@ -45,7 +50,7 @@ function cis_lti_lti_tool_provider_launch_alter(&$launch_info, $account) {
       $location .= '/' . $course->field_machine_name[LANGUAGE_NONE][0]['value'];
       // account for different types of services
       switch ($service->field_machine_name[LANGUAGE_NONE][0]['value']) {
-        // TODO: work through launch location details on angel's end
+        // @todo work through launch location details on angel's end
         // currently course is the only specific case and has priority in naming
         case CIS_HELPER_COURSE_SERVICE:
           drupal_goto($location);
@@ -99,24 +104,28 @@ function cis_lti_service_post($params, $key, $url) {
     $request->sign_request($hmac_method, $consumer, $token);
     $params = $request->get_parameters();
     // Connect to tool consumer.
-    // http_build_query($params).
     $options = array(
       'data' => http_build_query($params),
       'method' => 'POST',
       'max_redirects' => 5,
       'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
-    	'blocking' => FALSE,
-		);
+      'blocking' => FALSE,
+    );
     // queue up the launch
-		httprl_request($url, $options);
-		// execuse request, we won't get a real response
-		$ext_response = httprl_send_request();
+    httprl_request($url, $options);
+    // execuse request, we won't get a real response
+    $ext_response = httprl_send_request();
   }
   return $ext_response;
 }
 
 /**
  * Return the public key for an LTI consumer.
+ *
+ * @param $address
+ *   The web address for a consumer.
+ * @return $consumer
+ *   A fully loaded lti_tool_provider_consumer entity.
  */
 function _cis_lti_consumer_from_address($address) {
   // new entity field query
