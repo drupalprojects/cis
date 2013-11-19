@@ -5,6 +5,63 @@
  */
 
 /**
+ * Callback for setting up course by knowing access string.
+ */
+function cis_helper_quick_setup_access_id_page($form, $form_state) {
+  // allow for access string prepopulation to auto submit
+  $access_string = check_plain(arg(1));
+  if (!empty($access_string)) {
+    $data = array(
+      'context_id' => $access_string,
+      'context_label' => $access_string,
+      'user_id' => $GLOBALS['user']->name,
+      'lis_person_contact_email_primary' => $GLOBALS['user']->mail,
+    );
+    // convert to fake LTI launch info since page can handle it
+    $options = array(
+        'lti_launch' => drupal_json_encode($data),
+      ),
+    );
+    // fake an LTI launch to setup the page faster
+    drupal_goto('cis-quick-setup', $options);
+  }
+  $form['access_string'] = array(
+    '#required' => '1',
+    '#description' => t('The access string to bind to, this is the primary key for this course section.'),
+    '#type' => 'textfield',
+    '#title' => t('Access string'),
+  );
+
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Setup access'),
+  );
+  return $form;
+}
+
+/**
+ * Submit handler for cis_helper_offering_planning_page.
+ */
+function cis_helper_quick_setup_access_id_page_submit($form, $form_state) {
+  // context_id is actually access_string
+  $access_string = check_plain($form_state['values']['access_string']);
+  $data = array(
+    'context_id' => $access_string,
+    'context_label' => $access_string,
+    'user_id' => $GLOBALS['user']->name,
+    'lis_person_contact_email_primary' => $GLOBALS['user']->mail,
+  );
+  // convert to fake LTI launch info since page can handle it
+  $options = array(
+    'query' => array(
+      'lti_launch' => drupal_json_encode($data),
+    ),
+  );
+  // fake an LTI launch to setup the page faster
+  drupal_goto('cis-quick-setup', $options);
+}
+
+/**
  * Callback for offering planning
  */
 function cis_helper_offering_planning_page($form, $form_state) {
