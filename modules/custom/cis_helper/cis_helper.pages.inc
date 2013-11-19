@@ -19,6 +19,7 @@ function cis_helper_quick_setup_access_id_page($form, $form_state) {
     );
     // convert to fake LTI launch info since page can handle it
     $options = array(
+      'query' => array(
         'lti_launch' => drupal_json_encode($data),
       ),
     );
@@ -808,6 +809,7 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
   drupal_alter('cis_quick_submit', $section, $offering);
   // save section
   $section->save();
+  $instances_created = array();
   // now work on the services if needed
   foreach ($services as $service) {
     $query = new EntityFieldQuery;
@@ -851,8 +853,145 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
       // create a file based on service name
       $filename = $course->field_machine_name[LANGUAGE_NONE][0]['value'] . '.' . $service->field_machine_name[LANGUAGE_NONE][0]['value'];
       // bring along expected filename that points to the instance data
-      $instances_created[$filename] = $instance;
+      $instances_created[$service->field_machine_name[LANGUAGE_NONE][0]['value']] = array(
+        'filename' => $filename,
+        'instance' => $instance,
+        'course' => $course,
+        'service' => $service,
+      );
     }
   }
-  // @todo invoke batch process using captured $instances_created
+  // invoke batch API if not from command line
+  if (!empty($instances_created) && !drupal_is_cli()) {
+    _cis_helper_batch_add_service_instances($instances_created);
+  }
+}
+
+/**
+ * Batch process to check for creation script's status.
+ */
+function _cis_helper_batch_add_service_instances($instances_created) {
+  // establish the base for the batch call array
+  $batch = array(
+    'finished' => '_cis_helper_batch_add_service_instances_finished',
+    'title' => t('Creating @course', array('@course' => $instances_created[0]['course']->title)),
+    'init_message' => t('Waiting for job to be picked up..'),
+    'progress_message' => t('Step @current out of @total.'),
+    'error_message' => t('Job has encountered an error.'),
+    'file' => drupal_get_path('module', 'cis_helper') . '/cis_helper.pages.inc',
+  );
+  // default redirect location in case courses isn't requested
+  $redirect = 'cis-quick-setup';
+  // add an operation per service instance requested
+  foreach ($instances_created as $instance) {
+    $filepath = variable_get('cis_job_path', CIS_HELPER_JOB_PATH) . '/' . $instance['filename'];
+    // mooc is the starting point distro for a course so account for that
+    if ($instance['service']->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE) {
+      $redirect = $instance['service']->field_location[LANGUAGE_NONE][0]['url'] . '/' . $instance['course']->field_machine_name[LANGUAGE_NONE][0]['value'];
+      // capture so we can add this last
+      $mooc = array('_cis_helper_batch_add_service_instances_process', array($instance['instance'], $instance['course'], $instance['service'], $instance['filename'], $filepath));
+    }
+    else {
+      $batch['operations'][] = array('_cis_helper_batch_add_service_instances_process', array($instance['instance'], $instance['course'], $instance['service'], $instance['filename'], $filepath));
+    }
+  }
+  // move course to the last service created if multiple invoked
+  // this makes the eventual redirect more logical
+  if (isset($mooc)) {
+    $batch['operations'][] = $mooc;
+  }
+  batch_set($batch);
+  batch_process($redirect);
+}
+
+/**
+ * Batch Operation Callback to test if the step the job is running.
+ */
+function _cis_helper_batch_add_service_instances_process($service_instance, $course, $service, $filename, $filepath, &$context) {
+  if (!isset($context['sandbox']['progress'])) {
+    $context['sandbox']['progress'] = 0;
+    $context['sandbox']['max'] = 6;
+  }
+  // see if the count down timer is here
+  if (isset($context['sandbox']['start_timer'])) {
+    $context['sandbox']['timer'] = $context['sandbox']['start_timer'] - time();
+  }
+  // look for the file, if the filename exists, it hasn't started yet
+  // we continue to maintain the waiting message
+  if (file_exists($filepath)) {
+    $context['message'] = t('Waiting for server to start the job.');
+  }
+  else {
+    // when the filename no longer exists, this means that it's been picked up
+    if (file_exists($filepath . '.progress')) {
+      $step = file_get_contents($filepath . '.progress');
+      // start the timer at 7 minutes as they take about that long
+      if (!isset($context['sandbox']['start_timer'])) {
+        $context['sandbox']['start_timer'] = strtotime('+7 minutes', time());
+      }
+      $context['sandbox']['progress'] = $step;
+      switch ($step) {
+        case 1:
+          // scipt started
+          $context['message'] = t('Script picked up, starting error checking..');
+        break;
+        case 2:
+          // right before drush si
+          $context['message'] = t('Error check complete, Installing `@service` for `@course`', array('@service' => $service->title, '@course' => $course->title));
+        break;
+        case 3:
+          // right after drush si
+          $context['message'] = t('`@service` Installation complete! Verifying install..', array('@service' => $service->title, '@course' => $course->title));
+        break;
+        case 4:
+          // after si cleanup, before drush commands
+          $context['message'] = t('Install verification complete! Integrating with university systems and activating new site.');
+        break;
+        case 5:
+          // after drush commands
+          $context['message'] = t('Integration complete! Doing minor clean up and emailing!');
+        break;
+        case 6:
+          // done
+          if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE) {
+            $context['message'] = t('`@service` created successfully! We are redirecting you to `@course` now!', array('@service' => $service->title, '@course' => $course->title));
+          }
+          else {
+            $context['message'] = t('`@service` created successfully!', array('@service' => $service->title));
+          }
+        break;
+      }
+      // don't add time to wait for last step
+      if ($step != 6) {
+        if ($context['sandbox']['timer'] > 0) {
+          $time_msg = date('i:s', $context['sandbox']['timer']);
+        }
+        else {
+          $time_msg = t('Very soon..');
+        }
+        $context['message'] .= ' ' . t('Estimated time remaining: @time', array('@time' => $time_msg));
+      }
+    }
+  }
+  // Inform the batch engine that we are not finished,
+  // and provide an estimation of the completion level we reached.
+  if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+  }
+}
+
+/**
+ * Batch 'finished' callback.
+ */
+function _cis_helper_batch_add_service_instances_finished($success, $results, $operations) {
+  if ($success) {
+    // @todo potentially redirect them to the site
+  }
+  else {
+    // An error occurred.
+    // $operations contains the operations that remained unprocessed.
+    $error_operation = reset($operations);
+    $message = t('An error occurred while processing %error_operation with arguments: @arguments', array('%error_operation' => $error_operation[0], '@arguments' => print_r($error_operation[1], TRUE)));
+    drupal_set_message($message, 'error');
+  }
 }
