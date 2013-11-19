@@ -50,7 +50,7 @@ function cis_lti_lti_tool_provider_launch_alter(&$launch_info, $account) {
       $location .= '/' . $course->field_machine_name[LANGUAGE_NONE][0]['value'];
       // account for different types of services
       switch ($service->field_machine_name[LANGUAGE_NONE][0]['value']) {
-        // @todo work through launch location details on angel's end
+        // @todo work through launch location details in LMS
         // currently course is the only specific case and has priority in naming
         case CIS_HELPER_COURSE_SERVICE:
           drupal_goto($location);
