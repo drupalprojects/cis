@@ -927,13 +927,13 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
       $step = file_get_contents($filepath . '.progress');
       // start the timer at 7 minutes as they take about that long
       if (!isset($context['sandbox']['start_timer'])) {
-        $context['sandbox']['start_timer'] = strtotime('+7 minutes', time());
+        $context['sandbox']['start_timer'] = strtotime('+7 minutes 10 seconds', time());
       }
-      $context['sandbox']['progress'] = $step;
       switch ($step) {
         case 1:
           // scipt started
           $context['message'] = t('Script picked up, starting error checking..');
+          $context['sandbox']['prev_timer'] = REQUEST_TIME;
         break;
         case 2:
           // right before drush si
@@ -946,6 +946,12 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
         case 4:
           // after si cleanup, before drush commands
           $context['message'] = t('Install verification complete! Integrating with university systems and activating new site.');
+          // this is only true the first time step 4 is noticed
+          if ($step != $context['sandbox']['progress']) {
+            // we've seen the overall script take about 7.5 minutes to run
+            // this is saying it takes about 5.5 minutes to run the clean up and integration
+            $context['sandbox']['start_timer'] = strtotime('+5 minutes 10 seconds', time());
+          }
         break;
         case 5:
           // after drush commands
@@ -971,6 +977,8 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
         }
         $context['message'] .= ' ' . t('Estimated time remaining: @time', array('@time' => $time_msg));
       }
+      // switch progress to this step
+      $context['sandbox']['progress'] = $step;
     }
   }
   // Inform the batch engine that we are not finished,
@@ -984,10 +992,7 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
  * Batch 'finished' callback.
  */
 function _cis_helper_batch_add_service_instances_finished($success, $results, $operations) {
-  if ($success) {
-    // @todo potentially redirect them to the site
-  }
-  else {
+  if (!$success) {
     // An error occurred.
     // $operations contains the operations that remained unprocessed.
     $error_operation = reset($operations);
