@@ -584,10 +584,8 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   // only apply default content import for course based service
   if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE && !empty($service_instance->field_service_data[LANGUAGE_NONE][0]['value'])) {
     // allow for on creation population of material
-    $content .= 'drush feeds-import --verbose feeds_node_helper_book_import --file=' . $service_instance->field_service_data[LANGUAGE_NONE][0]['value'] . "\n";
+    $content .= 'drush feeds-import feeds_node_helper_book_import --file=' . $service_instance->field_service_data[LANGUAGE_NONE][0]['value'] . "\n";
   }
-  // write drush commands to flush all caches
-  $content .= 'drush cc all' . "\n";
   // run the cron as a final clean up mechanism
   $content .= 'drush cron' . "\n";
   // run ecl to help seed caches for all entities
