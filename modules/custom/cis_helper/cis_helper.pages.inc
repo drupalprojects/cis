@@ -910,7 +910,7 @@ function _cis_helper_batch_add_service_instances($instances_created) {
 function _cis_helper_batch_add_service_instances_process($service_instance, $course, $service, $filename, $filepath, &$context) {
   if (!isset($context['sandbox']['progress'])) {
     $context['sandbox']['progress'] = 0;
-    $context['sandbox']['max'] = 6;
+    $context['sandbox']['max'] = 430;
   }
   // see if the count down timer is here
   if (isset($context['sandbox']['start_timer'])) {
@@ -928,12 +928,12 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
       // start the timer at 7 minutes as they take about that long
       if (!isset($context['sandbox']['start_timer'])) {
         $context['sandbox']['start_timer'] = strtotime('+7 minutes 10 seconds', time());
+        $context['sandbox']['timer'] = $context['sandbox']['start_timer'] - time();
       }
       switch ($step) {
         case 1:
           // scipt started
           $context['message'] = t('Script picked up, starting error checking..');
-          $context['sandbox']['prev_timer'] = REQUEST_TIME;
         break;
         case 2:
           // right before drush si
@@ -947,10 +947,11 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
           // after si cleanup, before drush commands
           $context['message'] = t('Install verification complete! Integrating with university systems and activating new site.');
           // this is only true the first time step 4 is noticed
-          if ($step != $context['sandbox']['progress']) {
+          if ($step != $context['sandbox']['step']) {
             // we've seen the overall script take about 7.5 minutes to run
             // this is saying it takes about 5.5 minutes to run the clean up and integration
             $context['sandbox']['start_timer'] = strtotime('+5 minutes 10 seconds', time());
+            $context['sandbox']['progress'] = 120;
           }
         break;
         case 5:
@@ -965,10 +966,16 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
           else {
             $context['message'] = t('`@service` created successfully!', array('@service' => $service->title));
           }
+          $context['sandbox']['progress'] = $context['sandbox']['max'];
         break;
       }
       // don't add time to wait for last step
       if ($step != 6) {
+        // make sure that start timer has actually started to set timer
+        if (isset($context['sandbox']['start_timer'])) {
+          $context['sandbox']['progress'] = $context['sandbox']['max'] - ((int)(date('i', $context['sandbox']['timer']) * 60) + (int)date('s', $context['sandbox']['timer']));
+				}
+        // make sure we don't go below 0
         if ($context['sandbox']['timer'] > 0) {
           $time_msg = date('i:s', $context['sandbox']['timer']);
         }
@@ -978,9 +985,13 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
         $context['message'] .= ' ' . t('Estimated time remaining: @time', array('@time' => $time_msg));
       }
       // switch progress to this step
-      $context['sandbox']['progress'] = $step;
+      $context['sandbox']['step'] = $step;
     }
   }
+	// account for timer running down before it's actually done
+	if ($context['sandbox']['progress'] == $context['sandbox']['max'] && $step != 6) {
+		$context['sandbox']['progress'] = $context['sandbox']['max'] - 1;
+	}
   // Inform the batch engine that we are not finished,
   // and provide an estimation of the completion level we reached.
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
