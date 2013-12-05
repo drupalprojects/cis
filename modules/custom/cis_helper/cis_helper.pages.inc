@@ -16,6 +16,9 @@ function cis_helper_quick_setup_access_id_page($form, $form_state) {
       'context_label' => $access_string,
       'user_id' => $GLOBALS['user']->name,
       'lis_person_contact_email_primary' => $GLOBALS['user']->mail,
+      'lis_person_name_given' => $GLOBALS['user']->field_first_name['und'][0]['value'],
+      'lis_person_name_family' => $GLOBALS['user']->field_last_name['und'][0]['value'],
+      'roles' => 'Instructor',
     );
     // convert to fake LTI launch info since page can handle it
     $options = array(
@@ -874,7 +877,7 @@ function _cis_helper_batch_add_service_instances($instances_created) {
   // establish the base for the batch call array
   $batch = array(
     'finished' => '_cis_helper_batch_add_service_instances_finished',
-    'title' => t('Creating @course', array('@course' => $instances_created[0]['course']->title)),
+    'title' => t('Creating @course', array('@course' => $instances_created[CIS_HELPER_COURSE_SERVICE]['course']->title)),
     'init_message' => t('Waiting for job to be picked up..'),
     'progress_message' => t('Step @current out of @total.'),
     'error_message' => t('Job has encountered an error.'),
@@ -910,7 +913,7 @@ function _cis_helper_batch_add_service_instances($instances_created) {
 function _cis_helper_batch_add_service_instances_process($service_instance, $course, $service, $filename, $filepath, &$context) {
   if (!isset($context['sandbox']['progress'])) {
     $context['sandbox']['progress'] = 0;
-    $context['sandbox']['max'] = 430;
+    $context['sandbox']['max'] = 405;
   }
   // see if the count down timer is here
   if (isset($context['sandbox']['start_timer'])) {
@@ -925,9 +928,9 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
     // when the filename no longer exists, this means that it's been picked up
     if (file_exists($filepath . '.progress')) {
       $step = file_get_contents($filepath . '.progress');
-      // start the timer at 7 minutes as they take about that long
+      // start the timer at 6.75 minutes as they take about that long
       if (!isset($context['sandbox']['start_timer'])) {
-        $context['sandbox']['start_timer'] = strtotime('+7 minutes 10 seconds', time());
+        $context['sandbox']['start_timer'] = strtotime('+6 minutes 45 seconds', time());
         $context['sandbox']['timer'] = $context['sandbox']['start_timer'] - time();
       }
       switch ($step) {
@@ -950,7 +953,7 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
           if ($step != $context['sandbox']['step']) {
             // we've seen the overall script take about 7.5 minutes to run
             // this is saying it takes about 5.5 minutes to run the clean up and integration
-            $context['sandbox']['start_timer'] = strtotime('+5 minutes 10 seconds', time());
+            $context['sandbox']['start_timer'] = strtotime('+4 minutes 45 seconds', time());
             $context['sandbox']['progress'] = 120;
           }
         break;
@@ -992,6 +995,13 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
 	if ($context['sandbox']['progress'] == $context['sandbox']['max'] && $step != 6) {
 		$context['sandbox']['progress'] = $context['sandbox']['max'] - 1;
 	}
+  // account for ability for timer to be running but progress file go away
+  // if this happens at the exact right moment, the job is finished
+  // but will never actually show via the UI that this has happened.
+  if (file_exists($filepath . '.processed') && !file_exists($filepath . '.progress')) {
+    $context['sandbox']['progress'] = $context['sandbox']['max'];
+    $context['finished'] = 1;
+  }
   // Inform the batch engine that we are not finished,
   // and provide an estimation of the completion level we reached.
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
@@ -1009,5 +1019,10 @@ function _cis_helper_batch_add_service_instances_finished($success, $results, $o
     $error_operation = reset($operations);
     $message = t('An error occurred while processing %error_operation with arguments: @arguments', array('%error_operation' => $error_operation[0], '@arguments' => print_r($error_operation[1], TRUE)));
     drupal_set_message($message, 'error');
+  }
+  else {
+    // prevent message from printing as this should now be redirecting if it
+    // successfully created something
+    drupal_get_messages();
   }
 }
