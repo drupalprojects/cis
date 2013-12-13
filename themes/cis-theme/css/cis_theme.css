@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea {
-  background-color: #373b44;
+  background-color: #d1d1d1;
   border: 0px;
   -webkit-box-shadow:none;
   box-shadow: none;
@@ -146,8 +146,8 @@ body.page-batch div.message {
 .unit-color {
   font-weight:bold;
 }
-.unit-color-border li.active, 
-.unit-color-border li.active-trail, 
+.unit-color-border li.active,
+.unit-color-border li.active-trail,
 .unit-color-border{
   border-color: #1a538f;
 }
@@ -502,7 +502,7 @@ html.js .courses-overview-filters fieldset.collapse-processed .fieldset-legend {
 
 /* faculty display / list */
 .faculty-display {
-  
+
 }
 
 .faculty-display-row {
@@ -994,7 +994,7 @@ div.course_author_view_profile {
   font-size:.9em;
   font-family: 'Open Sans', sans-serif;
   font-weight:bold;
-  
+
 }
 
 .programs_wrapper .program_body {

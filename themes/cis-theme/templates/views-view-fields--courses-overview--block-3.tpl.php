@@ -24,7 +24,7 @@
  * @ingroup views_templates
  */
 ?>
-<a href="<?php print base_path() . 'node/' . $row->nid; ?>">
+<a href="<?php print base_path() . 'node/' . (isset($row->nid) ? $row->nid : ''); ?>">
 <?php foreach ($fields as $id => $field): ?>
   <?php if ($id == 'field_course_title' || $id == 'field_banner') : ?>
     <div class="course-block-<?php print $id;?>-wrapper">
@@ -35,7 +35,7 @@
 
   <?php print $field->wrapper_prefix; ?>
     <?php print $field->label_html; ?>
-    <?php 
+    <?php
       $fieldcontent = $field->content;
       // try and split course title into 2 values
       if ($id == 'title') {
