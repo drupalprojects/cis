@@ -511,10 +511,7 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE) {
     // revert the mooc ux defaults, they struggle to automatically
     $options['fr'][] = 'mooc_ux_defaults';
-    // enable activation codes if that's been requested as access
-    if ($course->field_method_of_access[LANGUAGE_NONE][0]['value'] == 'code') {
-      $options['en'][] = 'cis_service_activation_codes';
-    }
+    $options['fr'][] = 'mooc_cis_ux';
   }
   // always revert the section an additional time
   // this is due to other things settings permissions
