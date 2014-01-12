@@ -5,6 +5,113 @@
  */
 
 /**
+ * Callback for setting up an offering for existing courses.
+ */
+function cis_helper_add_offering_page($form, $form_state) {
+  // allow for access string prepopulation to auto submit
+  $course = check_plain(arg(1));
+  $semester = check_plain(arg(2));
+  $year = check_plain(arg(3));
+  $access_string = check_plain(arg(4));
+  // ensure all 4 values are set if we're going to auto-populate
+  if (!empty($course) && !empty($semester) && !empty($year) && !empty($access_string)) {
+    $data = array(
+      'context_id' => $access_string,
+      'context_label' => $access_string,
+      'user_id' => $GLOBALS['user']->name,
+      'lis_person_contact_email_primary' => $GLOBALS['user']->mail,
+      'lis_person_name_given' => $GLOBALS['user']->field_first_name['und'][0]['value'],
+      'lis_person_name_family' => $GLOBALS['user']->field_last_name['und'][0]['value'],
+      'roles' => 'Instructor',
+      'course' => array(
+        'machine_name' => $course,
+        'name' => $course,
+      ),
+      'section' => array(
+        'semester' => $semester,
+        'year' => $year,
+      ),
+    );
+    // convert to fake LTI launch info since page can handle it
+    $options = array(
+      'query' => array(
+        'lti_launch' => drupal_json_encode($data),
+      ),
+    );
+    // fake an LTI launch to setup the page faster
+    drupal_goto('cis-quick-setup', $options);
+  }
+  // select the course desired
+  $form['courses'] = array(
+    '#required' => '1',
+    '#description' => t('The courses to establish the offering for'),
+    '#type' => 'select',
+    '#options' => _cis_helper_assemble_entity_list('node', 'course', 'field_machine_name', 'title', array('field_display_in_course_list' => 1)),
+    '#title' => t('Course'),
+    '#default_value' => $course,
+  );
+  // list of available semesters for this offering
+  $field = field_info_field('field_semester');
+  $form['semester'] = array(
+    '#required' => '1',
+    '#multiple' => '0',
+    '#key_type_toggled' => '1',
+    '#type' => 'select',
+    '#options' => $field['settings']['allowed_values'],
+    '#multiple_toggle' => '1',
+    '#title' => t('Semester'),
+    '#default_value' => $semester,
+  );
+  // academic year of this offering
+  $field = field_info_field('field_year');
+  $form['year'] = array(
+    '#required' => '1',
+    '#multiple' => '0',
+    '#key_type_toggled' => '1',
+    '#type' => 'select',
+    '#options' => $field['settings']['allowed_values'],
+    '#multiple_toggle' => '1',
+    '#title' => t('Year'),
+    '#default_value' => $year,
+  );
+  // access string that can be used for LMS synchronization
+  $form['access_string'] = array(
+    '#required' => '1',
+    '#description' => t('The access string to bind to, this is the primary key for this course section.'),
+    '#type' => 'textfield',
+    '#title' => t('Access string'),
+    '#default_value' => $access_string,
+  );
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Add offering'),
+  );
+  return $form;
+}
+
+/**
+ * Submit handler for cis_helper_add_offering_page.
+ */
+function cis_helper_add_offering_page_submit($form, $form_state) {
+  // context_id is actually access_string
+  $access_string = check_plain($form_state['values']['access_string']);
+  $data = array(
+    'context_id' => $access_string,
+    'context_label' => $access_string,
+    'user_id' => $GLOBALS['user']->name,
+    'lis_person_contact_email_primary' => $GLOBALS['user']->mail,
+  );
+  // convert to fake LTI launch info since page can handle it
+  $options = array(
+    'query' => array(
+      'lti_launch' => drupal_json_encode($data),
+    ),
+  );
+  // fake an LTI launch to setup the page faster
+  drupal_goto('cis-quick-setup', $options);
+}
+
+/**
  * Callback for setting up course by knowing access string.
  */
 function cis_helper_quick_setup_access_id_page($form, $form_state) {

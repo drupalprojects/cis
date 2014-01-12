@@ -254,6 +254,17 @@ function cis_helper_menu() {
     'file' => 'cis_helper.pages.inc',
     'file path' => $path,
   );
+  // add offering form
+  $items['cis-add-offering'] = array(
+    'title' => 'Add course offering',
+    'description' => 'Setup an offering / semester for an existing course',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('cis_helper_add_offering_page'),
+    'access arguments' => array('access cis setup form'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'cis_helper.pages.inc',
+    'file path' => $path,
+  );
   // quick setup form for planning lots of sections at once
   $items['cis/offerings/planning'] = array(
     'title' => 'Planning',
