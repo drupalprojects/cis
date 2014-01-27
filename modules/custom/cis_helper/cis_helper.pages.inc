@@ -985,9 +985,9 @@ function _cis_helper_batch_add_service_instances($instances_created) {
   $batch = array(
     'finished' => '_cis_helper_batch_add_service_instances_finished',
     'title' => t('Creating @course', array('@course' => $instances_created[CIS_HELPER_COURSE_SERVICE]['course']->title)),
-    'init_message' => t('Waiting for job to be picked up..'),
+    'init_message' => t('Waiting for server to start site request..'),
     'progress_message' => t('Step @current out of @total.'),
-    'error_message' => t('Job has encountered an error.'),
+    'error_message' => t('Request has encountered an error.'),
     'file' => drupal_get_path('module', 'cis_helper') . '/cis_helper.pages.inc',
   );
   // default redirect location in case courses isn't requested
@@ -1020,7 +1020,7 @@ function _cis_helper_batch_add_service_instances($instances_created) {
 function _cis_helper_batch_add_service_instances_process($service_instance, $course, $service, $filename, $filepath, &$context) {
   if (!isset($context['sandbox']['progress'])) {
     $context['sandbox']['progress'] = 0;
-    $context['sandbox']['max'] = 405;
+    $context['sandbox']['max'] = 180;
   }
   // see if the count down timer is here
   if (isset($context['sandbox']['start_timer'])) {
@@ -1029,25 +1029,25 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
   // look for the file, if the filename exists, it hasn't started yet
   // we continue to maintain the waiting message
   if (file_exists($filepath)) {
-    $context['message'] = t('Waiting for server to start the job.');
+    $context['message'] = t('Waiting for server to start site request..');
   }
   else {
     // when the filename no longer exists, this means that it's been picked up
     if (file_exists($filepath . '.progress')) {
       $step = file_get_contents($filepath . '.progress');
-      // start the timer at 6.75 minutes as they take about that long
+      // start the timer at 3 minutes
       if (!isset($context['sandbox']['start_timer'])) {
-        $context['sandbox']['start_timer'] = strtotime('+6 minutes 45 seconds', time());
+        $context['sandbox']['start_timer'] = strtotime('+3 minutes', time());
         $context['sandbox']['timer'] = $context['sandbox']['start_timer'] - time();
       }
       switch ($step) {
         case 1:
           // scipt started
-          $context['message'] = t('Script picked up, starting error checking..');
+          $context['message'] = t('Starting error checking..');
         break;
         case 2:
           // right before drush si
-          $context['message'] = t('Error check complete, Installing `@service` for `@course`', array('@service' => $service->title, '@course' => $course->title));
+          $context['message'] = t('Installing `@service` for `@course`', array('@service' => $service->title, '@course' => $course->title));
         break;
         case 3:
           // right after drush si
@@ -1055,13 +1055,12 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
         break;
         case 4:
           // after si cleanup, before drush commands
-          $context['message'] = t('Install verification complete! Integrating with university systems and activating new site.');
+          $context['message'] = t('Install verification complete! Integration with ELMSLN systems and optimizing your new site.');
           // this is only true the first time step 4 is noticed
           if ($step != $context['sandbox']['step']) {
-            // we've seen the overall script take about 7.5 minutes to run
-            // this is saying it takes about 5.5 minutes to run the clean up and integration
-            $context['sandbox']['start_timer'] = strtotime('+4 minutes 45 seconds', time());
-            $context['sandbox']['progress'] = 120;
+            // we've seen the overall script take about 3 minutes
+            $context['sandbox']['start_timer'] = strtotime('+2 minutes', time());
+            $context['sandbox']['progress'] = 60;
           }
         break;
         case 5:
