@@ -518,23 +518,6 @@ function cis_helper_get_data_values($column) {
  */
 function _cis_helper_add_service_instance($course, $service, $service_instance, $college, $account) {
   $options = array();
-  // course / mooc is kind of an edge-case in the network
-  if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE) {
-    // revert the mooc ux defaults, they struggle to automatically
-    $options['fr'][] = 'mooc_ux_defaults';
-    $options['fr'][] = 'mooc_cis_ux';
-  }
-  // always revert the section an additional time
-  // this is due to other things settings permissions
-  $options['fr'][] = 'cis_section';
-  // vset the uuid from the service_instance entity into the remote site
-  $options['vset'][] = 'cis_service_instance_uuid ' . $service_instance->uuid;
-  // this can be modified via the alter below if the admin really wants
-  // disable site auto-cron run so admin can set policy globally
-  $options['vset'][] = 'cron_safe_threshold 0';
-  // disable site update nofity by default so we don't get spammed
-  // this allows having update status on without constantly emailing
-  $options['vdel'][] = 'update_notify_emails';
   // allow for advanced drush alterations via code
   drupal_alter('cis_service_instance_options', $options, $course, $service);
   // load optional cis_helper defined values
