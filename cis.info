@@ -16,6 +16,7 @@ dependencies[] = advagg_bundler
 dependencies[] = cis_connector
 dependencies[] = cis_helper
 dependencies[] = cis_lti
+dependencies[] = cis_si_cleanup
 ; Chaos tool suite
 dependencies[] = ctools
 ; Charting
