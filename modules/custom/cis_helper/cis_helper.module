@@ -571,8 +571,24 @@ function _cis_helper_add_service_instance($course, $service, $service_instance, 
   foreach ($options as $op => $commands) {
     // write each command to the file for this operation
     $tmp = '';
-    foreach ($commands as $command) {
-      $tmp .= 'drush ' . $op . ' ' . $command . "\n";
+    // account for drush commands that we can smash into 1 line for performance
+    switch ($op) {
+      case 'en':
+      case 'dis':
+      case 'fr':
+      case 'pm-uninstall':
+        $tmp .= 'drush ' . $op . ' ' . implode(' ', $commands) . "\n";
+      break;
+      case 'urol':
+        foreach ($commands as $command_role => $command_users) {
+          $tmp .= 'drush urol ' . $command_role . ' ' . implode(',', $command_users) . "\n";
+        }
+      break;
+      default:
+        foreach ($commands as $command) {
+          $tmp .= 'drush ' . $op . ' ' . $command . "\n";
+        }
+      break;
     }
     // hold off on fr to after all other operations
     if ($op == 'fr') {
