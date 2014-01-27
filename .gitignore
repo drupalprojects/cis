@@ -7,7 +7,9 @@ sites/*/private
 
 # Ignore stupid mac files
 *.DS_Store
+.DS_Store
 
 # Ignore stupid dreamweaver files
 *dwsync.xml
+dwsync.xml
 libraries/
