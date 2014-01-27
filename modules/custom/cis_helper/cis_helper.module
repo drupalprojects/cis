@@ -973,4 +973,5 @@ function _cis_helper_assemble_entity_list($entity_type, $bundle, $id_field, $tit
 function cis_helper_httprl_spider_other_paths_alter(&$paths) {
   $paths[] = 'courses';
   $paths[] = 'programs';
+  $paths[] = 'faculty';
 }
