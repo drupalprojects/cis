@@ -19,7 +19,7 @@ projects[imageinfo_cache][subdir] = "contrib"
 projects[subpathauto][version] = "1.3"
 projects[subpathauto][subdir] = "contrib"
 
-projects[ctools][version] = "1.3"
+projects[ctools][version] = "1.4"
 projects[ctools][subdir] = "contrib"
 
 projects[google_chart_tools][version] = "1.x-dev"
@@ -28,7 +28,7 @@ projects[google_chart_tools][subdir] = "contrib"
 projects[field_redirection][version] = "2.5"
 projects[field_redirection][subdir] = "contrib"
 
-projects[context][version] = "3.0-rc1"
+projects[context][version] = "3.2"
 projects[context][subdir] = "contrib"
 
 projects[imagefield_focus][version] = "1.0"
@@ -67,7 +67,7 @@ projects[features_extra][subdir] = "contrib"
 projects[email][version] = "1.2"
 projects[email][subdir] = "contrib"
 
-projects[entityreference][version] = "1.0"
+projects[entityreference][version] = "1.1"
 projects[entityreference][subdir] = "contrib"
 
 projects[entityreference_prepopulate][version] = "1.3"
@@ -100,7 +100,7 @@ projects[simplehtmldom][subdir] = "contrib"
 projects[smartcrop][version] = "1.x-dev"
 projects[smartcrop][subdir] = "contrib"
 
-projects[typogrify][version] = "1.0-rc7"
+projects[typogrify][version] = "1.0-rc8"
 projects[typogrify][subdir] = "contrib"
 
 projects[video_filter][version] = "3.1"
@@ -136,7 +136,7 @@ projects[dhtml_menu][subdir] = "contrib"
 projects[diff][version] = "3.2"
 projects[diff][subdir] = "contrib"
 
-projects[entity][version] = "1.2"
+projects[entity][version] = "1.5"
 projects[entity][subdir] = "contrib"
 
 projects[field_collection_table][version] = "1.x-dev"
@@ -154,7 +154,7 @@ projects[jquery_colorpicker][subdir] = "contrib"
 projects[libraries][version] = "2.1"
 projects[libraries][subdir] = "contrib"
 
-projects[masquerade][version] = "1.0-rc5"
+projects[masquerade][version] = "1.0-rc7"
 projects[masquerade][subdir] = "contrib"
 
 projects[menu_attributes][version] = "1.0-rc2"
@@ -282,6 +282,9 @@ projects[replicate_ui][subdir] = "contrib"
 
 projects[cis_connector][version] = "1.x-dev"
 projects[cis_connector][subdir] = "contrib"
+
+projects[textbook][version] = "4.0"
+projects[textbook][subdir] = "contrib"
 
 ; +++++ Themes +++++
 
