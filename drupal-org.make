@@ -220,9 +220,6 @@ projects[imageinfo_cache][subdir] = "contrib"
 projects[seckit][version] = "1.8"
 projects[seckit][subdir] = "contrib"
 
-projects[shadowbox][version] = "4.0-rc1"
-projects[shadowbox][subdir] = "contrib"
-
 projects[uuid][version] = "1.0-alpha5"
 projects[uuid][subdir] = "contrib"
 
@@ -358,13 +355,6 @@ libraries[flexslider][destination] = "libraries"
 libraries[flexslider][download][type] = "get"
 libraries[flexslider][download][url] = "https://github.com/woothemes/FlexSlider/archive/flexslider1.zip"
 
-; jQuery Masonry
-libraries[masonry][directory_name] = "masonry"
-libraries[masonry][type] = "library"
-libraries[masonry][destination] = "libraries"
-libraries[masonry][download][type] = "get"
-libraries[masonry][download][url] = "http://masonry.desandro.com/jquery.masonry.min.js"
-
 ; jQuery Joyride
 libraries[joyride][directory_name] = "joyride"
 libraries[joyride][type] = "library"
@@ -405,5 +395,3 @@ libraries[colorpicker][download][url] = "http://www.eyecon.ro/colorpicker/colorp
 projects[apc][patch][] = "http://drupal.org/files/1567440_apc_drush_enable.patch"
 
 projects[apc][patch][] = "http://drupal.org/files/apc_drush_flush.1565716.70.patch"
-
-projects[lazyloader][patch][] = "http://drupal.org/files/lazyloader_fix_ajax.patch"
