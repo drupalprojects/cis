@@ -10,7 +10,7 @@ projects[admin_menu][subdir] = "contrib"
 projects[module_filter][version] = "2.0-alpha1"
 projects[module_filter][subdir] = "contrib"
 
-projects[ctools][version] = "1.3"
+projects[ctools][version] = "1.4"
 projects[ctools][subdir] = "contrib"
 
 projects[google_chart_tools][version] = "1.x-dev"
@@ -121,7 +121,7 @@ projects[breakpoints][subdir] = "contrib"
 projects[dhtml_menu][version] = "1.0-beta1"
 projects[dhtml_menu][subdir] = "contrib"
 
-projects[entity][version] = "1.2"
+projects[entity][version] = "1.5"
 projects[entity][subdir] = "contrib"
 
 projects[field_collection_table][version] = "1.x-dev"
@@ -142,7 +142,7 @@ projects[jquery_colorpicker][subdir] = "contrib"
 projects[libraries][version] = "2.1"
 projects[libraries][subdir] = "contrib"
 
-projects[masquerade][version] = "1.0-rc5"
+projects[masquerade][version] = "1.0-rc7"
 projects[masquerade][subdir] = "contrib"
 
 projects[menu_attributes][version] = "1.0-rc2"
@@ -314,20 +314,11 @@ projects[corolla][type] = "theme"
 projects[corolla][version] = "3.0"
 projects[corolla][subdir] = "contrib"
 
-; fontfolio
-projects[fontfolio][type] = "theme"
-projects[fontfolio][version] = "2.3"
-projects[fontfolio][subdir] = "contrib"
 
 ; respond
 projects[respond][type] = "theme"
 projects[respond][version] = "3.0-beta1"
 projects[respond][subdir] = "contrib"
-
-; skeletontheme
-projects[skeletontheme][type] = "theme"
-projects[skeletontheme][version] = "1.2"
-projects[skeletontheme][subdir] = "contrib"
 
 ; tao
 projects[tao][type] = "theme"
