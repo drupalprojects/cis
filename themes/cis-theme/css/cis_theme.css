@@ -137,7 +137,8 @@ body.page-batch div.message {
 }
 
 .views-exposed-widgets #edit-field-display-name-value-wrapper {
-  border-bottom:solid 1em #ffffff;
+  border-bottom:solid .5em #ffffff;
+  padding:.5em;
 }
 .views-exposed-widgets #edit-field-display-name-value-wrapper input {
   margin:0em;
@@ -613,6 +614,10 @@ nav.top-bar .name h1 a {
 nav.top-bar .top-bar-section.user-menu ul {
   background-color:#383a43;
 }
+.top-bar-section ul li.leaf label{
+  padding: 0 15px;
+  line-height: 45px;
+}
 
 /* This controls the background color of the top user links */
 .top-bar-section li a:not(.button) {
@@ -635,7 +640,11 @@ nav.top-bar .name h1 {
 nav.top-bar section.main-menu {
   margin-top: 2.1875em;
 }
-
+.top-bar-section .divider, .top-bar-section [role="separator"] {
+  clear: none;
+  width:1px;
+  border: none;
+}
 nav.top-bar section.main-menu ul li span.separator {
   display: block;
   height: 4.375em;
@@ -1109,6 +1118,9 @@ div.course_author_view_profile {
   h1#page-title {
     text-align:center;
     line-height:1em;
+  }
+  .top-bar-section {
+    width:100%;
   }
 }
 @media only screen and (max-width: 680px) {
