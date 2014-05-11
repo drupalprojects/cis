@@ -130,7 +130,8 @@ body.page-batch div.message {
 }
 
 .views-exposed-widgets #edit-title-wrapper {
-  border-bottom:solid 1em #ffffff;
+  border-bottom: solid .5em #ffffff;
+  padding: .5em;
 }
 .views-exposed-widgets #edit-title-wrapper input {
   margin:0em;
@@ -305,7 +306,9 @@ html.js input.form-autocomplete {
 }
 
 .about-our-people li.views-fluid-grid-item img{
-  width:100%;
+  width: 17em;
+  height: 14.5em;
+  border: .4em solid #334e8f;
 }
 
 .about_display_name a{
@@ -364,6 +367,12 @@ html.js input.form-autocomplete {
 .courses-overview-filters .views-exposed-widget {
   float:none;
 }
+.courses-overview-filters .views-reset-button {
+  margin: 1em 2em;
+}
+.courses-overview-filters .views-exposed-widget button {
+  margin:0;
+}
 
 .courses-overview-filters .views-submit-button.views-exposed-widget {
   float:none;
@@ -381,15 +390,18 @@ html.js input.form-autocomplete {
 html.js .courses-overview-filters fieldset.collapse-processed.collapsed .fieldset-legend {
   background-image: url(../images/arrow8.png);
   background-repeat:none;
-  background-position:0px 50%;
+  background-position:.75em 50%;
 }
 
 html.js .courses-overview-filters fieldset.collapse-processed .fieldset-legend {
   background-image: url(../images/x2.png);
   background-repeat:none;
-  background-position:0px 50%;
+  background-position:.9em 50%;
 }
 
+html.js .courses-overview-filters fieldset.collapse-processed div.fieldset-wrapper {
+  margin:1em 2.5em;
+}
 .courses-overview-filters fieldset {
   border:none;
   padding:0em;
@@ -406,14 +418,13 @@ html.js .courses-overview-filters fieldset.collapse-processed .fieldset-legend {
   padding:0em;
   margin:0em;
 }
-.courses-overview-filters .fieldset-legend {
-}
+
 .courses-overview-filters a.fieldset-title {
   color:#8f8f90;
   font-weight:lighter;
   font-family: 'Open Sans', sans-serif;
   padding-left:1.5em;
-  margin-left:-1.5em;
+  margin-left:0;
   line-height:2em;
 }
 
@@ -534,12 +545,12 @@ html.js .courses-overview-filters fieldset.collapse-processed .fieldset-legend {
 html.js .faculty-overview-filters fieldset.collapse-processed.collapsed .fieldset-legend {
   background-image: url(../images/arrow8.png);
   background-repeat:none;
-  background-position:0px 50%;
+  background-position:.25em 50%;
 }
 html.js .faculty-overview-filters fieldset.collapse-processed .fieldset-legend {
   background-image: url(../images/x2.png);
   background-repeat:none;
-  background-position:0px 50%;
+  background-position:.25em 50%;
 }
 
 .faculty-overview-filters fieldset {
@@ -554,7 +565,7 @@ html.js .faculty-overview-filters fieldset.collapse-processed .fieldset-legend {
 .faculty-overview-filters a.fieldset-title {
   color:#ffffff;
   padding-left:2em;
-  margin-left:-2em;
+  margin-left:-1em;
 }
 
 
