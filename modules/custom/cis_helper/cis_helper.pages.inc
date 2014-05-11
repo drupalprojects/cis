@@ -50,6 +50,17 @@ function cis_helper_add_offering_page($form, $form_state) {
     '#title' => t('Course'),
     '#default_value' => $course,
   );
+  // academic year of this offering
+  $field = field_info_field('field_campus');
+  $form['campus'] = array(
+    '#required' => '1',
+    '#multiple' => '0',
+    '#key_type_toggled' => '1',
+    '#type' => 'select',
+    '#options' => $field['settings']['allowed_values'],
+    '#multiple_toggle' => '1',
+    '#title' => t('Campus'),
+  );
   // list of available semesters for this offering
   $field = field_info_field('field_semester');
   $form['semester'] = array(
@@ -82,6 +93,10 @@ function cis_helper_add_offering_page($form, $form_state) {
     '#title' => t('Access string'),
     '#default_value' => $access_string,
   );
+  $form['actions']['submit_another'] = array(
+    '#type' => 'submit',
+    '#value' => t('Create and add another'),
+  );
   $form['actions']['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Add offering'),
@@ -93,37 +108,31 @@ function cis_helper_add_offering_page($form, $form_state) {
  * Submit handler for cis_helper_add_offering_page.
  */
 function cis_helper_add_offering_page_submit($form, $form_state) {
-  // context_id is actually access_string
-  $access_string = check_plain($form_state['values']['access_string']);
-  $data = array(
-    'context_title' => check_plain($form_state['values']['courses']),
-    'context_id' => $access_string,
-    'context_label' => $access_string,
-    'user_id' => $GLOBALS['user']->name,
-    'lis_person_contact_email_primary' => $GLOBALS['user']->mail,
-    'lis_person_name_given' => isset($GLOBALS['user']->field_first_name) ? $GLOBALS['user']->field_first_name['und'][0]['value'] : '',
-    'lis_person_name_family' => isset($GLOBALS['user']->field_last_name) ? $GLOBALS['user']->field_last_name['und'][0]['value'] : '',
-    'course' => array(
-      'name' => check_plain($form_state['values']['courses']),
-      'machine_name' => check_plain($form_state['values']['courses']),
-      'title' => check_plain($form_state['values']['courses']),
-    ),
-    'section' => array(
-      'string' => $access_string,
-      'campus' => '',
-      'number' => '',
-      'semester' => check_plain($form_state['values']['semester']),
-      'year' => check_plain($form_state['values']['year']),
-    ),
-  );
-  // convert to fake LTI launch info since page can handle it
-  $options = array(
-    'query' => array(
-      'lti_launch' => drupal_json_encode($data),
-    ),
-  );
-  // fake an LTI launch to setup the page faster
-  drupal_goto('cis-quick-setup', $options);
+  // populate form_state for passing to durpal_form_submit of cis-quick-setup
+  $state['values']['instructor'] = check_plain($GLOBALS['user']->name);
+  $state['values']['semester'] = check_plain($form_state['values']['semester']);
+  $state['values']['year'] = check_plain($form_state['values']['year']);
+  $state['values']['access_string'] = check_plain($form_state['values']['access_string']);
+  $state['values']['course'] = check_plain($form_state['values']['courses']);
+  $state['values']['campus'] = check_plain($form_state['values']['campus']);
+  $state['triggering_element']['#parents'][0] = 'submit';
+
+  // fake submit form
+  drupal_form_submit('cis_helper_quick_setup_page', $state);
+  // if told to just Add
+  if ($form_state['values']['op'] == 'Add offering') {
+    drupal_goto(check_plain($form_state['values']['courses']) . '/offerings');
+  }
+  else {
+    $vars = array(
+      '@string' => $form_state['values']['access_string'],
+      '@course' => $form_state['values']['courses'],
+      '@semester' => $form_state['values']['semester'],
+      '@year' => $form_state['values']['year'],
+      '@campus' => $form_state['values']['campus'],
+      );
+    drupal_set_message(t('Successfully created @course @semester @year @campus offering with access ID @string!', $vars), 'info');
+  }
 }
 
 /**
@@ -536,7 +545,7 @@ function cis_helper_quick_setup_page() {
   $form['details']['instructional_outline'] = array(
     '#type' => 'select',
     '#options' => $options,
-    '#required' => TRUE,
+    '#required' => FALSE,
     '#title' => t('Instructional outline'),
     '#description' => t('This helps in creating a default instructional flow for the course, this just helps provide a starting point.'),
     '#default_value' => drupal_get_path('module', 'cis_helper') . '/instructional_models/' . CIS_HELPER_DEFAULT_CONTENT_OUTLINE,
@@ -569,7 +578,7 @@ function cis_helper_quick_setup_page() {
   }
   $form['details']['services'] = array(
     '#multiple' => TRUE,
-    '#required' => TRUE,
+    '#required' => FALSE,
     '#key_type_toggled' => '1',
     '#description' => t('The service to deploy for this course'),
     '#type' => 'checkboxes',
@@ -693,10 +702,11 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
   $offering = NULL;
   $semester = $form_state['values']['semester'];
   $year = $form_state['values']['year'];
+  $campus = $form_state['values']['campus'];
   $instructional_outline = $form_state['values']['instructional_outline'];
   // check for admin settings
   $xml_manifest_import = FALSE;
-  if (user_access('cis setup admin options') && $form_state['values']['xml_manifest_import'] != '') {
+  if (user_access('cis setup admin options') && $form_state['values']['xml_manifest_import'] != '' && $form_state['values']['xml_manifest_import']['fid'] != 0) {
     // load the file into an object
     $xml_manifest_import = file_load($form_state['values']['xml_manifest_import']);
     // save file
@@ -913,7 +923,7 @@ function cis_helper_quick_setup_page_submit($form, $form_state) {
   $file_check = array('syllabus', 'welcome_letter');
   foreach ($file_check as $file_name) {
     // make sure the file came across
-    if ($form_state['values'][$file_name] != '') {
+    if ($form_state['values'][$file_name] != '' && $form_state['values'][$file_name]['fid'] != 0) {
       // load the file into an object
       $file = file_load($form_state['values'][$file_name]);
       // Change status to permanent so it isn't killed on cron clean up
