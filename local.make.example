@@ -11,6 +11,9 @@ includes[] = "drupal-org-core.make"
 projects[shadowbox][version] = "4.0-rc1"
 projects[shadowbox][subdir] = "contrib"
 
+projects[accessibility][version] = "1.x-dev"
+projects[accessibility][subdir] = "contrib"
+
 ; +++++ Libraries +++++
 
 ; Profiler
