@@ -4,6 +4,9 @@ core = 7.x
 
 ; +++++ Modules +++++
 
+projects[data][version] = "1.0-alpha6"
+projects[data][subdir] = "contrib"
+
 projects[addanother][version] = "2.2"
 projects[addanother][subdir] = "contrib"
 
