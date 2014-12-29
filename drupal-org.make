@@ -37,7 +37,7 @@ projects[replicate][subdir] = "contrib"
 projects[replicate_field_collection][version] = "1.x-dev"
 projects[replicate_field_collection][subdir] = "contrib"
 
-projects[features][version] = "2.0"
+projects[features][version] = "2.2"
 projects[features][subdir] = "contrib"
 
 projects[features_override][version] = "2.0-rc1"
