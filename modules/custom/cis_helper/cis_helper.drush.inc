@@ -127,14 +127,22 @@ function drush_cis_helper_cis_release_kraken() {
     '@total' => count($courses) * count($services),
   );
   drush_print(dt('@count courses will each build @services for @total operations', $vars));
-  if (!drush_confirm(dt('Do you really want to continue?'))) {
-    drush_die('Aborting.. that was close!');
+  if (!drush_confirm(dt('Do you really want to continue!?!?'))) {
+    drush_log('Aborting.. that was close!', 'ok');
   }
   else {
     drush_print(dt('Good luck!'));
     foreach ($courses as $name => $title) {
+      // make a fake section ID
+      $string = '201415SPUP___SING_' . rand(100, 500) . '_' . rand(1, 100);
+      $parts = array(
+        'year' => '2014',
+        'semester' => 'SP',
+        'campus' => NULL,
+        'number' => '1',
+      );
       if (drush_get_option('actually_run')) {
-        drush_cis_helper_create_service_instances($name, $string);
+        drush_cis_helper_create_service_instances($name, $string, $parts);
       }
       else {
         drush_print(dt('Would have run drush_cis_helper_create_service_instances course "@name" with string "@string"', array('@name' => $name, '@string' => $string)));
@@ -146,7 +154,7 @@ function drush_cis_helper_cis_release_kraken() {
 /**
  * Drush command callback for create-service-instances.
  */
-function drush_cis_helper_create_service_instances($machine_name, $string) {
+function drush_cis_helper_create_service_instances($machine_name, $string, $parts = array()) {
   module_load_include('inc', 'cis_helper', 'cis_helper.pages');
   // load all services
   $build_service = drush_get_option('build_service');
@@ -173,7 +181,6 @@ function drush_cis_helper_create_service_instances($machine_name, $string) {
     $tmp = user_load(1);
     $uname = $tmp->name;
   }
-  $parts = array();
   // allow other projects to define custom alterations
   // return should be array w/ year, semester, campus and number (section)
   drupal_alter('cis_string_process', $string, $parts);
