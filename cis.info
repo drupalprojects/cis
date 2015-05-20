@@ -179,7 +179,7 @@ dependencies[] = cis_breakpoints
 dependencies[] = regions_admin_example
 dependencies[] = textbook_editor
 dependencies[] = cis_users
-dependencies[] = cis_roles
+dependencies[] = cis_service_roles
 dependencies[] = cis_ux
 dependencies[] = foundation_access_ux
 
