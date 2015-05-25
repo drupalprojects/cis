@@ -10,6 +10,7 @@ core = "7.x"
 dependencies[] = fastclick
 ; Administration
 dependencies[] = admin_menu
+dependencies[] = admin_menu_dropdown
 dependencies[] = admin_menu_toolbar
 ; Advanced CSS/JS Aggregation
 dependencies[] = advagg
@@ -168,6 +169,7 @@ dependencies[] = views_fluid_grid
 ; Features
 dependencies[] = features
 dependencies[] = cis_data
+dependencies[] = cis_section
 dependencies[] = cis_displays
 dependencies[] = cis_types
 dependencies[] = cis_breakpoints
