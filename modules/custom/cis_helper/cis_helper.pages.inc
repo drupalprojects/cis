@@ -1034,7 +1034,7 @@ function _cis_helper_batch_add_service_instances($instances_created) {
 function _cis_helper_batch_add_service_instances_process($service_instance, $course, $service, $filename, $filepath, &$context) {
   if (!isset($context['sandbox']['progress'])) {
     $context['sandbox']['progress'] = 0;
-    $context['sandbox']['max'] = 180;
+    $context['sandbox']['max'] = 120;
   }
   // see if the count down timer is here
   if (isset($context['sandbox']['start_timer'])) {
@@ -1056,7 +1056,7 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
       }
       // start the timer at 3 minutes
       if (!isset($context['sandbox']['start_timer'])) {
-        $context['sandbox']['start_timer'] = strtotime('+3 minutes', time());
+        $context['sandbox']['start_timer'] = strtotime('+2 minutes', time());
         $context['sandbox']['timer'] = $context['sandbox']['start_timer'] - time();
       }
       switch ($step) {
@@ -1082,13 +1082,7 @@ function _cis_helper_batch_add_service_instances_process($service_instance, $cou
             $context['message'] = t('Directory creation complete! Integrating with ELMSLN system and optimizing your new site.');
           }
           else {
-            $context['message'] = t('Running command: @msg', array('@msg' => $msg));
-          }
-          // this is only true the first time step 5 is noticed
-          if ($step != $context['sandbox']['step']) {
-            // we've seen the overall script take about 3 minutes
-            $context['sandbox']['start_timer'] = strtotime('+3 minutes', time());
-            $context['sandbox']['progress'] = 90;
+            $context['message'] = t('@msg', array('@msg' => $msg));
           }
         break;
         case 6:
