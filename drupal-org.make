@@ -226,8 +226,6 @@ projects[schema][subdir] = "contrib"
 projects[date][version] = "2.8"
 projects[date][subdir] = "contrib"
 ; Entity
-projects[replicate][version] = "1.1"
-projects[replicate][subdir] = "contrib"
 projects[replicate_field_collection][version] = "1.x-dev"
 projects[replicate_field_collection][subdir] = "contrib"
 projects[replicate_ui][version] = "1.x-dev"
