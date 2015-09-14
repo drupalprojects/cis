@@ -53,8 +53,8 @@ function cis_types_field_group_info() {
     'label' => 'Administrative',
     'weight' => '2',
     'children' => array(
-      0 => 'field_course_archive',
-      1 => 'field_cis_ops',
+      0 => 'field_cis_ops',
+      1 => 'field_course_archive',
       2 => 'group_setup',
       3 => 'group_teachers',
     ),
@@ -144,6 +144,7 @@ function cis_types_field_group_info() {
     'children' => array(
       0 => 'field_syllabus',
       1 => 'field_welcome_letter',
+      2 => 'field_syllabus_text_based',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -467,9 +468,9 @@ function cis_types_field_group_info() {
     'label' => 'Setup',
     'weight' => '2',
     'children' => array(
-      0 => 'field_section_number',
-      1 => 'field_campus',
-      2 => 'field_schedule_number',
+      0 => 'field_campus',
+      1 => 'field_schedule_number',
+      2 => 'field_section_number',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -487,38 +488,6 @@ function cis_types_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_social|node|person|form';
-  $field_group->group_name = 'group_social';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'person';
-  $field_group->mode = 'form';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Social',
-    'weight' => '11',
-    'children' => array(
-      0 => 'field_twitter_account',
-      1 => 'field_email',
-      2 => 'field_website',
-      3 => 'field_phone_number',
-      4 => 'field_address',
-    ),
-    'format_type' => 'fieldset',
-    'format_settings' => array(
-      'label' => 'Social',
-      'instance_settings' => array(
-        'required_fields' => 0,
-        'classes' => ' group-social field-group-fieldset',
-        'description' => '',
-      ),
-      'formatter' => 'collapsed',
-    ),
-  );
-  $export['group_social|node|person|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
   $field_group->identifier = 'group_syllabus|field_collection_item|field_sections|form';
   $field_group->group_name = 'group_syllabus';
   $field_group->entity_type = 'field_collection_item';
@@ -531,8 +500,8 @@ function cis_types_field_group_info() {
     'children' => array(
       0 => 'field_resources',
       1 => 'field_services',
-      2 => 'group_text_areas',
-      3 => 'group_course_files',
+      2 => 'group_course_files',
+      3 => 'group_text_areas',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

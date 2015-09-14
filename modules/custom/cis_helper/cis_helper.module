@@ -159,13 +159,19 @@ function cis_helper_page_build(&$page) {
       }
     }
   }
-  // build shortcuts to create other services, excluding current ones
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function cis_helper_page_alter(&$page) {
+ // build shortcuts to create other services, excluding current ones
   if (arg(2) == 'service-instances' && is_numeric(arg(1))) {
     $key = array('field_services', 'target_id');
     $fields = array('field_course' => array('target_id', arg(1)));
     // build a list of current services
-    $current = _cis_helper_assemble_entity_list('node', 'service_instance', $key, 'title', $fields);
-    $services = _cis_helper_assemble_entity_list('node', 'service', 'nid', 'title');
+    $current = _cis_connector_assemble_entity_list('node', 'service_instance', $key, 'title', $fields);
+    $services = _cis_connector_assemble_entity_list('node', 'service', 'nid', 'title');
     foreach ($current as $k => $t) {
       unset($services[$k]);
     }
@@ -181,10 +187,7 @@ function cis_helper_page_build(&$page) {
       $links .= '<li>' . l(t('Add `@service` service', array('@service' => $name)), 'node/add/service-instance', $options) . "</li>\n";
     }
     $links .= "\n</ul>\n</div>";
-    $page['content']['system_main']['cis-links'] = array(
-      '#markup' => $links,
-      '#weight' => 1,
-    );
+    $page['content']['system_main']['main']['#markup'] .= $links;
   }
 }
 
@@ -247,7 +250,7 @@ function cis_helper_menu() {
     'type' => MENU_NORMAL_ITEM,
     'file' => 'cis_helper.pages.inc',
     'file path' => $path,
-    'menu_name' => 'user-menu',
+    'menu_name' => 'menu-cis-toolkit',
   );
   // quick setup form from a string
   $items['cis-quick-setup-access-id'] = array(
@@ -259,7 +262,7 @@ function cis_helper_menu() {
     'type' => MENU_NORMAL_ITEM,
     'file' => 'cis_helper.pages.inc',
     'file path' => $path,
-    'menu_name' => 'user-menu',
+    'menu_name' => 'menu-cis-toolkit',
   );
   // add offering form
   $items['cis-add-offering'] = array(
@@ -271,7 +274,7 @@ function cis_helper_menu() {
     'type' => MENU_NORMAL_ITEM,
     'file' => 'cis_helper.pages.inc',
     'file path' => $path,
-    'menu_name' => 'user-menu',
+    'menu_name' => 'menu-cis-toolkit',
   );
   // quick setup form for planning lots of sections at once
   $items['cis/offerings/planning'] = array(
@@ -284,6 +287,7 @@ function cis_helper_menu() {
     'type' => MENU_LOCAL_TASK,
     'file' => 'cis_helper.pages.inc',
     'file path' => $path,
+    'menu_name' => 'menu-cis-toolkit',
   );
   return $items;
 }
@@ -460,8 +464,8 @@ function cis_helper_entity_update($entity, $type) {
     $settings = _cis_connector_build_registry();
     foreach ($settings as $bucket => $setting) {
       // sniff out authority systems
-      if ($bucket != 'cis' && $setting['instance'] == FALSE) {
-        // right now i'm pretty sure this doesn't
+      if ($bucket != 'cis' && isset($setting['instance']) && $setting['instance'] == FALSE) {
+        // set data about this course in authority systems
         _cis_connection_set_data($query, $data, 'nid', 'node', $bucket, '', TRUE, '', array('blocking' => FALSE));
       }
     }
@@ -1039,83 +1043,6 @@ function _cis_helper_restws_deep_load(&$response) {
 }
 
 /**
- * Helper function to generate options list of entities.
- *
- * This is a very powerful function that returns a simple array
- * based on passing it a few criteria.  Think of this as a function
- * to abstract and simplify entity field queries.
- *
- * @param $entity_type
- *   entity type to filter by
- * @param $bundle
- *   bundle of that type to filter by
- * @param $id_field
- *   field to use for the key in the array
- * @param $title_field
- *   field to use as the value in the array
- * @param $field_conditions
- *   (optional) additional conditions to apply to field filtering
- * @param $property_conditions
- *   (optional) additional conditions to apply for properties
- *
- * @return $options
- *   array of options as a clean list for selection of an entity id
- */
-function _cis_helper_assemble_entity_list($entity_type, $bundle, $id_field, $title_field, $field_conditions = array(), $property_conditions = array()) {
-  // pull items based on bundle
-  $options = array();
-  // assemble all entities requested
-  $query = new EntityFieldQuery;
-  $query->entityCondition('entity_type', $entity_type)
-    ->entityCondition('bundle', $bundle);
-  // allow for simple property conditions
-  if (!empty($property_conditions)) {
-    // only allowed relationship is simple value field name / value pair
-    foreach ($property_conditions as $field_name => $field_value) {
-      $query->propertyCondition($field_name, $field_value, '=');
-    }
-  }
-  // allow for simple field conditions
-  if (!empty($field_conditions)) {
-    foreach ($field_conditions as $field_name => $field_value) {
-      // allow for complex relationship if needed
-      if (is_array($field_value)) {
-        $query->fieldCondition($field_name, $field_value[0], $field_value[1], '=');
-      }
-      else {
-        // only allowed relationship is simple value field name / value pair
-        $query->fieldCondition($field_name, 'value', $field_value, '=');
-      }
-    }
-  }
-  // order by the title property
-  $result = $query->propertyOrderBy($title_field)
-    ->execute();
-  // ensure this produces results to avoid null queries
-  if (!empty($result)) {
-    // convert to load only keys of items found
-    $etids = array_keys($result[$entity_type]);
-    // load all the entities in the array
-    $elist = entity_load($entity_type, $etids);
-    // load entities and build array of id -> title
-    foreach ($elist as $entity) {
-      // allow for field value as key
-      if (is_array($id_field)) {
-        $key = $entity->{$id_field[0]}[LANGUAGE_NONE][0][$id_field[1]];
-      }
-      elseif (strpos($id_field, 'field_') !== FALSE) {
-        $key = $entity->{$id_field}[LANGUAGE_NONE][0]['value'];
-      }
-      else {
-        $key = $entity->{$id_field};
-      }
-      $options[$key] = $entity->{$title_field};
-    }
-  }
-  return $options;
-}
-
-/**
  * Callback to generate a service node.
  *
  * Generate a service node in CIS based on the fields passed.
@@ -1230,6 +1157,36 @@ class CISXmlDomConstructor extends DOMDocument {
     }
     else {
       $domElement->appendChild($this->createTextNode($mixed));
+    }
+  }
+}
+
+/**
+ * Implements hook_cis_lmsless_theme_vars_alter()
+ */
+function cis_helper_cis_lmsless_theme_vars_alter(&$vars) {
+  // target our own services to indicate their state if in the menu on CIS
+  foreach ($vars['services'] as $key1 => $group) {
+    foreach ($group as $key2 => $service) {
+      switch ($key2) {
+        case 'online':
+        case 'courses':
+        // do nothing, these have graduated
+        // keep bumping everyone else up as we go along
+        break;
+        case 'media':
+          $vars['services'][$key1][$key2]['title'] .= ' (beta)';
+        break;
+        case 'studio':
+          $vars['services'][$key1][$key2]['title'] .= ' (alpha)';
+        break;
+        case 'comply':
+        case 'blog':
+        case 'interact':
+        case 'discuss':
+          $vars['services'][$key1][$key2]['title'] .= ' (dev)';
+        break;
+      }
     }
   }
 }

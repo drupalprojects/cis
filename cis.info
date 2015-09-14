@@ -1,8 +1,10 @@
 ; Packaging information for cis
-name = "CIS"
+name = "CIS 2.x"
 description = "Online Course Information System"
 exclusive = "1"
 core = "7.x"
+elmslndefaulttitle = "CIS"
+elmslntype = "authority"
 
 ; ----------
 ; ELMSLN Core Dependencies
@@ -65,7 +67,6 @@ dependencies[] = masquerade
 dependencies[] = token
 dependencies[] = transliteration
 ; Input filters
-dependencies[] = typogrify
 dependencies[] = video_filter
 ; Performance and scalability
 dependencies[] = advagg
@@ -120,17 +121,8 @@ dependencies[] = cis_helper
 dependencies[] = cis_lti
 dependencies[] = cis_si_cleanup
 dependencies[] = cis_distro_integrations
-; Charting
-dependencies[] = google_chart_tools
-dependencies[] = google_chart_tools_views
 ; Content
 dependencies[] = field_redirection
-; Data
-dependencies[] = data
-dependencies[] = data_search
-dependencies[] = data_ui
-; Database
-dependencies[] = schema
 ; Date/Time
 dependencies[] = date
 dependencies[] = date_api
@@ -143,22 +135,15 @@ dependencies[] = replicate_ui
 dependencies[] = email
 dependencies[] = field_collection
 dependencies[] = field_hidden
-dependencies[] = field_permissions
 dependencies[] = phone
 dependencies[] = select_or_other
-; Image
-dependencies[] = smartcrop
 ; Media
 dependencies[] = video_embed_field
-; Nodequeue
-dependencies[] = nodequeue
 ; Other
-dependencies[] = auto_nodetitle
 dependencies[] = field_collection_table
 dependencies[] = file_formatters
 dependencies[] = imagefield_focus
 dependencies[] = jquery_colorpicker
-dependencies[] = menu_block
 dependencies[] = menu_position
 dependencies[] = nocurrent_pass
 dependencies[] = nodeaccess_nodereference
@@ -168,30 +153,15 @@ dependencies[] = unique_field
 ; Path breadcrumbs
 dependencies[] = path_breadcrumbs
 dependencies[] = subpathauto
-; Shadowbox
-dependencies[] = file_shadowbox
-dependencies[] = image_shadowbox
-dependencies[] = shadowbox
 ; User interface
-dependencies[] = breakpoints
 dependencies[] = options_element
 ; Views
 dependencies[] = editableviews
-dependencies[] = views_data_export
 dependencies[] = views_field_calc
 dependencies[] = views_fluid_grid
 ; Features
-dependencies[] = cis_data
 dependencies[] = cis_displays
 dependencies[] = cis_types
-dependencies[] = cis_breakpoints
 dependencies[] = cis_users
 dependencies[] = cis_service_roles
 dependencies[] = cis_ux
-
-; Information added by Drupal.org packaging script on 2014-08-13
-version = "7.x-1.0-beta4+3-dev"
-core = "7.x"
-project = "cis"
-datestamp = "1407970739"
-
