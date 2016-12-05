@@ -11,7 +11,7 @@ function cis_types_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
-  // 'field_collection_item-field_offerings-field_sections'
+  // 'field_collection_item-field_offerings-field_sections'.
   $field_instances['field_collection_item-field_offerings-field_sections'] = array(
     'bundle' => 'field_offerings',
     'default_value' => array(
@@ -210,7 +210,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_offerings-field_semester'
+  // 'field_collection_item-field_offerings-field_semester'.
   $field_instances['field_collection_item-field_offerings-field_semester'] = array(
     'bundle' => 'field_offerings',
     'default_value' => NULL,
@@ -258,10 +258,15 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_offerings-field_year'
+  // Exported field_instance:
+  // 'field_collection_item-field_offerings-field_year'.
   $field_instances['field_collection_item-field_offerings-field_year'] = array(
     'bundle' => 'field_offerings',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 201516,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -292,6 +297,19 @@ function cis_types_field_default_field_instances() {
     'label' => 'Year',
     'required' => 1,
     'settings' => array(
+      'authcache' => array(
+        'clients' => array(
+          'authcache_ajax' => array(
+            'status' => 1,
+            'weight' => 0,
+          ),
+        ),
+        'fallback' => 'cancel',
+        'lifespan' => 3600,
+        'perpage' => 0,
+        'peruser' => 1,
+        'status' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -306,7 +324,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_access_dates'
+  // 'field_collection_item-field_sections-field_access_dates'.
   $field_instances['field_collection_item-field_sections-field_access_dates'] = array(
     'bundle' => 'field_sections',
     'default_value' => NULL,
@@ -374,7 +392,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_access_string'
+  // 'field_collection_item-field_sections-field_access_string'.
   $field_instances['field_collection_item-field_sections-field_access_string'] = array(
     'bundle' => 'field_sections',
     'default_value' => NULL,
@@ -423,7 +441,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_campus'
+  // 'field_collection_item-field_sections-field_campus'.
   $field_instances['field_collection_item-field_sections-field_campus'] = array(
     'bundle' => 'field_sections',
     'default_value' => NULL,
@@ -471,7 +489,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_cis_ops'
+  // 'field_collection_item-field_sections-field_cis_ops'.
   $field_instances['field_collection_item-field_sections-field_cis_ops'] = array(
     'bundle' => 'field_sections',
     'default_value' => NULL,
@@ -515,7 +533,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_contact_info'
+  // 'field_collection_item-field_sections-field_contact_info'.
   $field_instances['field_collection_item-field_sections-field_contact_info'] = array(
     'bundle' => 'field_sections',
     'default_value' => NULL,
@@ -562,7 +580,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_course_archive'
+  // 'field_collection_item-field_sections-field_course_archive'.
   $field_instances['field_collection_item-field_sections-field_course_archive'] = array(
     'bundle' => 'field_sections',
     'deleted' => 0,
@@ -611,7 +629,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_course_start'
+  // 'field_collection_item-field_sections-field_course_start'.
   $field_instances['field_collection_item-field_sections-field_course_start'] = array(
     'bundle' => 'field_sections',
     'deleted' => 0,
@@ -666,12 +684,12 @@ function cis_types_field_default_field_instances() {
         'year_range' => '2012:2018',
       ),
       'type' => 'date_select',
-      'weight' => 14,
+      'weight' => 13,
     ),
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_instructor_of_record'
+  // 'field_collection_item-field_sections-field_instructor_of_record'.
   $field_instances['field_collection_item-field_sections-field_instructor_of_record'] = array(
     'bundle' => 'field_sections',
     'default_value' => NULL,
@@ -731,7 +749,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_resources'
+  // 'field_collection_item-field_sections-field_resources'.
   $field_instances['field_collection_item-field_sections-field_resources'] = array(
     'bundle' => 'field_sections',
     'default_value' => NULL,
@@ -788,7 +806,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_schedule_number'
+  // 'field_collection_item-field_sections-field_schedule_number'.
   $field_instances['field_collection_item-field_sections-field_schedule_number'] = array(
     'bundle' => 'field_sections',
     'default_value' => NULL,
@@ -835,7 +853,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_section_number'
+  // 'field_collection_item-field_sections-field_section_number'.
   $field_instances['field_collection_item-field_sections-field_section_number'] = array(
     'bundle' => 'field_sections',
     'default_value' => NULL,
@@ -885,7 +903,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_services'
+  // 'field_collection_item-field_sections-field_services'.
   $field_instances['field_collection_item-field_sections-field_services'] = array(
     'bundle' => 'field_sections',
     'default_value' => NULL,
@@ -939,7 +957,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_syllabus'
+  // 'field_collection_item-field_sections-field_syllabus'.
   $field_instances['field_collection_item-field_sections-field_syllabus'] = array(
     'bundle' => 'field_sections',
     'deleted' => 0,
@@ -988,77 +1006,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_syllabus_text_based'
-  $field_instances['field_collection_item-field_sections-field_syllabus_text_based'] = array(
-    'bundle' => 'field_sections',
-    'default_value' => array(
-      0 => array(
-        'value' => '<h3>Grading</h3><p></p><h3>Calendar</h3><p></p><h3>Goals / Objectives</h3><p></p><h3>Materials / Tech requirements</h3><p></p><h3>Communication</h3><p></p><h3>Policy</h3><p></p>',
-        'format' => 'textbook_editor',
-      ),
-    ),
-    'deleted' => 0,
-    'description' => 'The text based syllabus allow for supporting a content area managed syllabus. This is for instructors who would rather enter and manage their syllabus in the system rather then via file.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 17,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'token' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_syllabus_text_based',
-    'label' => 'Syllabus (text based)',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'plain_text' => 0,
-          'textbook_editor' => 'textbook_editor',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-            'textbook_editor' => array(
-              'weight' => -10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 16,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_sections-field_teaching_assistants'
+  // 'field_collection_item-field_sections-field_teaching_assistants'.
   $field_instances['field_collection_item-field_sections-field_teaching_assistants'] = array(
     'bundle' => 'field_sections',
     'default_value' => NULL,
@@ -1116,7 +1064,7 @@ function cis_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_welcome_letter'
+  // 'field_collection_item-field_sections-field_welcome_letter'.
   $field_instances['field_collection_item-field_sections-field_welcome_letter'] = array(
     'bundle' => 'field_sections',
     'deleted' => 0,
@@ -1162,12 +1110,12 @@ function cis_types_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 17,
+      'weight' => 16,
     ),
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_sections-field_welcome_page'
+  // 'field_collection_item-field_sections-field_welcome_page'.
   $field_instances['field_collection_item-field_sections-field_welcome_page'] = array(
     'bundle' => 'field_sections',
     'default_value' => NULL,
@@ -1212,7 +1160,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-academic_unit-field_abbreviation'
+  // Exported field_instance: 'node-academic_unit-field_abbreviation'.
   $field_instances['node-academic_unit-field_abbreviation'] = array(
     'bundle' => 'academic_unit',
     'default_value' => NULL,
@@ -1251,7 +1199,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-academic_unit-field_color'
+  // Exported field_instance: 'node-academic_unit-field_color'.
   $field_instances['node-academic_unit-field_color'] = array(
     'bundle' => 'academic_unit',
     'default_value' => NULL,
@@ -1277,6 +1225,19 @@ function cis_types_field_default_field_instances() {
     'label' => 'Color',
     'required' => 1,
     'settings' => array(
+      'authcache' => array(
+        'clients' => array(
+          'authcache_ajax' => array(
+            'status' => 1,
+            'weight' => 0,
+          ),
+        ),
+        'fallback' => 'cancel',
+        'lifespan' => 3600,
+        'perpage' => 0,
+        'peruser' => 1,
+        'status' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1288,7 +1249,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-academic_unit-field_coordinators'
+  // Exported field_instance: 'node-academic_unit-field_coordinators'.
   $field_instances['node-academic_unit-field_coordinators'] = array(
     'bundle' => 'academic_unit',
     'default_value' => NULL,
@@ -1314,6 +1275,19 @@ function cis_types_field_default_field_instances() {
     'label' => 'Coordinators',
     'required' => 0,
     'settings' => array(
+      'authcache' => array(
+        'clients' => array(
+          'authcache_ajax' => array(
+            'status' => 1,
+            'weight' => 0,
+          ),
+        ),
+        'fallback' => 'cancel',
+        'lifespan' => 3600,
+        'perpage' => 0,
+        'peruser' => 1,
+        'status' => 0,
+      ),
       'behaviors' => array(
         'prepopulate' => array(
           'status' => 0,
@@ -1334,8 +1308,6 @@ function cis_types_field_default_field_instances() {
           'academic_unit' => 0,
           'college_services' => 0,
           'course' => 0,
-          'instructional_model' => 0,
-          'news' => 0,
           'page' => 0,
           'person' => 0,
           'program' => 0,
@@ -1372,7 +1344,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-academic_unit-field_unit_head'
+  // Exported field_instance: 'node-academic_unit-field_unit_head'.
   $field_instances['node-academic_unit-field_unit_head'] = array(
     'bundle' => 'academic_unit',
     'default_value' => NULL,
@@ -1400,6 +1372,19 @@ function cis_types_field_default_field_instances() {
     'label' => 'Unit Head',
     'required' => 0,
     'settings' => array(
+      'authcache' => array(
+        'clients' => array(
+          'authcache_ajax' => array(
+            'status' => 1,
+            'weight' => 0,
+          ),
+        ),
+        'fallback' => 'cancel',
+        'lifespan' => 3600,
+        'perpage' => 0,
+        'peruser' => 1,
+        'status' => 0,
+      ),
       'behaviors' => array(
         'prepopulate' => array(
           'status' => 0,
@@ -1420,8 +1405,6 @@ function cis_types_field_default_field_instances() {
           'academic_unit' => 0,
           'college_services' => 0,
           'course' => 0,
-          'instructional_model' => 0,
-          'news' => 0,
           'page' => 0,
           'person' => 0,
           'program' => 0,
@@ -1458,7 +1441,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-body'
+  // Exported field_instance: 'node-course-body'.
   $field_instances['node-course-body'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -1501,7 +1484,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_academic_home'
+  // Exported field_instance: 'node-course-field_academic_home'.
   $field_instances['node-course-field_academic_home'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -1579,11 +1562,11 @@ function cis_types_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 40,
+      'weight' => 51,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_author_video'
+  // Exported field_instance: 'node-course-field_author_video'.
   $field_instances['node-course-field_author_video'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -1626,7 +1609,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_banner'
+  // Exported field_instance: 'node-course-field_banner'.
   $field_instances['node-course-field_banner'] = array(
     'bundle' => 'course',
     'deleted' => 0,
@@ -1655,15 +1638,50 @@ function cis_types_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
-      'default_image' => 0,
+      'authcache' => array(
+        'clients' => array(
+          'authcache_ajax' => array(
+            'status' => 1,
+            'weight' => 0,
+          ),
+        ),
+        'fallback' => 'cancel',
+        'lifespan' => 3600,
+        'perpage' => 0,
+        'peruser' => 1,
+        'status' => 0,
+      ),
+      'default_image' => 2,
       'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'focus' => 0,
+      'file_extensions' => 'jpg jpeg',
+      'filefield_paths' => array(
+        'active_updating' => 0,
+        'file_name' => array(
+          'options' => array(
+            'pathauto' => 1,
+            'slashes' => 1,
+            'transliterate' => 1,
+          ),
+          'value' => '[node:field-machine-name].jpg',
+        ),
+        'file_path' => array(
+          'options' => array(
+            'pathauto' => 1,
+            'slashes' => 1,
+            'transliterate' => 1,
+          ),
+          'value' => 'banners',
+        ),
+        'redirect' => FALSE,
+        'retroactive_update' => 0,
+      ),
+      'filefield_paths_enabled' => 1,
+      'focus' => 1,
       'focus_lock_ratio' => 0,
-      'focus_min_size' => '',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
+      'focus_min_size' => '1000x128',
+      'max_filesize' => '10M',
+      'max_resolution' => '2000x500',
+      'min_resolution' => '1200x200',
       'title_field' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1672,14 +1690,14 @@ function cis_types_field_default_field_instances() {
       'module' => 'image',
       'settings' => array(
         'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
+        'progress_indicator' => 'bar',
       ),
       'type' => 'image_image',
-      'weight' => 33,
+      'weight' => 47,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_course_author'
+  // Exported field_instance: 'node-course-field_course_author'.
   $field_instances['node-course-field_course_author'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -1751,11 +1769,11 @@ function cis_types_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 30,
+      'weight' => 54,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_course_readings'
+  // Exported field_instance: 'node-course-field_course_readings'.
   $field_instances['node-course-field_course_readings'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -1795,7 +1813,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_course_title'
+  // Exported field_instance: 'node-course-field_course_title'.
   $field_instances['node-course-field_course_title'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -1832,11 +1850,11 @@ function cis_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 38,
+      'weight' => 46,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_credits'
+  // Exported field_instance: 'node-course-field_credits'.
   $field_instances['node-course-field_credits'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -1884,16 +1902,16 @@ function cis_types_field_default_field_instances() {
         'sort_options' => 0,
       ),
       'type' => 'select_or_other',
-      'weight' => 33,
+      'weight' => 47,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_display_in_course_list'
+  // Exported field_instance: 'node-course-field_display_in_course_list'.
   $field_instances['node-course-field_display_in_course_list'] = array(
     'bundle' => 'course',
     'default_value' => array(
       0 => array(
-        'value' => 0,
+        'value' => 1,
       ),
     ),
     'deleted' => 0,
@@ -1917,6 +1935,19 @@ function cis_types_field_default_field_instances() {
     'label' => 'Display in course list',
     'required' => 1,
     'settings' => array(
+      'authcache' => array(
+        'clients' => array(
+          'authcache_ajax' => array(
+            'status' => 1,
+            'weight' => 0,
+          ),
+        ),
+        'fallback' => 'cancel',
+        'lifespan' => 3600,
+        'perpage' => 0,
+        'peruser' => 1,
+        'status' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1924,11 +1955,11 @@ function cis_types_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 21,
+      'weight' => 49,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_first_offered'
+  // Exported field_instance: 'node-course-field_first_offered'.
   $field_instances['node-course-field_first_offered'] = array(
     'bundle' => 'course',
     'deleted' => 0,
@@ -1977,11 +2008,11 @@ function cis_types_field_default_field_instances() {
         'year_range' => '2003:+1',
       ),
       'type' => 'date_select',
-      'weight' => 34,
+      'weight' => 48,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_inst_delivery_guide'
+  // Exported field_instance: 'node-course-field_inst_delivery_guide'.
   $field_instances['node-course-field_inst_delivery_guide'] = array(
     'bundle' => 'course',
     'deleted' => 0,
@@ -2023,7 +2054,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_inst_design_doc'
+  // Exported field_instance: 'node-course-field_inst_design_doc'.
   $field_instances['node-course-field_inst_design_doc'] = array(
     'bundle' => 'course',
     'deleted' => 0,
@@ -2065,7 +2096,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_inst_instructions'
+  // Exported field_instance: 'node-course-field_inst_instructions'.
   $field_instances['node-course-field_inst_instructions'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -2105,7 +2136,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_inst_other_documents'
+  // Exported field_instance: 'node-course-field_inst_other_documents'.
   $field_instances['node-course-field_inst_other_documents'] = array(
     'bundle' => 'course',
     'deleted' => 0,
@@ -2147,7 +2178,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_inst_setup_guide'
+  // Exported field_instance: 'node-course-field_inst_setup_guide'.
   $field_instances['node-course-field_inst_setup_guide'] = array(
     'bundle' => 'course',
     'deleted' => 0,
@@ -2189,7 +2220,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_instructional_designer'
+  // Exported field_instance: 'node-course-field_instructional_designer'.
   $field_instances['node-course-field_instructional_designer'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -2235,8 +2266,6 @@ function cis_types_field_default_field_instances() {
           'academic_unit' => 0,
           'college_services' => 0,
           'course' => 0,
-          'instructional_model' => 0,
-          'news' => 0,
           'page' => 0,
           'person' => 0,
           'program' => 0,
@@ -2269,11 +2298,11 @@ function cis_types_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 24,
+      'weight' => 7,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_lead_instructor'
+  // Exported field_instance: 'node-course-field_lead_instructor'.
   $field_instances['node-course-field_lead_instructor'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -2319,8 +2348,6 @@ function cis_types_field_default_field_instances() {
           'academic_unit' => 0,
           'college_services' => 0,
           'course' => 0,
-          'instructional_model' => 0,
-          'news' => 0,
           'page' => 0,
           'person' => 0,
           'program' => 0,
@@ -2353,11 +2380,11 @@ function cis_types_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 22,
+      'weight' => 6,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_long_description'
+  // Exported field_instance: 'node-course-field_long_description'.
   $field_instances['node-course-field_long_description'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -2397,7 +2424,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_machine_name'
+  // Exported field_instance: 'node-course-field_machine_name'.
   $field_instances['node-course-field_machine_name'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -2432,11 +2459,11 @@ function cis_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 37,
+      'weight' => 48,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_method_of_access'
+  // Exported field_instance: 'node-course-field_method_of_access'.
   $field_instances['node-course-field_method_of_access'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -2470,11 +2497,11 @@ function cis_types_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 20,
+      'weight' => 44,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_offerings'
+  // Exported field_instance: 'node-course-field_offerings'.
   $field_instances['node-course-field_offerings'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -2511,7 +2538,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_program_classification'
+  // Exported field_instance: 'node-course-field_program_classification'.
   $field_instances['node-course-field_program_classification'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -2589,11 +2616,11 @@ function cis_types_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 39,
+      'weight' => 50,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_related_courses'
+  // Exported field_instance: 'node-course-field_related_courses'.
   $field_instances['node-course-field_related_courses'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -2670,11 +2697,11 @@ function cis_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 38,
+      'weight' => 51,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_sample_lesson'
+  // Exported field_instance: 'node-course-field_sample_lesson'.
   $field_instances['node-course-field_sample_lesson'] = array(
     'bundle' => 'course',
     'deleted' => 0,
@@ -2723,11 +2750,11 @@ function cis_types_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 37,
+      'weight' => 50,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_sample_syllabus'
+  // Exported field_instance: 'node-course-field_sample_syllabus'.
   $field_instances['node-course-field_sample_syllabus'] = array(
     'bundle' => 'course',
     'deleted' => 0,
@@ -2766,11 +2793,11 @@ function cis_types_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 36,
+      'weight' => 49,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_screenshot'
+  // Exported field_instance: 'node-course-field_screenshot'.
   $field_instances['node-course-field_screenshot'] = array(
     'bundle' => 'course',
     'deleted' => 0,
@@ -2827,7 +2854,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_special_classifications'
+  // Exported field_instance: 'node-course-field_special_classifications'.
   $field_instances['node-course-field_special_classifications'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -2862,11 +2889,11 @@ function cis_types_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 41,
+      'weight' => 52,
     ),
   );
 
-  // Exported field_instance: 'node-course-field_ta_documents'
+  // Exported field_instance: 'node-course-field_ta_documents'.
   $field_instances['node-course-field_ta_documents'] = array(
     'bundle' => 'course',
     'deleted' => 0,
@@ -2908,7 +2935,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_ta_instructions'
+  // Exported field_instance: 'node-course-field_ta_instructions'.
   $field_instances['node-course-field_ta_instructions'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -2948,7 +2975,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_topics_covered_text'
+  // Exported field_instance: 'node-course-field_topics_covered_text'.
   $field_instances['node-course-field_topics_covered_text'] = array(
     'bundle' => 'course',
     'default_value' => NULL,
@@ -2988,10 +3015,15 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-course-field_university_bulletin'
+  // Exported field_instance: 'node-course-field_university_bulletin'.
   $field_instances['node-course-field_university_bulletin'] = array(
     'bundle' => 'course',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'title' => 'University Bulletin listing',
+        'url' => 'http://bulletins.psu.edu/undergrad/courses/',
+      ),
+    ),
     'deleted' => 0,
     'description' => 'Link to the course in the university bulletin',
     'display' => array(
@@ -3022,12 +3054,12 @@ function cis_types_field_default_field_instances() {
         'target' => 'default',
         'title' => '',
       ),
-      'custom_add_another' => '',
       'display' => array(
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 0,
-      'title' => 'none',
+      'rel_remove' => 'default',
+      'title' => 'required',
       'title_label_use_field_label' => FALSE,
       'title_maxlength' => 128,
       'title_value' => 'University Bulletin listing',
@@ -3040,175 +3072,11 @@ function cis_types_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 42,
+      'weight' => 53,
     ),
   );
 
-  // Exported field_instance: 'node-instructional_model-body'
-  $field_instances['node-instructional_model-body'] = array(
-    'bundle' => 'instructional_model',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
-        ),
-        'type' => 'text_summary_or_trimmed',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => TRUE,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'node-instructional_model-field_course'
-  $field_instances['node-instructional_model-field_course'] = array(
-    'bundle' => 'instructional_model',
-    'default_value' => NULL,
-    'default_value_function' => '',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => 1,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_course',
-    'label' => 'Representative Courses',
-    'required' => 0,
-    'settings' => array(
-      'behaviors' => array(
-        'prepopulate' => array(
-          'status' => 0,
-        ),
-      ),
-      'nodeaccess_nodereference' => array(
-        'all' => array(
-          'view' => 0,
-        ),
-        'all_published' => 0,
-        'author' => array(
-          'delete' => 0,
-          'update' => 0,
-          'view' => 0,
-        ),
-        'author_published' => 0,
-        'priority' => 0,
-        'referenced' => array(
-          'delete' => array(
-            'delete' => 0,
-            'update' => 0,
-            'view' => 0,
-          ),
-          'published' => 0,
-          'update' => array(
-            'delete' => 0,
-            'update' => 0,
-            'view' => 0,
-          ),
-          'view' => array(
-            'delete' => 0,
-            'update' => 0,
-            'view' => 0,
-          ),
-        ),
-        'unused' => 0,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'node-instructional_model-field_xml_outline'
-  $field_instances['node-instructional_model-field_xml_outline'] = array(
-    'bundle' => 'instructional_model',
-    'deleted' => 0,
-    'description' => 'An XML structure that follows the conventions established by ELMS for structuring a content outline.  The easiest way to obtain this is to install the MOOC distribution, create some content in a book outline and then export it to it\'s XML packaging format.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_xml_outline',
-    'label' => 'XML Outline',
-    'required' => 1,
-    'settings' => array(
-      'description_field' => 0,
-      'file_directory' => 'instructional_outlines',
-      'file_extensions' => 'xml',
-      'max_filesize' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'file',
-      'settings' => array(
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'file_generic',
-      'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance: 'node-program-body'
+  // Exported field_instance: 'node-program-body'.
   $field_instances['node-program-body'] = array(
     'bundle' => 'program',
     'default_value' => NULL,
@@ -3248,11 +3116,11 @@ function cis_types_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 2,
+      'weight' => 5,
     ),
   );
 
-  // Exported field_instance: 'node-program-field_abbreviation'
+  // Exported field_instance: 'node-program-field_abbreviation'.
   $field_instances['node-program-field_abbreviation'] = array(
     'bundle' => 'program',
     'default_value' => NULL,
@@ -3277,6 +3145,19 @@ function cis_types_field_default_field_instances() {
     'label' => 'Abbreviation',
     'required' => 1,
     'settings' => array(
+      'authcache' => array(
+        'clients' => array(
+          'authcache_ajax' => array(
+            'status' => 1,
+            'weight' => 0,
+          ),
+        ),
+        'fallback' => 'cancel',
+        'lifespan' => 3600,
+        'perpage' => 0,
+        'peruser' => 1,
+        'status' => 0,
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -3287,11 +3168,11 @@ function cis_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
-  // Exported field_instance: 'node-program-field_academic_home'
+  // Exported field_instance: 'node-program-field_academic_home'.
   $field_instances['node-program-field_academic_home'] = array(
     'bundle' => 'program',
     'default_value' => NULL,
@@ -3366,11 +3247,11 @@ function cis_types_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
-  // Exported field_instance: 'node-program-field_facebook'
+  // Exported field_instance: 'node-program-field_facebook'.
   $field_instances['node-program-field_facebook'] = array(
     'bundle' => 'program',
     'default_value' => NULL,
@@ -3426,7 +3307,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-program-field_program_site'
+  // Exported field_instance: 'node-program-field_program_site'.
   $field_instances['node-program-field_program_site'] = array(
     'bundle' => 'program',
     'default_value' => NULL,
@@ -3482,7 +3363,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-program-field_twitter'
+  // Exported field_instance: 'node-program-field_twitter'.
   $field_instances['node-program-field_twitter'] = array(
     'bundle' => 'program',
     'default_value' => NULL,
@@ -3538,7 +3419,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-resource-body'
+  // Exported field_instance: 'node-resource-body'.
   $field_instances['node-resource-body'] = array(
     'bundle' => 'resource',
     'default_value' => NULL,
@@ -3582,7 +3463,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-resource-field_machine_name'
+  // Exported field_instance: 'node-resource-field_machine_name'.
   $field_instances['node-resource-field_machine_name'] = array(
     'bundle' => 'resource',
     'default_value' => NULL,
@@ -3621,7 +3502,7 @@ function cis_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-resource-field_type'
+  // Exported field_instance: 'node-resource-field_type'.
   $field_instances['node-resource-field_type'] = array(
     'bundle' => 'resource',
     'default_value' => array(
@@ -3665,7 +3546,7 @@ Global will be available to all resources to reference',
     ),
   );
 
-  // Exported field_instance: 'node-service-body'
+  // Exported field_instance: 'node-service-body'.
   $field_instances['node-service-body'] = array(
     'bundle' => 'service',
     'default_value' => NULL,
@@ -3705,11 +3586,11 @@ Global will be available to all resources to reference',
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 6,
+      'weight' => 2,
     ),
   );
 
-  // Exported field_instance: 'node-service-field_data_location'
+  // Exported field_instance: 'node-service-field_data_location'.
   $field_instances['node-service-field_data_location'] = array(
     'bundle' => 'service',
     'default_value' => NULL,
@@ -3764,7 +3645,7 @@ Global will be available to all resources to reference',
     ),
   );
 
-  // Exported field_instance: 'node-service-field_distribution'
+  // Exported field_instance: 'node-service-field_distribution'.
   $field_instances['node-service-field_distribution'] = array(
     'bundle' => 'service',
     'default_value' => NULL,
@@ -3799,11 +3680,11 @@ Global will be available to all resources to reference',
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 1,
     ),
   );
 
-  // Exported field_instance: 'node-service-field_location'
+  // Exported field_instance: 'node-service-field_location'.
   $field_instances['node-service-field_location'] = array(
     'bundle' => 'service',
     'default_value' => NULL,
@@ -3859,7 +3740,7 @@ Global will be available to all resources to reference',
     ),
   );
 
-  // Exported field_instance: 'node-service-field_machine_name'
+  // Exported field_instance: 'node-service-field_machine_name'.
   $field_instances['node-service-field_machine_name'] = array(
     'bundle' => 'service',
     'default_value' => NULL,
@@ -3894,11 +3775,11 @@ Global will be available to all resources to reference',
         'size' => 16,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 2,
     ),
   );
 
-  // Exported field_instance: 'node-service_instance-field_course'
+  // Exported field_instance: 'node-service_instance-field_course'.
   $field_instances['node-service_instance-field_course'] = array(
     'bundle' => 'service_instance',
     'default_value' => NULL,
@@ -3982,7 +3863,7 @@ Global will be available to all resources to reference',
     ),
   );
 
-  // Exported field_instance: 'node-service_instance-field_cron_key'
+  // Exported field_instance: 'node-service_instance-field_cron_key'.
   $field_instances['node-service_instance-field_cron_key'] = array(
     'bundle' => 'service_instance',
     'default_value' => NULL,
@@ -4021,7 +3902,7 @@ Global will be available to all resources to reference',
     ),
   );
 
-  // Exported field_instance: 'node-service_instance-field_service_data'
+  // Exported field_instance: 'node-service_instance-field_service_data'.
   $field_instances['node-service_instance-field_service_data'] = array(
     'bundle' => 'service_instance',
     'default_value' => NULL,
@@ -4058,7 +3939,7 @@ Global will be available to all resources to reference',
     ),
   );
 
-  // Exported field_instance: 'node-service_instance-field_services'
+  // Exported field_instance: 'node-service_instance-field_services'.
   $field_instances['node-service_instance-field_services'] = array(
     'bundle' => 'service_instance',
     'default_value' => NULL,
@@ -4151,7 +4032,6 @@ Global will be available to all resources to reference',
   t('Access duration');
   t('Access string');
   t('Add offerings of this course to activate them for the semester and lead record of their occurance.');
-  t('An XML structure that follows the conventions established by ELMS for structuring a content outline.  The easiest way to obtain this is to install the MOOC distribution, create some content in a book outline and then export it to it\'s XML packaging format.');
   t('Any users that you\'d like to be able to coordinate semester setup and get data about this Academic Unit.');
   t('Author video');
   t('Banner');
@@ -4195,7 +4075,6 @@ Global will be available to all resources to reference',
   t('Promotional screenshots for course');
   t('Readings');
   t('Related courses');
-  t('Representative Courses');
   t('Resource type');
   t('Resources');
   t('Sample Lesson');
@@ -4211,7 +4090,6 @@ Global will be available to all resources to reference',
   t('Setup guide');
   t('Special Classifications');
   t('Syllabus');
-  t('Syllabus (text based)');
   t('TAs that have been allocated to this section');
   t('Teaching assistants');
   t('The URL that data and backend calls can be made against.  This can be the same as the Location but is recommended that an additional domain be used so that these web service connections can operate on a different IP and be fire-walled independently for added security.');
@@ -4219,7 +4097,6 @@ Global will be available to all resources to reference',
   t('The dates that this section will have access to the material listed in the Access section');
   t('The instructional design assigned to manage this course');
   t('The semester this offering is for');
-  t('The text based syllabus allow for supporting a content area managed syllabus. This is for instructors who would rather enter and manage their syllabus in the system rather then via file.');
   t('This helps give students a sense of how long a course has been running or if its brand new.');
   t('This is a longer description of what the course is about and info that will help someone decide if they should take it.');
   t('Topics covered text');
@@ -4234,7 +4111,6 @@ Global will be available to all resources to reference',
 System is internally delegated by different services
 Global will be available to all resources to reference');
   t('Who is listed as the instructor of record and in charge of the course.');
-  t('XML Outline');
   t('Year');
   t('machine name of this service. This is used as part of automation');
 

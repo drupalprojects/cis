@@ -50,6 +50,7 @@ dependencies[] = prepopulate
 dependencies[] = menu_attributes
 dependencies[] = special_menu_items
 ; Other
+dependencies[] = navigation404
 dependencies[] = better_formats
 dependencies[] = chosen
 dependencies[] = defaultconfig
@@ -87,6 +88,7 @@ dependencies[] = addanother
 dependencies[] = back_to_top
 dependencies[] = ckeditor_link
 dependencies[] = ds
+dependencies[] = ds_forms
 dependencies[] = imce
 dependencies[] = imce_crop
 dependencies[] = imce_mkdir
@@ -105,6 +107,7 @@ dependencies[] = views_bulk_operations
 dependencies[] = features
 dependencies[] = features_override
 ; ELMSLN Core
+dependencies[] = elmsln_api
 dependencies[] = cis_connector
 dependencies[] = cis_service_connection
 dependencies[] = cis_service_connection_ux
@@ -112,6 +115,7 @@ dependencies[] = cis_service_roles
 dependencies[] = cis_lmsless
 dependencies[] = cis_shortcodes
 dependencies[] = foundation_access_ux
+dependencies[] = elmsln_core
 ; ELMSLN Core - Performance
 dependencies[] = elmsln_authcache
 dependencies[] = elmsln_advagg
@@ -125,6 +129,7 @@ dependencies[] = cis_helper
 dependencies[] = cis_lti
 dependencies[] = cis_si_cleanup
 dependencies[] = cis_distro_integrations
+dependencies[] = cis_user
 ; Content
 dependencies[] = field_redirection
 ; Date/Time
@@ -146,6 +151,7 @@ dependencies[] = video_embed_field
 ; Other
 dependencies[] = field_collection_table
 dependencies[] = file_formatters
+dependencies[] = filefield_paths
 dependencies[] = imagefield_focus
 dependencies[] = jquery_colorpicker
 dependencies[] = menu_position
@@ -163,9 +169,11 @@ dependencies[] = options_element
 dependencies[] = editableviews
 dependencies[] = views_field_calc
 dependencies[] = views_fluid_grid
+dependencies[] = views_autorefresh
 ; Features
 dependencies[] = cis_displays
 dependencies[] = cis_types
+dependencies[] = cis_competencies
 dependencies[] = cis_users
 dependencies[] = cis_service_roles
 dependencies[] = cis_ux

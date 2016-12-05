@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function cis_types_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -38,7 +38,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsible',
     ),
   );
-  $export['group_access|field_collection_item|field_sections|form'] = $field_group;
+  $field_groups['group_access|field_collection_item|field_sections|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -69,7 +69,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_administrative|field_collection_item|field_sections|form'] = $field_group;
+  $field_groups['group_administrative|field_collection_item|field_sections|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -82,12 +82,14 @@ function cis_types_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Administrative',
-    'weight' => '0',
+    'weight' => '4',
     'children' => array(
-      0 => 'field_instructional_designer',
-      1 => 'field_method_of_access',
-      2 => 'field_display_in_course_list',
-      3 => 'field_lead_instructor',
+      0 => 'path',
+      1 => 'hidden_nodes',
+      2 => 'book',
+      3 => 'options',
+      4 => 'author',
+      5 => 'revision_information',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -100,7 +102,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_administrative|node|course|form'] = $field_group;
+  $field_groups['group_administrative|node|course|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -127,7 +129,7 @@ function cis_types_field_group_info() {
       ),
     ),
   );
-  $export['group_archives|field_collection_item|field_offerings|form'] = $field_group;
+  $field_groups['group_archives|field_collection_item|field_offerings|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -156,7 +158,7 @@ function cis_types_field_group_info() {
       ),
     ),
   );
-  $export['group_course_files|field_collection_item|field_sections|form'] = $field_group;
+  $field_groups['group_course_files|field_collection_item|field_sections|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -169,28 +171,91 @@ function cis_types_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Details',
-    'weight' => '1',
+    'weight' => '0',
     'children' => array(
       0 => 'field_academic_home',
-      1 => 'field_course_title',
-      2 => 'field_program_classification',
-      3 => 'field_university_bulletin',
-      4 => 'field_special_classifications',
-      5 => 'field_machine_name',
-      6 => 'title',
+      1 => 'field_banner',
+      2 => 'field_course_title',
+      3 => 'field_display_in_course_list',
+      4 => 'field_machine_name',
+      5 => 'field_method_of_access',
+      6 => 'field_program_classification',
+      7 => 'title',
+      8 => 'group_pedagogical',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
       'label' => 'Details',
       'instance_settings' => array(
         'required_fields' => 0,
+        'id' => '',
         'classes' => ' group-details field-group-fieldset',
         'description' => '',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'collapsible',
     ),
   );
-  $export['group_details|node|course|form'] = $field_group;
+  $field_groups['group_details|node|course|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_details|node|program|form';
+  $field_group->group_name = 'group_details';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'program';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Details',
+    'weight' => '0',
+    'children' => array(
+      0 => 'field_abbreviation',
+      1 => 'field_academic_home',
+      2 => 'title',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-details field-group-fieldset',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_details|node|program|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_details|node|service|form';
+  $field_group->group_name = 'group_details';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'service';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Details',
+    'weight' => '0',
+    'children' => array(
+      0 => 'field_distribution',
+      1 => 'field_machine_name',
+      2 => 'title',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-details field-group-fieldset',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_details|node|service|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -216,7 +281,7 @@ function cis_types_field_group_info() {
       ),
     ),
   );
-  $export['group_files|field_collection_item|field_sections|full'] = $field_group;
+  $field_groups['group_files|field_collection_item|field_sections|full'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -229,7 +294,7 @@ function cis_types_field_group_info() {
   $field_group->parent_name = 'group_resources';
   $field_group->data = array(
     'label' => 'Instructors',
-    'weight' => '13',
+    'weight' => '24',
     'children' => array(
       0 => 'field_inst_delivery_guide',
       1 => 'field_inst_design_doc',
@@ -248,7 +313,68 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_instructors|node|course|form'] = $field_group;
+  $field_groups['group_instructors|node|course|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_internal_logistics|node|course|form';
+  $field_group->group_name = 'group_internal_logistics';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'course';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Internal logistics',
+    'weight' => '3',
+    'children' => array(
+      0 => 'field_instructional_designer',
+      1 => 'field_lead_instructor',
+      2 => 'group_resources',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Internal logistics',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'group-internal-logistics field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $field_groups['group_internal_logistics|node|course|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_marketing|node|program|form';
+  $field_group->group_name = 'group_marketing';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'program';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Marketing',
+    'weight' => '4',
+    'children' => array(
+      0 => 'field_facebook',
+      1 => 'field_program_site',
+      2 => 'field_twitter',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-marketing field-group-fieldset',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_marketing|node|program|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -261,7 +387,7 @@ function cis_types_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Offerings',
-    'weight' => '4',
+    'weight' => '1',
     'children' => array(
       0 => 'field_offerings',
     ),
@@ -269,14 +395,44 @@ function cis_types_field_group_info() {
     'format_settings' => array(
       'label' => 'Offerings',
       'instance_settings' => array(
-        'required_fields' => 0,
+        'required_fields' => 1,
+        'id' => '',
         'classes' => ' group-offerings field-group-fieldset',
         'description' => '',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'collapsible',
     ),
   );
-  $export['group_offerings|node|course|form'] = $field_group;
+  $field_groups['group_offerings|node|course|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_pedagogical|node|course|form';
+  $field_group->group_name = 'group_pedagogical';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'course';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_details';
+  $field_group->data = array(
+    'label' => 'Pedagogical',
+    'weight' => '52',
+    'children' => array(
+      0 => 'field_elmsln_course_competencies',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Pedagogical',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => 'group-pedagogical field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsible',
+    ),
+  );
+  $field_groups['group_pedagogical|node|course|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -304,7 +460,43 @@ function cis_types_field_group_info() {
       ),
     ),
   );
-  $export['group_personel|node|academic_unit|form'] = $field_group;
+  $field_groups['group_personel|node|academic_unit|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_promo_details|node|course|form';
+  $field_group->group_name = 'group_promo_details';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'course';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_samples';
+  $field_group->data = array(
+    'label' => 'Details',
+    'weight' => '46',
+    'children' => array(
+      0 => 'field_course_author',
+      1 => 'field_credits',
+      2 => 'field_first_offered',
+      3 => 'field_related_courses',
+      4 => 'field_sample_lesson',
+      5 => 'field_sample_syllabus',
+      6 => 'field_special_classifications',
+      7 => 'field_university_bulletin',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Details',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'group-promo-details field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $field_groups['group_promo_details|node|course|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -314,13 +506,13 @@ function cis_types_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'course';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_internal_logistics';
   $field_group->data = array(
     'label' => 'Resources',
-    'weight' => '3',
+    'weight' => '8',
     'children' => array(
-      0 => 'group_tas',
-      1 => 'group_instructors',
+      0 => 'group_instructors',
+      1 => 'group_tas',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -333,7 +525,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_resources|node|course|form'] = $field_group;
+  $field_groups['group_resources|node|course|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -348,14 +540,9 @@ function cis_types_field_group_info() {
     'label' => 'Promotional',
     'weight' => '2',
     'children' => array(
-      0 => 'field_sample_lesson',
-      1 => 'field_sample_syllabus',
-      2 => 'field_course_author',
-      3 => 'field_credits',
-      4 => 'field_first_offered',
-      5 => 'field_related_courses',
-      6 => 'group_screenshots',
-      7 => 'group_text_areas',
+      0 => 'group_promo_details',
+      1 => 'group_screenshots',
+      2 => 'group_text_areas',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -368,7 +555,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_samples|node|course|form'] = $field_group;
+  $field_groups['group_samples|node|course|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -381,11 +568,10 @@ function cis_types_field_group_info() {
   $field_group->parent_name = 'group_samples';
   $field_group->data = array(
     'label' => 'Visuals',
-    'weight' => '32',
+    'weight' => '51',
     'children' => array(
-      0 => 'field_screenshot',
-      1 => 'field_banner',
-      2 => 'field_author_video',
+      0 => 'field_author_video',
+      1 => 'field_screenshot',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -398,7 +584,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_screenshots|node|course|form'] = $field_group;
+  $field_groups['group_screenshots|node|course|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -425,7 +611,7 @@ function cis_types_field_group_info() {
       ),
     ),
   );
-  $export['group_sections|field_collection_item|field_offerings|form'] = $field_group;
+  $field_groups['group_sections|field_collection_item|field_offerings|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -453,7 +639,7 @@ function cis_types_field_group_info() {
       ),
     ),
   );
-  $export['group_semester|field_collection_item|field_offerings|form'] = $field_group;
+  $field_groups['group_semester|field_collection_item|field_offerings|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -483,7 +669,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_setup|field_collection_item|field_sections|form'] = $field_group;
+  $field_groups['group_setup|field_collection_item|field_sections|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -514,7 +700,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsible',
     ),
   );
-  $export['group_syllabus|field_collection_item|field_sections|form'] = $field_group;
+  $field_groups['group_syllabus|field_collection_item|field_sections|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -527,7 +713,7 @@ function cis_types_field_group_info() {
   $field_group->parent_name = 'group_resources';
   $field_group->data = array(
     'label' => 'Teaching Assistants',
-    'weight' => '19',
+    'weight' => '25',
     'children' => array(
       0 => 'field_ta_documents',
       1 => 'field_ta_instructions',
@@ -543,7 +729,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_tas|node|course|form'] = $field_group;
+  $field_groups['group_tas|node|course|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -572,7 +758,7 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_teachers|field_collection_item|field_sections|form'] = $field_group;
+  $field_groups['group_teachers|field_collection_item|field_sections|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -600,7 +786,7 @@ function cis_types_field_group_info() {
       ),
     ),
   );
-  $export['group_text_areas|field_collection_item|field_sections|form'] = $field_group;
+  $field_groups['group_text_areas|field_collection_item|field_sections|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -613,12 +799,12 @@ function cis_types_field_group_info() {
   $field_group->parent_name = 'group_samples';
   $field_group->data = array(
     'label' => 'Text areas',
-    'weight' => '31',
+    'weight' => '50',
     'children' => array(
       0 => 'body',
-      1 => 'field_long_description',
-      2 => 'field_topics_covered_text',
-      3 => 'field_course_readings',
+      1 => 'field_course_readings',
+      2 => 'field_long_description',
+      3 => 'field_topics_covered_text',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -631,7 +817,36 @@ function cis_types_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_text_areas|node|course|form'] = $field_group;
+  $field_groups['group_text_areas|node|course|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_urls|node|service|form';
+  $field_group->group_name = 'group_urls';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'service';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'URLs',
+    'weight' => '1',
+    'children' => array(
+      0 => 'field_data_location',
+      1 => 'field_location',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-urls field-group-fieldset',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_urls|node|service|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -655,7 +870,33 @@ function cis_types_field_group_info() {
       ),
     ),
   );
-  $export['group_wholething|field_collection_item|field_sections|full'] = $field_group;
+  $field_groups['group_wholething|field_collection_item|field_sections|full'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Access Duration');
+  t('Administrative');
+  t('Archives');
+  t('Details');
+  t('Files');
+  t('Instructors');
+  t('Internal logistics');
+  t('Marketing');
+  t('Offerings');
+  t('Pedagogical');
+  t('Personel');
+  t('Promotional');
+  t('Resources');
+  t('Sections');
+  t('Semester');
+  t('Semester Logistics');
+  t('Setup');
+  t('Teachers');
+  t('Teaching Assistants');
+  t('Text areas');
+  t('URLs');
+  t('Visuals');
+  t('Whole thing');
+
+  return $field_groups;
 }

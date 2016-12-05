@@ -1,14 +1,7 @@
 <?php
 /**
- * Implements menu_link__menu_cis_toolkit.
+ * Implements hook_page_build().
  */
-function cis_foundation_access_menu_link__menu_cis_toolkit(&$variables) {
-  return _foundation_access_menu_outline($variables);
-}
-
-/**
- * Implements menu_tree__menu_cis_toolkit.
- */
-function cis_foundation_access_menu_tree__menu_cis_toolkit($variables) {
-  return '<ul class="off-canvas-list has-submenu content-outline-navigation">' . $variables['tree'] . '</ul>';
+function cis_foundation_access_page_build(&$page) {
+  drupal_add_css(drupal_get_path('theme', 'cis_foundation_access') . '/css/cis_styles.css');
 }

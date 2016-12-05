@@ -11,6 +11,16 @@ function cis_distro_integrations_cis_service_instance_courses_options_alter(&$op
   // revert the mooc ux defaults, they struggle to automatically
   $options['fr'][] = 'mooc_ux_defaults';
   $options['fr'][] = 'mooc_cis_ux';
+  // mooc should have some accessibility tests to play with OOTB
+  $options['en'][] = 'textbook_wcag20aa';
+}
+
+/**
+ * Implements hook_cis_service_instance_TOOL_options_alter().
+ */
+function cis_distro_integrations_cis_service_instance_studio_options_alter(&$options, $course, $service) {
+  // CLE should default to our latest version as 1.x is legacy
+  $options['field_distribution'] = 'cle__2';
 }
 
 /**
@@ -19,10 +29,30 @@ function cis_distro_integrations_cis_service_instance_courses_options_alter(&$op
 function cis_distro_integrations_cis_service_instance_courses_job_file_alter(&$content, $course, $service, $service_instance) {
   // only apply default content import for course based service
   if ($service->field_machine_name[LANGUAGE_NONE][0]['value'] == CIS_HELPER_COURSE_SERVICE && !empty($service_instance->field_service_data[LANGUAGE_NONE][0]['value'])) {
-    // allow for on creation population of material
-    $content .= 'drush feeds-import feeds_node_helper_book_import --file=' . $service_instance->field_service_data[LANGUAGE_NONE][0]['value'] . "\n";
-    $content .= 'drush uuid-recreate' . "\n";
+    $path = $service_instance->field_service_data[LANGUAGE_NONE][0]['value'];
+    // see if we have a .git url
+    if (valid_url($path) && strpos($path, '.git') !== FALSE) {
+      $content .= 'drush en git_book,git_book_gb,mooc_markdown' . "\n";
+      $content .= 'drush cc drush' . "\n";
+      // @todo support other formats in the future
+      $content .= 'drush git-book-create ' . $path . " gb master\n";
+    }
+    else {
+      // allow for on creation population of materials which are local to the file system
+      $content .= 'drush feeds-import feeds_node_helper_book_import --file=' . $path . "\n";
+      // since this imports a book of content that has UUIDs we need to forcibly rebuild
+      $content .= 'drush uuid-recreate' . "\n";
+    }
   }
+}
+
+/**
+ * Implements hook_cis_service_instance_TOOL_job_file_alter().
+ */
+function cis_distro_integrations_cis_service_instance_innovate_job_file_alter(&$content, $course, $service, $service_instance) {
+  global $user;
+  // make the requestor an admin
+  $content .= 'drush urol administrator ' . $user->name . "\n";
 }
 
 /**
@@ -51,16 +81,4 @@ function cis_distro_integrations_cis_service_instance_discuss_options_alter(&$op
   $options['fr'][] = 'cis_service_lti';
   $options['fr'][] = 'cis_section';
   $options['fr'][] = 'cis_service_connection_ux';
-  // harmony_core wants path on so it can name stuff nicely
-  // elmsln cis si clean up want to ax path to make naming static
-  foreach ($options['dis'] as $key => $value) {
-    // make sure we actually found it
-    if (in_array($value, array('path', 'pathauto')) !== false) {
-      unset($options['dis'][$key]);
-    }
-  }
-  // make sure we don't get empty disables as a result of the above
-  if (empty($options['dis'])) {
-    unset($options['dis']);
-  }
 }
